@@ -1,9 +1,11 @@
+import React from 'react';
 import './styles/top-menu-styles.css';
 import DashLogo from '../../assets/icons/dash-logo-main-white.svg';
 import Avatar from '../../assets/pictures/avatar.jpg';
 import SearchIcon from '../../assets/icons/search-icon.svg';
 import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
+import { Button } from '../buttons/Button';
 export const TopMenuRow = () => {
 	return (
 		<>
@@ -20,12 +22,8 @@ export const TopMenuRow = () => {
 
 				<div className="login-and-avatar">
 					<div className="settings-and-alert">
-						<button className="active-button settings-button">
-							<img className="h-6" src={Settings} alt="search" />
-						</button>
-						<button className="inactive-button alert-button">
-							<img className="h-6" src={Alerts} alt="search" />
-						</button>
+						<Button alt="Settings" icon={Settings} />
+						<Button alt="Alerts" icon={Alerts} disabled={true} />
 					</div>
 					<img className="avatar" src={Avatar} alt="avatar" />
 					<div className="name-and-role">

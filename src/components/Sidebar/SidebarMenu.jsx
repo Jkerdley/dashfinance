@@ -1,49 +1,26 @@
-import './styles/SidebarMenuStyles.css';
-import SlideRight from '../../assets/icons/slider-right-icon.svg';
-import DayTheme from '../../assets/icons/day-icon.svg';
-import NightTheme from '../../assets/icons/night-icon.svg';
-import BankIcon from '../../assets/icons/bank-icon.svg';
-import CashIcon from '../../assets/icons/cash-icon.svg';
-import CryptoIcon from '../../assets/icons/crypto-icon.svg';
-import InvestmentsIcon from '../../assets/icons/investments-icon.svg';
-import AnalyticsIcon from '../../assets/icons/analytics-icon.svg';
-import { MenuButton } from '../buttons/MenuButton';
+import React, { useState } from 'react';
+
+import { Menu } from './Menu';
+import { WelcomeTopMenu } from './WelcomeTopMenu';
+import { DayNightSwitcher } from './DayNightSwitcher';
 
 export const SidebarMenu = () => {
+	const [isMenuOpened, setIsMenuOpened] = useState(false);
+	const onButtonClick = () => {
+		setIsMenuOpened(!isMenuOpened);
+		console.log(isMenuOpened);
+	};
+	const menuBasisValue = isMenuOpened ? '' : '48';
+	const sliderValue = isMenuOpened ? 'rotate-0' : 'rotate-180';
 	return (
-		<aside className="side-menu">
-			<div className="aside-top-wrapper">
-				<div className="welcome-board">
-					<p className="welcome-text">WELCOME</p>
-					<p>
-						You was here <br />
-						20.12.2024
-					</p>
-				</div>
-			</div>
-			<menu className="aside-center-wrapper">
-				<div className="buttons-in-menu">
-					<MenuButton alt="bank" icon={BankIcon} />
-					<MenuButton alt="cash" icon={CashIcon} />
-					<MenuButton alt="crypto" icon={CryptoIcon} />
-					<MenuButton alt="investments" icon={InvestmentsIcon} disabled={true} />
-					<MenuButton alt="analytics" icon={AnalyticsIcon} disabled={true} />
-				</div>
-			</menu>
-
-			<div className="menu-bottom-wrapper">
-				<button className="active-button">
-					<img className="h-5" src={SlideRight} alt="search" />
-				</button>
-				<div className="day-night-switcher">
-					<button className="active-button">
-						<img className="h-6" src={DayTheme} alt="search" />
-					</button>
-					<button className="active-button">
-						<img className="h-5" src={NightTheme} alt="search" />
-					</button>
-				</div>
-			</div>
+		<aside
+			name="side-menu-wrapper"
+			className={`flex transition-all duration-150 ease-in-out 0.2s w-${menuBasisValue} flex-col items-center content-between justify-between
+			rounded-3xl backdrop-blur-xl bg-gray-200/20 py-4 px-3 mr-4`}
+		>
+			<WelcomeTopMenu />
+			<Menu isMenuOpened={isMenuOpened} />
+			<DayNightSwitcher sliderValue={sliderValue} onButtonClick={onButtonClick} />
 		</aside>
 	);
 };

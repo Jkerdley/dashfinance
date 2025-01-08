@@ -1,3 +1,4 @@
+import React from 'react';
 import './styles/Layout.css';
 import { SidebarMenu } from '../Sidebar';
 import { TopMenuRow } from '../TopMenu/TopMenuRow';
@@ -7,7 +8,7 @@ export const Layout = () => {
 		<>
 			<SidebarMenu />
 			<div className="layout">
-				<TopMenuRow></TopMenuRow>
+				<TopMenuRow />
 				<div className="main-row-top">
 					<div className="column column-top-left"></div>
 					<div className="column column-top-right"></div>
