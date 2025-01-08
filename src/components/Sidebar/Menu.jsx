@@ -21,7 +21,7 @@ export const Menu = ({ isMenuOpened }) => {
 					</>
 				) : (
 					<>
-						<WideMenuButton alt={'bank'} icon={BankIcon} buttonText={'На главную'} />
+						<WideMenuButton alt={'bank'} icon={BankIcon} buttonText={'Главная'} />
 						<WideMenuButton alt={'cash'} icon={CashIcon} buttonText={'Финансы'} />
 						<WideMenuButton alt={'crypto'} icon={CryptoIcon} buttonText={'Crypto'} />
 						<WideMenuButton
