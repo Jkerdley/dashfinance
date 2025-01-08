@@ -1,0 +1,8 @@
+.root {
+	display: flex;
+	background-image: url('https://depositphotos-blog.s3.eu-west-1.amazonaws.com/uploads/2017/07/Soothing-nature-backgrounds-2.webp');
+	background-size: cover;
+	width: 1920px;
+	height: 1080px;
+	padding: 1em;
+}
