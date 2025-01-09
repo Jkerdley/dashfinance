@@ -70,7 +70,7 @@
 .layout {
 	display: flex;
 	flex-direction: column;
-	flex: 18;
+	flex: 16;
 	flex-wrap: wrap;
 	padding: 1em;
 	backdrop-filter: blur(30px);

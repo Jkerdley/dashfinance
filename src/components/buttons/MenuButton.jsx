@@ -3,7 +3,7 @@ export const MenuButton = ({ icon, alt, disabled, onClick }) => {
 	return disabled ? (
 		<button
 			onClick={onClick}
-			className="flex w-11 h-11 justify-center items-center bg-gray-400 rounded-2xl"
+			className={`flex w-11 h-11 justify-center items-center bg-gray-400 rounded-2xl`}
 		>
 			<img className="h-6" src={icon} alt={alt} />
 		</button>
