@@ -5,24 +5,28 @@
 	display: flex;
 	flex-direction: column;
 	flex: 4;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .column-top-right {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .column-bottom-middle {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .column-bottom-left {
 	display: flex;
 	flex-direction: column;
 	flex: 2.25;
+	flex-wrap: wrap;
 	gap: 1em;
 	backdrop-filter: none;
 }
@@ -30,24 +34,28 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .column-bottom-center-bottom {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .column-bottom-right {
 	display: flex;
 	flex-direction: column;
 	flex: 4;
+	flex-wrap: wrap;
 	background-color: rgba(245, 245, 250, 0.25);
 }
 .main-row-top {
 	display: flex;
 	gap: 1em;
 	flex: 4;
+	flex-wrap: wrap;
 	border-radius: 26px;
 }
 .main-row-bottom {
@@ -55,13 +63,15 @@
 	flex-direction: row;
 	gap: 1em;
 	flex: 6;
+	flex-wrap: wrap;
 	border-radius: 26px;
 }
 
 .layout {
 	display: flex;
 	flex-direction: column;
-	flex: 7;
+	flex: 18;
+	flex-wrap: wrap;
 	padding: 1em;
 	backdrop-filter: blur(30px);
 	-webkit-backdrop-filter: blur(30px);
@@ -69,3 +79,15 @@
 	border-radius: 36px;
 	gap: 1em;
 }
+
+/* @media screen and (max-width: 900px) {
+	.layout > div {
+		flex: 12;
+	}
+	.main-row-top {
+		flex: 3;
+	}
+	.main-row-bottom {
+		flex: 4;
+	}
+} */

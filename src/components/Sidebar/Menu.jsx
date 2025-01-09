@@ -14,6 +14,7 @@ export const Menu = ({ isMenuOpened }) => {
 				{isMenuOpened ? (
 					<>
 						<MenuButton alt="bank" icon={BankIcon} />
+
 						<MenuButton alt="cash" icon={CashIcon} />
 						<MenuButton alt="crypto" icon={CryptoIcon} />
 						<MenuButton alt="investments" icon={InvestmentsIcon} disabled={true} />

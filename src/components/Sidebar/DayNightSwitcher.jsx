@@ -8,7 +8,7 @@ export const DayNightSwitcher = ({ sliderValue, onButtonClick }) => {
 	return (
 		<div
 			name="menu-bottom-buttons"
-			className="flex basis-6/12 w-full flex-col items-center justify-end gap-6"
+			className="flex flex-[1] w-full flex-col items-center justify-end gap-6"
 		>
 			<Button value={sliderValue} onClick={onButtonClick} alt="slide to right" icon={SlideRight} />
 			<div
