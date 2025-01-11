@@ -11,16 +11,23 @@ export const TopMenuRow = () => {
 		<>
 			<div className="flex items-center justify-between flex-1 px-1 rounded-3xl">
 				<a href="/">
-					<img className="dash-logo" src={DashLogo} alt="DASH IO" />
+					<img className="h-12" src={DashLogo} alt="DASH" />
 				</a>
-				<div className="search-wrapper">
-					<input className="search-input-top-menu" type="text" />
-					<button className="active-button search-button">
+				<div className="flex items-center justify-between">
+					<input
+						name="search"
+						className="w-96 h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
+						type="text"
+					/>
+					<button className="ml-[-36px]">
 						<img className="h-6" src={SearchIcon} alt="search" />
 					</button>
 				</div>
 
 				<div className="login-and-avatar">
+					<div className="flex items-center gap-1 justify-center">
+						<p className="flex font-semibold">USD</p> <div className="triangle"></div>
+					</div>
 					<div className="settings-and-alert">
 						<Button alt="Settings" icon={Settings} />
 						<Button alt="Alerts" icon={Alerts} disabled={true} />
@@ -28,7 +35,7 @@ export const TopMenuRow = () => {
 					<img className="avatar" src={Avatar} alt="avatar" />
 					<div className="name-and-role">
 						<p className="login">Hi, Eugene Erdle</p>
-						<p>Your role: admin</p>
+						<p className="font-medium">Выйти</p>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,61 @@
+{
+	"users": [
+		{
+			"id": "1123",
+			"login": "john",
+			"password": "qwerty1",
+			"role_id": 0,
+			"registered_at": "2024.09.04"
+		},
+		{
+			"login": "test",
+			"password": "qwerty",
+			"role_id": 1,
+			"registered_at": "2036-12-03 15:07",
+			"id": "2DPZxX6"
+		}
+	],
+	"roles": [
+		{
+			"id": 0,
+			"name": "admin"
+		},
+		{
+			"id": 1,
+			"name": "user"
+		},
+		{
+			"id": 2,
+			"name": "guest"
+		}
+	],
+	"cash-accounts": [
+		{
+			"id": "0001",
+			"name": "Наличные",
+			"icon": "https://fastly.picsum.photos/id/89/280/150.jpg?hmac=wK5h2nRLwoMaJKdb9J845eeHSgob_k5MdyH8XDDXH9Q",
+			"amount": "20 234,23",
+			"history": [{ "id": "0201", "type": "add", "amount": 500, "date": "02.01.2025", "from": "cash" }],
+			"type": "debit"
+		}
+	],
+	"categories": [
+		{
+			"id": "822e",
+			"name": "Продукты",
+			"icon": "https://fastly.picsum.photos/id/89/280/150.jpg?hmac=wK5h2nRLwoMaJKdb9J845eeHSgob_k5MdyH8XDDXH9Q",
+			"amount": "20 234,23",
+			"history": [
+				{
+					"id": "0201",
+					"account": "0201",
+					"type": "add",
+					"amount": 500,
+					"date": "02.01.2025",
+					"from": "cash"
+				}
+			]
+		}
+	],
+	"sessions": []
+}
