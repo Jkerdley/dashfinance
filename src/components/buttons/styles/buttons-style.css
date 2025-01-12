@@ -1,0 +1,33 @@
+.wide-operation-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 3px;
+	border-radius: 1rem;
+	width: 10rem;
+	height: 2.75rem;
+	background: #b9ff80;
+	transition: all ease 0.2s;
+	cursor: pointer;
+	color: black;
+}
+
+.wide-operation-button:hover {
+	background: beige;
+}
+
+.noclick {
+	background: gray;
+	cursor: none;
+	&:hover {
+		cursor: none;
+	}
+}
+
+.outcome {
+	background-color: #ff81b6;
+}
+
+.icon {
+	background-color: rgba(13, 43, 71, 0.85);
+}

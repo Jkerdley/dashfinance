@@ -9,9 +9,9 @@ import { Button } from '../buttons/Button';
 export const TopMenuRow = () => {
 	return (
 		<>
-			<div className="flex items-center justify-between flex-1 px-1 rounded-3xl">
+			<div className="flex items-center justify-between flex-1 px-4 rounded-3xl">
 				<a href="/">
-					<img className="h-12" src={DashLogo} alt="DASH" />
+					<img className="dash-logo" src={DashLogo} alt="DASH" />
 				</a>
 				<div className="flex items-center justify-between">
 					<input
@@ -35,7 +35,9 @@ export const TopMenuRow = () => {
 					<img className="avatar" src={Avatar} alt="avatar" />
 					<div className="name-and-role">
 						<p className="login">Hi, Eugene Erdle</p>
-						<p className="font-medium">Выйти</p>
+						<p className="font-medium">
+							<a href="">Выйти</a>
+						</p>
 					</div>
 				</div>
 			</div>

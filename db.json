@@ -29,12 +29,12 @@
 			"name": "guest"
 		}
 	],
-	"cash-accounts": [
+	"accounts": [
 		{
 			"id": "0001",
 			"name": "Наличные",
-			"icon": "https://fastly.picsum.photos/id/89/280/150.jpg?hmac=wK5h2nRLwoMaJKdb9J845eeHSgob_k5MdyH8XDDXH9Q",
-			"amount": "20 234,23",
+			"icon": "debit",
+			"balance": "51234,23",
 			"history": [{ "id": "0201", "type": "add", "amount": 500, "date": "02.01.2025", "from": "cash" }],
 			"type": "debit"
 		}
@@ -43,8 +43,8 @@
 		{
 			"id": "822e",
 			"name": "Продукты",
-			"icon": "https://fastly.picsum.photos/id/89/280/150.jpg?hmac=wK5h2nRLwoMaJKdb9J845eeHSgob_k5MdyH8XDDXH9Q",
-			"amount": "20 234,23",
+			"icon": "products",
+			"amount": "20234,23",
 			"history": [
 				{
 					"id": "0201",

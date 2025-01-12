@@ -2,71 +2,95 @@
 	display: flex;
 	flex-direction: column;
 	flex: 4;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px violet solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .column-top-right {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px blue solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .column-bottom-middle {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px green solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .column-bottom-left {
 	display: flex;
 	flex-direction: column;
 	flex: 2.25;
-	flex-wrap: wrap;
 	gap: 1em;
+	border: 1px gray solid;
 	backdrop-filter: none;
 }
 .column-bottom-left-top {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px yellow solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .column-bottom-left-bottom {
 	display: flex;
 	flex-direction: column;
 	flex: 3;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px yellow solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .column-bottom-right {
 	display: flex;
-	flex-direction: column;
 	flex: 4;
-	flex-wrap: wrap;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 16px;
 	border-radius: 26px;
-	background-color: rgba(245, 245, 250, 0.25);
+	border: 1px red solid;
+	background-color: rgba(13, 43, 71, 0.85);
+	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 .main-row-top {
 	display: flex;
 	gap: 1em;
 	flex: 4;
 	flex-wrap: wrap;
+	border: 2px black solid;
 	border-radius: 26px;
 }
 .main-row-bottom {
 	display: flex;
-	flex-direction: row;
 	gap: 1em;
 	flex: 6;
 	flex-wrap: wrap;
+	border: 2px white solid;
 	border-radius: 26px;
 }
 
@@ -77,13 +101,26 @@
 	flex-wrap: wrap;
 	padding: 1em;
 	backdrop-filter: blur(30px);
+	border: 2px white solid;
 	-webkit-backdrop-filter: blur(30px);
-	background-color: rgba(245, 245, 250, 0.15);
+	background-color: rgba(239, 239, 239, 0.1);
 	border-radius: 36px;
 	gap: 1em;
 }
 
-@media screen and (max-width: 900px) {
+.financeLayout {
+	display: flex;
+	flex-direction: column;
+	flex: 16;
+	flex-wrap: wrap;
+	backdrop-filter: blur(30px);
+	-webkit-backdrop-filter: blur(30px);
+	border: 2px yellowgreen solid;
+	border-radius: 36px;
+	gap: 1em;
+}
+
+/* @media screen and (max-width: 900px) {
 	.layout > div {
 		flex: 8;
 		flex-wrap: wrap;
@@ -96,4 +133,4 @@
 		flex-direction: row;
 		flex: 3;
 	}
-}
+} */
