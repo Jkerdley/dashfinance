@@ -13,6 +13,8 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	background-color: #242424;
+	scrollbar-color: #1f4165 transparent;
+	scrollbar-width: thin; /* толщина */
 }
 
 :root {

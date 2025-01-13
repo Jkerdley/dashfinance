@@ -57,5 +57,87 @@
 			]
 		}
 	],
+	"history": [
+		{
+			"id": "822e",
+			"category": "Продукты",
+			"account_id": "0001",
+			"icon": "products",
+			"type": "spend",
+			"amount": 10234.23,
+			"date": "12.02.2025",
+			"comment": ""
+		},
+		{
+			"id": "813e",
+			"category": "Продукты",
+			"account_id": "0001",
+			"icon": "products",
+			"type": "spend",
+			"amount": 21234.23,
+			"date": "11.12.2025",
+			"comment": ""
+		},
+		{
+			"id": "812e",
+			"category": "Продукты",
+			"account_id": "0001",
+			"icon": "products",
+			"type": "spend",
+			"amount": 13234.23,
+			"date": "16.01.2025",
+			"comment": ""
+		},
+		{
+			"id": "821e",
+			"category": "БытХим",
+			"account_id": "0001",
+			"icon": "house",
+			"type": "spend",
+			"amount": 4234.23,
+			"date": "15.01.2025",
+			"comment": ""
+		},
+		{
+			"id": "823e",
+			"category": "Зарплата",
+			"account_id": "0001",
+			"icon": "cash",
+			"type": "add",
+			"amount": 120234.45,
+			"date": "13.01.2025",
+			"comment": ""
+		},
+		{
+			"id": "824e",
+			"category": "ЖКХ",
+			"account_id": "0001",
+			"icon": "house",
+			"type": "spend",
+			"amount": 20234.23,
+			"date": "22.01.2025",
+			"comment": ""
+		},
+		{
+			"id": "825e",
+			"category": "Инвестиции",
+			"account_id": "0002",
+			"icon": "investments",
+			"type": "add",
+			"amount": 312234.12,
+			"date": "12.01.2025",
+			"comment": ""
+		},
+		{
+			"id": "826e",
+			"category": "Продукты",
+			"account_id": "0001",
+			"icon": "products",
+			"type": "add",
+			"amount": 20234.23,
+			"date": "02.01.2025",
+			"comment": ""
+		}
+	],
 	"sessions": []
 }

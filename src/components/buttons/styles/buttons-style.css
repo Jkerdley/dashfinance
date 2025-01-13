@@ -4,8 +4,8 @@
 	align-items: center;
 	padding-bottom: 3px;
 	border-radius: 1rem;
-	width: 10rem;
-	height: 2.75rem;
+	width: 9rem;
+	height: 2.5rem;
 	background: #b9ff80;
 	transition: all ease 0.2s;
 	cursor: pointer;
@@ -17,10 +17,11 @@
 }
 
 .noclick {
+	color: gray;
 	background: gray;
-	cursor: none;
+	cursor: default;
 	&:hover {
-		cursor: none;
+		cursor: default;
 	}
 }
 
@@ -30,4 +31,35 @@
 
 .icon {
 	background-color: rgba(13, 43, 71, 0.85);
+}
+
+.outline-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 3px;
+	border-radius: 1rem;
+	width: 9rem;
+	height: 2.5rem;
+	border: 1px solid white;
+	transition: all ease 0.2s;
+	cursor: pointer;
+	color: white;
+	gap: 1rem;
+}
+
+.noclick-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 3px;
+	border-radius: 1rem;
+	width: 9rem;
+	height: 2.5rem;
+	border: 1px solid gray;
+	color: gray;
+	gap: 1rem;
+	&:hover {
+		cursor: default;
+	}
 }
