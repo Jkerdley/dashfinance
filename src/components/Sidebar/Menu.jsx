@@ -13,25 +13,36 @@ export const Menu = ({ isMenuOpened }) => {
 			<div className="flex flex-col items-start gap-8 justify-around ">
 				{isMenuOpened ? (
 					<>
-						<MenuButton alt="bank" icon={BankIcon} />
-
-						<MenuButton alt="cash" icon={CashIcon} />
-						<MenuButton alt="crypto" icon={CryptoIcon} />
-						<MenuButton alt="investments" icon={InvestmentsIcon} disabled={true} />
-						<MenuButton alt="analytics" icon={AnalyticsIcon} disabled={true} />
+						<MenuButton to="/" alt="bank" icon={BankIcon} />
+						<MenuButton to="/finances" alt="cash" icon={CashIcon} />
+						<MenuButton to="/crypto" alt="crypto" icon={CryptoIcon} />
+						<MenuButton
+							to="/investments"
+							alt="investments"
+							icon={InvestmentsIcon}
+							disabled={true}
+						/>
+						<MenuButton to="/analytics" alt="analytics" icon={AnalyticsIcon} disabled={true} />
 					</>
 				) : (
 					<>
-						<WideMenuButton alt={'bank'} icon={BankIcon} buttonText={'Все активы'} />
-						<WideMenuButton alt={'cash'} icon={CashIcon} buttonText={'Финансы'} />
-						<WideMenuButton alt={'crypto'} icon={CryptoIcon} buttonText={'Криптовалюты'} />
+						<WideMenuButton to="/" alt={'bank'} icon={BankIcon} buttonText={'Все активы'} />
+						<WideMenuButton to="/finances" alt={'cash'} icon={CashIcon} buttonText={'Финансы'} />
 						<WideMenuButton
+							to="/crypto"
+							alt={'crypto'}
+							icon={CryptoIcon}
+							buttonText={'Криптовалюты'}
+						/>
+						<WideMenuButton
+							to="/investments"
 							alt={'investments'}
 							icon={InvestmentsIcon}
 							buttonText={'Инвестиции'}
 							disabled={true}
 						/>
 						<WideMenuButton
+							to="/analytics"
 							alt={'analytics'}
 							icon={AnalyticsIcon}
 							buttonText={'Аналитика'}
