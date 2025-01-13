@@ -122,7 +122,7 @@
 			"id": "825e",
 			"category": "Инвестиции",
 			"account_id": "0002",
-			"icon": "investments",
+			"icon": "debit",
 			"type": "add",
 			"amount": 312234.12,
 			"date": "12.01.2025",

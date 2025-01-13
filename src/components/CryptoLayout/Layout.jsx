@@ -4,8 +4,8 @@ import { SidebarMenu } from '../Sidebar';
 import { TopMenuRow } from '../TopMenu/TopMenuRow';
 import SettingsIcon from '../../assets/icons/settings-icon.svg';
 import { WideOperationsButton } from '../buttons/WideOperationsButton';
-import { FinanceAccount } from '../financeAccount/financeAccount';
-import { OperationHistory } from '../operationHistory/OperationHistory';
+import { FinanceAccount } from './FinanceAccount';
+import { OperationHistory } from './OperationHistory';
 import OutlineButton from '../buttons/OutlineButton';
 
 let operations = [
@@ -90,7 +90,7 @@ let operations = [
 		comment: '',
 	},
 	{
-		id: '826e',
+		id: '843e',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -100,7 +100,7 @@ let operations = [
 		comment: '',
 	},
 	{
-		id: '826e',
+		id: '806e',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',

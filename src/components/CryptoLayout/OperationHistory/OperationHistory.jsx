@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardIcon } from '../buttons/CardIcon';
-import Settings from '../../assets/icons/settings-icon.svg';
-import BancCardIcon from '../../assets/icons/income-debit-icon.svg';
+import { CardIcon } from '../../buttons';
+import Settings from '../../../assets/icons/settings-icon.svg';
+import BancCardIcon from '../../../assets/icons/income-debit-icon.svg';
 
 export const OperationHistory = ({
 	category,

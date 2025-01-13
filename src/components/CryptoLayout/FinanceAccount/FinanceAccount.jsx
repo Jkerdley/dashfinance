@@ -1,10 +1,10 @@
 import React from 'react';
-import { CardIcon } from '../buttons/CardIcon';
-import Settings from '../../assets/icons/settings-icon.svg';
-import DebitCardIcon from '../../assets/icons/income-debit-icon.svg';
-import CreditCardIcon from '../../assets/icons/income-credit-card.svg';
-import CashIcon from '../../assets/icons/income-cash.svg';
-import GiftCardIcon from '../../assets/icons/income-present-card.svg';
+import { CardIcon } from '../../buttons';
+import Settings from '../../../assets/icons/settings-icon.svg';
+import DebitCardIcon from '../../../assets/icons/income-debit-icon.svg';
+import CreditCardIcon from '../../../assets/icons/income-credit-card.svg';
+import CashIcon from '../../../assets/icons/income-cash.svg';
+import GiftCardIcon from '../../../assets/icons/income-present-card.svg';
 
 export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 	const iconOfAccount = () => {
