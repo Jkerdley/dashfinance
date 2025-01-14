@@ -5,6 +5,7 @@ import { WideOperationsButton } from '../../buttons/WideOperationsButton';
 import { FinanceAccount } from './FinanceAccount';
 import OutlineButton from '../../buttons/OutlineButton';
 import { OperationHistory } from './OperationHistory';
+import { Categories } from './Categories';
 
 let operations = [
 	{
@@ -207,7 +208,78 @@ export const FinancesLayout = () => {
 				</div>
 
 				<div className={styles.rightColumn}>
-					<div className={styles.columnCategories}>Категории расходов</div>
+					<div className={styles.columnCategories}>
+						<div className="flex mb-2">Категории расходов</div>
+
+						<div className={styles.spendCategories}>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+							<Categories
+								budget={123}
+								balance={20134.12}
+								categorie={'Продукты'}
+								icon={'debit'}
+							/>
+						</div>
+					</div>
 					<div className={styles.columnIncomeChart}>Доходы график</div>
 				</div>
 			</div>
