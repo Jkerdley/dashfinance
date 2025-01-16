@@ -5,7 +5,7 @@ import { WideOperationsButton } from '../../buttons/WideOperationsButton';
 import { FinanceAccount } from './FinanceAccount';
 import OutlineButton from '../../buttons/OutlineButton';
 import { OperationHistory } from './OperationHistory';
-import { Categories } from './Categories';
+import { Categorie } from './Categories';
 
 let operations = [
 	{
@@ -110,6 +110,36 @@ let operations = [
 	},
 ];
 
+let categories = [
+	{ id: '0124', name: 'Продукты', budget: '50000', balance: '22134.12', icon: 'credit' },
+	{ id: '0125', name: 'БытХим', budget: '10000', balance: '12134.12', icon: 'debit' },
+	{ id: '0126', name: 'ЖКХ', budget: '5000', balance: '5300', icon: 'debit' },
+	{ id: '0127', name: 'Развлечения', budget: '50000', balance: '22134.12', icon: 'debit' },
+	{ id: '0128', name: 'Семья', budget: '50000', balance: '22134.12', icon: 'debit' },
+	{ id: '0130', name: 'Вредные привычки', budget: '50000', balance: '22134.12', icon: 'debit' },
+	{ id: '0131', name: 'Кафе', budget: '50000', balance: '22134.12', icon: 'debit' },
+	{ id: '0132', name: 'Досуг', budget: '10000', balance: '11000', icon: 'debit' },
+	{ id: '0133', name: 'Подарки', budget: '', balance: '17004.81', icon: 'debit' },
+];
+
+let accounts = [
+	{ id: '0001', name: 'SBER Bank VISA', balance: '36000,12', icon: 'credit', type: 'debit' },
+	{ id: '0002', name: 'Tinkoff VISA credit card', balance: '50000', icon: 'credit', type: 'credit' },
+	{ id: '0002', name: 'Наличные', balance: '552000', icon: 'cash', type: 'cash' },
+	{ id: '0003', name: 'Alfa Bank debit', balance: '50000', icon: 'debit', type: 'debit' },
+	{
+		id: '0004',
+		name: 'Tinkoff black MasterCard debit card',
+		balance: '50000',
+		icon: 'debit',
+		type: 'debit',
+	},
+	{ id: '0005', name: 'Alfa bank debit', balance: '50000', icon: 'debit', type: 'debit' },
+	{ id: '0006', name: 'Tinkoff platinum credit', balance: '1513000,72', icon: 'credit', type: 'credit' },
+	{ id: '0007', name: 'Alfa Bank credit', balance: '50000', icon: 'credit', type: 'credit' },
+	{ id: '0008', name: 'SBER Bank MIR', balance: '3214000', icon: 'debit', type: 'debit' },
+	{ id: '0009', name: 'Gift Card', balance: '50000', icon: 'gift', type: 'debit' },
+];
 export const FinancesLayout = () => {
 	return (
 		<>
@@ -130,7 +160,7 @@ export const FinancesLayout = () => {
 											color={'outcome'}
 											alt="income"
 										>
-											<p className="text-lg">Доходы +</p>
+											<p className="text-lg">Расходы +</p>
 										</WideOperationsButton>
 									</div>
 								</div>
@@ -138,37 +168,17 @@ export const FinancesLayout = () => {
 							<div className={styles.accounts}>
 								Счета
 								<div className={styles.accountsWrapper}>
-									{/*TODO financeAccounts.map((account) => { return <FinanceAccount name={account.name} balance={account.balance}  />}) */}
-									<FinanceAccount
-										accountName={'accountName'}
-										accountBalance={'accountBalance'}
-										icon={'debit'}
-									/>
-									<FinanceAccount
-										accountName={'accountName'}
-										accountBalance={'accountBalance'}
-										icon={'cash'}
-									/>
-									<FinanceAccount
-										accountName={'accountName ass sssssssssssssss fffffffffff fffffffff'}
-										accountBalance={'accountBalance'}
-										icon={'credit'}
-									/>
-									<FinanceAccount
-										accountName={'accountName'}
-										accountBalance={'accountBalance'}
-										icon={'debit'}
-									/>
-									<FinanceAccount
-										accountName={'accountName'}
-										accountBalance={'accountBalance'}
-										icon={'credit'}
-									/>
-									<FinanceAccount
-										accountName={'accountName'}
-										accountBalance={'accountBalanc'}
-										icon={'debit'}
-									/>
+									{accounts.map((account) => {
+										return (
+											<div key={account.id}>
+												<FinanceAccount
+													accountName={account.name}
+													accountBalance={account.balance}
+													icon={account.icon}
+												/>
+											</div>
+										);
+									})}
 								</div>
 							</div>
 						</div>
@@ -194,14 +204,6 @@ export const FinancesLayout = () => {
 										</div>
 									);
 								})}
-								{/* <OperationHistory
-									addOperation={true}
-									operationType={'Пополнение счета'}
-									operationComment={''}
-									summOfOperation={1045.34}
-									accountName={'SBER Credit card'}
-									operationDate={'12.11.2024'}
-								/> */}
 							</div>
 						</div>
 					</div>
@@ -212,72 +214,19 @@ export const FinancesLayout = () => {
 						<div className="flex mb-2">Категории расходов</div>
 
 						<div className={styles.spendCategories}>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
-							<Categories
-								budget={123}
-								balance={20134.12}
-								categorie={'Продукты'}
-								icon={'debit'}
-							/>
+							{categories.map((categorie) => {
+								return (
+									<>
+										<Categorie
+											key={categorie.id}
+											budget={categorie.budget}
+											balance={categorie.balance}
+											categorie={categorie.name}
+											icon={categorie.icon}
+										/>
+									</>
+								);
+							})}
 						</div>
 					</div>
 					<div className={styles.columnIncomeChart}>Доходы график</div>

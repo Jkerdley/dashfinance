@@ -1,1 +1,1 @@
-export * from './Categories.jsx';
+export * from './Categorie.jsx';

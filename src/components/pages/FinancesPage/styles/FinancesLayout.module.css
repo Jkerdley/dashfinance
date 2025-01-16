@@ -107,9 +107,11 @@
 .spendCategories {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-right: 0.5rem;
 	height: 295px;
-	border-radius: 26px;
-	gap: 1rem;
+	border-radius: 16px;
+	gap: 0.5rem;
 	overflow-y: auto;
 	overscroll-behavior: auto;
 	scroll-behavior: smooth;

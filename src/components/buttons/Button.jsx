@@ -1,7 +1,10 @@
 import React from 'react';
 export const Button = ({ icon, alt, disabled, onClick }) => {
 	return disabled ? (
-		<button onClick={onClick} className="flex w-9 h-9 justify-center items-center bg-gray-400 rounded-xl">
+		<button
+			onClick={onClick}
+			className="flex w-9 h-9 justify-center items-center bg-gray-400 rounded-xl cursor-default"
+		>
 			<img className="h-6" src={icon} alt={alt} />
 		</button>
 	) : (

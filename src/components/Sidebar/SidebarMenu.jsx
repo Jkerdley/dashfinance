@@ -22,6 +22,7 @@ export const SidebarMenu = () => {
 		>
 			<div className="flex flex-[1] justify-center items-center">
 				<MenuButton
+					wide={11}
 					value={sliderValue}
 					onClick={onButtonClick}
 					alt="slide to right"

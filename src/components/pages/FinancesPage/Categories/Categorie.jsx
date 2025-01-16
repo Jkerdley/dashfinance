@@ -5,8 +5,9 @@ import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../../assets/icons/income-present-card.svg';
+import '../styles/Categorie.css';
 
-export const Categories = ({ categorie, balance, budget, icon }) => {
+export const Categorie = ({ categorie, balance, budget, icon }) => {
 	const iconOfAccount = () => {
 		switch (icon) {
 			case 'debit':
@@ -20,19 +21,30 @@ export const Categories = ({ categorie, balance, budget, icon }) => {
 		}
 	};
 
+	const isOverBalance = () => {
+		if (!budget) {
+			return 'text-lime-300';
+		} else if (Number(balance) > Number(budget)) {
+			return 'text-rose-300';
+		} else {
+			return 'text-lime-200';
+		}
+	};
+	// const isOverdraft = Number(balance) > Number(budget) ? 'text-rose-300' : 'text-lime-300';
+
 	return (
-		<div className="flex justify-start items-center h-14 w-[48%] p-2 text-sm bg-sky-300/20 rounded-2xl">
-			<div className="flex flex-[5] w-60 justify-start items-center">
+		<div className="categorie-wrapper">
+			<div className="categorie-inside-wrapper">
 				<CardIcon padding={'p-2'} buttonSize={10} icon={iconOfAccount()}></CardIcon>
-				<div className="flex flex-col w-[100%] truncate px-2">
+				<div className="categorie-text-wrapper">
 					<p className="text-base truncate">{categorie}</p>
-					<div className="flex gap-1">
-						<p className="text-sm truncate">Расходы: {balance}</p>
-						<p className="text-sm truncate">Бюджет: {budget}</p>
+					<div className="categorie-budjet-wrapper">
+						<p className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</p>
+						<p className="text-sm truncate">{budget ? `Бюджет: ${budget}` : ''}</p>
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-[1] justify-end">
+			<div className="categorie-icon-container">
 				<CardIcon size={5} icon={Settings} noBackground={true}></CardIcon>
 			</div>
 		</div>
