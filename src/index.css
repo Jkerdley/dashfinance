@@ -1,31 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
-	margin: 0;
-	padding: 0;
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	color: rgba(255, 255, 255, 1);
 }
 
 body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
-	background-color: #242424;
+	background-color: #000000;
 	scrollbar-color: #1f4165 transparent;
-	scrollbar-width: thin; /* толщина */
+	scrollbar-width: thin;
 }
 
-:root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+.root {
+	display: flex;
+	/* background: radial-gradient(circle, rgba(24, 72, 156, 1) 0%, rgb(0, 33, 52) 100%); */
+	background-image: url('https://devex.shorthandstories.com/The-Future-of-Development-Finance-5-takeaways/assets/npiCcb42gC/190701-still-top-image-london-finance-event-video-1920x1080.jpeg');
+	background-size: cover;
+	min-width: 100vw;
+	height: 100vh;
+	padding: 1em;
+}
 
-	color: rgba(255, 255, 255, 1);
+.mainLayout {
+	display: flex;
+	flex-direction: column;
+	flex: 20;
+	flex-wrap: wrap;
+	padding: 1em;
+	backdrop-filter: blur(40px);
+	-webkit-backdrop-filter: blur(30px);
+	background-color: rgba(239, 239, 239, 0.05);
+	border-radius: 36px;
+	gap: 1em;
+}
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+.pagesLayout {
+	display: flex;
+	flex: 20;
+	flex-wrap: wrap;
+	border-radius: 36px;
+	gap: 1em;
 }

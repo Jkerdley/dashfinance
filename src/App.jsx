@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './App.module.css';
 import { SidebarMenu } from './components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import { TopMenuRow } from './components/TopMenu';
@@ -8,11 +7,11 @@ import { FinancesLayout } from './components/pages/FinancesPage';
 
 function App() {
 	return (
-		<div className={styles.root}>
+		<div className="root">
 			<SidebarMenu />
-			<div className={styles.mainLayout}>
+			<div className="mainLayout">
 				<TopMenuRow />
-				<div className={styles.pagesLayout}>
+				<div className="pagesLayout">
 					<Routes>
 						<Route path="/" element={'MAIN PAGE'} />
 						<Route path="/finances" element={<FinancesLayout />} />

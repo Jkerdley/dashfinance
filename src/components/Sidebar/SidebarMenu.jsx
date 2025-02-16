@@ -12,7 +12,7 @@ export const SidebarMenu = () => {
 		setIsMenuOpened(!isMenuOpened);
 		console.log(isMenuOpened);
 	};
-	const menuflexValue = isMenuOpened ? '1' : '2';
+	const menuflexValue = isMenuOpened ? '0.5' : '1';
 	const sliderValue = isMenuOpened ? 'rotate-0' : 'rotate-180';
 	return (
 		<aside
@@ -22,10 +22,11 @@ export const SidebarMenu = () => {
 		>
 			<div className="flex flex-[1] justify-center items-center">
 				<MenuButton
-					wide={11}
+					padding={'px-4'}
+					wide={12}
 					value={sliderValue}
 					onClick={onButtonClick}
-					alt="slide to right"
+					alt="slide"
 					icon={SlideRight}
 				/>
 			</div>
