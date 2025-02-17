@@ -21,7 +21,8 @@ body {
 .root {
 	display: flex;
 	/* background: radial-gradient(circle, rgba(24, 72, 156, 1) 0%, rgb(0, 33, 52) 100%); */
-	background-image: url('https://devex.shorthandstories.com/The-Future-of-Development-Finance-5-takeaways/assets/npiCcb42gC/190701-still-top-image-london-finance-event-video-1920x1080.jpeg');
+	/* background-image: url('https://images.squarespace-cdn.com/content/v1/5979e18715d5db259166db64/1631570216861-ROIX0K0AQYT7AR46B4ZP/Download-Banner.png'); */
+	background-image: url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb');
 	background-size: cover;
 	min-width: 100vw;
 	height: 100vh;
