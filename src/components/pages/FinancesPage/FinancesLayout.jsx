@@ -219,6 +219,7 @@ let categories = [
 	{ id: '0131', name: 'Кафе', budget: '50000', balance: '22134.12', icon: 'debit' },
 	{ id: '0132', name: 'Досуг', budget: '10000', balance: '11000', icon: 'debit' },
 	{ id: '0133', name: 'Подарки', budget: '', balance: '17004.81', icon: 'debit' },
+	{ id: '0134', name: 'Путешествия', budget: '23500', balance: '1004.81', icon: 'gift' },
 ];
 const findAccountName = (accountId) => {
 	const account = accounts.find((accountItem) => accountId === accountItem.id);
@@ -273,7 +274,7 @@ export const FinancesLayout = () => {
 							</div>
 							<section
 								id="accouts__main__container"
-								className="flex flex-col flex-6 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-0.5 snap-start"
+								className="flex flex-col flex-8 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-0.5 snap-start"
 							>
 								<div
 									id="accouts__header-and-button"
@@ -291,7 +292,7 @@ export const FinancesLayout = () => {
 								</div>
 								<div
 									id="accouts__wrapper"
-									className="flex flex-col pr-1 mt-1 max-h-[44vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
+									className="flex flex-col pr-1 mt-1 max-h-[47vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
 								>
 									{accounts.map((account) => {
 										return (
@@ -311,7 +312,7 @@ export const FinancesLayout = () => {
 							id="accouts__operations-container"
 							className="flex flex-col flex-5 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-4"
 						>
-							<div className="flex  font-medium justify-between gap-2">
+							<div className="flex font-medium justify-between gap-2">
 								История операций
 								<OutlineButton
 									to={''}
@@ -324,7 +325,7 @@ export const FinancesLayout = () => {
 							</div>
 							<div
 								id="operationsHistoryBoxWrapper"
-								className="flex flex-col max-h-[54vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+								className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 							>
 								{operations.map((operation) => {
 									console.log('operation.account_id', operation.account_id);
@@ -349,7 +350,7 @@ export const FinancesLayout = () => {
 				<div className="flex flex-6 flex-col gap-4">
 					<div
 						id="column__categories"
-						className="flex flex-col flex-4 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+						className="flex flex-col flex-2 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 					>
 						<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 							<span className="flex text-2xl font-medium mb-2">Категории расходов</span>
@@ -364,7 +365,7 @@ export const FinancesLayout = () => {
 						</div>
 						<div
 							id="spend-categories__container"
-							className="flex flex-[4] flex-col flex-wrap items-start pr-2 h-[35vh] w-full rounded-[16px] gap-[0.9rem] overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+							className="flex flex-4 flex-wrap gap-4 pr-2 justify-between max-h-[35vh] w-full rounded-[16px] overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 						>
 							{categories.map((categorie) => {
 								return (
@@ -381,7 +382,7 @@ export const FinancesLayout = () => {
 					</div>
 					<div
 						id="column__income-chart"
-						className="flex flex-6 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+						className="flex flex-8 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 					>
 						<p className="text-2xl font-medium">Доходы график</p>
 					</div>
@@ -390,3 +391,5 @@ export const FinancesLayout = () => {
 		</>
 	);
 };
+
+// flex-8 m:flex-6 sm:flex-2

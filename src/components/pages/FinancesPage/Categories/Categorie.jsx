@@ -36,9 +36,9 @@ export const Categorie = ({ categorie, balance, budget, icon }) => {
 	return (
 		<div
 			id="categorie-wrapper"
-			className="flex items-center justify-start p-2 rounded-[1rem] h-14  bg-sky-300/20"
+			className="flex flex-2 max-w-3xl items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
 		>
-			<div id="categorie-inside-wrapper" className="flex items-center justify-start w-72">
+			<div id="categorie-inside-wrapper" className="flex items-center justify-start w-76">
 				<CardIcon padding="p-2" buttonSize={10} icon={iconOfAccount()} />
 				<div id="categorie-text-wrapper" className="flex flex-col ml-2 w-full overflow-hidden">
 					<p className="text-base truncate">{categorie}</p>
