@@ -28,7 +28,10 @@ export const TopMenuRow = () => {
 					<div className="flex items-center gap-1 justify-center">
 						<p className="flex font-semibold">USD</p> <div className="triangle"></div>
 					</div>
-					<div className="settings-and-alert">
+					<div
+						id="settings-and-alert"
+						className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-slate-400/30  w-24 gap-1.5"
+					>
 						<Button alt="Settings" icon={Settings} />
 						<Button alt="Alerts" icon={Alerts} disabled={true} />
 					</div>
