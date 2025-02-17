@@ -1,6 +1,12 @@
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	color: rgba(255, 255, 255, 1);
+	--btn-hover-gradient: radial-gradient(
+		circle,
+		rgba(0, 212, 255, 1) 0%,
+		rgba(19, 19, 156, 1) 74%,
+		rgba(2, 0, 36, 1) 100%
+	);
 }
 
 body {
@@ -29,8 +35,9 @@ body {
 	flex-wrap: wrap;
 	padding: 1em;
 	backdrop-filter: blur(40px);
-	-webkit-backdrop-filter: blur(30px);
-	background-color: rgba(239, 239, 239, 0.05);
+	-webkit-backdrop-filter: blur(40px);
+	background-size: cover;
+	background-color: rgba(239, 239, 239, 0.08);
 	border-radius: 36px;
 	gap: 1em;
 }
@@ -41,4 +48,8 @@ body {
 	flex-wrap: wrap;
 	border-radius: 36px;
 	gap: 1em;
+}
+.scrollbar {
+	scrollbar-width: thin;
+	scroll-behavior: smooth;
 }

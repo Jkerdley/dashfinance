@@ -5,6 +5,7 @@ import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../../assets/icons/income-present-card.svg';
+import { EditButton } from '../../../buttons/EditButton';
 
 export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 	const iconOfAccount = () => {
@@ -30,7 +31,7 @@ export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 				</div>
 			</div>
 			<div className="flex flex-[1] justify-end">
-				<CardIcon size={5} icon={Settings} noBackground={true}></CardIcon>
+				<EditButton to={''} size={5} icon={Settings}></EditButton>
 			</div>
 		</div>
 	);

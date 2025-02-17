@@ -13,16 +13,23 @@ export const Menu = ({ isMenuOpened }) => {
 			<div className="flex flex-col items-start gap-8 justify-around ">
 				{isMenuOpened ? (
 					<>
-						<MenuButton to="/" alt="bank" icon={BankIcon} />
-						<MenuButton to="/finances" alt="cash" icon={CashIcon} />
-						<MenuButton to="/crypto" alt="crypto" icon={CryptoIcon} />
+						<MenuButton width={'w-11'} to="/" alt="bank" icon={BankIcon} />
+						<MenuButton width={'w-11'} to="/finances" alt="cash" icon={CashIcon} />
+						<MenuButton width={'w-11'} to="/crypto" alt="crypto" icon={CryptoIcon} />
 						<MenuButton
+							width={'w-11'}
 							to="/investments"
 							alt="investments"
 							icon={InvestmentsIcon}
 							disabled={true}
 						/>
-						<MenuButton to="/analytics" alt="analytics" icon={AnalyticsIcon} disabled={true} />
+						<MenuButton
+							width={'w-11'}
+							to="/analytics"
+							alt="analytics"
+							icon={AnalyticsIcon}
+							disabled={true}
+						/>
 					</>
 				) : (
 					<>

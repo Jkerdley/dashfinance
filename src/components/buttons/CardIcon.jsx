@@ -1,5 +1,5 @@
 import React from 'react';
-export const CardIcon = ({ icon, noBackground, size = 5, buttonSize = 10, padding }) => {
+export const CardIcon = ({ icon, noBackground, size = 5, buttonSize = 11, padding }) => {
 	const background = noBackground ? '' : 'bg-sky-950';
 	return (
 		<button

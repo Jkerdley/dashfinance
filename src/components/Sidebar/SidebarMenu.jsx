@@ -23,7 +23,7 @@ export const SidebarMenu = () => {
 			<div className="flex flex-[1] justify-center items-center">
 				<MenuButton
 					padding={'px-4'}
-					wide={12}
+					width={'w-11'}
 					value={sliderValue}
 					onClick={onButtonClick}
 					alt="slide"

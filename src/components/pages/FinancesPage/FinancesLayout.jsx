@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './styles/FinancesLayout.module.css';
 import SettingsIcon from '../../../assets/icons/settings-icon.svg';
 import { WideOperationsButton } from '../../buttons/WideOperationsButton';
 import { FinanceAccount } from './FinanceAccount';
@@ -99,7 +98,107 @@ let operations = [
 		comment: '',
 	},
 	{
-		id: '806e',
+		id: '823e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '813e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '896e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '886e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '876e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '866e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '856e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '846e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '836e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '826e',
+		category: 'Продукты',
+		account_id: '0001',
+		icon: 'products',
+		type: 'add',
+		amount: 20234.23,
+		date: '02.01.2025',
+		comment: '',
+	},
+	{
+		id: '816e',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -146,31 +245,54 @@ let accounts = [
 export const FinancesLayout = () => {
 	return (
 		<>
-			<div className={styles.financeLayout}>
-				<div className={styles.leftColumn}>
-					<div className={styles.columnFinanceResult}>Финансовый результат</div>
-					<div className={styles.rowAccountsAndOperations}>
-						<div className={styles.operationsAccountsWrapper}>
-							<div className={styles.operations}>
-								<div className={styles.boxFinanceOperations}>
-									<p>Операции</p>
-									<div className="flex gap-4 justify-between items-center">
-										<WideOperationsButton icon={SettingsIcon} alt="income">
-											<p className="text-lg">Доходы +</p>
+			<div id="layout__finances" className="flex flex-16 flex-wrap rounded-4xl gap-4">
+				<div className="flex flex-8 flex-col gap-4">
+					<div
+						id="col__finance-result"
+						className="flex flex-col flex-4 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+					>
+						<p className="font-medium text-2xl">Финансовый результат</p>
+					</div>
+					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
+						<div id="operations__and_accounts-wrapper" className="flex flex-col flex-2 gap-4">
+							<div
+								id="operations__container"
+								className="flex flex-col flex-1 text-2xl p-4 rounded-[26px] bg-[rgba(13,43,71,0.55)]"
+							>
+								<div id="operations__buttons" className="flex flex-col gap-4">
+									<p className=" font-medium">Операции</p>
+									<div className="flex gap-4 w-full justify-between items-center">
+										<WideOperationsButton color={'bg-[#b9ff80]'} alt="income">
+											<p className="text-lg font-semibold">Доходы +</p>
 										</WideOperationsButton>
-										<WideOperationsButton
-											icon={SettingsIcon}
-											color={'outcome'}
-											alt="income"
-										>
-											<p className="text-lg">Расходы - </p>
+										<WideOperationsButton color={'bg-[#ff81b6]'} alt="income">
+											<p className="text-lg font-semibold">Расходы - </p>
 										</WideOperationsButton>
 									</div>
 								</div>
 							</div>
-							<div className={styles.accounts}>
-								Счета
-								<div className={styles.accountsWrapper}>
+							<section
+								id="accouts__main__container"
+								className="flex flex-col flex-6 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-0.5 snap-start"
+							>
+								<div
+									id="accouts__header-and-button"
+									className="flex font-medium gap-2 justify-between"
+								>
+									Счета
+									<OutlineButton
+										to={''}
+										disabled={false}
+										icon={SettingsIcon}
+										alt="finance accounts"
+									>
+										<p className="text-base">Изменить</p>
+									</OutlineButton>
+								</div>
+								<div
+									id="accouts__wrapper"
+									className="flex flex-col pr-1 mt-1 max-h-[44vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
+								>
 									{accounts.map((account) => {
 										return (
 											<div key={account.id}>
@@ -183,19 +305,29 @@ export const FinancesLayout = () => {
 										);
 									})}
 								</div>
-							</div>
+							</section>
 						</div>
-						<div className={styles.columnOperationHistory}>
-							<div className="flex justify-between gap-2">
+						<div
+							id="accouts__operations-container"
+							className="flex flex-col flex-5 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-4"
+						>
+							<div className="flex  font-medium justify-between gap-2">
 								История операций
-								<OutlineButton disabled={true} icon={SettingsIcon} alt="change payments">
-									<p className="text-lg">Изменить</p>
+								<OutlineButton
+									to={''}
+									disabled={false}
+									icon={SettingsIcon}
+									alt="change history"
+								>
+									<p className="text-base">Изменить</p>
 								</OutlineButton>
 							</div>
-							<div className={styles.operationsHistoryBoxWrapper}>
+							<div
+								id="operationsHistoryBoxWrapper"
+								className="flex flex-col max-h-[54vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+							>
 								{operations.map((operation) => {
 									console.log('operation.account_id', operation.account_id);
-
 									return (
 										<div key={operation.id}>
 											<OperationHistory
@@ -214,11 +346,26 @@ export const FinancesLayout = () => {
 					</div>
 				</div>
 
-				<div className={styles.rightColumn}>
-					<div className={styles.columnCategories}>
-						<div className="flex mb-2">Категории расходов</div>
-
-						<div className={styles.spendCategories}>
+				<div className="flex flex-6 flex-col gap-4">
+					<div
+						id="column__categories"
+						className="flex flex-col flex-4 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+					>
+						<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
+							<span className="flex text-2xl font-medium mb-2">Категории расходов</span>
+							<OutlineButton
+								to={''}
+								disabled={false}
+								icon={SettingsIcon}
+								alt="finance accounts"
+							>
+								<p className="text-base">Изменить</p>
+							</OutlineButton>
+						</div>
+						<div
+							id="spend-categories__container"
+							className="flex flex-[4] flex-col flex-wrap items-start pr-2 h-[35vh] w-full rounded-[16px] gap-[0.9rem] overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+						>
 							{categories.map((categorie) => {
 								return (
 									<Categorie
@@ -232,7 +379,12 @@ export const FinancesLayout = () => {
 							})}
 						</div>
 					</div>
-					<div className={styles.columnIncomeChart}>Доходы график</div>
+					<div
+						id="column__income-chart"
+						className="flex flex-6 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+					>
+						<p className="text-2xl font-medium">Доходы график</p>
+					</div>
 				</div>
 			</div>
 		</>

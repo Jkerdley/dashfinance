@@ -5,7 +5,7 @@ export const WideMenuButton = ({ alt, icon, buttonText, disabled, onClick, to })
 	const isDisabled = disabled ? 'text-gray-300' : 'text-white';
 	return (
 		<MenuButton
-			wide={'w-52'}
+			width={'w-52'}
 			to={to}
 			alt={alt}
 			icon={icon}

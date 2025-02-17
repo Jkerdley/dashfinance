@@ -34,20 +34,6 @@
 	/* background-color: rgba(245, 245, 250, 0.25); */
 }
 
-.accounts {
-	display: flex;
-	flex-direction: column;
-	flex: 3;
-	font-size: 22px;
-	font-weight: 500;
-	padding: 16px;
-	border-radius: 26px;
-	background-color: rgba(13, 43, 71, 0.75);
-	gap: 2px;
-	scroll-snap-align: start;
-	/* background-color: rgba(245, 245, 250, 0.25); */
-}
-
 .accounts-wrapper {
 	display: flex;
 	flex-direction: column;
