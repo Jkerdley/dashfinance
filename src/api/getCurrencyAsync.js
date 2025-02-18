@@ -1,8 +1,8 @@
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-const targetUrl = 'https://currate.ru/api/?get=rates&pairs=USDRUB&key=43b2a5faa0f1d28ab76a409c595f86e4';
+import { CURRENCY_COURSE_API } from './CURRENCY_API_URL';
+
 export const getCurrencyAsync = async (timeout) => {
 	if (timeout) {
-		return await fetch(proxyUrl + targetUrl)
+		return await fetch(CURRENCY_COURSE_API)
 			.then((res) => res.json())
 			.then((response) => {
 				console.log(response);
