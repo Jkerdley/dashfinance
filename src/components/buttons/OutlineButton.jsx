@@ -4,7 +4,6 @@ const OutlineButton = ({ disabled, onClick, icon, children, to }) => {
 	return disabled ? (
 		<button
 			disabled={true}
-			onClick={onClick}
 			className={`cursor-default  flex justify-center items-center rounded-xl w-38 h-9 border border-zinc-400 text-zinc-400 gap-3`}
 		>
 			{children}

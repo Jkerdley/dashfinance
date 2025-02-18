@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currencySelector } from '../../store/selectors/currency-selector';
+import { ACTIONS } from '../../store/actionTypes';
 
 export const CurrencyToggle = () => {
-	const [isUSD, setIsUSD] = useState(true);
+	const isUSD = useSelector(currencySelector);
+	const dispatch = useDispatch();
 
-	const toggleCurrency = () => setIsUSD((prev) => !prev);
+	const toggleCurrency = () => {
+		dispatch({ type: ACTIONS.CYRRENCY_SWITCH });
+	};
 
 	return (
 		<div className="flex items-center space-x-3">
