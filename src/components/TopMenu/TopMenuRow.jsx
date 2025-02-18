@@ -6,6 +6,7 @@ import SearchIcon from '../../assets/icons/search-icon.svg';
 import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
+import { CurrencyToggle } from '../buttons';
 export const TopMenuRow = () => {
 	return (
 		<>
@@ -25,9 +26,10 @@ export const TopMenuRow = () => {
 				</div>
 
 				<div className="login-and-avatar">
-					<div className="flex items-center gap-1 justify-center">
+					<CurrencyToggle />
+					{/* <div className="flex items-center gap-1 justify-center">
 						<p className="flex font-semibold">USD</p> <div className="triangle"></div>
-					</div>
+					</div> */}
 					<div
 						id="settings-and-alert"
 						className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-slate-400/30  w-24 gap-1.5"
