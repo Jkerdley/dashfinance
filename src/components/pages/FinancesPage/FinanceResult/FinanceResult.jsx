@@ -1,6 +1,7 @@
 import React from 'react';
 import { accounts, categories, operations } from '../../../../db';
 import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency';
+import { cleanValue } from '../../../../utils/cleanBalanceStringValue';
 
 export const FinanceResult = ({ isUSD, rubleCourse }) => {
 	const accountsDB = accounts.reduce((acc, account) => acc + account.balance, 0);
@@ -17,10 +18,29 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
 
 	return (
-		<div className="bg-amber-400/10 h-full">
-			<h1>Расходы за месяц: {outcomeForDate}</h1>
-			<h1>Доходы за месяц: {incomeForDate}</h1>
-			<h1>Баланс: {totalBalanceForDate}</h1>
+		<div id="finance-result__main-container" className="flex h-full">
+			<div className="flex flex-col flex-3">
+				<div className="flex flex-4 w-full items-center justify-start ">
+					<div className="flex items-center gap-4">
+						<span className="text-2xl font-medium">Баланс:</span>{' '}
+						<span className="text-7xl font-bold">{cleanValue(totalBalanceForDate)}</span>
+					</div>
+				</div>
+				<div className="flex flex-2 justify-between">
+					<span className="flex items-center justify-center gap-2 text-xl font-medium h-full">
+						Расходы: <span className="text-4xl font-bold">{cleanValue(outcomeForDate)}</span>
+					</span>
+					<span className="flex items-center justify-center gap-2 text-xl font-medium h-full">
+						<span>Доходы: </span>
+						<span className="text-4xl font-bold">
+							{} {cleanValue(incomeForDate)}
+						</span>
+					</span>
+				</div>
+			</div>
+			<div className="flex items-center justify-center flex-2 bg-blue-400">
+				<span>ТУТ БУДЕТ ДИАГРАММА</span>
+			</div>
 		</div>
 	);
 };

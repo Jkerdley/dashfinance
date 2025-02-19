@@ -218,7 +218,6 @@ export const accounts = [
 	{
 		id: '0001',
 		name: 'SBER Bank VISA',
-		// Конвертируем '36000,12' в число, заменив запятую на точку
 		balance: 36000.12,
 		icon: 'credit',
 		type: 'debit',
