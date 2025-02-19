@@ -21,20 +21,24 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 		<div id="finance-result__main-container" className="flex h-full">
 			<div className="flex flex-col flex-3">
 				<div className="flex flex-4 w-full items-center justify-start ">
-					<div className="flex items-center gap-4">
-						<span className="text-2xl font-medium">Баланс:</span>{' '}
-						<span className="text-7xl font-bold">{cleanValue(totalBalanceForDate)}</span>
+					<div className="flex items-center gap-3">
+						<span className="text-2xl font-medium">Баланс:</span>
+						<div className="flex items-center gap-1">
+							<span className="text-4xl font-medium -mb-2">{isUSD ? '$' : '\u20bd'}</span>
+							<span className="text-7xl font-bold">{cleanValue(totalBalanceForDate)}</span>
+						</div>
 					</div>
 				</div>
 				<div className="flex flex-2 justify-between">
 					<span className="flex items-center justify-center gap-2 text-xl font-medium h-full">
-						Расходы: <span className="text-4xl font-bold">{cleanValue(outcomeForDate)}</span>
+						Расходы:
+						<span className="text-2xl font-medium">{isUSD ? '$' : '\u20bd'}</span>
+						<span className="text-4xl font-bold">{cleanValue(outcomeForDate)}</span>
 					</span>
 					<span className="flex items-center justify-center gap-2 text-xl font-medium h-full">
 						<span>Доходы: </span>
-						<span className="text-4xl font-bold">
-							{} {cleanValue(incomeForDate)}
-						</span>
+						<span className="text-2xl font-medium">{isUSD ? '$' : '\u20bd'}</span>
+						<span className="text-4xl font-bold">{cleanValue(incomeForDate)}</span>
 					</span>
 				</div>
 			</div>
