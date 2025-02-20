@@ -140,7 +140,7 @@ export const FinancesLayout = () => {
 					className="flex flex-col flex-5 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 				>
 					<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
-						<span className="flex text-2xl font-medium mb-2">Категории расходов</span>
+						<p className="flex text-2xl font-medium mb-2 truncate">Категории расходов</p>
 						<OutlineButton to={''} disabled={false} icon={SettingsIcon} alt="finance accounts">
 							<span className="text-base">Изменить</span>
 						</OutlineButton>
