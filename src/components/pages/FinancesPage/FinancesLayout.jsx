@@ -137,7 +137,7 @@ export const FinancesLayout = () => {
 			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
 				<div
 					id="column__categories"
-					className="flex flex-col flex-5 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
+					className="flex flex-col flex-4	 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 				>
 					<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 						<p className="flex text-2xl font-medium mb-2 truncate">Категории расходов</p>

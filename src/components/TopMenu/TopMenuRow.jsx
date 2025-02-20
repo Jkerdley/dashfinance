@@ -16,16 +16,17 @@ export const TopMenuRow = () => {
 				<div className="flex gap-4 items-center">
 					<BurgerButton isOpen={isMenuOpen} onClick={setIsMenuOpen} />
 					<a href="/">
-						<img className="h-11" src={DashLogo} alt="DASH" />
+						<img className="2xl:h-11 lg:h-10 md:h-8 h-7" src={DashLogo} alt="DASH" />
 					</a>
 				</div>
 				<div className="flex items-center justify-between">
 					<input
 						name="search"
-						className="w-auto 2xl:w-120 h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
+						className="w-auto 2xl:w-120 xl:flex hidden h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-all duration-350 ease-in"
 						type="text"
+						aria-label="search"
 					/>
-					<button className="ml-[-36px]">
+					<button className="xl:flex hidden ml-[-36px]">
 						<img className="h-6" src={SearchIcon} alt="search" />
 					</button>
 				</div>

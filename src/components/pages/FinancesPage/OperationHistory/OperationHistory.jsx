@@ -33,7 +33,7 @@ export const OperationHistory = ({
 							{operationAmount}
 						</p>
 					</div>
-					<div className="flex flex-3 truncate">
+					<div className="flex flex-3 truncate  hidden lg:flex">
 						<p className="text-sm w-full truncate text-slate-400">{accountName}</p>
 					</div>
 					<div className="flex flex-1">

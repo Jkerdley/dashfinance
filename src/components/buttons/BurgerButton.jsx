@@ -4,7 +4,7 @@ export const BurgerButton = ({ isOpen, onClick }) => {
 	return (
 		<button
 			onClick={onClick}
-			className="group md:flex sm:flex 2xl:hidden xl:flex flex-col justify-center items-center w-10 h-10 rounded-lg outline-1
+			className="flex md:flex sm:flex 2xl:hidden xl:flex flex-col justify-center items-center lg:w-10 lg:h-10 md:w-9 md:h-9 w-8 h-8 rounded-lg outline-1
                    hover:bg-sky-700/50 transition-all duration-200 hover:outline-none transition:outline cursor-pointer"
 			aria-label="Menu"
 		>
