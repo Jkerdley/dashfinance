@@ -13,11 +13,10 @@ export const TopMenuRow = () => {
 	return (
 		<>
 			<section className="flex items-center justify-between flex-1 px-4 rounded-3xl">
-				<div className="flex gap-5 items-center">
+				<div className="flex gap-4 items-center">
 					<BurgerButton isOpen={isMenuOpen} onClick={setIsMenuOpen} />
-					{/* <Button></Button> */}
 					<a href="/">
-						<img className="dash-logo" src={DashLogo} alt="DASH" />
+						<img className="h-11" src={DashLogo} alt="DASH" />
 					</a>
 				</div>
 				<div className="flex items-center justify-between">

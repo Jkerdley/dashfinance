@@ -17,9 +17,6 @@ input:focus {
 	font-weight: 500;
 	font-size: 20px;
 }
-.dash-logo {
-	height: 48px;
-}
 
 .name-and-role {
 	display: flex;
