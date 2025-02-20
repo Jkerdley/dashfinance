@@ -13,7 +13,7 @@ export const MenuButton = ({ icon, alt, disabled, onClick, padding, value, to, w
 		<Link to={to}>
 			<button
 				onClick={onClick}
-				className={`flex ${width} h-11 ${padding} gap-2 justify-center items-center hover:scale-105 bg-gradient-to-br from-sky-500 to-blue-900 hover:bg-gradient-to-b transition-all duration-250 rounded-2xl`}
+				className={`flex ${width} h-11 ${padding} gap-2 justify-center items-center hover:scale-x-105 bg-sky-600 transition-all duration-250 rounded-2xl cursor-pointer`}
 			>
 				<img className={`h-6 ${value}`} src={icon} alt={alt} /> {children}
 			</button>
