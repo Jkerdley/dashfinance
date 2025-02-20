@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/top-menu-styles.css';
 import DashLogo from '../../assets/icons/dash-logo-main-white.svg';
 import Avatar from '../../assets/pictures/avatar.jpg';
@@ -6,14 +6,20 @@ import SearchIcon from '../../assets/icons/search-icon.svg';
 import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
-import { CurrencyToggle } from '../buttons';
+import { BurgerButton, CurrencyToggle } from '../buttons';
+
 export const TopMenuRow = () => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
 		<>
-			<div className="flex items-center justify-between flex-1 px-4 rounded-3xl">
-				<a href="/">
-					<img className="dash-logo" src={DashLogo} alt="DASH" />
-				</a>
+			<section className="flex items-center justify-between flex-1 px-4 rounded-3xl">
+				<div className="flex gap-5 items-center">
+					<BurgerButton isOpen={isMenuOpen} onClick={setIsMenuOpen} />
+					{/* <Button></Button> */}
+					<a href="/">
+						<img className="dash-logo" src={DashLogo} alt="DASH" />
+					</a>
+				</div>
 				<div className="flex items-center justify-between">
 					<input
 						name="search"
@@ -43,7 +49,7 @@ export const TopMenuRow = () => {
 						</p>
 					</div>
 				</div>
-			</div>
+			</section>
 		</>
 	);
 };

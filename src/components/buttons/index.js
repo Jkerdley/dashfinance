@@ -6,3 +6,4 @@ export * from './OutlineButton.jsx';
 export * from './CardIcon.jsx';
 export * from './EditButton.jsx';
 export * from './CurrencyToggle.jsx';
+export * from './BurgerButton.jsx';

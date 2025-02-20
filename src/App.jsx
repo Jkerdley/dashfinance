@@ -11,12 +11,12 @@ function App() {
 			<SidebarMenu />
 			<div
 				id="mainLayout"
-				className="flex flex-col flex-4 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition: all duration-350 ease-in"
+				className="flex flex-col flex-19 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
 			>
 				<TopMenuRow />
 				<div
 					id="pagesLayout"
-					className="flex flex-wrap rounded-[36px] h-full gap-4 transition: all duration-350 ease-in"
+					className="flex flex-wrap rounded-[36px] h-full gap-4 transition-all duration-250 ease-in-out"
 				>
 					<Routes>
 						<Route path="/" element={'MAIN PAGE'} />

@@ -5,7 +5,7 @@ export const MenuButton = ({ icon, alt, disabled, onClick, padding, value, to, w
 	return disabled ? (
 		<button
 			onClick={onClick}
-			className={`flex ${width} h-11 ${padding} justify-center items-center bg-gray-400 rounded-2xl cursor-default`}
+			className={`flex ${width} h-11 ${padding} justify-center items-center bg-gray-400 rounded-2xl cursor-default transition-all duration-250`}
 		>
 			<img className="h-6" src={icon} alt={alt} />
 		</button>
@@ -13,7 +13,7 @@ export const MenuButton = ({ icon, alt, disabled, onClick, padding, value, to, w
 		<Link to={to}>
 			<button
 				onClick={onClick}
-				className={`flex ${width} h-11 ${padding} gap-2 justify-center items-center transition ease-in-out hover:scale-105 bg-gradient-to-br from-sky-500 to-blue-900 hover:bg-gradient-to-b rounded-2xl`}
+				className={`flex ${width} h-11 ${padding} gap-2 justify-center items-center hover:scale-105 bg-gradient-to-br from-sky-500 to-blue-900 hover:bg-gradient-to-b transition-all duration-250 rounded-2xl`}
 			>
 				<img className={`h-6 ${value}`} src={icon} alt={alt} /> {children}
 			</button>
