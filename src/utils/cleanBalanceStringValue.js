@@ -1,10 +1,8 @@
 export const cleanValue = (dataset) => {
-	console.log('dataset', dataset);
-
 	const dotIndex = dataset.indexOf('.');
 	const resultValue = dotIndex !== -1 ? dataset.substring(0, dotIndex) : dataset;
 
-	const spacedMoneyValue = resultValue.slice(1, 25).trim().split('').reverse();
+	const spacedMoneyValue = resultValue.slice(1).trim().split('').reverse();
 	const indexOfItems = () => {
 		let newArray = [...spacedMoneyValue];
 

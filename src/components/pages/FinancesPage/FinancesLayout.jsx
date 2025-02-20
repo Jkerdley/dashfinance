@@ -36,7 +36,7 @@ export const FinancesLayout = () => {
 	}));
 
 	return (
-		<div id="layout__finances" className="flex flex-16 flex-wrap rounded-4xl gap-4">
+		<div id="layout__finances" className="flex flex-16 rounded-4xl gap-4">
 			<div className="flex flex-8 flex-col gap-4">
 				<div
 					id="col__finance-result"
@@ -44,7 +44,7 @@ export const FinancesLayout = () => {
 				>
 					<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 						<div className="flex justify-between gap-2">
-							<p className="font-medium text-2xl">Финансовый результат</p>
+							<span className="font-medium text-3xl">Финансовый результат</span>
 						</div>
 						<OutlineButton onClick={handleClickGetCourse}>Обновить курс</OutlineButton>
 					</div>
@@ -54,36 +54,33 @@ export const FinancesLayout = () => {
 					<div id="operations__and_accounts-wrapper" className="flex flex-col flex-2 gap-4">
 						<div
 							id="operations__container"
-							className="flex flex-col flex-1 text-2xl p-4 rounded-[26px] bg-[rgba(13,43,71,0.55)]"
+							className="flex flex-col flex-1 p-4 rounded-[26px] bg-[rgba(13,43,71,0.55)]"
 						>
-							<div id="operations__buttons" className="flex flex-col gap-4">
-								<p className=" font-medium">Операции</p>
+							<div id="operations__buttons" className="flex items-center flex-col gap-4">
+								<span className="flex font-medium text-3xl">Операции</span>
 								<div className="flex gap-4 w-full justify-between items-center">
 									<WideOperationsButton color={'bg-[#b9ff80]'} alt="income">
-										<p className="text-lg font-semibold">Доходы +</p>
+										<span className="text-lg font-semibold">Доходы +</span>
 									</WideOperationsButton>
 									<WideOperationsButton color={'bg-[#ff81b6]'} alt="income">
-										<p className="text-lg font-semibold">Расходы - </p>
+										<span className="text-lg font-semibold">Расходы - </span>
 									</WideOperationsButton>
 								</div>
 							</div>
 						</div>
 						<section
 							id="accouts__main__container"
-							className="flex flex-col flex-8 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-0.5 snap-start"
+							className="flex flex-col flex-8 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-0.5 snap-start"
 						>
-							<div
-								id="accouts__header-and-button"
-								className="flex font-medium gap-2 justify-between"
-							>
-								Счета
+							<div id="accouts__header-and-button" className="flex gap-2 justify-between">
+								<span className="text-3xl font-medium">Счета</span>
 								<OutlineButton
 									to={''}
 									disabled={false}
 									icon={SettingsIcon}
 									alt="finance accounts"
 								>
-									<p className="text-base">Изменить</p>
+									<span className="text-base">Изменить</span>
 								</OutlineButton>
 							</div>
 							<div
@@ -106,12 +103,12 @@ export const FinancesLayout = () => {
 					</div>
 					<div
 						id="accouts__operations-container"
-						className="flex flex-col flex-5 text-2xl p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-4"
+						className="flex flex-col flex-5 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)] gap-4"
 					>
-						<div className="flex font-medium justify-between gap-2">
-							История операций
+						<div className="flex justify-between gap-2">
+							<span className=" text-3xl font-medium">История операций</span>
 							<OutlineButton to={''} disabled={false} icon={SettingsIcon} alt="change history">
-								<p className="text-base">Изменить</p>
+								<span className="text-base">Изменить</span>
 							</OutlineButton>
 						</div>
 						<div
@@ -143,9 +140,9 @@ export const FinancesLayout = () => {
 					className="flex flex-col flex-2 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 				>
 					<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
-						<span className="flex text-2xl font-medium mb-2">Категории расходов</span>
+						<span className="flex text-3xl font-medium mb-2">Категории расходов</span>
 						<OutlineButton to={''} disabled={false} icon={SettingsIcon} alt="finance accounts">
-							<p className="text-base">Изменить</p>
+							<span className="text-base">Изменить</span>
 						</OutlineButton>
 					</div>
 					<div
@@ -169,7 +166,7 @@ export const FinancesLayout = () => {
 					id="column__income-chart"
 					className="flex flex-8 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"
 				>
-					<p className="text-2xl font-medium">Доходы график</p>
+					<span className="text-3xl font-medium">Доходы график</span>
 				</div>
 			</div>
 		</div>
