@@ -36,7 +36,7 @@ export const FinancesLayout = () => {
 	}));
 
 	return (
-		<div id="layout__finances" className="flex flex-16 rounded-4xl gap-4">
+		<div id="layout__finances" className="flex flex-16 flex-wrap rounded-4xl gap-4">
 			<div className="flex flex-8 flex-col gap-4">
 				<div
 					id="col__finance-result"

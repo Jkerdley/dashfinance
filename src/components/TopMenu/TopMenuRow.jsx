@@ -17,7 +17,7 @@ export const TopMenuRow = () => {
 				<div className="flex items-center justify-between">
 					<input
 						name="search"
-						className="w-96 h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
+						className="w-auto h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
 						type="text"
 					/>
 					<button className="ml-[-36px]">
@@ -27,9 +27,7 @@ export const TopMenuRow = () => {
 
 				<div className="login-and-avatar">
 					<CurrencyToggle />
-					{/* <div className="flex items-center gap-1 justify-center">
-						<p className="flex font-semibold">USD</p> <div className="triangle"></div>
-					</div> */}
+
 					<div
 						id="settings-and-alert"
 						className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-slate-400/30  w-24 gap-1.5"

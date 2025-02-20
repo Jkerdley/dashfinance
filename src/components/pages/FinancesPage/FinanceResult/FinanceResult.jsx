@@ -26,7 +26,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 						<span className="text-3xl font-medium">Баланс:</span>
 						<div className="flex items-center gap-2">
 							<span
-								className={`text-6xl font-medium -mb-1 ${
+								className={`text-3xl md:text-5xl 2xl:text-6xl mt-1 font-medium ${
 									parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
 										? 'text-lime-300'
 										: 'text-rose-300'
