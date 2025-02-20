@@ -17,7 +17,7 @@ export const SidebarMenu = () => {
 	return (
 		<aside
 			name="side-menu-wrapper"
-			className={`flex transition-all duration-150 ease-in-out 0.2s flex-[${menuflexValue}] flex-col items-center content-between justify-between
+			className={`flex flex-col flex-[${menuflexValue}] transition-all duration-350 ease-in items-center content-between justify-between
 			rounded-3xl py-4 px-4 mr-4`}
 		>
 			<div className="flex flex-[1] justify-center items-center">

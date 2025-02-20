@@ -134,7 +134,7 @@ export const FinancesLayout = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-6 flex-col gap-4">
+			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
 				<div
 					id="column__categories"
 					className="flex flex-col flex-2 p-4 rounded-3xl bg-[rgba(13,43,71,0.55)]"

@@ -7,11 +7,17 @@ import { FinancesLayout } from './components/pages/FinancesPage';
 
 function App() {
 	return (
-		<div className="root">
+		<div id="root" className="flex bg-cover min-w-screen h-full p-4">
 			<SidebarMenu />
-			<div className="mainLayout">
+			<div
+				id="mainLayout"
+				className="flex flex-col flex-4 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition: all duration-350 ease-in"
+			>
 				<TopMenuRow />
-				<div className="pagesLayout">
+				<div
+					id="pagesLayout"
+					className="flex flex-wrap rounded-[36px] h-full gap-4 transition: all duration-350 ease-in"
+				>
 					<Routes>
 						<Route path="/" element={'MAIN PAGE'} />
 						<Route path="/finances" element={<FinancesLayout />} />
