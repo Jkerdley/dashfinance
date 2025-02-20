@@ -9,7 +9,7 @@ import { WideMenuButton } from '../buttons/WideMenuButton';
 
 export const Menu = ({ isMenuOpened }) => {
 	return (
-		<nav name="menu-buttons" className="flex flex-[6] w-full items-start justify-center py-10">
+		<nav name="menu-buttons" className="flex flex-6 w-full items-start justify-center py-10">
 			<div className="flex flex-col items-start gap-8 justify-around ">
 				{isMenuOpened ? (
 					<>

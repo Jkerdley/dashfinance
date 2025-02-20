@@ -23,7 +23,7 @@ export const TopMenuRow = () => {
 				<div className="flex items-center justify-between">
 					<input
 						name="search"
-						className="w-auto h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
+						className="w-auto 2xl:w-120 h-10 rounded-xl bg-gray-200/40 pr-12 pl-2 transition-shadow duration-200 ease-in"
 						type="text"
 					/>
 					<button className="ml-[-36px]">
