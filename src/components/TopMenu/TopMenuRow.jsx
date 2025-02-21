@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './styles/top-menu-styles.css';
 import DashLogo from '../../assets/icons/dash-logo-main-white.svg';
 import Avatar from '../../assets/pictures/avatar.jpg';
 import SearchIcon from '../../assets/icons/search-icon.svg';

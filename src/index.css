@@ -38,4 +38,47 @@ body {
 	scrollbar-width: thin;
 	scroll-behavior: smooth;
 }
+
+input:focus {
+	outline: 1px solid rgb(241, 237, 230);
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.26);
+}
+
+.login-and-avatar {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+}
+.avatar {
+	height: 70px;
+	border: 0px solid grey;
+	border-radius: 20px;
+}
+.login {
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.name-and-role {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	font-size: 18px;
+	font-weight: 300;
+}
+.triangle-down {
+	width: 0;
+	height: 0;
+	border-width: 6.7px 6px 0 6px;
+	border-color: oklch(0.81 0.117 11.638) transparent transparent transparent;
+	border-style: solid;
+}
+.triangle-up {
+	width: 0;
+	height: 0;
+	border-width: 6px 6px 6px 6px;
+	border-color: transparent transparent oklch(0.897 0.196 126.665) transparent;
+	border-style: solid;
+}
+
 /* bg-[url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb')]  */
