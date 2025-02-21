@@ -21,6 +21,19 @@ body {
 	transition: all duration-150 ease-in;
 }
 
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-custom {
+	animation: spin 1s linear infinite;
+}
+
 .scrollbar {
 	scrollbar-width: thin;
 	scroll-behavior: smooth;

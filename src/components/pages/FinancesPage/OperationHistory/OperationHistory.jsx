@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardIcon } from '../../../buttons';
-import Settings from '../../../../assets/icons/settings-icon.svg';
+import OptionsIcon from '../../../../assets/icons/options-icon.svg';
 import BancCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import { EditButton } from '../../../buttons/EditButton';
 
@@ -42,7 +42,7 @@ export const OperationHistory = ({
 				</div>
 			</div>
 			<div className="flex w-9 h-9 flex-0.5 justify-center">
-				<EditButton to={''} size={5} icon={Settings}></EditButton>
+				<EditButton to={''} size={5} icon={OptionsIcon}></EditButton>
 			</div>
 		</div>
 	);

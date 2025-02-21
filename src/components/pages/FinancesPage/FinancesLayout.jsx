@@ -1,5 +1,6 @@
-import React from 'react';
-import SettingsIcon from '../../../assets/icons/settings-icon.svg';
+import React, { useState } from 'react';
+import EditIcon from '../../../assets/icons/edit-icon.svg';
+import AddIcon from '../../../assets/icons/add-icon.svg';
 import RefreshCourseIcon from '../../../assets/icons/refresh-course-icon.svg';
 import { WideOperationsButton } from '../../buttons/WideOperationsButton';
 import { FinanceAccount } from './FinanceAccount';
@@ -14,6 +15,8 @@ import { calculateValueInCurrency } from '../../../utils/calculateValueInCurrenc
 import { getCourseAction } from '../../../store/actions/getCourseAction';
 
 export const FinancesLayout = () => {
+	const [isLoading, setIsLoading] = useState(false);
+
 	const isUSD = useSelector(currencySelector);
 	const rubleCourse = useSelector(rubleCourseSelector);
 	const dispatch = useDispatch();
@@ -23,8 +26,16 @@ export const FinancesLayout = () => {
 		return account ? account.name : null;
 	};
 
-	const handleClickGetCourse = () => {
-		dispatch(getCourseAction());
+	const handleClickGetCourse = async () => {
+		setIsLoading(true);
+		try {
+			await dispatch(getCourseAction());
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const operationsInCurrency = operations.map((operation) => ({
@@ -50,6 +61,8 @@ export const FinancesLayout = () => {
 						<OutlineButton
 							disabled={false}
 							alt="refresh course"
+							isLoader={true}
+							isLoading={isLoading}
 							icon={RefreshCourseIcon}
 							onClick={handleClickGetCourse}
 						>
@@ -82,12 +95,7 @@ export const FinancesLayout = () => {
 						>
 							<div id="accouts__header-and-button" className="flex gap-2 justify-between">
 								<span className="text-2xl font-medium">Счета</span>
-								<OutlineButton
-									to={''}
-									disabled={false}
-									icon={SettingsIcon}
-									alt="finance accounts"
-								>
+								<OutlineButton to={''} disabled={false} icon={AddIcon} alt="finance accounts">
 									<span className="text-base">Добавить/Удалить</span>
 								</OutlineButton>
 							</div>
@@ -115,7 +123,7 @@ export const FinancesLayout = () => {
 					>
 						<div className="flex justify-between gap-2">
 							<span className=" text-2xl font-medium">История операций</span>
-							<OutlineButton to={''} disabled={false} icon={SettingsIcon} alt="change history">
+							<OutlineButton to={''} disabled={false} icon={EditIcon} alt="change history">
 								<span className="text-base">Изменить</span>
 							</OutlineButton>
 						</div>
@@ -149,7 +157,7 @@ export const FinancesLayout = () => {
 				>
 					<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 						<p className="flex text-2xl font-medium mb-2 truncate">Категории расходов</p>
-						<OutlineButton to={''} disabled={false} icon={SettingsIcon} alt="finance accounts">
+						<OutlineButton to={''} disabled={false} icon={EditIcon} alt="finance accounts">
 							<span className="text-base">Изменить</span>
 						</OutlineButton>
 					</div>

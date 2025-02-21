@@ -28,7 +28,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 						</span>
 						<div className="flex items-center gap-2">
 							<span
-								className={`text-2xl sm:text-2xl md:text-4xl 2xl:text-6xl mt-1 font-medium ${
+								className={`text-2xl sm:text-2xl md:text-4xl 2xl:text-6xl mt-1 font-medium transition-all duration-150 ease-in-out ${
 									parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
 										? 'text-lime-300'
 										: 'text-rose-300'
@@ -37,7 +37,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 								{isUSD ? '$ ' : '\u20bd'}
 							</span>
 							<span
-								className={`text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl transition-all font-bold ${
+								className={`text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl transition-all font-bold  transition-all duration-150 ease-in-out ${
 									parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
 										? 'text-lime-300'
 										: 'text-rose-300'
@@ -55,7 +55,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 							<span className="text-2xl md:text-3xl 2xl:text-4xl transition-all font-medium text-lime-300">
 								{isUSD ? '$' : '\u20bd'}
 							</span>
-							<span className="text-3xl md:text-3xl 2xl:text-6xl transition-all font-bold text-lime-300">
+							<span className="text-3xl md:text-3xl 2xl:text-6xl font-bold transition-all duration-150 ease-in-out text-lime-300">
 								{cleanValue(incomeForDate)}
 							</span>
 						</div>
@@ -66,7 +66,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 							<span className="text-2xl md:text-3xl 2xl:text-4xl transition-all font-medium text-rose-300">
 								{isUSD ? '$' : '\u20bd'}
 							</span>
-							<span className="text-3xl md:text-3xl 2xl:text-6xl transition-all font-bold text-rose-300">
+							<span className="text-3xl md:text-3xl 2xl:text-6xl  transition-all duration-150 ease-in-out font-bold text-rose-300">
 								{cleanValue(outcomeForDate)}
 							</span>
 						</div>

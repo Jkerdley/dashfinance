@@ -2,9 +2,9 @@ import React from 'react';
 export const EditButton = ({ to, icon, size = 5 }) => {
 	return (
 		<button
-			className={`flex h-9 w-9 p-1 justify-center items-center rounded-xl hover:border-1 hover:scale-110 cursor-pointer transition-all duration-100 ease-in`}
+			className={`group flex h-9 w-9 p-1.5 justify-center items-center rounded-xl border-[1.2px] hover:border-white border-cyan-900/0 cursor-pointer transition-all duration-100 ease-in`}
 		>
-			<img className={`h-${size}`} src={icon} />
+			<img className={`h-${size} group-hover:rotate-y-180 duration-50 ease-in-out`} src={icon} />
 		</button>
 	);
 };
