@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OutlineButton = ({ disabled, onClick, icon, children, to }) => {
+const OutlineButton = ({ disabled, onClick, icon, children, to, isLoader, isLoading }) => {
 	return disabled ? (
 		<button
 			disabled={true}
@@ -12,10 +12,16 @@ const OutlineButton = ({ disabled, onClick, icon, children, to }) => {
 	) : (
 		<button
 			onClick={onClick}
-			className={`flex justify-center items-center rounded-xl w-auto px-4 h-9 border border-white transition-all duration-200 ease cursor-pointer text-white gap-2 hover:bg-sky-800/60 `}
+			className={`group flex justify-center items-center rounded-xl w-auto px-4 h-9 border border-white transition-all duration-150 ease-in-out cursor-pointer text-white gap-2 hover:bg-sky-800/60 hover:border-cyan-900/10 `}
 		>
-			{children}
-			{icon ? <img className={`h-5`} src={icon} /> : null}
+			<div className="flex items-center pb-[1px]">{children}</div>
+
+			{icon ? (
+				<img
+					className={`h-5 transition-all ${isLoader && isLoading ? 'animate-spin-custom' : 'group-hover:rotate-12'} duration-150 ease-in-out fill-red-50`}
+					src={icon}
+				/>
+			) : null}
 		</button>
 	);
 };

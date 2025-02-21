@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardIcon } from '../../../buttons';
-import Settings from '../../../../assets/icons/settings-icon.svg';
+import OptionsIcon from '../../../../assets/icons/options-icon.svg';
 import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../../assets/icons/income-cash.svg';
@@ -31,7 +31,7 @@ export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 				</div>
 			</div>
 			<div className="flex flex-[1] justify-end">
-				<EditButton to={''} size={5} icon={Settings}></EditButton>
+				<EditButton to={''} size={5} icon={OptionsIcon}></EditButton>
 			</div>
 		</div>
 	);
