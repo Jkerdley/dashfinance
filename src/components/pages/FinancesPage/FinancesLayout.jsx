@@ -1,5 +1,6 @@
 import React from 'react';
 import SettingsIcon from '../../../assets/icons/settings-icon.svg';
+import RefreshCourseIcon from '../../../assets/icons/refresh-course-icon.svg';
 import { WideOperationsButton } from '../../buttons/WideOperationsButton';
 import { FinanceAccount } from './FinanceAccount';
 import OutlineButton from '../../buttons/OutlineButton';
@@ -46,7 +47,14 @@ export const FinancesLayout = () => {
 						<div className="flex justify-between gap-2">
 							<span className="font-medium text-2xl">Финансовый результат</span>
 						</div>
-						<OutlineButton onClick={handleClickGetCourse}>Обновить курс</OutlineButton>
+						<OutlineButton
+							disabled={false}
+							alt="refresh course"
+							icon={RefreshCourseIcon}
+							onClick={handleClickGetCourse}
+						>
+							Обновить курс
+						</OutlineButton>
 					</div>
 					<FinanceResult isUSD={isUSD} rubleCourse={rubleCourse} />
 				</div>
@@ -80,7 +88,7 @@ export const FinancesLayout = () => {
 									icon={SettingsIcon}
 									alt="finance accounts"
 								>
-									<span className="text-base">Изменить</span>
+									<span className="text-base">Добавить/Удалить</span>
 								</OutlineButton>
 							</div>
 							<div
