@@ -7,7 +7,7 @@ import { FinanceAccount } from './FinanceAccount';
 import OutlineButton from '../../buttons/OutlineButton';
 import { CryptoOperationHistory } from './CryptoOperationHistory';
 import { CryptoAssets } from './CryptoAssets';
-import { accounts, categories, operations, fetchedCoinsPrices } from '../../../db';
+import { accounts, operations, fetchedCoinsPrices } from '../../../db';
 import { CryptoResult } from './CryptoResult';
 import { useDispatch, useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
@@ -46,9 +46,6 @@ export const CryptoLayout = () => {
 		...account,
 		balance: calculateValueInCurrency(account.balance, isUSD, rubleCourse),
 	}));
-
-	console.log('categories', categories);
-	console.log('fetchedCoinsPrices', fetchedCoinsPrices.result);
 
 	return (
 		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
