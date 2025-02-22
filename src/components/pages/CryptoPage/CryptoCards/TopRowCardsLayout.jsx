@@ -3,10 +3,7 @@ import TopRowCard from './TopRowCard';
 
 export const TopRowCardsLayout = () => {
 	return (
-		<section
-			id="layout__crypto-top__line"
-			className="flex flex-4 xl:flex-6 2xl:flex-nowrap flex-wrap gap-4"
-		>
+		<section id="layout__crypto-top__line" className="flex flex-[0.5] 2xl:flex-nowrap flex-wrap gap-4">
 			<TopRowCard coinTitle={'Bitcoin'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'Etherium'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'BNB'} flex={'flex-2'} />

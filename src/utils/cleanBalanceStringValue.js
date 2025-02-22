@@ -1,9 +1,8 @@
-export const cleanValue = (dataset) => {
-	const dotIndex = dataset.indexOf('.');
-	const resultValue = dotIndex !== -1 ? dataset.substring(0, dotIndex) : dataset;
+import { trimAndReverseMoneyValue } from './trimAndReverseMoneyValue';
 
-	const spacedMoneyValue = resultValue.slice(1).trim().split('').reverse();
-	const indexOfItems = () => {
+export const cleanValue = (dataset) => {
+	const spacedMoneyValue = trimAndReverseMoneyValue(dataset);
+	const addSpacesToNumber = () => {
 		let newArray = [...spacedMoneyValue];
 
 		for (let i = 3; i < newArray.length; i += 4) {
@@ -12,6 +11,6 @@ export const cleanValue = (dataset) => {
 		return newArray.reverse().join('');
 	};
 
-	return indexOfItems();
+	return addSpacesToNumber();
 };
 // spacedMoneyValue.length <= 3 ? spacedMoneyValue :
