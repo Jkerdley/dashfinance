@@ -1,8 +1,6 @@
 import React from 'react';
-import { CardIcon } from '../../../buttons';
-import OptionsIcon from '../../../../assets/icons/options-icon.svg';
+import { CardIcon, OptionsButton } from '../../../buttons';
 import BancCardIcon from '../../../../assets/icons/income-debit-icon.svg';
-import { EditButton } from '../../../buttons/EditButton';
 
 export const OperationHistory = ({
 	category,
@@ -33,7 +31,7 @@ export const OperationHistory = ({
 							{operationAmount}
 						</p>
 					</div>
-					<div className="flex flex-3 truncate  hidden lg:flex">
+					<div className="flex-3 truncate hidden lg:flex">
 						<p className="text-sm w-full truncate text-slate-400">{accountName}</p>
 					</div>
 					<div className="flex flex-1">
@@ -41,9 +39,7 @@ export const OperationHistory = ({
 					</div>
 				</div>
 			</div>
-			<div className="flex w-9 h-9 flex-0.5 justify-center">
-				<EditButton to={''} size={5} icon={OptionsIcon}></EditButton>
-			</div>
+			<OptionsButton to={''} flex={'flex-[0.5]'} />
 		</div>
 	);
 };
