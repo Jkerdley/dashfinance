@@ -7,6 +7,7 @@ import { ResultChart } from './Charts/ResultChart';
 import { MyCriptoPortfolioList } from './components/MyCryptoPortfolioList/MyCriptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { TopTenLayout } from './TopTenCryptos';
+import { TopGainerAndLooserChart } from './Charts';
 
 export const CryptoLayout = () => {
 	const isUSD = useSelector(currencySelector);
@@ -17,10 +18,10 @@ export const CryptoLayout = () => {
 			<TopRowCardsLayout />
 			<div
 				id="layout__crypto"
-				className="flex flex-col flex-4 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
+				className="flex flex-col flex-5 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
 			>
 				<div id="crypto__result-and-chart__container" className="flex flex-6 flex-row gap-4">
-					<div className="flex flex-7 w-full">
+					<div className="flex flex-8 w-full">
 						<CryptoResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
 					<ResultChart />
@@ -32,6 +33,10 @@ export const CryptoLayout = () => {
 							<TopTenLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 						</div> */}
 						<CryptoOpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+						<section className="flex flex-col flex-2 gap-4">
+							<TopGainerAndLooserChart title={'Топ роста'} />
+							<TopGainerAndLooserChart title={'Топ лузер'} />
+						</section>
 					</div>
 				</div>
 			</div>
