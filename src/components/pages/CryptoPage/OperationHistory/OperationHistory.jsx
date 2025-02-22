@@ -10,7 +10,7 @@ export const CryptoOperationHistory = ({
 	accountName,
 	operationDate,
 }) => {
-	const isAddOperation = operationType === 'add' ? 'text-lime-300' : 'text-rose-300';
+	const isAddOperation = operationType === 'add' ? 'text-lime-200' : 'text-rose-300';
 	const isPlus = operationType === 'add' ? '+' : '-';
 	const isHaveComment = operationComment ? operationComment : category;
 	return (
