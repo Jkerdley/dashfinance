@@ -72,28 +72,6 @@ export const Menu = ({ isMenuOpened }) => {
 							disabled={true}
 							buttonText={'Аналитика'}
 						/>
-						{/* <WideMenuButton to="/" alt={'bank'} icon={BankIcon} buttonText={'Все активы'} />
-						<WideMenuButton to="/finances" alt={'cash'} icon={CashIcon} buttonText={'Финансы'} /> */}
-						{/* <WideMenuButton
-							to="/crypto"
-							alt={'crypto'}
-							icon={CryptoIcon}
-							buttonText={'Криптовалюты'}
-						/> */}
-						{/* <WideMenuButton
-							to="/investments"
-							alt={'investments'}
-							icon={InvestmentsIcon}
-							buttonText={'Инвестиции'}
-							disabled={true}
-						/>
-						<WideMenuButton
-							to="/analytics"
-							alt={'analytics'}
-							icon={AnalyticsIcon}
-							buttonText={'Аналитика'}
-							disabled={true}
-						/> */}
 					</>
 				)}
 			</div>

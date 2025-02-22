@@ -8,9 +8,9 @@ import { MenuButton } from '../buttons/MenuButton';
 
 export const SidebarMenu = () => {
 	const [isMenuOpened, setIsMenuOpened] = useState(false);
+
 	const onButtonClick = () => {
 		setIsMenuOpened(!isMenuOpened);
-		console.log(isMenuOpened);
 	};
 	const menuflexValue = isMenuOpened ? '1' : '2';
 	const sliderValue = isMenuOpened ? 'rotate-0' : 'rotate-180';
