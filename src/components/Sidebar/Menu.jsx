@@ -5,7 +5,6 @@ import CryptoIcon from '../../assets/icons/crypto-icon.svg';
 import InvestmentsIcon from '../../assets/icons/investments-icon.svg';
 import AnalyticsIcon from '../../assets/icons/analytics-icon.svg';
 import { MenuButton } from '../buttons/MenuButton';
-import { WideMenuButton } from '../buttons/WideMenuButton';
 
 export const Menu = ({ isMenuOpened }) => {
 	return (
@@ -33,15 +32,55 @@ export const Menu = ({ isMenuOpened }) => {
 					</>
 				) : (
 					<>
-						<WideMenuButton to="/" alt={'bank'} icon={BankIcon} buttonText={'Все активы'} />
-						<WideMenuButton to="/finances" alt={'cash'} icon={CashIcon} buttonText={'Финансы'} />
-						<WideMenuButton
+						<MenuButton
+							width={'w-48'}
+							to="/"
+							alt="bank"
+							icon={BankIcon}
+							disabled={false}
+							buttonText={'Все активы'}
+						/>
+						<MenuButton
+							width={'w-48'}
+							to="/finances"
+							alt="cash"
+							icon={CashIcon}
+							disabled={false}
+							buttonText={'Финансы'}
+						/>
+						<MenuButton
+							width={'w-48'}
+							to="/crypto"
+							alt="crypto"
+							icon={CryptoIcon}
+							disabled={false}
+							buttonText={'Криптовалюты'}
+						/>
+						<MenuButton
+							width={'w-48'}
+							to="/investments"
+							alt="investments"
+							icon={InvestmentsIcon}
+							disabled={true}
+							buttonText={'Инвестиции'}
+						/>
+						<MenuButton
+							width={'w-48'}
+							to="/analytics"
+							alt="analytics"
+							icon={AnalyticsIcon}
+							disabled={true}
+							buttonText={'Аналитика'}
+						/>
+						{/* <WideMenuButton to="/" alt={'bank'} icon={BankIcon} buttonText={'Все активы'} />
+						<WideMenuButton to="/finances" alt={'cash'} icon={CashIcon} buttonText={'Финансы'} /> */}
+						{/* <WideMenuButton
 							to="/crypto"
 							alt={'crypto'}
 							icon={CryptoIcon}
 							buttonText={'Криптовалюты'}
-						/>
-						<WideMenuButton
+						/> */}
+						{/* <WideMenuButton
 							to="/investments"
 							alt={'investments'}
 							icon={InvestmentsIcon}
@@ -54,7 +93,7 @@ export const Menu = ({ isMenuOpened }) => {
 							icon={AnalyticsIcon}
 							buttonText={'Аналитика'}
 							disabled={true}
-						/>
+						/> */}
 					</>
 				)}
 			</div>
