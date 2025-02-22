@@ -17,8 +17,8 @@ export const SidebarMenu = () => {
 	return (
 		<aside
 			name="side-menu-wrapper"
-			className={`2xl:flex md:hidden hidden flex-col flex-${menuflexValue} transition-all duration-250 ease-in-out items-center content-between justify-between
-			rounded-3xl py-4 px-4 mr-4`}
+			className={`2xl:flex lg:hidden hidden flex-col flex-${menuflexValue} transition-all duration-250 ease-in-out items-center content-between justify-between
+			rounded-3xl px-2 mr-4 bg-amber-700`}
 		>
 			<div className="flex flex-[1] justify-center items-center transition-all duration-250">
 				<MenuButton
@@ -31,8 +31,10 @@ export const SidebarMenu = () => {
 				/>
 			</div>
 			<Menu isMenuOpened={isMenuOpened} />
-			<WelcomeTopMenu />
-			<DayNightSwitcher sliderValue={sliderValue} onButtonClick={onButtonClick} />
+			<div className="2xl:flex xl:hidden hidden flex-col gap-6">
+				<WelcomeTopMenu />
+				<DayNightSwitcher sliderValue={sliderValue} onButtonClick={onButtonClick} />
+			</div>
 		</aside>
 	);
 };

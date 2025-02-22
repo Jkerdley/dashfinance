@@ -7,11 +7,11 @@ import { FinancesLayout } from './components/pages/FinancesPage';
 
 function App() {
 	return (
-		<div id="root" className="flex bg-cover min-w-screen min-h-screen p-4">
+		<div id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			<SidebarMenu />
 			<div
 				id="mainLayout"
-				className="flex flex-col flex-15  p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
+				className="flex flex-col flex-15 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
 			>
 				<TopMenuRow />
 				<div

@@ -1,6 +1,7 @@
 export const operations = [
 	{
 		id: '822e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -11,6 +12,7 @@ export const operations = [
 	},
 	{
 		id: '813e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -21,6 +23,7 @@ export const operations = [
 	},
 	{
 		id: '812e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -31,6 +34,7 @@ export const operations = [
 	},
 	{
 		id: '821e',
+		tag: 'finance',
 		category: 'БытХим',
 		account_id: '0006',
 		icon: 'house',
@@ -41,6 +45,7 @@ export const operations = [
 	},
 	{
 		id: '823e',
+		tag: 'finance',
 		category: 'Зарплата',
 		account_id: '0005',
 		icon: 'cash',
@@ -51,6 +56,7 @@ export const operations = [
 	},
 	{
 		id: '824e',
+		tag: 'finance',
 		category: 'ЖКХ',
 		account_id: '0007',
 		icon: 'house',
@@ -61,6 +67,7 @@ export const operations = [
 	},
 	{
 		id: '825e',
+		tag: 'finance',
 		category: 'Инвестиции',
 		account_id: '0008',
 		icon: 'investments',
@@ -71,6 +78,7 @@ export const operations = [
 	},
 	{
 		id: '926e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0009',
 		icon: 'products',
@@ -81,6 +89,7 @@ export const operations = [
 	},
 	{
 		id: '843e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0010',
 		icon: 'products',
@@ -91,6 +100,7 @@ export const operations = [
 	},
 	{
 		id: '893e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -101,6 +111,7 @@ export const operations = [
 	},
 	{
 		id: '8114e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -111,6 +122,7 @@ export const operations = [
 	},
 	{
 		id: '896e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -121,6 +133,7 @@ export const operations = [
 	},
 	{
 		id: '886e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -131,6 +144,7 @@ export const operations = [
 	},
 	{
 		id: '876e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -141,6 +155,7 @@ export const operations = [
 	},
 	{
 		id: '866e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -151,6 +166,7 @@ export const operations = [
 	},
 	{
 		id: '856e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -161,6 +177,7 @@ export const operations = [
 	},
 	{
 		id: '846e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -171,6 +188,7 @@ export const operations = [
 	},
 	{
 		id: '836e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -181,6 +199,7 @@ export const operations = [
 	},
 	{
 		id: '826e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',
@@ -191,6 +210,7 @@ export const operations = [
 	},
 	{
 		id: '816e',
+		tag: 'finance',
 		category: 'Продукты',
 		account_id: '0001',
 		icon: 'products',

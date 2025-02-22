@@ -1,11 +1,9 @@
 import React from 'react';
-import { CardIcon } from '../../../buttons';
-import OptionsIcon from '../../../../assets/icons/options-icon.svg';
+import { CardIcon, OptionsButton } from '../../../buttons';
 import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../../assets/icons/income-present-card.svg';
-import { EditButton } from '../../../buttons/EditButton';
 
 export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 	const iconOfAccount = () => {
@@ -30,9 +28,7 @@ export const FinanceAccount = ({ accountName, accountBalance, icon }) => {
 					<p className="text-sm">Баланс: {accountBalance}</p>
 				</div>
 			</div>
-			<div className="flex flex-[1] justify-end">
-				<EditButton to={''} size={5} icon={OptionsIcon}></EditButton>
-			</div>
+			<OptionsButton to={''} flex={'flex-[1]'} />
 		</div>
 	);
 };

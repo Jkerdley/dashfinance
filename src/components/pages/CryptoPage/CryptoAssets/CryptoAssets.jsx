@@ -1,7 +1,5 @@
 import React from 'react';
-import { CardIcon } from '../../../buttons';
-import OptionsIcon from '../../../../assets/icons/options-icon.svg';
-import { EditButton } from '../../../buttons/EditButton';
+import { CardIcon, OptionsButton } from '../../../buttons';
 
 export const CryptoAssets = ({
 	categorie,
@@ -75,9 +73,7 @@ export const CryptoAssets = ({
 					</div>
 				</div>
 			</div>
-			<div id="categorie-icon-container" className="flex flex-[0.5] justify-end">
-				<EditButton to={''} size={5} icon={OptionsIcon}></EditButton>
-			</div>
+			<OptionsButton to={''} flex={'flex-[0.25]'} />
 		</div>
 	);
 };
