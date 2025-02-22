@@ -4,7 +4,6 @@ export const WideOperationsButton = ({ disabled, onClick, icon, alt, children, c
 	return disabled ? (
 		<button disabled="true" className={`text-gray-500 bg-gray-500 cursor-default p-2 rounded`}>
 			{children}
-			{/* <img className="h-6" src={icon} alt={alt} /> */}
 		</button>
 	) : (
 		<button

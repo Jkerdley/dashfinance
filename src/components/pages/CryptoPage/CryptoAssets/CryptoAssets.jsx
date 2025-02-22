@@ -40,28 +40,26 @@ export const CryptoAssets = ({
 	return (
 		<div
 			id="categorie-wrapper"
-			className="flex flex-2 max-w-3xl items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
+			className="flex flex-2 max-w-full items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
 		>
 			<div
 				id="categorie-inside-container"
 				className="flex flex-6 items-center justify-between min-w-90 w-auto"
 			>
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
-				<div id="categorie-text-container" className="flex flex-col mx-2 w-full overflow-hidden ">
-					<div className={`flex text-base items-between justify-between`}>
-						<div
-							className={`flex gap-2 justify-center items-center truncate flex-nowrap overflow-hidden ${isProfitAsset()}`}
-						>
+				<div id="categorie-text-container" className="flex flex-col mx-2 w-full truncate">
+					<div className={`flex text-base items-between justify-between truncate overflow-hidden`}>
+						<div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
 							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
-								className={`flex h-2 w-2 ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`flex h-2 w-2 truncate ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
 							<span className="text-sm truncate">
 								Profit {calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice)} %
 							</span>
 						</div>
-						<div className="flex gap-2 truncate overflow-hidden ">{profit}</div>
+						<div className="flex gap-2 truncate">{profit}</div>
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">

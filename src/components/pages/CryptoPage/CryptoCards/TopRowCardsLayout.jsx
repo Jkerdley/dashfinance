@@ -1,5 +1,5 @@
 import React from 'react';
-import TopRowCard from './TopRowCard';
+import { TopRowCard } from './TopRowCard';
 
 export const TopRowCardsLayout = () => {
 	return (
@@ -7,7 +7,13 @@ export const TopRowCardsLayout = () => {
 			<TopRowCard coinTitle={'Bitcoin'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'Etherium'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'BNB'} flex={'flex-2'} />
-			<TopRowCard coinTitle={'Kaspa'} flex={'flex-2'} />
+			<TopRowCard
+				coinTitle={'Add'}
+				flex={'flex-2'}
+				onClick={null}
+				isAddButton={true}
+				disabled={false}
+			/>
 			<TopRowCard coinTitle={'News'} flex={'flex-5'} />
 		</section>
 	);

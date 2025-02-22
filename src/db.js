@@ -575,7 +575,7 @@ export const fetchedCoinsPrices = {
 			assetsBuyDate: '21.05.2023',
 			id: 'staked-ether',
 			icon: 'https://static.coinstats.app/coins/staked-etheruqt.png',
-			name: 'Lido Staked Ether',
+			name: 'Lido',
 			symbol: 'STETH',
 			rank: 10,
 			price: 251851,

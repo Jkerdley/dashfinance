@@ -42,7 +42,7 @@ export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
 					);
 				})}
 			</div>
-			<OperationsPanel onClick={''} />
+			<OperationsPanel onCryptoClick={null} isCrypto={true} />
 		</div>
 	);
 };
