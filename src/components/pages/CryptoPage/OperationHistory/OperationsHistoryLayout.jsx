@@ -1,11 +1,11 @@
 import React from 'react';
 import EditIcon from '../../../../assets/icons/edit-icon.svg';
-import { OperationHistory } from './OperationHistory';
+import { CryptoOperationHistory } from './OperationHistory';
 import { accounts, operations } from '../../../../db.js';
 import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency.js';
 import OutlineButton from '../../../buttons/OutlineButton.jsx';
 
-export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
+export const CryptoOpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const findAccountName = (accountId) => {
 		const account = accounts.find((accountItem) => accountId === accountItem.id);
 		return account ? account.name : null;
@@ -28,12 +28,12 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 			</div>
 			<div
 				id="operationsHistoryBoxWrapper"
-				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+				className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
 				{operationsInCurrency.map((operation) => {
 					return (
 						<div key={operation.id}>
-							<OperationHistory
+							<CryptoOperationHistory
 								operationType={operation.type}
 								category={operation.category}
 								operationComment={operation.comment}

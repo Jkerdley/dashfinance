@@ -1,9 +1,8 @@
 import React from 'react';
-import { OpreationsHistoryLayout } from './OperationHistory';
+import { CryptoOpreationsHistoryLayout } from './OperationHistory';
 import { CryptoResultLayout } from './CryptoResult';
 import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
-import { OperationsPanel } from '../../OperationsPanelButtons/OperationsPanel';
 import { ResultChart } from './Charts/ResultChart';
 import { MyCriptoPortfolioList } from './components/MyCryptoPortfolioList/MyCriptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
@@ -16,20 +15,24 @@ export const CryptoLayout = () => {
 	return (
 		<div className="flex flex-col gap-4">
 			<TopRowCardsLayout />
-			<div id="layout__crypto" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
-				<div className="flex flex-8 flex-col gap-4">
-					<CryptoResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
-						<div id="operations__and__accounts-container" className="flex flex-col flex-2 gap-4">
-							<OperationsPanel onClick={''} />
-							<TopTenLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-						</div>
-						<OpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+			<div
+				id="layout__crypto"
+				className="flex flex-col flex-4 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
+			>
+				<div id="crypto__result-and-chart__container" className="flex flex-6 flex-row gap-4">
+					<div className="flex flex-7 w-full">
+						<CryptoResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
-				</div>
-				<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
-					<MyCriptoPortfolioList isUSD={isUSD} rubleCourse={rubleCourse} />
 					<ResultChart />
+				</div>
+				<div className="flex flex-8 flex-col gap-4">
+					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
+						<MyCriptoPortfolioList isUSD={isUSD} rubleCourse={rubleCourse} />
+						{/* <div id="operations__and__accounts-container" className="flex flex-col flex-2 gap-4">
+							<TopTenLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+						</div> */}
+						<CryptoOpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+					</div>
 				</div>
 			</div>
 		</div>

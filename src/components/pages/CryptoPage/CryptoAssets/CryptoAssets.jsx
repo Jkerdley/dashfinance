@@ -2,15 +2,19 @@ import React from 'react';
 import { CardIcon, OptionsButton } from '../../../buttons';
 
 export const CryptoAssets = ({
-	categorie,
+	coinTitle,
 	coinPrice,
+	profit,
 	assetsAmount,
 	averageBuyPrice,
 	icon,
 	symbol,
 	growValue,
 }) => {
-	const isOverBalance = () => {
+	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
+	const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
+
+	const isCoinPriceGrow = () => {
 		if (!assetsAmount) {
 			return 'text-lime-300';
 		} else if (Number(growValue) < 0) {
@@ -19,10 +23,10 @@ export const CryptoAssets = ({
 			return 'text-lime-200';
 		}
 	};
-	const isProfitAssetValue = () => {
+	const isProfitAsset = () => {
 		if (!assetsAmount) {
 			return 'text-white';
-		} else if (Number(coinPrice) < Number(averageBuyPrice)) {
+		} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
 			return 'text-rose-300';
 		} else {
 			return 'text-lime-200';
@@ -32,8 +36,6 @@ export const CryptoAssets = ({
 	const calculatePercentage = (newBuyPrice, oldBuyPrice) => {
 		return +(parseFloat((newBuyPrice - oldBuyPrice) / oldBuyPrice) * 100).toFixed(2);
 	};
-
-	console.log('calculatePercentage', calculatePercentage(coinPrice, averageBuyPrice));
 
 	return (
 		<div
@@ -47,27 +49,25 @@ export const CryptoAssets = ({
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
 				<div id="categorie-text-container" className="flex flex-col mx-2 w-full overflow-hidden ">
 					<div className={`flex text-base items-between justify-between`}>
-						<div className={`flex gap-2 justify-center items-center ${isProfitAssetValue()}`}>
-							{categorie}
+						<div className={`flex gap-2 justify-center items-center ${isProfitAsset()}`}>
+							{coinTitle}
 							<div
 								id="up-and-down__icon_triangle"
-								className={`h-3 w-3 ${+calculatePercentage(coinPrice, averageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`h-3 w-3 ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
-							{calculatePercentage(coinPrice, averageBuyPrice)} %
+							Profit {calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice)} %
 						</div>
 						<div className="flex gap-2">
-							<div className={`${isProfitAssetValue()}`}>
-								$ {parseInt(assetsAmount * coinPrice)}
-							</div>
+							<div className={``}>{profit}</div>
 						</div>
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">
 						<div className="flex gap-3">
-							<span className={`text-sm ${isOverBalance()}`}>${coinPrice}</span>
-							<span className={`text-sm ${isOverBalance()}`}>{growValue} %</span>
+							<span className={`text-sm ${isCoinPriceGrow()}`}>{coinPrice}</span>
+							<span className={`text-sm ${isCoinPriceGrow()}`}>{growValue} %</span>
 						</div>
-						<span className={`text-sm truncate ${isProfitAssetValue()}`}>
+						<span className={`text-sm truncate`}>
 							{assetsAmount ? `${assetsAmount} ${symbol}` : ''}
 						</span>
 					</div>

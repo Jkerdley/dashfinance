@@ -268,7 +268,7 @@ export const fetchedCoinsPrices = {
 	result: [
 		{
 			assetsAmount: '0.522',
-			assetsBuyPriceAVG: '3065760',
+			assetsBuyPriceAVG: '3065760.32',
 			assetsBuyDate: '21.05.2023',
 			id: 'bitcoin',
 			icon: 'https://static.coinstats.app/coins/1650455588819.png',
