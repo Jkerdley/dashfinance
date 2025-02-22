@@ -1,6 +1,5 @@
 import React from 'react';
 import { OpreationsHistoryLayout } from './OperationHistory';
-
 import { CryptoResultLayout } from './CryptoResult';
 import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
