@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
 import { OperationsPanel } from '../../OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
+import { ResultChart } from './Charts/ResultChart';
 
 export const FinancesLayout = () => {
 	const isUSD = useSelector(currencySelector);
@@ -23,7 +24,10 @@ export const FinancesLayout = () => {
 					<OpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				</div>
 			</div>
-			<CategoriesLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
+				<CategoriesLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+				<ResultChart />
+			</div>
 		</div>
 	);
 };

@@ -11,14 +11,13 @@
 }
 
 body {
-	display: flex;
 	background:
 		url('https://images.squarespace-cdn.com/content/v1/5979e18715d5db259166db64/1631570216861-ROIX0K0AQYT7AR46B4ZP/Download-Banner.png'),
 		radial-gradient(circle at center, #18489c 0%, #002134 100%);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	backdrop-filter: blur(25px);
+	backdrop-filter: blur(35px);
 	align-items: center;
 	justify-content: center;
 	scrollbar-color: #1f4165 transparent;

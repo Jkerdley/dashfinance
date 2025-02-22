@@ -18,9 +18,9 @@ export const SidebarMenu = () => {
 		<aside
 			name="side-menu-wrapper"
 			className={`2xl:flex lg:hidden hidden flex-col flex-${menuflexValue} transition-all duration-250 ease-in-out items-center content-between justify-between
-			rounded-3xl px-2 mr-4 bg-amber-700`}
+			rounded-3xl px-2 mr-4`}
 		>
-			<div className="flex flex-[1] justify-center items-center transition-all duration-250">
+			<div className="flex flex-1 justify-center items-center transition-all duration-250">
 				<MenuButton
 					padding={'px-3'}
 					width={'w-11'}
