@@ -49,17 +49,19 @@ export const CryptoAssets = ({
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
 				<div id="categorie-text-container" className="flex flex-col mx-2 w-full overflow-hidden ">
 					<div className={`flex text-base items-between justify-between`}>
-						<div className={`flex gap-2 justify-center items-center ${isProfitAsset()}`}>
-							{coinTitle}
+						<div
+							className={`flex gap-2 justify-center items-center truncate flex-nowrap overflow-hidden ${isProfitAsset()}`}
+						>
+							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
-								className={`h-3 w-3 ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`flex h-2 w-2 ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
-							Profit {calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice)} %
+							<span className="text-sm truncate">
+								Profit {calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice)} %
+							</span>
 						</div>
-						<div className="flex gap-2">
-							<div className={``}>{profit}</div>
-						</div>
+						<div className="flex gap-2 truncate overflow-hidden ">{profit}</div>
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">
