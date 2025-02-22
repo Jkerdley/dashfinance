@@ -1,2 +1,2 @@
 export * from './OperationHistory.jsx';
-export * from './OpreationsHistoryLayout.jsx';
+export * from './OperationsHistoryLayout.jsx';
