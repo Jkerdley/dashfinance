@@ -4,7 +4,7 @@ import AddIcon from '../../../../../assets/icons/add-icon.svg';
 import { fetchedCoinsPrices } from '../../../../../db';
 import { CryptoAssets } from '../../CryptoAssets/CryptoAssets';
 
-export const MyCriptoPortfolioList = () => {
+export const MyCriptoPortfolioList = (isUSD, rubleCourse}) => {
 	return (
 		<div id="column__categories" className="flex flex-col flex-4	 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
