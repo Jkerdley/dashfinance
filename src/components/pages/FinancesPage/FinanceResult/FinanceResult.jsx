@@ -1,21 +1,22 @@
 import React from 'react';
-import { accounts, categories, operations } from '../../../../db';
+import { accounts, categories, history } from '../../../../db';
 import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency';
 import { cleanValue } from '../../../../utils/cleanBalanceStringValue';
 
 export const FinanceResult = ({ isUSD, rubleCourse }) => {
 	const accountsDB = accounts.reduce((acc, account) => acc + account.balance, 0);
 
-	const operationsDB = operations
+	const historyDB = history
 		.filter((item) => {
 			return item.type === 'add';
 		})
 		.reduce((acc, item) => acc + Number(item.amount), 0);
 
 	const categoriesDB = categories.reduce((acc, item) => acc + item.balance, 0);
+	console.log('categoriesDB', categoriesDB);
 
 	const outcomeForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
-	const incomeForDate = calculateValueInCurrency(operationsDB, isUSD, rubleCourse);
+	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
 
 	return (

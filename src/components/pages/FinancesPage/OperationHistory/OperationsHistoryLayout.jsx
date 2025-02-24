@@ -1,9 +1,9 @@
 import React from 'react';
 import EditIcon from '../../../../assets/icons/edit-icon.svg';
 import { OperationHistory } from './OperationHistory';
-import { accounts, operations } from '../../../../db.js';
-import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency.js';
+import { accounts, history } from '../../../../db.js';
 import OutlineButton from '../../../buttons/OutlineButton.jsx';
+import { getHIstoryInCurrency } from '../../../../utils/getHIstoryInCurrency.js';
 
 export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const findAccountName = (accountId) => {
@@ -11,10 +11,10 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 		return account ? account.name : null;
 	};
 
-	const operationsInCurrency = operations.map((operation) => ({
-		...operation,
-		amount: calculateValueInCurrency(operation.amount, isUSD, rubleCourse),
-	}));
+	const filteredHistory = getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
+		(operation) => operation.tag === 'finance',
+	);
+
 	return (
 		<div
 			id="accouts__operations-history-container"
@@ -30,7 +30,7 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 				id="operationsHistoryBoxWrapper"
 				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
-				{operationsInCurrency.map((operation) => {
+				{filteredHistory.map((operation) => {
 					return (
 						<div key={operation.id}>
 							<OperationHistory
