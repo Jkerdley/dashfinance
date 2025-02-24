@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EditIcon from '../../../../assets/icons/edit-icon.svg';
 import { OperationHistory } from './OperationHistory';
 import { accounts, history } from '../../../../db.js';
 import OutlineButton from '../../../buttons/OutlineButton.jsx';
 import { getHIstoryInCurrency } from '../../../../utils/getHIstoryInCurrency.js';
+import { SortSelector } from '../../../sortSelector/sortSelector.jsx';
 
 export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
+	const [sortType, setSortType] = useState('newest');
 	const findAccountName = (accountId) => {
 		const account = accounts.find((accountItem) => accountId === accountItem.id);
 		return account ? account.name : null;
@@ -15,6 +17,16 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 		(operation) => operation.tag === 'finance',
 	);
 
+	const sortedHistory = [...filteredHistory].sort((a, b) => {
+		return a.date - b.date;
+	});
+	const oldDate = '19.01.2025';
+	const date = new Date(oldDate.split('.').reverse());
+	// console.log('sortedHistory', sortedHistory);
+	console.log('date', date);
+
+	const handleSortChange = (event) => setSortType(event.target.value);
+
 	return (
 		<div
 			id="accouts__operations-history-container"
@@ -22,6 +34,7 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 		>
 			<div className="flex justify-between gap-2">
 				<span className=" text-2xl font-medium">История операций</span>
+				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
 				<OutlineButton to={''} disabled={false} icon={EditIcon} alt="change history">
 					<span className="text-base">Изменить</span>
 				</OutlineButton>

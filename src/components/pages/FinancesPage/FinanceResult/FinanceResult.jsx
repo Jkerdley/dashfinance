@@ -13,7 +13,6 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 		.reduce((acc, item) => acc + Number(item.amount), 0);
 
 	const categoriesDB = categories.reduce((acc, item) => acc + item.balance, 0);
-	console.log('categoriesDB', categoriesDB);
 
 	const outcomeForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
