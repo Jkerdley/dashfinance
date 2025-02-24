@@ -1,4 +1,4 @@
-export const operations = [
+export const history = [
 	{
 		id: '822e',
 		tag: 'finance',
@@ -9,6 +9,42 @@ export const operations = [
 		amount: 10234.23,
 		date: '12.02.2025',
 		comment: 'Сметана, молоко, сыр косичка',
+	},
+	{
+		id: '8931e',
+		tag: 'crypto',
+		asset: 'Ripple',
+		assetId: 'ripple',
+		assetAmount: 153.0221,
+		type: 'buy',
+		check: 'tether',
+		amount: 2000,
+		price: 13.0652,
+		date: '01.02.2025',
+	},
+	{
+		id: '8932e',
+		tag: 'crypto',
+		asset: 'BNB',
+		assetId: 'binance-coin',
+		assetAmount: 2.1231,
+		type: 'buy',
+		check: 'tether',
+		amount: 127179.59,
+		price: 59902.774667068436,
+		date: '23.01.2025',
+	},
+	{
+		id: '8933e',
+		tag: 'crypto',
+		asset: 'Ethereum',
+		assetId: 'ethereum',
+		assetAmount: 0.4213,
+		type: 'sell',
+		check: 'tether',
+		amount: 106853.9533,
+		price: 253641,
+		date: '19.01.2025',
 	},
 	{
 		id: '813e',

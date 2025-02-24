@@ -18,7 +18,7 @@ export const FinancesLayout = () => {
 				<FinanceResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				<div id="row__accounts-and-history" className="flex flex-10 gap-4">
 					<div id="operations__and__accounts-container" className="flex flex-col flex-2 gap-4">
-						<OperationsPanel onClick={''} />
+						<OperationsPanel onClick={null} />
 						<AccountsLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
 					<OpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
