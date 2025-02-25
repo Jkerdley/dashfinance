@@ -30,7 +30,7 @@ export const FinancesLayout = () => {
 
 	return (
 		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
-			<ModalWindowLayout />
+			<ModalWindowLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 			<div className="flex flex-8 flex-col gap-4">
 				<FinanceResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				<div id="row__accounts-and-history" className="flex flex-10 gap-4">

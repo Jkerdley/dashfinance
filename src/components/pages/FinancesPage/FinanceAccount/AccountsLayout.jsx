@@ -25,7 +25,7 @@ export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 			>
 				{accountsInCurrency.map((account) => {
 					return (
-						<div key={account.id}>
+						<div key={account.id} className="mt-4">
 							<FinanceAccount
 								accountName={account.name}
 								accountBalance={account.balance}

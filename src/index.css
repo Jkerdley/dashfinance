@@ -92,4 +92,29 @@ input:focus {
 	animation: fadeIn 250ms ease-in-out 100ms forwards;
 }
 
+.custom-select {
+	background-color: #334864; /* Цвет фона */
+	border: 2px solid #d1d5db; /* Цвет границы */
+	color: #daeaff; /* Цвет текста */
+	border-radius: 1rem; /* Скругление углов */
+	padding: 10px; /* Отступы */
+	width: 40%; /* Ширина */
+	height: 30px; /* Высота */
+	transition: all 0.3s ease; /* Плавный переход */
+}
+
+.custom-select option {
+	padding: 10px; /* Отступы для опций */
+	height: 50px; /* Высота опций */
+}
+
+.custom-select:hover {
+	background-color: #4b5563; /* Цвет фона при наведении */
+	color: white; /* Цвет текста при наведении */
+}
+
+.custom-select option:hover {
+	background-color: #2e3846; /* Цвет фона опции при наведении */
+	color: white; /* Цвет текста опции при наведении */
+}
 /* bg-[url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb')]  */
