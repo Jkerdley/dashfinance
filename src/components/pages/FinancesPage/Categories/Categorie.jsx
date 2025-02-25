@@ -5,23 +5,9 @@ import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../../assets/icons/income-present-card.svg';
+import { getIconOfCategorie } from '../../../../utils';
 
 export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
-	const iconOfAccount = () => {
-		switch (icon) {
-			case 'debit':
-				return DebitCardIcon;
-			case 'credit':
-				return CreditCardIcon;
-			case 'cash':
-				return CashIcon;
-			case 'gift':
-				return GiftCardIcon;
-			default:
-				return null;
-		}
-	};
-
 	const isOverBalance = () => {
 		if (!budget) {
 			return 'text-lime-300';
@@ -41,7 +27,7 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 				id="categorie-inside-container"
 				className={`flex items-center justify-start ${noButton ? 'w-[20vw]' : 'w-80'}`}
 			>
-				<CardIcon padding="p-2" buttonSize={10} icon={iconOfAccount()} />
+				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
 				<div
 					id="categorie-text-container"
 					className={`flex flex-col ml-2  ${noButton ? 'w-[400px]' : 'w-full'} overflow-hidden`}

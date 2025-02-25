@@ -10,3 +10,4 @@ export * from './RefreshCourseButton.jsx';
 export * from './AddAndDeleteButton.jsx';
 export * from './OptionsButton.jsx';
 export * from './SliderButton.jsx';
+export * from './CloseModalButton.jsx';
