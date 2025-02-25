@@ -2,7 +2,7 @@ import React from 'react';
 import { CardIcon, OptionsButton } from '../../../buttons';
 import BancCardIcon from '../../../../assets/icons/income-debit-icon.svg';
 
-export const OperationHistory = ({
+export const FinanceOperationHistory = ({
 	category,
 	operationType,
 	operationComment,

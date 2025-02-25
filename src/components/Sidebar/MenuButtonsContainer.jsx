@@ -6,7 +6,7 @@ import InvestmentsIcon from '../../assets/icons/investments-icon.svg';
 import AnalyticsIcon from '../../assets/icons/analytics-icon.svg';
 import { MenuButton } from '../buttons/MenuButton';
 
-export const Menu = ({ isMenuOpened }) => {
+export const MenuButtonsContainer = ({ isMenuOpened }) => {
 	return (
 		<nav name="menu-buttons" className="flex flex-6 w-full items-start justify-center py-10">
 			<div className="flex flex-col items-start gap-8 justify-around ">
