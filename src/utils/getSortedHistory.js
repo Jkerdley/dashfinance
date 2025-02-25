@@ -10,7 +10,9 @@ export const getsortedHistory = (filteredHistory, sortType) => {
 				return new Date(a.date.split('.').reverse()) - new Date(b.date.split('.').reverse());
 			});
 		case 'alphabet':
-			return [...filteredHistory].sort((a, b) => a.asset.localeCompare(b.asset));
+			return [...filteredHistory].sort((a, b) =>
+				a.asset ? a.asset.localeCompare(b.asset) : a.category.localeCompare(b.category),
+			);
 		case 'amountUp':
 			return [...filteredHistory].sort(
 				(a, b) => Number(a.amount.slice(1).trim()) - Number(b.amount.slice(1).trim()),

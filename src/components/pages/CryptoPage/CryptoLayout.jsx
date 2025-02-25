@@ -6,7 +6,6 @@ import { currencySelector, rubleCourseSelector } from '../../../store/selectors'
 import { ResultChart } from './Charts/ResultChart';
 import { MyCriptoPortfolioList } from './components/MyCryptoPortfolioList/MyCriptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
-import { TopTenLayout } from './TopTenCryptos';
 import { TopGainerAndLooserChart } from './Charts';
 
 export const CryptoLayout = () => {
@@ -29,9 +28,7 @@ export const CryptoLayout = () => {
 				<div className="flex flex-8 flex-col gap-4">
 					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
 						<MyCriptoPortfolioList isUSD={isUSD} rubleCourse={rubleCourse} />
-						{/* <div id="operations__and__accounts-container" className="flex flex-col flex-2 gap-4">
-							<TopTenLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-						</div> */}
+
 						<CryptoOpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 						<section className="flex flex-col flex-2 gap-4">
 							<TopGainerAndLooserChart title={'Топ роста'} />

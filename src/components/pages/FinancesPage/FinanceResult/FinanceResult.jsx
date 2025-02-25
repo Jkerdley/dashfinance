@@ -2,10 +2,10 @@ import React from 'react';
 import { accounts, categories, history } from '../../../../db';
 import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency';
 import { cleanValue } from '../../../../utils/cleanBalanceStringValue';
+import { FinanceResultDiagram } from '../Charts/FinanceResultDiagram';
 
 export const FinanceResult = ({ isUSD, rubleCourse }) => {
 	const accountsDB = accounts.reduce((acc, account) => acc + account.balance, 0);
-
 	const historyDB = history
 		.filter((item) => {
 			return item.type === 'add';
@@ -74,7 +74,7 @@ export const FinanceResult = ({ isUSD, rubleCourse }) => {
 				</section>
 			</div>
 			<div className="flex items-center justify-center flex-2">
-				<span>ТУТ БУДЕТ ДИАГРАММА</span>
+				<FinanceResultDiagram />
 			</div>
 		</div>
 	);

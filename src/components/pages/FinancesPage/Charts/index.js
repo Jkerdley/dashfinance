@@ -1,1 +1,2 @@
-export * from './ResultChart.jsx';
+export * from './FinanceAddAndSpendChart.jsx';
+export * from './FinanceResultDiagram.jsx';

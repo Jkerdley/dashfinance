@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import EditIcon from '../../../../assets/icons/edit-icon.svg';
-import { OperationHistory } from './OperationHistory';
+import { FinanceOperationHistory } from './FinanceOperationHistory.jsx';
 import { accounts, history } from '../../../../db.js';
 import OutlineButton from '../../../buttons/OutlineButton.jsx';
 import { getHIstoryInCurrency } from '../../../../utils/getHIstoryInCurrency.js';
 import { SortSelector } from '../../../sortSelector/sortSelector.jsx';
+import { getsortedHistory } from '../../../../utils/getSortedHistory.js';
 
-export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
+export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const [sortType, setSortType] = useState('newest');
+
 	const findAccountName = (accountId) => {
 		const account = accounts.find((accountItem) => accountId === accountItem.id);
 		return account ? account.name : null;
@@ -16,15 +18,9 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const filteredHistory = getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
 		(operation) => operation.tag === 'finance',
 	);
+	console.log('filteredHistory', filteredHistory);
 
-	const sortedHistory = [...filteredHistory].sort((a, b) => {
-		return a.date - b.date;
-	});
-	const oldDate = '19.01.2025';
-	const date = new Date(oldDate.split('.').reverse());
-	// console.log('sortedHistory', sortedHistory);
-	console.log('date', date);
-
+	const sortedHistory = getsortedHistory(filteredHistory, sortType);
 	const handleSortChange = (event) => setSortType(event.target.value);
 
 	return (
@@ -43,10 +39,10 @@ export const OpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 				id="operationsHistoryBoxWrapper"
 				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
-				{filteredHistory.map((operation) => {
+				{sortedHistory.map((operation) => {
 					return (
 						<div key={operation.id}>
-							<OperationHistory
+							<FinanceOperationHistory
 								operationType={operation.type}
 								category={operation.category}
 								operationComment={operation.comment}

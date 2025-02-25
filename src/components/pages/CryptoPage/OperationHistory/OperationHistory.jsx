@@ -25,7 +25,7 @@ export const CryptoOperationHistory = ({
 	const isMinus = operationType === 'buy' ? '- ' : '+ ';
 
 	return (
-		<div
+		<section
 			id="operations__history-item_container"
 			className="flex justify-center items-start h-12 w-full text-sm border-b-1 gap-2"
 		>
@@ -64,6 +64,6 @@ export const CryptoOperationHistory = ({
 				</div>
 			</div>
 			<OptionsButton to={''} flex={'flex-[0.5]'} />
-		</div>
+		</section>
 	);
 };

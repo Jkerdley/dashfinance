@@ -1,12 +1,12 @@
 import React from 'react';
-import { OpreationsHistoryLayout } from './OperationHistory';
+import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
 import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
 import { OperationsPanel } from '../../OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
-import { ResultChart } from './Charts/ResultChart';
+import { FinanceAddAndSpendChart } from './Charts/FinanceAddAndSpendChart';
 
 export const FinancesLayout = () => {
 	const isUSD = useSelector(currencySelector);
@@ -21,12 +21,12 @@ export const FinancesLayout = () => {
 						<OperationsPanel onClick={null} />
 						<AccountsLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
-					<OpreationsHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+					<OpreationsFinanceHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				</div>
 			</div>
 			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
 				<CategoriesLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-				<ResultChart />
+				<FinanceAddAndSpendChart />
 			</div>
 		</div>
 	);

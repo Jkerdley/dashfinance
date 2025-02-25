@@ -7,7 +7,7 @@ export const history = [
 		icon: 'products',
 		type: 'spend',
 		amount: 10234.23,
-		date: '12.02.2025',
+		date: '12.01.2025',
 		comment: 'Сметана, молоко, сыр косичка',
 	},
 	{
@@ -54,7 +54,7 @@ export const history = [
 		icon: 'products',
 		type: 'spend',
 		amount: 21234.23,
-		date: '11.12.2025',
+		date: '11.12.2024',
 		comment: '',
 	},
 	{
