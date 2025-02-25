@@ -21,7 +21,7 @@ export const FinancesLayout = () => {
 				question: 'Добавить операцию?',
 				onConfirm: () => {
 					dispatch(closeModal());
-					// Здесь вы можете добавить логику для сохранения операции
+					// Здесь добавить логику для сохранения операции
 				},
 				onCancel: () => dispatch(closeModal()),
 			}),
