@@ -7,7 +7,7 @@ export const history = [
 		icon: 'products',
 		type: 'spend',
 		amount: 10234.23,
-		date: '12.01.2025',
+		date: '2025-01-12',
 		comment: 'Сметана, молоко, сыр косичка',
 	},
 	{
@@ -20,7 +20,7 @@ export const history = [
 		check: 'tether',
 		amount: 2000,
 		price: 13.0652,
-		date: '01.02.2025',
+		date: '2025-02-01',
 	},
 	{
 		id: '8932e',
@@ -32,7 +32,7 @@ export const history = [
 		check: 'tether',
 		amount: 127179.59,
 		price: 59902.774667068436,
-		date: '23.01.2025',
+		date: '2025-01-23',
 	},
 	{
 		id: '8933e',
@@ -44,7 +44,7 @@ export const history = [
 		check: 'tether',
 		amount: 106853.9533,
 		price: 253641,
-		date: '19.01.2025',
+		date: '2025-01-19',
 	},
 	{
 		id: '813e',
@@ -54,7 +54,7 @@ export const history = [
 		icon: 'products',
 		type: 'spend',
 		amount: 21234.23,
-		date: '11.12.2024',
+		date: '2024-12-11',
 		comment: '',
 	},
 	{
@@ -65,7 +65,7 @@ export const history = [
 		icon: 'products',
 		type: 'spend',
 		amount: 13234.23,
-		date: '16.01.2025',
+		date: '2025-01-16',
 		comment: '',
 	},
 	{
@@ -76,7 +76,7 @@ export const history = [
 		icon: 'house',
 		type: 'spend',
 		amount: 4234.23,
-		date: '15.01.2025',
+		date: '2025-01-15',
 		comment: '',
 	},
 	{
@@ -87,7 +87,7 @@ export const history = [
 		icon: 'cash',
 		type: 'add',
 		amount: 120234.45,
-		date: '13.01.2025',
+		date: '2025-01-13',
 		comment: 'Халтурка',
 	},
 	{
@@ -98,7 +98,7 @@ export const history = [
 		icon: 'house',
 		type: 'spend',
 		amount: 20234.23,
-		date: '22.01.2025',
+		date: '2025-01-22',
 		comment: '',
 	},
 	{
@@ -109,7 +109,7 @@ export const history = [
 		icon: 'investments',
 		type: 'add',
 		amount: 312234.12,
-		date: '12.01.2025',
+		date: '2025-01-12',
 		comment: '',
 	},
 	{
@@ -120,7 +120,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -131,7 +131,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -142,7 +142,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -153,7 +153,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -164,7 +164,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -175,7 +175,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -186,7 +186,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -197,7 +197,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -208,7 +208,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -219,7 +219,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -230,7 +230,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -241,7 +241,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 	{
@@ -252,7 +252,7 @@ export const history = [
 		icon: 'products',
 		type: 'add',
 		amount: 20234.23,
-		date: '02.01.2025',
+		date: '2025-01-02',
 		comment: '',
 	},
 ];
@@ -304,8 +304,8 @@ export const fetchedCoinsPrices = {
 	result: [
 		{
 			assetsAmount: '0.522',
-			assetsBuyPriceAVG: '3065760.32',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 3065760.32,
+			assetsBuyDate: '2023-05-21',
 			id: 'bitcoin',
 			icon: 'https://static.coinstats.app/coins/1650455588819.png',
 			name: 'Bitcoin',
@@ -335,8 +335,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '4.142',
-			assetsBuyPriceAVG: '167760',
-			assetsBuyDate: '12.09.2022',
+			assetsBuyPriceAVG: 167760,
+			assetsBuyDate: '2022-09-12',
 			id: 'ethereum',
 			icon: 'https://static.coinstats.app/coins/1650455629727.png',
 			name: 'Ethereum',
@@ -369,8 +369,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '1512.863',
-			assetsBuyPriceAVG: '24.12',
-			assetsBuyDate: '13.01.2021',
+			assetsBuyPriceAVG: 24.12,
+			assetsBuyDate: '2021-01-13',
 			id: 'ripple',
 			icon: 'https://static.coinstats.app/coins/XRPdnqGJ.png',
 			name: 'XRP',
@@ -400,8 +400,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '12351',
-			assetsBuyPriceAVG: '90',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 90,
+			assetsBuyDate: '2023-05-21',
 			id: 'tether',
 			icon: 'https://static.coinstats.app/coins/1650455771843.png',
 			name: 'Tether',
@@ -437,8 +437,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '232',
-			assetsBuyPriceAVG: '39870',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 39870,
+			assetsBuyDate: '2023-05-21',
 			id: 'binance-coin',
 			icon: 'https://static.coinstats.app/coins/1666608145347.png',
 			name: 'BNB',
@@ -472,8 +472,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '542',
-			assetsBuyPriceAVG: '1737',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 1737,
+			assetsBuyDate: '2023-05-21',
 			id: 'solana',
 			icon: 'https://static.coinstats.app/coins/1701234596791.png',
 			name: 'Solana',
@@ -506,8 +506,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '124',
-			assetsBuyPriceAVG: '90',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 90,
+			assetsBuyDate: '2023-05-21',
 			id: 'usd-coin',
 			icon: 'https://static.coinstats.app/coins/1650455825065.png',
 			name: 'USDC',
@@ -543,8 +543,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '563',
-			assetsBuyPriceAVG: '2.02079',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 2.02079,
+			assetsBuyDate: '2023-05-21',
 			id: 'dogecoin',
 			icon: 'https://static.coinstats.app/coins/DogecoinIZai5.png',
 			name: 'Dogecoin',
@@ -573,8 +573,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '392',
-			assetsBuyPriceAVG: '81.9',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 81.9,
+			assetsBuyDate: '2023-05-21',
 			id: 'cardano',
 			icon: 'https://static.coinstats.app/coins/CardanojXddT.png',
 			name: 'Cardano',
@@ -607,8 +607,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '0.532',
-			assetsBuyPriceAVG: '122790',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 122790,
+			assetsBuyDate: '2023-05-21',
 			id: 'staked-ether',
 			icon: 'https://static.coinstats.app/coins/staked-etheruqt.png',
 			name: 'Lido',
@@ -638,8 +638,8 @@ export const fetchedCoinsPrices = {
 		},
 		{
 			assetsAmount: '5232',
-			assetsBuyPriceAVG: '11.7',
-			assetsBuyDate: '21.05.2023',
+			assetsBuyPriceAVG: 11.7,
+			assetsBuyDate: '2023-05-21',
 			id: 'tron',
 			icon: 'https://static.coinstats.app/coins/TRONxJljY.png',
 			name: 'TRON',

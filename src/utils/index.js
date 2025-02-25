@@ -5,3 +5,4 @@ export * from './trimAndReverseMoneyValue';
 export * from './getHIstoryInCurrency.js';
 export * from './getSortedHistory.js';
 export * from './findCoinUtils.js';
+export * from './getIconOfCategorie.js';

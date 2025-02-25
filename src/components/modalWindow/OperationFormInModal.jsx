@@ -1,8 +1,8 @@
 import React from 'react';
-import { CardIcon } from '../../components/buttons';
+import { CardIcon } from '../buttons';
 import BancCardIcon from '../../assets/icons/bank-icon.svg';
 
-export const OperationItemInModal = ({
+export const OperationFormInModal = ({
 	category,
 	operationType,
 	operationComment,
