@@ -6,6 +6,7 @@ import OutlineButton from '../../../buttons/OutlineButton.jsx';
 import { getHIstoryInCurrency } from '../../../../utils/getHIstoryInCurrency.js';
 import { SortSelector } from '../../../sortSelector/sortSelector.jsx';
 import { getsortedHistory } from '../../../../utils/getSortedHistory.js';
+import { aggregateChartDataByMonth } from '../../../../utils/aggregateChartDataByMounth.js';
 
 export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const [sortType, setSortType] = useState('newest');

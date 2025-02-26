@@ -1,5 +1,9 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { history } from '../../../../db';
+import { aggregateChartDataByMonth } from '../../../../utils';
+import { useSelector } from 'react-redux';
+import { currencySelector, rubleCourseSelector } from '../../../../store/selectors';
 
 const data = [
 	{
@@ -100,8 +104,19 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const FinanceAddAndSpendChart = () => {
-	console.log('Render');
+	const isUSD = useSelector(currencySelector);
+	const roubleCourse = useSelector(rubleCourseSelector);
+	const filteredHistoryForChart = history.filter((operation) => operation.tag === 'finance');
 
+	const aggregatedData = aggregateChartDataByMonth(filteredHistoryForChart);
+	const mappedData = aggregatedData.map((item) => {
+		return {
+			...item,
+			Доходы: isUSD ? (item.Доходы / roubleCourse).toFixed(2) : item.Доходы.toFixed(2),
+			Расходы: isUSD ? (item.Расходы / roubleCourse).toFixed(2) : item.Расходы.toFixed(2),
+			Баланс: isUSD ? (item.Баланс / roubleCourse).toFixed(2) : item.Баланс.toFixed(2),
+		};
+	});
 	return (
 		<div id="column__income-chart" className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40">
 			<span className="text-2xl font-medium">График доходов и расходов</span>
@@ -110,7 +125,7 @@ export const FinanceAddAndSpendChart = () => {
 					<AreaChart
 						width={500}
 						height={400}
-						data={data}
+						data={mappedData}
 						margin={{
 							top: 0,
 							right: 0,
@@ -137,14 +152,16 @@ export const FinanceAddAndSpendChart = () => {
 							</linearGradient>
 						</defs>
 						{/* <CartesianGrid strokeDasharray="1 3" /> */}
-						<XAxis dataKey="name" />
+						<XAxis dataKey="date" />
 						{/* <YAxis /> */}
 						<Tooltip content={<CustomTooltip />} />
+						{/* <Tooltip /> */}
 						<Legend verticalAlign="top" align="center" />
 						{/* <Area
 							type="monotone"
 							dataKey="Баланс"
-							stackId="2"
+							stackId="3"
+							strokeWidth={2}
 							stroke="rgba(15, 109, 163, 0.9)"
 							fill="rgba(9, 62, 112, 0.9)"
 						/> */}
