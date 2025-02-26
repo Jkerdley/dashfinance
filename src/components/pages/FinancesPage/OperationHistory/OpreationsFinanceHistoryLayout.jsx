@@ -19,7 +19,6 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const filteredHistory = getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
 		(operation) => operation.tag === 'finance',
 	);
-	console.log('filteredHistory', filteredHistory);
 
 	const sortedHistory = getsortedHistory(filteredHistory, sortType);
 	const handleSortChange = (event) => setSortType(event.target.value);

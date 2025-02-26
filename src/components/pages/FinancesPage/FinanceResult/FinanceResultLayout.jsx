@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RefreshCourseButton } from '../../../buttons';
 import { FinanceResult } from './FinanceResult';
+import { ChartSelector } from '../../../sortSelector/chartSelector';
 
 export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
+	const [selectedSortType, setSelectedSortType] = useState('days');
+
+	const handleSortChange = () => {
+		setSelectedSortType(selectedSortType === 'days' ? 'month' : 'days');
+	};
+
 	return (
 		<div
 			id="col__finance-result-container"
@@ -10,9 +17,10 @@ export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 				<span className="font-medium text-2xl">Финансовый результат</span>
+				<ChartSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
 				<RefreshCourseButton />
 			</div>
-			<FinanceResult isUSD={isUSD} rubleCourse={rubleCourse} />
+			<FinanceResult selectedSortType={selectedSortType} isUSD={isUSD} rubleCourse={rubleCourse} />
 		</div>
 	);
 };

@@ -1,114 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { history } from '../../../../db';
-import { aggregateChartDataByMonth } from '../../../../utils';
+import { aggregateChartDataByMonth, filteredByThisMonth, getsortedHistory } from '../../../../utils';
 import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../../store/selectors';
-
-const data = [
-	{
-		name: '20.01.2025',
-		Баланс: 4000,
-		Доходы: 1000,
-		Расходы: 1000,
-	},
-	{
-		name: '21.01.2025',
-		Баланс: 3700,
-		Доходы: 200,
-		Расходы: 500,
-	},
-	{
-		name: '22.01.2025',
-		Баланс: 4150,
-		Доходы: 550,
-		Расходы: 100,
-	},
-	{
-		name: '23.01.2025',
-		Баланс: 4000,
-		Доходы: 0,
-		Расходы: 150,
-	},
-	{
-		name: '24.01.2025',
-		Баланс: 3450,
-		Доходы: 350,
-		Расходы: 900,
-	},
-	{
-		name: '25.01.2025',
-		Баланс: 3500,
-		Доходы: 500,
-		Расходы: 450,
-	},
-	{
-		name: '26.01.2025',
-		Баланс: 4450,
-		Доходы: 1000,
-		Расходы: 50,
-	},
-	{
-		name: '27.01.2025',
-		Баланс: 4000,
-		Доходы: 1000,
-		Расходы: 1000,
-	},
-	{
-		name: '28.01.2025',
-		Баланс: 3700,
-		Доходы: 200,
-		Расходы: 500,
-	},
-	{
-		name: '29.01.2025',
-		Баланс: 4150,
-		Доходы: 550,
-		Расходы: 100,
-	},
-	{
-		name: '30.01.2025',
-		Баланс: 4000,
-		Доходы: 100,
-		Расходы: 150,
-	},
-	{
-		name: '31.01.2025',
-		Баланс: 3450,
-		Доходы: 350,
-		Расходы: 900,
-	},
-];
-
-const CustomTooltip = ({ active, payload, label }) => {
-	if (!active || !payload || payload.length === 0) {
-		return null;
-	}
-
-	const { Доходы, Расходы } = payload[0].payload;
-
-	return (
-		<div className="bg-sky-950/70 rounded-lg p-4 shadow-lg">
-			<h6 className="text-gray-50/90 text-md font-semibold">{label}</h6>
-			{/* <span className="block text-gray-50/90 mt-1">
-				<strong>Баланс:</strong> {Баланс}
-			</span> */}
-			<span className="block text-gray-50/90 mt-1">
-				<strong>Доходы:</strong> {Доходы}
-			</span>
-			<span className="block text-gray-50/90 mt-1">
-				<strong>Расходы:</strong> {Расходы}
-			</span>
-		</div>
-	);
-};
+import { ChartSelector } from '../../../sortSelector/chartSelector';
+import { CustomTooltip } from '../../../CustomTooltip/CustomTooltip';
 
 export const FinanceAddAndSpendChart = () => {
+	const [selectedSortType, setSelectedSortType] = useState('days');
+
 	const isUSD = useSelector(currencySelector);
 	const roubleCourse = useSelector(rubleCourseSelector);
 	const filteredHistoryForChart = history.filter((operation) => operation.tag === 'finance');
 
-	const aggregatedData = aggregateChartDataByMonth(filteredHistoryForChart);
+	const sortedHistory = getsortedHistory(
+		filteredByThisMonth(filteredHistoryForChart, selectedSortType),
+		'oldest',
+	);
+	const aggregatedData = aggregateChartDataByMonth(sortedHistory, selectedSortType);
 	const mappedData = aggregatedData.map((item) => {
 		return {
 			...item,
@@ -117,9 +27,23 @@ export const FinanceAddAndSpendChart = () => {
 			Баланс: isUSD ? (item.Баланс / roubleCourse).toFixed(2) : item.Баланс.toFixed(2),
 		};
 	});
+
+	const handleSortChange = () => {
+		if (selectedSortType === 'days') {
+			setSelectedSortType('month');
+		} else {
+			setSelectedSortType('days');
+		}
+	};
+
 	return (
 		<div id="column__income-chart" className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40">
-			<span className="text-2xl font-medium">График доходов и расходов</span>
+			<div className="flex gap-4 justify-between">
+				<span className="text-2xl font-medium truncate overflow-ellipsis">
+					График доходов и расходов
+				</span>
+				<ChartSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
+			</div>
 			<div className="flex pt-2 h-full">
 				<ResponsiveContainer width="100%" height="100%">
 					<AreaChart
@@ -143,17 +67,17 @@ export const FinanceAddAndSpendChart = () => {
 								<stop offset="98%" stopColor="#ff81b6" stopOpacity={0} />
 							</linearGradient>
 							<linearGradient id="colorStrokeAdditions" x1="0" y1="0" x2="0" y2="1">
-								<stop offset="60%" stopColor="#b9ff80" stopOpacity={0.5} />
-								<stop offset="98%" stopColor="#b9ff80" stopOpacity={0.2} />
+								<stop offset="40%" stopColor="#b9ff80" stopOpacity={0.5} />
+								<stop offset="98%" stopColor="#b9ff80" stopOpacity={0.1} />
 							</linearGradient>
 							<linearGradient id="colorStrokeSpendings" x1="0" y1="0" x2="0" y2="1">
-								<stop offset="60%" stopColor="#ff81b6" stopOpacity={0.5} />
-								<stop offset="98%" stopColor="#ff81b6" stopOpacity={0.2} />
+								<stop offset="40%" stopColor="#ff81b6" stopOpacity={0.5} />
+								<stop offset="98%" stopColor="#ff81b6" stopOpacity={0.1} />
 							</linearGradient>
 						</defs>
 						{/* <CartesianGrid strokeDasharray="1 3" /> */}
 						<XAxis dataKey="date" />
-						{/* <YAxis /> */}
+						{/* <YAxis } /> */}
 						<Tooltip content={<CustomTooltip />} />
 						{/* <Tooltip /> */}
 						<Legend verticalAlign="top" align="center" />
