@@ -17,6 +17,7 @@ export const FinanceResult = ({ isUSD, rubleCourse, selectedSortType }) => {
 	const outcomeForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
+	console.log('selectedSortType id ResultCOMP', selectedSortType);
 
 	return (
 		<div id="finance-result__main-container" className="flex h-full">

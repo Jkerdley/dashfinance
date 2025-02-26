@@ -12,7 +12,8 @@ export const FinanceResultDiagram = ({ selectedSortType }) => {
 	const filteredHistoryForChart = history.filter(
 		(operation) => operation.tag === 'finance' && operation.type === 'spend',
 	);
-	console.log('filteredHistoryForChart', filteredHistoryForChart);
+	// console.log('filteredHistoryForChart', filteredHistoryForChart);
+	console.log('selectedSortType in DIAGRAM', selectedSortType);
 
 	const sortedHistory = getsortedHistory(
 		filteredByThisMonth(filteredHistoryForChart, selectedSortType),

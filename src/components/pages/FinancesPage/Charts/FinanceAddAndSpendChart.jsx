@@ -30,7 +30,7 @@ export const FinanceAddAndSpendChart = () => {
 
 	const handleSortChange = () => {
 		if (selectedSortType === 'days') {
-			setSelectedSortType('month');
+			setSelectedSortType('allTime');
 		} else {
 			setSelectedSortType('days');
 		}
