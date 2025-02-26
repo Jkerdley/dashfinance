@@ -13,7 +13,6 @@ export const currencyReducer = (state = initialPostState, action) => {
 				isUSD: !state.isUSD,
 			};
 		case ACTIONS.CYRRENCY_CHECK:
-			console.log('action.payload', action.payload);
 			return {
 				...state,
 				usdCourse: action.payload,
@@ -23,5 +22,3 @@ export const currencyReducer = (state = initialPostState, action) => {
 			return state;
 	}
 };
-
-// https://currate.ru/api/?get=rates&pairs=USDRUB&key=43b2a5faa0f1d28ab76a409c595f86e4

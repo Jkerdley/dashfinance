@@ -1,10 +1,6 @@
 import React from 'react';
 import { CardIcon, OptionsButton } from '../../../buttons';
 
-import DebitCardIcon from '../../../../assets/icons/income-debit-icon.svg';
-import CreditCardIcon from '../../../../assets/icons/income-credit-card.svg';
-import CashIcon from '../../../../assets/icons/income-cash.svg';
-import GiftCardIcon from '../../../../assets/icons/income-present-card.svg';
 import { getIconOfCategorie } from '../../../../utils';
 
 export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
