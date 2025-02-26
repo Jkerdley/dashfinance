@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { RefreshCourseButton } from '../../../buttons';
 import { FinanceResult } from './FinanceResult';
-import { ChartSelector } from '../../../sortSelector/chartSelector';
+
+import { RadialChartSelector } from '../../../sortSelector/RadialChartSelector';
 
 export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
-	const [selectedSortType, setSelectedSortType] = useState('month');
+	const [selectedRadialSortType, setSelectedRadialSortType] = useState('days');
 
-	const handleSortChange = () => {
-		setSelectedSortType(selectedSortType === 'days' ? 'month' : 'days');
+	const handleRadialSortChange = () => {
+		setSelectedRadialSortType(selectedRadialSortType === 'days' ? 'thisYear' : 'days');
 	};
 
 	return (
@@ -17,14 +18,17 @@ export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 				<span className="font-medium text-xl">Финансовый результат</span>
-				<ChartSelector
-					handleSortChange={handleSortChange}
-					selectedSortType={selectedSortType}
-					isRadialChart={true}
+				<RadialChartSelector
+					handleRadialSortChange={handleRadialSortChange}
+					selectedSortType={selectedRadialSortType}
 				/>
 				<RefreshCourseButton />
 			</div>
-			<FinanceResult selectedSortType={selectedSortType} isUSD={isUSD} rubleCourse={rubleCourse} />
+			<FinanceResult
+				selectedSortType={selectedRadialSortType}
+				isUSD={isUSD}
+				rubleCourse={rubleCourse}
+			/>
 		</div>
 	);
 };

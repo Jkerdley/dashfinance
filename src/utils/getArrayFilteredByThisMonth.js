@@ -10,7 +10,13 @@ export const filteredByThisMonth = (array, selectedSortType) => {
 			return operationDate.getFullYear() === currentYear && operationDate.getMonth() === currentMonth;
 		});
 		return result;
-	} else if (selectedSortType === 'month') {
+	} else if (selectedSortType === 'thisYear') {
+		const yearResult = arraySortedByMonth.filter((operation) => {
+			const operationDate = new Date(operation.date);
+			return operationDate.getFullYear() === currentYear;
+		});
+		return yearResult;
+	} else if (selectedSortType === 'allTime') {
 		return arraySortedByMonth;
 	}
 };

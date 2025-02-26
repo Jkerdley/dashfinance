@@ -2,7 +2,7 @@ export const aggregateChartDataByMonth = (operations, sortType) => {
 	const result = [];
 
 	operations.forEach((operation) => {
-		const date = new Date(operation.date).toISOString().slice(0, sortType === 'month' ? 7 : 10);
+		const date = new Date(operation.date).toISOString().slice(0, sortType === 'allTime' ? 7 : 10);
 
 		if (!result[date]) {
 			result[date] = { date: date, Доходы: 0, Расходы: 0, Баланс: 0 };
