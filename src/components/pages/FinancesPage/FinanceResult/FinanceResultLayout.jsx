@@ -4,7 +4,7 @@ import { FinanceResult } from './FinanceResult';
 import { ChartSelector } from '../../../sortSelector/chartSelector';
 
 export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
-	const [selectedSortType, setSelectedSortType] = useState('days');
+	const [selectedSortType, setSelectedSortType] = useState('month');
 
 	const handleSortChange = () => {
 		setSelectedSortType(selectedSortType === 'days' ? 'month' : 'days');
@@ -16,8 +16,12 @@ export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-4 gap-2 p-4 rounded-3xl bg-sky-950/40"
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
-				<span className="font-medium text-2xl">Финансовый результат</span>
-				<ChartSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
+				<span className="font-medium text-xl">Финансовый результат</span>
+				<ChartSelector
+					handleSortChange={handleSortChange}
+					selectedSortType={selectedSortType}
+					isRadialChart={true}
+				/>
 				<RefreshCourseButton />
 			</div>
 			<FinanceResult selectedSortType={selectedSortType} isUSD={isUSD} rubleCourse={rubleCourse} />

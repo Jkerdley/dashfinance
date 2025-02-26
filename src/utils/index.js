@@ -7,4 +7,5 @@ export * from './getSortedHistory.js';
 export * from './findCoinUtils.js';
 export * from './getIconOfCategorie.js';
 export * from './aggregateChartDataByMounth.js';
+export * from './aggregateExpensesByCategory.js';
 export * from './getArrayFilteredByThisMonth.js';

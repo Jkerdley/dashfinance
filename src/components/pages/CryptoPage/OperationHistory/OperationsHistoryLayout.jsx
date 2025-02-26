@@ -28,7 +28,7 @@ export const CryptoOpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40 gap-4"
 		>
 			<div className="flex justify-between gap-2">
-				<span className=" text-2xl font-medium">История операций</span>
+				<span className=" text-xl font-medium">История операций</span>
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
 				<OutlineButton to={''} disabled={false} icon={EditIcon} alt="change history">
 					<span className="text-base">Изменить</span>

@@ -13,7 +13,7 @@ export const SidebarMenu = () => {
 	const onButtonClick = () => {
 		setIsMenuOpened(!isMenuOpened);
 	};
-	const menuflexValue = isMenuOpened ? '1' : '2';
+	const menuflexValue = isMenuOpened ? '2' : '1';
 
 	return (
 		<aside

@@ -7,13 +7,7 @@ export const TopRowCardsLayout = () => {
 			<TopRowCard coinTitle={'Bitcoin'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'Etherium'} flex={'flex-2'} />
 			<TopRowCard coinTitle={'BNB'} flex={'flex-2'} />
-			<TopRowCard
-				coinTitle={'Add'}
-				flex={'flex-2'}
-				onClick={null}
-				isAddButton={true}
-				disabled={false}
-			/>
+			<TopRowCard coinTitle={'Add'} flex={'flex-2'} onClick={null} isAddButton={true} disabled={true} />
 			<TopRowCard coinTitle={'News'} flex={'flex-5'} />
 		</section>
 	);

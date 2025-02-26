@@ -39,7 +39,7 @@ export const FinanceAddAndSpendChart = () => {
 	return (
 		<div id="column__income-chart" className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40">
 			<div className="flex gap-4 justify-between">
-				<span className="text-2xl font-medium truncate overflow-ellipsis">
+				<span className="text-xl font-medium truncate overflow-ellipsis">
 					График доходов и расходов
 				</span>
 				<ChartSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />

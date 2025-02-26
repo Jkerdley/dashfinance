@@ -17,7 +17,7 @@ export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
 	return (
 		<div id="column__categories" className="flex flex-col flex-3 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
-				<p className="flex text-2xl font-medium mb-2 truncate">Мои активы</p>
+				<p className="flex text-xl font-medium mb-2 truncate">Мои активы</p>
 				<OutlineButton to={''} disabled={false} icon={AddIcon} alt="finance accounts">
 					<span className="text-base">Добавить/Удалить</span>
 				</OutlineButton>
