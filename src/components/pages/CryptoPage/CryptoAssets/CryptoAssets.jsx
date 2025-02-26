@@ -16,7 +16,7 @@ export const CryptoAssets = ({
 
 	const isCoinPriceGrow = () => {
 		if (!assetsAmount) {
-			return 'text-lime-300';
+			return 'text-lime-200';
 		} else if (Number(growValue) < 0) {
 			return 'text-rose-300';
 		} else {

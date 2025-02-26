@@ -10,7 +10,7 @@ export const FinanceOperationHistory = ({
 	accountName,
 	operationDate,
 }) => {
-	const isAddOperation = operationType === 'add' ? 'text-lime-200' : 'text-rose-200';
+	const isAddOperation = operationType === 'add' ? 'text-lime-200' : 'text-rose-300';
 	const isPlus = operationType === 'add' ? '+' : '-';
 	const isHaveComment = operationComment ? operationComment : category;
 	return (

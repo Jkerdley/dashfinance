@@ -10,7 +10,7 @@ import { getIconOfCategorie } from '../../../../utils';
 export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 	const isOverBalance = () => {
 		if (!budget) {
-			return 'text-lime-300';
+			return 'text-lime-200';
 		} else if (Number(balance) > Number(budget)) {
 			return 'text-rose-300';
 		} else {
