@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ChartSelector = ({ handleSortChange, selectedSortType }) => {
+export const ChartSelector = ({ handleSortChange, selectedSortType, isRadialChart }) => {
 	return (
 		<select
 			className="flex gap-2 items-center justify-center bg-sky-900/40 rounded-xl px-2 outline-none border-none cursor-pointer hover:bg-sky-900/40 transition-all duration-150 ease-in-out"
@@ -10,10 +10,10 @@ export const ChartSelector = ({ handleSortChange, selectedSortType }) => {
 			onChange={handleSortChange}
 		>
 			<option className=" bg-sky-950/40" value="days">
-				По дням
+				{isRadialChart ? 'За этот месяц' : 'По дням'}
 			</option>
 			<option className=" bg-sky-950/40" value="month">
-				По месяцам
+				{isRadialChart ? 'За этот год' : 'По месяцам'}
 			</option>
 		</select>
 	);

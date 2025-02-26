@@ -8,7 +8,7 @@ export const CategoriesLayout = ({ isUSD, rubleCourse }) => {
 	return (
 		<div id="column__categories" className="flex flex-col flex-4 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
-				<p className="flex text-2xl font-medium mb-2 truncate overflow-hidden text-ellipsis whitespace-nowrap">
+				<p className="flex text-xl font-medium mb-2 truncate overflow-hidden text-ellipsis whitespace-nowrap">
 					Категории
 				</p>
 				<AddAndDeleteButton to={''} alt={'finance categories'} />

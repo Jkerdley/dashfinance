@@ -84,14 +84,14 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 					<div className="flex gap-6 justify-around items-center">
 						{selectedAccountValue && (
 							<select
-								className="bg-gray-100 border text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								className="bg-gray-100 border text-gray-800 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								value={selectedAccountValue}
 								onChange={(e) => setSelectedAccountValue(e.target.value)}
 							>
 								{accounts.map((account) => {
 									return (
 										<option
-											className="bg-[#334864] border-2 border-[#d1d5db] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
+											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
 											key={account.id}
 											value={account.name}
 										>
@@ -103,14 +103,14 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 						)}
 						{selectedCategoryValue && (
 							<select
-								className="bg-gray-100 border text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								className="bg-gray-100 border text-gray-800 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								value={selectedCategoryValue}
 								onChange={(e) => setSelectedCategoryValue(e.target.value)}
 							>
 								{categories.map((categorie) => {
 									return (
 										<option
-											className="bg-[#334864] border-2 border-[#d1d5db] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
+											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
 											key={categorie.id}
 											value={categorie.name}
 										>
@@ -152,9 +152,9 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 
 					<section
 						id="operations__history-item_container"
-						className="flex justify-between items-center h-14 w-full text-sm border-b-1 gap-2"
+						className="flex justify-between items-center h-14 w-full text-sm border-b-1 border-white/30 gap-2"
 					>
-						<div className="flex flex-5 items-center truncate gap-2">
+						<div className="flex flex-4 items-center truncate gap-2">
 							<CardIcon
 								buttonSize={9}
 								padding={'p-1'}
@@ -164,11 +164,11 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<span className={`text-sm truncate`}>{selectedCategoryValue}</span>
 						</div>
 						{isUSD ? '$ ' : '\u20bd '}
-						<form onSubmit={handleFormSubmit} className="flex flex-8 gap-4">
+						<form onSubmit={handleFormSubmit} className="flex flex-7 gap-4">
 							<input
 								name="operation-amount"
 								type="number"
-								className="text-sm h-[30px] w-full text-slate-400 flex-4 rounded-lg px-2 border-[1px] border-amber-50/20"
+								className="text-sm h-[30px] w-full border-white/60 flex-3 rounded-lg px-2 border-[1px] border-white/60"
 								placeholder="Введите сумму"
 								value={operationSumm}
 								onChange={handleSummChange}
@@ -176,7 +176,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<input
 								name="operation-date"
 								type="date"
-								className="text-sm h-[30px] w-full text-slate-400 flex-2 rounded-lg px-2 border-[1px] border-amber-50/20"
+								className="text-sm h-[30px] w-full text-slate-400 flex-3 rounded-lg px-2 border-[1px] border-white/60"
 								value={operationDate}
 								onChange={handleDateChange}
 							/>
@@ -185,7 +185,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							</button>
 						</form>
 						<div className="flex flex-4 truncate">
-							<p className="text-sm w-full truncate text-slate-400">
+							<p className="text-sm w-full truncate text-white/90">
 								{accounts.find((acc) => acc.name === selectedAccountValue).name}
 							</p>
 						</div>

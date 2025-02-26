@@ -16,7 +16,7 @@ export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-8 p-4 rounded-3xl bg-sky-950/40 gap-0.5 snap-start"
 		>
 			<div id="accouts__header-and-button" className="flex gap-2 justify-between">
-				<span className="text-2xl font-medium">Счета</span>
+				<span className="text-xl font-medium">Счета</span>
 				<AddAndDeleteButton to={''} alt={'finance accounts'} />
 			</div>
 			<div

@@ -12,26 +12,6 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 			<div className="flex flex-col items-start gap-8 justify-around ">
 				{isMenuOpened ? (
 					<>
-						<MenuButton width={'w-11'} to="/" alt="bank" icon={BankIcon} />
-						<MenuButton width={'w-11'} to="/finances" alt="cash" icon={CashIcon} />
-						<MenuButton width={'w-11'} to="/crypto" alt="crypto" icon={CryptoIcon} />
-						<MenuButton
-							width={'w-11'}
-							to="/investments"
-							alt="investments"
-							icon={InvestmentsIcon}
-							disabled={true}
-						/>
-						<MenuButton
-							width={'w-11'}
-							to="/analytics"
-							alt="analytics"
-							icon={AnalyticsIcon}
-							disabled={true}
-						/>
-					</>
-				) : (
-					<>
 						<MenuButton
 							width={'w-48'}
 							to="/"
@@ -71,6 +51,26 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={AnalyticsIcon}
 							disabled={true}
 							buttonText={'Аналитика'}
+						/>
+					</>
+				) : (
+					<>
+						<MenuButton width={'w-11'} to="/" alt="bank" icon={BankIcon} />
+						<MenuButton width={'w-11'} to="/finances" alt="cash" icon={CashIcon} />
+						<MenuButton width={'w-11'} to="/crypto" alt="crypto" icon={CryptoIcon} />
+						<MenuButton
+							width={'w-11'}
+							to="/investments"
+							alt="investments"
+							icon={InvestmentsIcon}
+							disabled={true}
+						/>
+						<MenuButton
+							width={'w-11'}
+							to="/analytics"
+							alt="analytics"
+							icon={AnalyticsIcon}
+							disabled={true}
 						/>
 					</>
 				)}
