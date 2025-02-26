@@ -5,7 +5,6 @@ export const getCourseAction = () => async (dispatch) => {
 	try {
 		const response = await getCurrencyAsync(true);
 		const USDcourse = Number(response.data.USDRUB);
-		console.log('response', response.data.USDRUB);
 		dispatch({
 			type: ACTIONS.CYRRENCY_CHECK,
 			payload: USDcourse,

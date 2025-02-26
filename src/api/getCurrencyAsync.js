@@ -5,7 +5,6 @@ export const getCurrencyAsync = async (timeout) => {
 		return await fetch(CURRENCY_COURSE_API)
 			.then((res) => res.json())
 			.then((response) => {
-				console.log(response);
 				return response;
 			})
 			.catch((err) => console.error(err));

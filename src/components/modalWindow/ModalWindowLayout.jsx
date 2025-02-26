@@ -8,7 +8,7 @@ import { accounts, categories } from '../../db';
 import { Categorie } from '../pages/FinancesPage/Categories';
 import { calculateValueInCurrency, getIconOfCategorie } from '../../utils';
 import { FinanceAccount } from '../pages/FinancesPage/FinanceAccount/FinanceAccount';
-import { OperationFormInModal } from './OperationFormInModal';
+
 import { useEffect } from 'react';
 
 export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
@@ -24,7 +24,6 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 	useEffect(() => {
 		const today = new Date();
 		const dateInFormat = today.toISOString().split('T')[0];
-		console.log('dateInFormat', dateInFormat);
 
 		setOperationDate(dateInFormat);
 	}, []);
@@ -204,58 +203,3 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 		</section>
 	);
 };
-
-{
-	/* <section>
-						<OperationItemInModal
-							isOperationsSection={true}
-							operationType={'add'}
-							operationComment={'Комментарий'}
-							operationAmount={123122323}
-							operationDate={date}
-						/>
-						{/* operationType={operation.type}
-								category={operation.category}
-								operationComment={operation.comment}
-								operationAmount={operation.amount}
-								accountName={findAccountName(operation.account_id)}
-								operationDate={operation.date} */
-}
-{
-	/* </section>} */
-}
-
-{
-	/* <section
-						id="operations__history-item_container"
-						className="flex justify-between items-center h-14 w-full text-sm border-b-1 gap-2"
-					>
-						<div className="flex flex-5 items-center truncate gap-2">
-							<CardIcon
-								buttonSize={9}
-								padding={'p-1'}
-								size={5}
-								icon={operationAccount[0].icon}
-							></CardIcon>
-							<span className={`text-sm truncate`}>{operationCategorie[0].name}</span>
-						</div>
-						{isUSD ? '$ ' : '\u20bd '}
-						<input
-							name="operation-amount"
-							className=" text-sm h-[30px] w-full text-slate-400 flex-3 rounded-lg px-2 border-[1px] border-amber-50/20"
-							placeholder="Введите сумму"
-						></input>
-						<div className="flex flex-4 truncate">
-							<p className="text-sm w-full truncate text-slate-400">
-								{operationAccount[0].name}
-							</p>
-						</div>
-						<div className="flex flex-5">
-							<input
-								name="operation-date"
-								className="text-sm h-[30px] w-full text-slate-400  rounded-lg px-2 border-[1px] border-amber-50/20"
-								placeholder="Дата операции"
-							></input>
-						</div>
-					</section> */
-}

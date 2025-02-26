@@ -48,6 +48,7 @@ export const CryptoResult = ({ isUSD, rubleCourse }) => {
 						</div>
 					</div>
 				</div>
+				{'//TODO SPEND AND ADD'}
 				{/* <section className="flex flex-2 justify-center md:justify-evently 2xl:justify-around gap-12">
 					<div className="flex flex-col items-center justify-center text-xl font-medium h-full">
 						<span className="text-sm xl:text-xl">Доходы:</span>
