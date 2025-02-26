@@ -1,8 +1,8 @@
-export const aggregateChartDataByMonth = (operations) => {
+export const aggregateChartDataByMonth = (operations, sortType) => {
 	const result = [];
 
 	operations.forEach((operation) => {
-		const date = new Date(operation.date).toISOString().slice(0, 10);
+		const date = new Date(operation.date).toISOString().slice(0, sortType === 'month' ? 7 : 10);
 
 		if (!result[date]) {
 			result[date] = { date: date, Доходы: 0, Расходы: 0, Баланс: 0 };
@@ -22,6 +22,44 @@ export const aggregateChartDataByMonth = (operations) => {
 
 	return Object.values(result);
 };
+
+// export const aggregateChartDataByMonth = (operations) => {
+// 	const result = [];
+
+// 	// Сначала агрегируем данные по дням
+// 	operations.forEach((operation) => {
+// 		const date = new Date(operation.date).toISOString().slice(0, 10);
+
+// 		if (!result[date]) {
+// 			result[date] = { date: date, Доходы: 0, Расходы: 0 };
+// 		}
+
+// 		if (operation.type === 'add') {
+// 			result[date].Доходы += operation.amount;
+// 		} else if (operation.type === 'spend') {
+// 			result[date].Расходы += operation.amount;
+// 		}
+// 	});
+
+// 	// Теперь создаем итоговый массив с накоплением
+// 	const accumulatedResult = [];
+// 	let totalIncome = 0;
+// 	let totalExpenses = 0;
+
+// 	for (let date in result) {
+// 		totalIncome += result[date].Доходы;
+// 		totalExpenses += result[date].Расходы;
+
+// 		accumulatedResult.push({
+// 			date: date,
+// 			Доходы: totalIncome,
+// 			Расходы: totalExpenses,
+// 			Баланс: totalIncome - totalExpenses,
+// 		});
+// 	}
+
+// 	return accumulatedResult;
+// };
 
 // export const aggregateChartDataByMonth = (operations) => {
 // 	const result = {};
