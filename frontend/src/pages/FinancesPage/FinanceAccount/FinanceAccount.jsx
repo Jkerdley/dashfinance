@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardIcon, OptionsButton } from '../../../components/buttons';
+import { OptionsButton } from '../../../components/buttons';
+import { CardIcon } from '../../../components/CardIcon';
 import DebitCardIcon from '../../../assets/icons/income-debit-icon.svg';
 import CreditCardIcon from '../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../assets/icons/income-cash.svg';

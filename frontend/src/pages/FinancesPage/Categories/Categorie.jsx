@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardIcon, OptionsButton } from '../../../components/buttons';
+import { OptionsButton } from '../../../components/buttons';
+import { CardIcon } from '../../../components/CardIcon';
 
 import { getIconOfCategorie } from '../../../utils';
 
@@ -21,7 +22,7 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 		>
 			<div
 				id="categorie-inside-container"
-				className={`flex items-center justify-start ${noButton ? 'w-[20vw]' : 'w-80'}`}
+				className={`flex items-center justify-start ${noButton ? 'w-[34vw]' : 'w-80'}`}
 			>
 				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
 				<div

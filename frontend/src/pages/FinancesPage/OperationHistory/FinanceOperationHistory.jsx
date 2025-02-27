@@ -1,7 +1,8 @@
 import React from 'react';
 
 import BancCardIcon from '../../../assets/icons/income-debit-icon.svg';
-import { CardIcon, OptionsButton } from '../../../components/buttons';
+import { CardIcon } from '../../../components/CardIcon';
+import { OptionsButton } from '../../../components/buttons';
 
 const FinanceOperationHistoryComponent = ({
 	category,
