@@ -18,14 +18,14 @@ body {
 	transition: all duration-150 ease-in;
 }
 
-button:focus {
+/* button:focus {
 	outline: none;
 }
-
-button:focus {
+/* button:focus {
 	border: 2px solid rgba(173, 216, 240, 0.65);
-}
-input:focus {
+} */
+
+*/ input:focus {
 	outline: none;
 }
 

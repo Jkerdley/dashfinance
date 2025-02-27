@@ -18,11 +18,11 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 	return (
 		<section
 			id="categorie-wrapper"
-			className="flex flex-2 max-w-3xl items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
+			className={`flex flex-2 'max-w-3xl' items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20`}
 		>
 			<div
 				id="categorie-inside-container"
-				className={`flex items-center justify-start ${noButton ? 'w-[34vw]' : 'w-80'}`}
+				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'w-80'}`}
 			>
 				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
 				<div
