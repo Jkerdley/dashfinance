@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, CardIcon, CloseModalButton, CurrencyToggle } from '../buttons';
+import { Button, CloseModalButton, CurrencyToggle } from '../buttons';
+import { CardIcon } from '../CardIcon';
 import { selectModalisOpen } from '../../store/selectors/select-modal-is-open';
 import { selectModalOnCancel } from '../../store/selectors/select-modal-oncancel';
 import { selectModalOnConfirm } from '../../store/selectors/select-modal-onconfirm';
@@ -18,6 +19,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 	const [selectedAccountValue, setSelectedAccountValue] = useState(accounts[0].name);
 	const [selectedCategoryValue, setSelectedCategoryValue] = useState(categories[0].name);
 	const escButtonPressed = usePressKey('Escape');
+	const enterButtonPressed = usePressKey('Enter');
 
 	const onConfirm = useSelector(selectModalOnConfirm);
 	const onCancel = useSelector(selectModalOnCancel);
@@ -29,6 +31,10 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 
 		setOperationDate(dateInFormat);
 	}, []);
+
+	useEffect(() => {
+		enterButtonPressed && isOpen && handleFormSubmit(new Event('submit'));
+	}, [enterButtonPressed, isOpen]);
 
 	if (!isOpen) {
 		return null;
@@ -44,27 +50,33 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		let summInUSD = operationSumm;
-		if (isUSD) {
-			summInUSD *= rubleCourse;
-		}
-		console.log('Submit FORM DATA', {
-			tag: 'finance',
-			category: selectedCategoryValue,
-			categoryId: '0125',
-			account: selectedAccountValue,
-			accountId: '0001',
-			icon: 'products',
-			type: 'add',
-			summ: summInUSD,
-			date: operationDate,
-			comment: '',
-		});
+		if (!operationSumm) {
+			alert('Введите сумму операции');
+		} else if (operationSumm < 0) {
+			alert('Сумма должна быть больше нуля');
+		} else {
+			let summInUSD = operationSumm;
+			if (isUSD) {
+				summInUSD *= rubleCourse;
+			}
+			console.log('Submit FORM DATA', {
+				tag: 'finance',
+				category: selectedCategoryValue,
+				categoryId: '0125',
+				account: selectedAccountValue,
+				accountId: '0001',
+				icon: 'products',
+				type: 'add',
+				summ: summInUSD,
+				date: operationDate,
+				comment: '',
+			});
 
-		setOperationSumm('');
-		setSelectedAccountValue(accounts[0].name);
-		setSelectedCategoryValue(categories[0].name);
-		onCancel();
+			setOperationSumm('');
+			setSelectedAccountValue(accounts[0].name);
+			setSelectedCategoryValue(categories[0].name);
+			onCancel();
+		}
 	};
 
 	const operationAccount = accounts.filter((item) => item.name === selectedAccountValue);
@@ -73,12 +85,12 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 	escButtonPressed && isOpen && onCancel();
 
 	return (
-		<section className="fixed inset-0 z-20 ">
+		<section className="fixed inset-0 z-20">
 			<div className="absolute w-full h-full bg-gray-950/90 rounded-4xl"></div>
 
 			<div
 				id="modal__container"
-				className="relative w-[48vw] h-[38vh] mx-auto px-8 pt-6 z-30 top-1/2 -translate-y-1/2 bg-sky-950/90 rounded-4xl text-center "
+				className="relative w-[48vw] h-[48vh] mx-auto px-8 pt-6 z-30 top-1/2 -translate-y-1/2 bg-sky-950/90 rounded-4xl text-center"
 			>
 				<CloseModalButton onClick={onCancel} />
 				<div id="selectors__header__and_buttons" className="flex flex-col justify-between h-full">
@@ -126,7 +138,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							</select>
 						)}
 					</div>
-					<section className="flex flex-wrap 2xl:flex-nowrap gap-2 items-center justify-between text-start">
+					<section className="flex flex-wrap 2xl:flex-nowrap gap-4 items-center justify-between text-start">
 						<FinanceAccount
 							accountName={selectedAccountValue}
 							accountBalance={calculateValueInCurrency(
@@ -157,9 +169,9 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 
 					<section
 						id="operations__history-item_container"
-						className="flex justify-between items-center h-14 w-full text-sm border-b-1 border-white/30 gap-2"
+						className="flex justify-between items-center h-18 w-full text-sm border-b-1 border-white/30 gap-2"
 					>
-						<div className="flex flex-4 items-center truncate gap-2">
+						<div className="flex flex-3 items-center truncate gap-2">
 							<CardIcon
 								buttonSize={9}
 								padding={'p-1'}
@@ -173,7 +185,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<input
 								name="operation-amount"
 								type="number"
-								className="text-sm h-[30px] w-full border-white/60 flex-3 rounded-lg px-2 border-[1px] border-white/60"
+								className="text-sm h-[30px] w-full border-white/60 flex-2 rounded-lg px-2 border-[1px] border-white/60"
 								placeholder="Введите сумму"
 								value={operationSumm}
 								onChange={handleSummChange}
@@ -181,7 +193,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<input
 								name="operation-date"
 								type="date"
-								className="text-sm h-[30px] w-full text-slate-400 flex-3 rounded-lg px-2 border-[1px] border-white/60"
+								className="text-sm h-[30px] w-full text-slate-400 flex-2 rounded-lg px-2 border-[1px] border-white/60"
 								value={operationDate}
 								onChange={handleDateChange}
 							/>

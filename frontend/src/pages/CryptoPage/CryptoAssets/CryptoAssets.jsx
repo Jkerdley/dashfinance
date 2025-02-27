@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardIcon, OptionsButton } from '../../../components/buttons';
+import { CardIcon } from '../../../components/CardIcon';
+import { OptionsButton } from '../../../components/buttons';
 
 export const CryptoAssets = ({
 	coinTitle,

@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardIcon, OptionsButton } from '../../../components/buttons';
+import { OptionsButton } from '../../../components/buttons';
+import { CardIcon } from '../../../components/CardIcon';
 import { useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
 import { calculateValueInCurrency } from '../../../utils';

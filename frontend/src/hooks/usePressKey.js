@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-export const usePressKey = (targetKey) => {
-	const [keyIsPressed, setKeyUsPressed] = useState(false);
+export const usePressKey = (pressedKey) => {
+	const [isKeyPressed, setIsKeyPressed] = useState(false);
 
 	const onKeyDown = ({ key }) => {
-		key === targetKey && setKeyUsPressed(true);
+		key === pressedKey && setIsKeyPressed(true);
 	};
 	const onKeyUp = ({ key }) => {
-		key === targetKey && setKeyUsPressed(false);
+		key === pressedKey && setIsKeyPressed(false);
 	};
 
 	useEffect(() => {
@@ -19,5 +19,5 @@ export const usePressKey = (targetKey) => {
 			window.removeEventListener('keyup', onKeyUp);
 		};
 	}, []);
-	return keyIsPressed;
+	return isKeyPressed;
 };
