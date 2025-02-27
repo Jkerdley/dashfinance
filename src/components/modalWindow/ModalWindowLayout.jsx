@@ -49,8 +49,9 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 		console.log('Submit FORM DATA', {
 			tag: 'finance',
 			category: selectedCategoryValue,
-			account_id: '0001',
+			categoryId: '0125',
 			account: selectedAccountValue,
+			accountId: '0001',
 			icon: 'products',
 			type: 'add',
 			summ: summInUSD,

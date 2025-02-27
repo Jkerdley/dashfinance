@@ -1,8 +1,10 @@
 import React from 'react';
+import AddIcon from '../../../../assets/icons/add-icon.svg';
 import { FinanceAccount } from './FinanceAccount';
 import { accounts } from '../../../../db.js';
 import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurrency.js';
-import { AddAndDeleteButton } from '../../../buttons/AddAndDeleteButton.jsx';
+import { EditAddDeleteButton } from '../../../buttons/EditAddDeleteButton.jsx';
+import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionContainerHeader.jsx';
 
 export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 	const accountsInCurrency = accounts.map((account) => ({
@@ -16,8 +18,13 @@ export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-8 p-4 rounded-3xl bg-sky-950/40 gap-0.5 snap-start"
 		>
 			<div id="accouts__header-and-button" className="flex gap-2 justify-between">
-				<span className="text-xl font-medium">Счета</span>
-				<AddAndDeleteButton to={''} alt={'finance accounts'} />
+				<SectionContainerHeader title={'Счета'} />
+				<EditAddDeleteButton
+					icon={AddIcon}
+					to={''}
+					title={'Добавить/Удалить'}
+					alt={'Финансовые счета'}
+				/>
 			</div>
 			<div
 				id="accouts__wrapper"

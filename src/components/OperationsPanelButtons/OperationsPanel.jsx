@@ -1,5 +1,6 @@
 import React from 'react';
 import { WideOperationsButton } from '../buttons';
+import { SectionContainerHeader } from '../SectionContainerHeader/SectionContainerHeader';
 
 export const OperationsPanel = ({ onCryptoClick, onClick, isCrypto }) => {
 	return isCrypto ? (
@@ -16,7 +17,7 @@ export const OperationsPanel = ({ onCryptoClick, onClick, isCrypto }) => {
 	) : (
 		<div id="operations__container" className="flex flex-col flex-1 p-4 rounded-[26px] bg-sky-950/40">
 			<div id="operations__buttons" className="flex items-start flex-col gap-4">
-				<span className="flex font-medium text-xl">Операции</span>
+				<SectionContainerHeader title={'Операции'} />
 				<div className="flex gap-4 w-full justify-between items-center">
 					<WideOperationsButton onClick={onClick} color={'bg-main-green'} alt="income">
 						<span className="text-lg font-semibold">Доходы +</span>

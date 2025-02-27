@@ -1,10 +1,11 @@
 import React from 'react';
-import OutlineButton from '../../../../buttons/OutlineButton';
 import AddIcon from '../../../../../assets/icons/add-icon.svg';
 import { fetchedCoinsPrices } from '../../../../../db';
 import { CryptoAssets } from '../../CryptoAssets/CryptoAssets';
 import { calculateValueInCurrency } from '../../../../../utils/calculateValueInCurrency';
 import { OperationsPanel } from '../../../../OperationsPanelButtons/OperationsPanel';
+import { SectionContainerHeader } from '../../../../SectionContainerHeader/SectionContainerHeader';
+import { EditAddDeleteButton } from '../../../../buttons';
 
 export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
 	const coinValuesInCurrency = fetchedCoinsPrices.result.map((coin) => ({
@@ -15,12 +16,10 @@ export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
 	}));
 
 	return (
-		<div id="column__categories" className="flex flex-col flex-3 p-4 rounded-3xl bg-sky-950/40">
+		<section id="column__categories" className="flex flex-col flex-3 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
-				<p className="flex text-xl font-medium mb-2 truncate">Мои активы</p>
-				<OutlineButton to={''} disabled={false} icon={AddIcon} alt="finance accounts">
-					<span className="text-base">Добавить/Удалить</span>
-				</OutlineButton>
+				<SectionContainerHeader title={'Активы'} />
+				<EditAddDeleteButton icon={AddIcon} title={'Добавить/Удалить'} to={''} alt={'crypto coins'} />
 			</div>
 			<div
 				id="spend-categories__container"
@@ -43,6 +42,6 @@ export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
 				})}
 			</div>
 			<OperationsPanel onCryptoClick={null} isCrypto={true} />
-		</div>
+		</section>
 	);
 };

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import EditIcon from '../../../../assets/icons/edit-icon.svg';
-import { CryptoOperationHistory } from './OperationHistory';
+import { CryptoOperationHistory } from './CryptoOperationHistory.jsx';
 import { fetchedCoinsPrices, history } from '../../../../db.js';
-import OutlineButton from '../../../buttons/OutlineButton.jsx';
 import { SortSelector } from '../../../sortSelector/sortSelector.jsx';
 import {
 	findAccountName,
@@ -10,9 +9,11 @@ import {
 	findCoinSymbol,
 	getHIstoryInCurrency,
 	getsortedHistory,
-} from '../../../../utils';
+} from '../../../../utils/index.js';
+import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionContainerHeader.jsx';
+import { EditAddDeleteButton } from '../../../buttons/EditAddDeleteButton.jsx';
 
-export const CryptoOpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
+export const CryptoOpreationsHistoryContainer = ({ isUSD, rubleCourse }) => {
 	const [sortType, setSortType] = useState('newest');
 
 	const filteredHistory = getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
@@ -28,11 +29,14 @@ export const CryptoOpreationsHistoryLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40 gap-4"
 		>
 			<div className="flex justify-between gap-2">
-				<span className=" text-xl font-medium">История операций</span>
+				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
-				<OutlineButton to={''} disabled={false} icon={EditIcon} alt="change history">
-					<span className="text-base">Изменить</span>
-				</OutlineButton>
+				<EditAddDeleteButton
+					icon={EditIcon}
+					title={'Изменить'}
+					to={''}
+					alt={'Изменить историю крипто операций'}
+				/>
 			</div>
 
 			<div
