@@ -5,7 +5,7 @@ import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionC
 
 export const CryptoResultLayout = ({ isUSD, rubleCourse }) => {
 	return (
-		<div
+		<section
 			id="col__finance-result-container"
 			className="flex flex-col flex-4 min-h-[26vh] gap-2 p-4 rounded-3xl bg-sky-950/40"
 		>
@@ -15,6 +15,6 @@ export const CryptoResultLayout = ({ isUSD, rubleCourse }) => {
 			</div>
 
 			<CryptoResult isUSD={isUSD} rubleCourse={rubleCourse} />
-		</div>
+		</section>
 	);
 };

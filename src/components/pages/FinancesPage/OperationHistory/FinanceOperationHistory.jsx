@@ -16,11 +16,11 @@ const FinanceOperationHistoryComponent = ({
 	return (
 		<section
 			id="operations__history-item_container"
-			className="flex justify-center items-start h-12 w-full text-sm border-b-1 border-white/40"
+			className="flex justify-center items-start h-16 w-full pt-3 text-sm border-b-1 border-white/40"
 		>
 			<div className="flex flex-10 justify-center items-center gap-2">
 				<CardIcon buttonSize={9} padding={'p-1.5'} size={5} icon={BancCardIcon}></CardIcon>
-				<div className="flex items-center justify-center w-full gap-1">
+				<div className="flex items-center justify-center w-full gap-2">
 					<div className="flex flex-3 truncate">
 						<p className={`text-sm w-full ${isAddOperation} truncate`}>{category}</p>
 					</div>
