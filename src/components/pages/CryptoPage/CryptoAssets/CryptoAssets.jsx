@@ -16,20 +16,20 @@ export const CryptoAssets = ({
 
 	const isCoinPriceGrow = () => {
 		if (!assetsAmount) {
-			return 'text-lime-200';
+			return 'text-main-green';
 		} else if (Number(growValue) < 0) {
-			return 'text-rose-300';
+			return 'text-main-red';
 		} else {
-			return 'text-lime-200';
+			return 'text-main-green';
 		}
 	};
 	const isProfitAsset = () => {
 		if (!assetsAmount) {
 			return 'text-white';
 		} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
-			return 'text-rose-300';
+			return 'text-main-red';
 		} else {
-			return 'text-lime-200';
+			return 'text-main-green';
 		}
 	};
 
