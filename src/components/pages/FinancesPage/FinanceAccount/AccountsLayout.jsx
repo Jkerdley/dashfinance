@@ -6,7 +6,7 @@ import { calculateValueInCurrency } from '../../../../utils/calculateValueInCurr
 import { EditAddDeleteButton } from '../../../buttons/EditAddDeleteButton.jsx';
 import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionContainerHeader.jsx';
 
-export const AccountsLayout = ({ isUSD, rubleCourse }) => {
+export const AccountsContainer = ({ isUSD, rubleCourse }) => {
 	const accountsInCurrency = accounts.map((account) => ({
 		...account,
 		balance: calculateValueInCurrency(account.balance, isUSD, rubleCourse),
@@ -28,7 +28,7 @@ export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 			</div>
 			<div
 				id="accouts__wrapper"
-				className="flex flex-col pr-1 mt-1 max-h-[47vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
+				className="flex flex-col pr-1 mt-1 max-h-[45vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
 			>
 				{accountsInCurrency.map((account) => {
 					return (
@@ -45,3 +45,4 @@ export const AccountsLayout = ({ isUSD, rubleCourse }) => {
 		</section>
 	);
 };
+export const AccountsLayout = React.memo(AccountsContainer);

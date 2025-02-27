@@ -15,7 +15,7 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 	};
 
 	return (
-		<div
+		<section
 			id="categorie-wrapper"
 			className="flex flex-2 max-w-3xl items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
 		>
@@ -36,6 +36,6 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 				</div>
 			</div>
 			{noButton ? '' : <OptionsButton to={''} flex={'flex-[0.5]'} />}
-		</div>
+		</section>
 	);
 };

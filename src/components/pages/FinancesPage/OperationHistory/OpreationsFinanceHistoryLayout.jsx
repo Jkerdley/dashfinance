@@ -7,6 +7,7 @@ import { getHIstoryInCurrency } from '../../../../utils/getHIstoryInCurrency.js'
 import { SortSelector } from '../../../sortSelector/sortSelector.jsx';
 import { getsortedHistory } from '../../../../utils/getSortedHistory.js';
 import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionContainerHeader.jsx';
+import { FixedSizeList as List } from 'react-window';
 
 export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 	const [sortType, setSortType] = useState('newest');
@@ -23,6 +24,22 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 
+	const Row = ({ index, style }) => {
+		const operation = sortedHistory[index];
+		return (
+			<div style={style} key={operation.id}>
+				<FinanceOperationHistory
+					operationType={operation.type}
+					category={operation.category}
+					operationComment={operation.comment}
+					operationAmount={operation.amount}
+					accountName={operation.account}
+					operationDate={operation.date}
+				/>
+			</div>
+		);
+	};
+
 	return (
 		<div
 			id="accouts__operations-history-container"
@@ -37,22 +54,17 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 			</div>
 			<div
 				id="operationsHistoryBoxWrapper"
-				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 "
 			>
-				{sortedHistory.map((operation) => {
-					return (
-						<div key={operation.id}>
-							<FinanceOperationHistory
-								operationType={operation.type}
-								category={operation.category}
-								operationComment={operation.comment}
-								operationAmount={operation.amount}
-								accountName={operation.account}
-								operationDate={operation.date}
-							/>
-						</div>
-					);
-				})}
+				<List
+					className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+					height={700}
+					itemCount={sortedHistory.length}
+					itemSize={64}
+					width="100%"
+				>
+					{Row}
+				</List>
 			</div>
 		</div>
 	);

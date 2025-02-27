@@ -31,17 +31,17 @@ export const FinancesLayout = () => {
 	return (
 		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
 			<ModalWindowLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-			<div className="flex flex-8 flex-col gap-4">
+			<div className="flex flex-10 flex-col gap-4">
 				<FinanceResultLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				<div id="row__accounts-and-history" className="flex flex-10 gap-4">
-					<div id="operations__and__accounts-container" className="flex flex-col flex-2 gap-4">
+					<div id="operations__and__accounts-container" className="flex flex-col flex-3 gap-4">
 						<OperationsPanel onClick={handleOperationsClick} />
 						<AccountsLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
 					<OpreationsFinanceHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				</div>
 			</div>
-			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
+			<div className="flex flex-7 flex-row 2xl:flex-col gap-4">
 				<CategoriesLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 				<FinanceAddAndSpendChartContainer />
 			</div>
