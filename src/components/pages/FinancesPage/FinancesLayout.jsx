@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
 import { OperationsPanel } from '../../OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
-import { FinanceAddAndSpendChart } from './Charts/FinanceAddAndSpendChart';
+import { FinanceAddAndSpendChartContainer } from './Charts';
 import { closeModal, openModal } from '../../../store/actions';
-import { ModalWindowLayout } from '../../modalWindow/ModalWindowLayout'; // Импортируем модальное окно
+import { ModalWindowLayout } from '../../modalWindow/ModalWindowLayout';
 
 export const FinancesLayout = () => {
 	const isUSD = useSelector(currencySelector);
@@ -43,7 +43,7 @@ export const FinancesLayout = () => {
 			</div>
 			<div className="flex flex-6 flex-row 2xl:flex-col gap-4">
 				<CategoriesLayout isUSD={isUSD} rubleCourse={rubleCourse} />
-				<FinanceAddAndSpendChart />
+				<FinanceAddAndSpendChartContainer />
 			</div>
 		</div>
 	);

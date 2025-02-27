@@ -1,2 +1,3 @@
-export * from './FinanceAddAndSpendChart.jsx';
+export * from './FinanceAddAndSpendChartContainer.jsx';
+export * from './FinanceChart.jsx';
 export * from './FinanceResultDiagram.jsx';

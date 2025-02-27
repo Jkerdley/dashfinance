@@ -7,7 +7,7 @@ export * from './EditButton.jsx';
 export * from './CurrencyToggle.jsx';
 export * from './BurgerButton.jsx';
 export * from './RefreshCourseButton.jsx';
-export * from './AddAndDeleteButton.jsx';
+export * from './EditAddDeleteButton.jsx';
 export * from './OptionsButton.jsx';
 export * from './SliderButton.jsx';
 export * from './CloseModalButton.jsx';

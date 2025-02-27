@@ -3,6 +3,7 @@ import { RefreshCourseButton } from '../../../buttons';
 import { FinanceResult } from './FinanceResult';
 
 import { RadialChartSelector } from '../../../sortSelector/RadialChartSelector';
+import { SectionContainerHeader } from '../../../SectionContainerHeader/SectionContainerHeader';
 
 export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
 	const [selectedRadialSortType, setSelectedRadialSortType] = useState('month');
@@ -17,7 +18,7 @@ export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
 			className="flex flex-col flex-4 gap-2 p-4 rounded-3xl bg-sky-950/40 transition-all"
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
-				<span className="font-medium text-xl">Финансовый результат</span>
+				<SectionContainerHeader title={'Финансовый результат'} />
 				<RadialChartSelector
 					handleRadialSortChange={handleRadialSortChange}
 					selectedSortType={selectedRadialSortType}
