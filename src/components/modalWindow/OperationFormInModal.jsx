@@ -10,7 +10,7 @@ export const OperationFormInModal = ({
 	accountName,
 	operationDate,
 }) => {
-	const isAddOperation = operationType === 'add' ? 'text-lime-200' : 'text-rose-300';
+	const isAddOperation = operationType === 'add' ? 'text-main-green' : 'text-main-red';
 	const isPlus = operationType === 'add' ? '+' : '-';
 	const isHaveComment = operationComment ? operationComment : category;
 

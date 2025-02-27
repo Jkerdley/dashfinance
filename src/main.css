@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+@theme {
+	--color-main-red: #ff81b6;
+	--color-main-green: #b9ff80;
+}

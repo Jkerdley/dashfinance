@@ -8,7 +8,7 @@ import { ChartSelector } from '../../../sortSelector/chartSelector';
 import { CustomTooltip } from '../../../CustomTooltip/CustomTooltip';
 
 export const FinanceAddAndSpendChart = () => {
-	const [selectedSortType, setSelectedSortType] = useState('days');
+	const [selectedSortType, setSelectedSortType] = useState('month');
 
 	const isUSD = useSelector(currencySelector);
 	const roubleCourse = useSelector(rubleCourseSelector);
@@ -29,10 +29,10 @@ export const FinanceAddAndSpendChart = () => {
 	});
 
 	const handleSortChange = () => {
-		if (selectedSortType === 'days') {
+		if (selectedSortType === 'month') {
 			setSelectedSortType('allTime');
 		} else {
-			setSelectedSortType('days');
+			setSelectedSortType('month');
 		}
 	};
 
@@ -62,7 +62,7 @@ export const FinanceAddAndSpendChart = () => {
 								<stop offset="5%" stopColor="#b9ff80" stopOpacity={0.5} />
 								<stop offset="98%" stopColor="#b9ff80" stopOpacity={0} />
 							</linearGradient>
-							<linearGradient id="colorSpendings" x1="0" y1="0" x2="0" y2="1">
+							<linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
 								<stop offset="20%" stopColor="#ff81b6" stopOpacity={0.5} />
 								<stop offset="98%" stopColor="#ff81b6" stopOpacity={0} />
 							</linearGradient>
@@ -70,7 +70,7 @@ export const FinanceAddAndSpendChart = () => {
 								<stop offset="40%" stopColor="#b9ff80" stopOpacity={0.5} />
 								<stop offset="98%" stopColor="#b9ff80" stopOpacity={0.1} />
 							</linearGradient>
-							<linearGradient id="colorStrokeSpendings" x1="0" y1="0" x2="0" y2="1">
+							<linearGradient id="colorStrokeExpenses" x1="0" y1="0" x2="0" y2="1">
 								<stop offset="40%" stopColor="#ff81b6" stopOpacity={0.5} />
 								<stop offset="98%" stopColor="#ff81b6" stopOpacity={0.1} />
 							</linearGradient>
@@ -101,9 +101,9 @@ export const FinanceAddAndSpendChart = () => {
 							type="monotone"
 							dataKey="Расходы"
 							stackId="2"
-							stroke="url(#colorStrokeSpendings)"
+							stroke="url(#colorStrokeExpenses)"
 							strokeWidth={2}
-							fill="url(#colorSpendings)"
+							fill="url(#colorExpenses)"
 						/>
 					</AreaChart>
 				</ResponsiveContainer>

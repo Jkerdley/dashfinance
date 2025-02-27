@@ -20,7 +20,7 @@ export const CryptoOperationHistory = ({
 
 	const coinInCurrency = calculateValueInCurrency(Number(price), isUSD, rubleCourse);
 
-	const isAddOperation = operationType === 'buy' ? 'text-lime-200' : 'text-rose-300';
+	const isAddOperation = operationType === 'buy' ? 'text-main-green' : 'text-main-red';
 	const isPlus = operationType === 'buy' ? '+ ' : '- ';
 	const isMinus = operationType === 'buy' ? '- ' : '+ ';
 
@@ -45,7 +45,7 @@ export const CryptoOperationHistory = ({
 					</div>
 					<div className="flex-4 truncate hidden lg:flex">
 						<span
-							className={`flex text-sm w-full truncate ${operationType === 'buy' ? 'text-rose-300' : 'text-lime-200'} gap-2`}
+							className={`flex text-sm w-full truncate ${operationType === 'buy' ? 'text-main-red' : 'text-main-green'} gap-2`}
 						>
 							{isMinus}
 							{operationAmount} {isUSD ? <span>{` ${accountName}`}</span> : ''}

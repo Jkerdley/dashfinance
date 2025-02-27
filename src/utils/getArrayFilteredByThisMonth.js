@@ -4,7 +4,7 @@ export const filteredByThisMonth = (array, selectedSortType) => {
 	const currentMonth = currentDate.getMonth();
 
 	let arraySortedByMonth = [...array];
-	if (selectedSortType === 'days') {
+	if (selectedSortType === 'month') {
 		const result = arraySortedByMonth.filter((operation) => {
 			const operationDate = new Date(operation.date);
 			return operationDate.getFullYear() === currentYear && operationDate.getMonth() === currentMonth;
