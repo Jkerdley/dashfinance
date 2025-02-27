@@ -5,14 +5,14 @@
 
 body {
 	background:
-		url('./assets/pictures/back3.jpg'), url('./assets/pictures/back2.jpg'),
+		url('./assets/pictures/back1.jpg'), url('./assets/pictures/back2.jpg'),
 		url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb'),
 		url('https://images.squarespace-cdn.com/content/v1/5979e18715d5db259166db64/1631570216861-ROIX0K0AQYT7AR46B4ZP/Download-Banner.png'),
 		radial-gradient(circle at center, hsl(196, 90%, 70%) 0%, #0f385e 70%, #0a1b30 100%);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	backdrop-filter: blur(35px);
+	backdrop-filter: blur(45px);
 	align-items: center;
 	justify-content: center;
 	scrollbar-color: #1f4165 transparent;

@@ -11,7 +11,7 @@ function App() {
 			<SidebarMenu />
 			<div
 				id="mainLayout"
-				className="flex flex-col flex-15 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(239,239,239,0.08)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
+				className="flex flex-col flex-15 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(188,217,255,0.05)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
 			>
 				<TopMenuRow />
 				<div

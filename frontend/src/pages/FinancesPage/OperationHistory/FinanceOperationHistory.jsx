@@ -36,10 +36,10 @@ const FinanceOperationHistoryComponent = ({
 						</p>
 					</div>
 					<div className="flex-3 truncate hidden xl:flex">
-						<p className="text-sm w-full truncate text-slate-400 ">{accountName}</p>
+						<p className="text-sm w-full truncate text-slate-300 ">{accountName}</p>
 					</div>
 					<div className="flex flex-3 text-center">
-						<p className="text-sm w-full text-slate-400">{operationDate}</p>
+						<p className="text-sm w-full text-slate-300">{operationDate}</p>
 					</div>
 				</div>
 			</div>

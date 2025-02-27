@@ -24,7 +24,7 @@ export const TopMenuRow = () => {
 					<CurrencyToggle />
 					<div
 						id="settings-and-alert"
-						className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-slate-400/30  w-24 gap-1.5"
+						className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10  w-24 gap-1.5"
 					>
 						<Button alt="Settings" icon={Settings} />
 						<Button alt="Alerts" icon={Alerts} disabled={true} />

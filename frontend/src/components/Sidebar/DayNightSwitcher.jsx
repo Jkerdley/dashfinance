@@ -12,7 +12,7 @@ export const DayNightSwitcher = () => {
 		>
 			<div
 				id="theme-switcher__buttons"
-				className={`flex justify-center items-center p-1.5 bg-slate-500/30 rounded-2xl gap-2`}
+				className={`flex justify-center items-center p-1.5 bg-gray-500/25 rounded-2xl gap-2`}
 			>
 				<Button alt="DayTheme" icon={DayTheme} />
 				<Button alt="NightTheme" icon={NightTheme} />

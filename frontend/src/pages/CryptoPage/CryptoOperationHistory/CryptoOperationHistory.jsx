@@ -54,13 +54,13 @@ export const CryptoOperationHistory = ({
 					</div>
 
 					<div className="flex flex-4 truncate">
-						<p className={`text-sm w-full text-slate-400 gap-2 truncate`}>
+						<p className={`text-sm w-full text-slate-300 gap-2 truncate`}>
 							{isPlus}
 							{assetAmount} <span>{` ${symbol}`}</span>
 						</p>
 					</div>
 					<div className="flex flex-3 text-center">
-						<span className="text-sm w-full text-slate-400">{operationDate}</span>
+						<span className="text-sm w-full text-slate-300">{operationDate}</span>
 					</div>
 				</div>
 			</div>
