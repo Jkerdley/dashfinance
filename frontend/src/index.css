@@ -5,8 +5,10 @@
 
 body {
 	background:
+		url('./assets/pictures/back3.jpg'), url('./assets/pictures/back2.jpg'),
+		url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb'),
 		url('https://images.squarespace-cdn.com/content/v1/5979e18715d5db259166db64/1631570216861-ROIX0K0AQYT7AR46B4ZP/Download-Banner.png'),
-		radial-gradient(circle at center, #18489c 0%, #002134 100%);
+		radial-gradient(circle at center, hsl(196, 90%, 70%) 0%, #0f385e 70%, #0a1b30 100%);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -18,19 +20,26 @@ body {
 	transition: all duration-150 ease-in;
 }
 
-/* button:focus {
+button:focus {
 	outline: none;
 }
-/* button:focus {
+button:focus-visible {
 	border: 2px solid rgba(173, 216, 240, 0.65);
-} */
+}
 
-*/ input:focus {
+input:focus {
 	outline: none;
 }
 
 input:focus {
-	border: 2px solid rgba(173, 216, 240, 0.65);
+	border: 1px solid rgba(173, 216, 240, 0.65);
+}
+select:focus {
+	outline: none;
+}
+
+select:focus {
+	border: 1px solid rgba(173, 216, 240, 0.65);
 }
 
 @keyframes spin {
@@ -146,4 +155,3 @@ input[type='date']::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
-/* bg-[url('https://sun9-83.userapi.com/impf/h0ErobY1uBNzkAdK99g5Ymp1ghqyWJMDQoYTyA/kWEKSn2frSI.jpg?size=0x0&quality=90&proxy=1&sign=f865c543242b526f1df79a98f14ebf60&c_uniq_tag=g9TzljxbRYKPq9lN5EwrJZfUq4tsm8JEF31tYXfv1-o&type=video_thumb')]  */

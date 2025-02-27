@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, CloseModalButton, CurrencyToggle } from '../buttons';
 import { CardIcon } from '../CardIcon';
@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { usePressKey } from '../../hooks/usePressKey';
 
 export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
+	const modalRef = useRef(null);
 	const [operationDate, setOperationDate] = useState('');
 	const [operationSumm, setOperationSumm] = useState('');
 	const [selectedAccountValue, setSelectedAccountValue] = useState(accounts[0].name);
@@ -31,6 +32,10 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 
 		setOperationDate(dateInFormat);
 	}, []);
+
+	useEffect(() => {
+		isOpen && modalRef.current && modalRef.current.focus();
+	}, [isOpen]);
 
 	useEffect(() => {
 		enterButtonPressed && isOpen && handleFormSubmit(new Event('submit'));
@@ -89,6 +94,8 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 			<div className="absolute w-full h-full bg-gray-950/90 rounded-4xl"></div>
 
 			<div
+				ref={modalRef}
+				tabIndex="-1"
 				id="modal__container"
 				className="relative w-[48vw] h-[48vh] mx-auto px-8 pt-6 z-30 top-1/2 -translate-y-1/2 bg-sky-950/90 rounded-4xl text-center"
 			>
@@ -101,7 +108,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 					<div className="flex gap-6 justify-around items-center">
 						{selectedAccountValue && (
 							<select
-								className="bg-gray-100 border text-gray-800 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
 								value={selectedAccountValue}
 								onChange={(e) => setSelectedAccountValue(e.target.value)}
 							>
@@ -120,7 +127,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 						)}
 						{selectedCategoryValue && (
 							<select
-								className="bg-gray-100 border text-gray-800 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
 								value={selectedCategoryValue}
 								onChange={(e) => setSelectedCategoryValue(e.target.value)}
 							>
@@ -181,11 +188,11 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<span className={`text-sm truncate`}>{selectedCategoryValue}</span>
 						</div>
 						{isUSD ? '$ ' : '\u20bd '}
-						<form onSubmit={handleFormSubmit} className="flex flex-7 gap-4">
+						<form onSubmit={handleFormSubmit} className="flex flex-8 gap-4">
 							<input
 								name="operation-amount"
 								type="number"
-								className="text-sm h-[30px] w-full border-white/60 flex-2 rounded-lg px-2 border-[1px] border-white/60"
+								className="text-sm h-[30px] w-full flex-2 rounded-lg px-2 border-[1px] border-sky-100/60"
 								placeholder="Введите сумму"
 								value={operationSumm}
 								onChange={handleSummChange}
@@ -193,7 +200,7 @@ export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
 							<input
 								name="operation-date"
 								type="date"
-								className="text-sm h-[30px] w-full text-slate-400 flex-2 rounded-lg px-2 border-[1px] border-white/60"
+								className="text-sm h-[30px] w-full text-slate-400 flex-2 rounded-lg px-2 border-[1px] border-sky-100/60"
 								value={operationDate}
 								onChange={handleDateChange}
 							/>

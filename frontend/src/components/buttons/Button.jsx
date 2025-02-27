@@ -11,10 +11,14 @@ export const Button = ({ icon, alt, disabled, onClick, children, padding, width 
 	) : (
 		<button
 			onClick={onClick}
-			className={`flex ${width} h-9 ${padding} justify-center items-center hover:scale-x-110 bg-gradient-to-br from-sky-500 to-blue-900 transition-all ease-in-out duration-100 rounded-xl cursor-pointer`}
+			className={`group flex ${width} h-9 ${padding} justify-center items-center transition-all ease-in-out duration-100 rounded-xl cursor-pointer border-btn-bgcolor hover:drop-shadow-[0_0px_5px_rgba(200,200,250,0.45)] bg-btn-bgcolor hover:bg-btn-bghovercolor`}
 		>
 			{children}
-			<img className="h-6" src={icon} alt={alt} />
+			<img
+				className="h-6 group-hover:rotate-12 transition-all duration-150 ease-in-out"
+				src={icon}
+				alt={alt}
+			/>
 		</button>
 	);
 };

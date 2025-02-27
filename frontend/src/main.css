@@ -3,5 +3,7 @@
 @theme {
 	--color-main-red: #ff81b6;
 	--color-main-green: #b9ff80;
+	--color-btn-bgcolor: rgba(23, 76, 129, 0.888);
+	--color-btn-bghovercolor: rgba(10, 52, 77, 0.95);
 	/* --breakpoint-3xl: 120rem; */
 }
