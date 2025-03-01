@@ -10,7 +10,7 @@ export const MenuSliderButton = ({ icon, alt, disabled, onClick, value, width })
 	) : (
 		<button
 			onClick={onClick}
-			className={`flex ${width} h-11 p-2 gap-2 justify-center items-center hover:scale-x-110 bg-gradient-to-br from-sky-500 to-blue-900 hover:bg-sky-500/80 transition-all duration-200 rounded-2xl cursor-pointer overflow-hidden`}
+			className={`flex ${width} h-11 p-2 gap-2 justify-center items-center hover:scale-x-110 bg-btn-color transition-all duration-200 rounded-2xl cursor-pointer overflow-hidden`}
 		>
 			<img className={`h-6 ${value ? 'rotate-180' : 'rotate-0'} shrink-0`} src={icon} alt={alt} />
 		</button>

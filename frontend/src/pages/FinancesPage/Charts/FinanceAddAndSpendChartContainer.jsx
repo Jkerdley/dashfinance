@@ -20,6 +20,7 @@ export const FinanceAddAndSpendChartContainer = () => {
 	);
 
 	const aggregatedData = aggregateChartDataByMonth(sortedHistory, selectedSortType);
+
 	const mappedData = aggregatedData.map((item) => {
 		return {
 			...item,
@@ -43,7 +44,11 @@ export const FinanceAddAndSpendChartContainer = () => {
 				<SectionContainerHeader title={'График доходов и расходов'} />
 				<ChartSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
 			</div>
-			<FinanceChart mappedData={mappedData} />
+			{mappedData.length === 0 ? (
+				<span className="flex items-center justify-center mt-30">Нет расходов и доходов</span>
+			) : (
+				<FinanceChart mappedData={mappedData} />
+			)}
 		</div>
 	);
 };

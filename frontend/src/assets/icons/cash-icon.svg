@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2020 (64-Bit) -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="334px" height="334px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 433 433"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="922px" height="922px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 239 239"
  xmlns:xlink="http://www.w3.org/1999/xlink"
  xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
  <defs>
@@ -14,6 +14,8 @@ viewBox="0 0 433 433"
  </defs>
  <g id="Слой_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <path class="fil0" d="M414 316l-395 0c-11,0 -19,7 -19,19 0,11 8,19 19,19l395 0c11,0 19,-8 19,-19 0,-12 -8,-19 -19,-19zm0 79l-395 0c-11,0 -19,7 -19,19 0,11 8,19 19,19l395 0c11,0 19,-8 19,-19 0,-12 -8,-19 -19,-19zm-40 -395l-316 0c-33,0 -58,25 -58,58l0 158c0,33 25,59 58,59l316 0c33,0 59,-26 59,-59l0 -158c0,-33 -26,-58 -59,-58zm21 216c0,13 -8,21 -21,21l-316 0c-12,0 -20,-8 -20,-21l0 -158c0,-12 8,-20 20,-20l316 0c13,0 21,8 21,20l0 158zm-297 -98c-11,0 -19,8 -19,19 0,12 8,19 19,19 11,0 19,-7 19,-19 0,-11 -8,-19 -19,-19zm118 -39c-33,0 -58,25 -58,58 0,33 25,59 58,59 33,0 59,-26 59,-59 0,-33 -26,-58 -59,-58zm0 79c-12,0 -20,-8 -20,-21 0,-12 8,-20 20,-20 13,0 21,8 21,20 0,13 -8,21 -21,21zm119 -40c-12,0 -19,8 -19,19 0,12 7,19 19,19 11,0 19,-7 19,-19 0,-11 -8,-19 -19,-19z"/>
+  <g id="_2359496504864">
+   <path class="fil0" d="M228 174l-218 0c-6,0 -10,4 -10,11 0,6 4,10 10,10l218 0c6,0 11,-4 11,-10 0,-7 -5,-11 -11,-11zm0 44l-218 0c-6,0 -10,4 -10,10 0,6 4,11 10,11l218 0c6,0 11,-5 11,-11 0,-6 -5,-10 -11,-10zm-22 -218l-174 0c-18,0 -32,14 -32,32l0 87c0,18 14,33 32,33l174 0c18,0 33,-15 33,-33l0 -87c0,-18 -15,-32 -33,-32zm12 119c0,7 -5,12 -12,12l-174 0c-7,0 -11,-5 -11,-12l0 -87c0,-7 4,-11 11,-11l174 0c7,0 12,4 12,11l0 87zm-164 -54c-6,0 -10,4 -10,11 0,6 4,10 10,10 6,0 11,-4 11,-10 0,-7 -5,-11 -11,-11zm65 -21c-18,0 -32,13 -32,32 0,18 14,32 32,32 18,0 33,-14 33,-32 0,-19 -15,-32 -33,-32zm0 43c-7,0 -11,-4 -11,-11 0,-7 4,-11 11,-11 7,0 12,4 12,11 0,7 -5,11 -12,11zm66 -22c-7,0 -11,4 -11,11 0,6 4,10 11,10 6,0 10,-4 10,-10 0,-7 -4,-11 -10,-11z"/>
+  </g>
  </g>
 </svg>

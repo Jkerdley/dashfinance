@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 
 @theme {
-	--color-main-red: #ff81b6;
+	--color-main-red: #ff8bbb;
 	--color-main-green: #b9ff80;
-	--color-btn-bgcolor: rgba(0, 100, 154, 0.85);
-	--color-btn-bghovercolor: rgba(10, 50, 89, 1);
+	--color-btn-color: rgba(10, 120, 174, 0.75);
+	--color-btn-menuhover: rgba(10, 80, 124, 0.8);
+	--color-btn-hovercolor: rgba(10, 70, 99, 1);
 	/* --breakpoint-3xl: 120rem; */
 }

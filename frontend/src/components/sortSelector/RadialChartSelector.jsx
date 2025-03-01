@@ -9,7 +9,7 @@ export const RadialChartSelector = ({ handleRadialSortChange, selectedSortType }
 			value={selectedSortType}
 			onChange={handleRadialSortChange}
 		>
-			<option className=" bg-sky-950/40" value="days">
+			<option className=" bg-sky-950/40" value="month">
 				За месяц
 			</option>
 			<option className=" bg-sky-950/40" value="thisYear">

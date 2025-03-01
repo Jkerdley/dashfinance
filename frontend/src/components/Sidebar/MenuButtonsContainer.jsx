@@ -19,6 +19,7 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={BankIcon}
 							disabled={false}
 							buttonText={'Все активы'}
+							isWide={true}
 						/>
 						<MenuButton
 							width={'w-48'}
@@ -27,6 +28,7 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={CashIcon}
 							disabled={false}
 							buttonText={'Финансы'}
+							isWide={true}
 						/>
 						<MenuButton
 							width={'w-48'}
@@ -35,6 +37,7 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={CryptoIcon}
 							disabled={false}
 							buttonText={'Криптовалюты'}
+							isWide={true}
 						/>
 						<MenuButton
 							width={'w-48'}
@@ -43,6 +46,7 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={InvestmentsIcon}
 							disabled={true}
 							buttonText={'Инвестиции'}
+							isWide={true}
 						/>
 						<MenuButton
 							width={'w-48'}
@@ -51,6 +55,7 @@ export const MenuButtonsContainer = ({ isMenuOpened }) => {
 							icon={AnalyticsIcon}
 							disabled={true}
 							buttonText={'Аналитика'}
+							isWide={true}
 						/>
 					</>
 				) : (

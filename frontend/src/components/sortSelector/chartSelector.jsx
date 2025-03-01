@@ -9,7 +9,7 @@ export const ChartSelector = ({ handleSortChange, selectedSortType }) => {
 			value={selectedSortType}
 			onChange={handleSortChange}
 		>
-			<option className=" bg-sky-950/40" value="days">
+			<option className=" bg-sky-950/40" value="month">
 				По дням
 			</option>
 
