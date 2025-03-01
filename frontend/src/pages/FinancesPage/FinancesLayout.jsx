@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
@@ -15,7 +15,7 @@ export const FinancesLayout = () => {
 	const rubleCourse = useSelector(rubleCourseSelector);
 	const dispatch = useDispatch();
 
-	const handleOperationsClick = () => {
+	const handleOperationsClick = useCallback(() => {
 		dispatch(
 			openModal({
 				question: 'Добавить операцию?',
@@ -26,7 +26,7 @@ export const FinancesLayout = () => {
 				onCancel: () => dispatch(closeModal()),
 			}),
 		);
-	};
+	});
 
 	return (
 		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
@@ -38,7 +38,7 @@ export const FinancesLayout = () => {
 						<OperationsPanel onClick={handleOperationsClick} />
 						<AccountsLayout isUSD={isUSD} rubleCourse={rubleCourse} />
 					</div>
-					<OpreationsFinanceHistoryLayout isUSD={isUSD} rubleCourse={rubleCourse} />
+					<OpreationsFinanceHistoryLayout />
 				</div>
 			</div>
 			<div className="flex flex-7 flex-row 2xl:flex-col gap-4">

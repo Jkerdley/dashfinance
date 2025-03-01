@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import EditIcon from '../../../assets/icons/edit-icon.svg';
 import { CryptoOperationHistory } from './CryptoOperationHistory.jsx';
-import { fetchedCoinsPrices, history } from '../../../db.js';
+import { fetchedCoinsPrices } from '../../../db.js';
 import { SortSelector } from '../../../components/sortSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { EditAddDeleteButton } from '../../../components/buttons';
-import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
-import { getsortedHistory } from '../../../utils/getSortedHistory.js';
-import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
 
-export const CryptoOpreationsHistoryContainer = ({ isUSD, rubleCourse }) => {
+import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
+import { useFetchHistoryData } from '../../../hooks/useFetchServerHistory.js';
+import { fetchCryptoHistory } from '../../../store/actions/fetchCryptoHistory.js';
+import { selectCryptoHistory, selectCryptoHistoryIsLoading } from '../../../store/selectors';
+import { Loader } from '../../../components/Loaders/Loader.jsx';
+
+export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
 
-	const filteredHistory = getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
-		(operation) => operation.tag === 'crypto',
+	const [sortedHistory2, fetchHistoryIsLoading] = useFetchHistoryData(
+		fetchCryptoHistory,
+		sortType,
+		selectCryptoHistory,
+		selectCryptoHistoryIsLoading,
 	);
-	const sortedHistory = getsortedHistory(filteredHistory, sortType);
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 
+	if (fetchHistoryIsLoading) {
+		return (
+			<div className="flex flex-col items-center justify-center flex-6 p-4 rounded-3xl bg-sky-950/40 gap-4">
+				<Loader />
+			</div>
+		);
+	}
 	return (
 		<section
 			id="accouts__operations-history-container"
@@ -39,18 +51,18 @@ export const CryptoOpreationsHistoryContainer = ({ isUSD, rubleCourse }) => {
 				id="operationsHistoryBoxWrapper"
 				className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
-				{sortedHistory.map((operation) => {
+				{sortedHistory2.map((operation) => {
 					return (
 						<div key={operation.id}>
 							<CryptoOperationHistory
 								coin={operation.asset}
 								symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
 								icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}
-								price={operation.price}
+								price={operation.checkPrice}
 								operationAmount={operation.amount}
 								assetAmount={operation.assetAmount}
 								operationType={operation.type}
-								accountName={findAccountName(fetchedCoinsPrices, operation.check)}
+								accountName={findAccountName(fetchedCoinsPrices, operation.checkAsset)}
 								operationDate={operation.date}
 							/>
 						</div>

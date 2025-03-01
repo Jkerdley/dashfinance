@@ -3,12 +3,22 @@ const CryptoHistory = require("../models/CryptoHistory");
 const Accounts = require("../models/Acounts");
 const Categories = require("../models/Categories");
 
-async function getFinanceData() {
-    const accounts = await Accounts.find();
-    const categories = await Categories.find();
+async function getHistory() {
     const history = await History.find();
+    return history;
+}
+async function getCryptoHistory() {
     const cryptohistory = await CryptoHistory.find();
-    return { accounts, categories, history, cryptohistory };
+    return cryptohistory;
+}
+async function getAccounts() {
+    const accounts = await Accounts.find();
+
+    return accounts;
+}
+async function getCategories() {
+    const categories = await Categories.find();
+    return categories;
 }
 
 async function getHistoryItem(id) {
@@ -26,4 +36,13 @@ async function deleteAccountItem(id) {
     return console.log(`Счет номер ${id} был удален`);
 }
 
-module.exports = { getFinanceData, getHistoryItem, getCategoryItem, getAccountItem, deleteAccountItem };
+module.exports = {
+    getHistory,
+    getCryptoHistory,
+    getAccounts,
+    getCategories,
+    getHistoryItem,
+    getCategoryItem,
+    getAccountItem,
+    deleteAccountItem,
+};

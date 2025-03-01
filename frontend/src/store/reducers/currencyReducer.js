@@ -1,11 +1,11 @@
 import { ACTIONS } from '../actionTypes';
 
-const initialPostState = {
+const initialCurrencyState = {
 	isUSD: false,
 	usdCourse: 98.3,
 };
 
-export const currencyReducer = (state = initialPostState, action) => {
+export const currencyReducer = (state = initialCurrencyState, action) => {
 	switch (action.type) {
 		case ACTIONS.CYRRENCY_SWITCH:
 			return {
