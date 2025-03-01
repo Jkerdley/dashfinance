@@ -1,28 +1,25 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import EditIcon from '../../../assets/icons/edit-icon.svg';
 import { FinanceOperationHistory } from './FinanceOperationHistory.jsx';
-import { history } from '../../../db.js';
-import OutlineButton from '../../../components/buttons/OutlineButton.jsx';
-import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
 import { SortSelector } from '../../../components/sortSelector/sortSelector.jsx';
-import { getsortedHistory } from '../../../utils/getSortedHistory.js';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { FixedSizeList as List } from 'react-window';
+import { Loader } from '../../../components/Loaders/Loader.jsx';
+import { fetchHistory } from '../../../store/actions/fetshHistory.js';
+import { useFetchHistoryData } from '../../../hooks';
+import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors/select-history.js';
+import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteButton.jsx';
 
-export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
+export const OpreationsFinanceHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
+	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
+		fetchHistory,
+		sortType,
+		selectHistory,
+		selectHistoryIsLoading,
+	);
 
-	const filteredHistory = useMemo(() => {
-		return getHIstoryInCurrency(history, isUSD, rubleCourse).filter(
-			(operation) => operation.tag === 'finance',
-		);
-	}, [isUSD, rubleCourse, history]);
-
-	const sortedHistory = useMemo(() => {
-		return getsortedHistory(filteredHistory, sortType);
-	}, [filteredHistory, sortType]);
-
-	const handleSortChange = (event) => setSortType(event.target.value);
+	const handleSortChange = useCallback((event) => setSortType(event.target.value));
 
 	const Row = ({ index, style }) => {
 		const operation = sortedHistory[index];
@@ -40,6 +37,14 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 		);
 	};
 
+	if (fetchHistoryIsLoading) {
+		return (
+			<div className="flex flex-col items-center justify-center flex-5 p-4 rounded-3xl bg-sky-950/40 gap-4">
+				<Loader />
+			</div>
+		);
+	}
+
 	return (
 		<div
 			id="accouts__operations-history-container"
@@ -48,9 +53,7 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 			<div className="flex justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
-				<OutlineButton to={''} disabled={false} icon={EditIcon} alt="change history">
-					<span className="text-base">Изменить</span>
-				</OutlineButton>
+				<EditAddDeleteButton to={''} alt="change history" title={'Изменить'} icon={EditIcon} />
 			</div>
 			<div
 				id="operationsHistoryBoxWrapper"
@@ -69,3 +72,4 @@ export const OpreationsFinanceHistoryLayout = ({ isUSD, rubleCourse }) => {
 		</div>
 	);
 };
+export const OpreationsFinanceHistoryLayout = React.memo(OpreationsFinanceHistoryContainer);

@@ -116,6 +116,19 @@ input:focus {
 	animation: fadeIn 250ms ease-in-out 100ms forwards;
 }
 
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-custom {
+	animation: spin 1s linear infinite;
+}
+
 .custom-select {
 	background-color: #334864;
 	border: 2px solid #d1d5db;

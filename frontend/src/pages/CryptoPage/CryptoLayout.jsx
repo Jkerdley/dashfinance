@@ -27,7 +27,7 @@ export const CryptoLayout = () => {
 				<div id="crypto__bottom-container" className="flex flex-8 flex-col gap-4">
 					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
 						<MyCriptoPortfolioList isUSD={isUSD} rubleCourse={rubleCourse} />
-						<CryptoOpreationsHistoryContainer isUSD={isUSD} rubleCourse={rubleCourse} />
+						<CryptoOpreationsHistoryContainer />
 						<section className="flex flex-col flex-2 gap-4">
 							<TopGainerAndLooserChart title={'Топ роста'} />
 							<TopGainerAndLooserChart title={'Топ лузер'} />
