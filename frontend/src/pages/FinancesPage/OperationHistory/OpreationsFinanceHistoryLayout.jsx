@@ -57,7 +57,7 @@ export const OpreationsFinanceHistoryContainer = () => {
 			</div>
 			<div
 				id="operationsHistoryBoxWrapper"
-				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1 "
+				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1"
 			>
 				<List
 					className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"
