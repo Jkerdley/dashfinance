@@ -7,6 +7,7 @@ import { OperationsPanel } from '../../../../components/OperationsPanelButtons/O
 import { SectionContainerHeader } from '../../../../components/SectionContainerHeader/SectionContainerHeader';
 import { EditAddDeleteButton } from '../../../../components/buttons';
 import { useCurrency } from '../../../../hooks';
+import { useFetchCryptoAssetsInCurrency } from '../../../../hooks/useFetchCryptoAssetsInCurrency';
 
 export const MyCriptoPortfolioList = () => {
 	const { isUSD, rubleCourse } = useCurrency();
@@ -16,6 +17,10 @@ export const MyCriptoPortfolioList = () => {
 		coinPrice: calculateValueInCurrency(Number(coin.price), isUSD, rubleCourse),
 		profit: calculateValueInCurrency(Number(coin.price * coin.assetsAmount), isUSD, rubleCourse),
 	}));
+
+	const { cryptoAssetsInCurrency, isLoading, cryptoHistory } = useFetchCryptoAssetsInCurrency();
+	console.log('cryptoAssetsInCurrency in portfolio', cryptoAssetsInCurrency);
+	console.log('coinValuesInCurrency  in portfolio', coinValuesInCurrency);
 
 	return (
 		<section id="column__categories" className="flex flex-col flex-3 p-4 rounded-3xl bg-sky-950/40">
@@ -27,12 +32,12 @@ export const MyCriptoPortfolioList = () => {
 				id="spend-categories__container"
 				className="flex flex-4 flex-wrap gap-4 pr-2 justify-between max-h-[38vh] w-full h-full rounded-2xl overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
-				{coinValuesInCurrency.map((coin) => {
+				{cryptoAssetsInCurrency.map((coin) => {
 					return (
 						<CryptoAssets
-							key={coin.id}
-							averageBuyPrice={coin.assetsBuyPriceAVG}
-							assetsAmount={parseFloat(coin.assetsAmount)}
+							key={coin._id}
+							averageBuyPrice={coin.averagePrice}
+							assetsAmount={parseFloat(coin.assetAmount)}
 							coinPrice={coin.coinPrice}
 							profit={coin.profit}
 							growValue={parseFloat(coin.priceChange1d)}
