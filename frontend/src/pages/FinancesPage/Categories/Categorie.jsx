@@ -8,7 +8,7 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 	const isOverBalance = () => {
 		if (!budget) {
 			return 'text-main-green';
-		} else if (Number(balance) > Number(budget)) {
+		} else if (Number(balance.slice(1).trim()) > Number(budget.slice(1).trim())) {
 			return 'text-main-red';
 		} else {
 			return 'text-main-green';
@@ -32,7 +32,9 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 					<p className="text-base truncate">{categorie}</p>
 					<div id="categorie-budjet-container" className="flex gap-2">
 						<p className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</p>
-						<p className="text-sm truncate">{budget ? `Бюджет: ${budget}` : ''}</p>
+						<p className="text-sm truncate text-gray-300">
+							{Number(budget.slice(1).trim()) > 0 ? `Бюджет: ${budget}` : ''}
+						</p>
 					</div>
 				</div>
 			</div>

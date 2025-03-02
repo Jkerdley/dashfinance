@@ -37,14 +37,6 @@ export const OpreationsFinanceHistoryContainer = () => {
 		);
 	};
 
-	if (fetchHistoryIsLoading) {
-		return (
-			<div className="flex flex-col items-center justify-center flex-5 p-4 rounded-3xl bg-sky-950/40 gap-4">
-				<Loader />
-			</div>
-		);
-	}
-
 	return (
 		<div
 			id="accouts__operations-history-container"
@@ -55,20 +47,24 @@ export const OpreationsFinanceHistoryContainer = () => {
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
 				<EditAddDeleteButton to={''} alt="change history" title={'Изменить'} icon={EditIcon} />
 			</div>
-			<div
-				id="operationsHistoryBoxWrapper"
-				className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1"
-			>
-				<List
-					className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"
-					height={700}
-					itemCount={sortedHistory.length}
-					itemSize={64}
-					width="100%"
+			{fetchHistoryIsLoading ? (
+				<Loader />
+			) : (
+				<div
+					id="operationsHistoryBoxWrapper"
+					className="flex flex-col max-h-[56vh] gap-3 rounded-2xl pr-1 pt-1"
 				>
-					{Row}
-				</List>
-			</div>
+					<List
+						className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+						height={700}
+						itemCount={sortedHistory.length}
+						itemSize={64}
+						width="100%"
+					>
+						{Row}
+					</List>
+				</div>
+			)}
 		</div>
 	);
 };

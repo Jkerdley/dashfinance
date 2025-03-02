@@ -12,8 +12,10 @@ import { FinanceAccount } from '../../pages/FinancesPage/FinanceAccount/FinanceA
 
 import { useEffect } from 'react';
 import { usePressKey } from '../../hooks/usePressKey';
+import { useCurrency } from '../../hooks';
 
-export const ModalWindowLayout = ({ isUSD, rubleCourse }) => {
+export const ModalWindowLayout = () => {
+	const { isUSD, rubleCourse } = useCurrency();
 	const modalRef = useRef(null);
 	const [operationDate, setOperationDate] = useState('');
 	const [operationSumm, setOperationSumm] = useState('');

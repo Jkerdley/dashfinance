@@ -25,7 +25,7 @@ export const cryptoHistoryReducer = (state = initialCryptoHistoryDataState, acti
 			return {
 				...state,
 				isLoading: false,
-				error: action.payload,
+				error: action.payload.error,
 			};
 
 		default:
