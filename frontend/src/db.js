@@ -1228,6 +1228,50 @@ export const accounts = [
 	{ id: '0009', name: 'SBER Bank MIR', balance: 3214000, icon: 'debit', type: 'debit' },
 	{ id: '0010', name: 'Gift Card', balance: 50000, icon: 'gift', type: 'debit' },
 ];
+export const cryptoAssets = [
+	{
+		id: '0001',
+		name: 'XRP',
+		coinId: 'ripple',
+		symbol: 'XRP',
+		averagePrice: 14132,
+		assetAmount: 950.3864,
+		history: [
+			{
+				date: '2025-02-09',
+				type: 'buy',
+				exchangedAsset: 'tether',
+				assetAmount: 199.98,
+				checkSumm: 2000,
+				checkPrice: 10.0001,
+			},
+			{
+				date: '2025-02-03',
+				type: 'buy',
+				exchangedAsset: 'tether',
+				assetAmount: 450.4464,
+				checkSumm: 5000,
+				checkPrice: 11.0001,
+			},
+			{
+				date: '2025-01-24',
+				type: 'buy',
+				exchangedAsset: 'tether',
+				assetAmount: 199.98,
+				checkSumm: 4000,
+				checkPrice: 20.0001,
+			},
+			{
+				date: '2025-01-14',
+				type: 'buy',
+				exchangedAsset: 'tether',
+				assetAmount: 99.98,
+				checkSumm: 3000,
+				checkPrice: 30.0001,
+			},
+		],
+	},
+];
 export const fetchedCoinsPrices = {
 	result: [
 		{

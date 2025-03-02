@@ -34,8 +34,10 @@ export const CryptoAssets = ({
 		}
 	};
 
-	const calculatePercentage = (newBuyPrice, oldBuyPrice) => {
-		return +(parseFloat((newBuyPrice - oldBuyPrice) / oldBuyPrice) * 100).toFixed(2);
+	const calculatedProfitPercentage = () => {
+		return Number(
+			parseFloat((trimmedCoinPrice - trimmedAverageBuyPrice) / trimmedAverageBuyPrice) * 100,
+		).toFixed(2);
 	};
 
 	return (
@@ -54,11 +56,9 @@ export const CryptoAssets = ({
 							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
-								className={`flex h-2 w-2 truncate ${+calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`flex h-2 w-2 truncate ${calculatedProfitPercentage() < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
-							<span className="text-sm truncate">
-								Profit {calculatePercentage(trimmedCoinPrice, trimmedAverageBuyPrice)} %
-							</span>
+							<span className="text-sm truncate">Profit {calculatedProfitPercentage()} %</span>
 						</div>
 						<div className="flex gap-2 truncate">{profit}</div>
 					</div>

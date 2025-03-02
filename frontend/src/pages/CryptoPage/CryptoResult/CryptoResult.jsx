@@ -1,8 +1,10 @@
 import React from 'react';
 import { accounts, categories, history } from '../../../db';
 import { calculateValueInCurrency, cleanValue } from '../../../utils';
+import { useCurrency } from '../../../hooks';
 
-export const CryptoResult = ({ isUSD, rubleCourse }) => {
+export const CryptoResult = () => {
+	const { isUSD, rubleCourse } = useCurrency();
 	const accountsDB = accounts.reduce((acc, account) => acc + account.balance, 0);
 
 	const historyDB = history

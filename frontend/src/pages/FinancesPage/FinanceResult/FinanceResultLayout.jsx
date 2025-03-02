@@ -7,8 +7,8 @@ import { SectionContainerHeader } from '../../../components/SectionContainerHead
 import { useCurrency } from '../../../hooks';
 
 export const FinanceResultLayout = () => {
-	const [selectedRadialSortType, setSelectedRadialSortType] = useState('month');
 	const { isUSD, rubleCourse } = useCurrency();
+	const [selectedRadialSortType, setSelectedRadialSortType] = useState('month');
 
 	const handleRadialSortChange = () => {
 		setSelectedRadialSortType(selectedRadialSortType === 'month' ? 'thisYear' : 'month');

@@ -15,7 +15,7 @@ import { Loader } from '../../../components/Loaders/Loader.jsx';
 export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
 
-	const [sortedHistory2, fetchHistoryIsLoading] = useFetchHistoryData(
+	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
 		fetchCryptoHistory,
 		sortType,
 		selectCryptoHistory,
@@ -24,13 +24,6 @@ export const CryptoOpreationsHistoryContainer = () => {
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 
-	if (fetchHistoryIsLoading) {
-		return (
-			<div className="flex flex-col items-center justify-center flex-6 p-4 rounded-3xl bg-sky-950/40 gap-4">
-				<Loader />
-			</div>
-		);
-	}
 	return (
 		<section
 			id="accouts__operations-history-container"
@@ -51,23 +44,30 @@ export const CryptoOpreationsHistoryContainer = () => {
 				id="operationsHistoryBoxWrapper"
 				className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
-				{sortedHistory2.map((operation) => {
-					return (
-						<div key={operation.id}>
-							<CryptoOperationHistory
-								coin={operation.asset}
-								symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
-								icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}
-								price={operation.checkPrice}
-								operationAmount={operation.amount}
-								assetAmount={operation.assetAmount}
-								operationType={operation.type}
-								accountName={findAccountName(fetchedCoinsPrices, operation.checkAsset)}
-								operationDate={operation.date}
-							/>
-						</div>
-					);
-				})}
+				{fetchHistoryIsLoading ? (
+					<Loader />
+				) : (
+					sortedHistory.map((operation) => {
+						return (
+							<div key={operation.id}>
+								<CryptoOperationHistory
+									coin={operation.asset}
+									symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
+									icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}
+									price={operation.checkPrice}
+									operationAmount={operation.amount}
+									assetAmount={operation.assetAmount}
+									operationType={operation.type}
+									exchangedAsset={findAccountName(
+										fetchedCoinsPrices,
+										operation.exchangedAsset,
+									)}
+									operationDate={operation.date}
+								/>
+							</div>
+						);
+					})
+				)}
 			</div>
 		</section>
 	);
