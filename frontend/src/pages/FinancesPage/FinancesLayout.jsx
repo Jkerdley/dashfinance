@@ -33,7 +33,7 @@ export const FinancesLayout = () => {
 				<div id="row__accounts-and-history" className="flex flex-10 gap-4">
 					<div
 						id="operations__and__accounts-container"
-						className="flex flex-col flex-3 min-w-[42%] gap-4"
+						className="flex flex-col flex-3 min-w-42% gap-4"
 					>
 						<OperationsPanel onClick={handleOperationsClick} />
 						<AccountsLayout />
