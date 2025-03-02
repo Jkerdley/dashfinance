@@ -1,30 +1,14 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
-import { useDispatch } from 'react-redux';
+
 import { OperationsPanel } from '../../components/OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
 import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
-import { closeModal, openModal } from '../../store/actions';
 import { ModalWindowLayout } from '../../components/modalWindow/ModalWindowLayout';
 
 export const FinancesLayout = () => {
-	const dispatch = useDispatch();
-
-	const handleOperationsClick = useCallback(() => {
-		dispatch(
-			openModal({
-				question: 'Добавить операцию?',
-				onConfirm: () => {
-					dispatch(closeModal());
-					// Здесь добавить логику для сохранения операции
-				},
-				onCancel: () => dispatch(closeModal()),
-			}),
-		);
-	});
-
 	return (
 		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
 			<ModalWindowLayout />
@@ -35,7 +19,7 @@ export const FinancesLayout = () => {
 						id="operations__and__accounts-container"
 						className="flex flex-col flex-3 min-w-42% gap-4"
 					>
-						<OperationsPanel onClick={handleOperationsClick} />
+						<OperationsPanel />
 						<AccountsLayout />
 					</div>
 					<OpreationsFinanceHistoryLayout />
