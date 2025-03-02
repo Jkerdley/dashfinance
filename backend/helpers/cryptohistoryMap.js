@@ -6,8 +6,8 @@ module.exports = function (cryptoHistory) {
         assetId: cryptoHistory.assetId,
         assetAmount: cryptoHistory.assetAmount,
         type: cryptoHistory.type,
-        checkAsset: cryptoHistory.check,
-        checkAmount: cryptoHistory.amount,
+        exchangedAsset: cryptoHistory.check,
+        checkSumm: cryptoHistory.amount,
         checkPrice: cryptoHistory.price,
         date: cryptoHistory.date,
     };

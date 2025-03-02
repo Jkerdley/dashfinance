@@ -4,10 +4,12 @@ import { Route, Routes } from 'react-router-dom';
 import { TopMenuRow } from './components/TopMenu';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage';
+import { ModalWindowLayout } from './components/modalWindow/ModalWindowLayout';
 
 function App() {
 	return (
 		<div id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
+			<ModalWindowLayout />
 			<SidebarMenu />
 			<div
 				id="mainLayout"

@@ -22,5 +22,6 @@ export const useFetchHistoryData = (asyncAction, sortType, dataSelector, isLoadi
 	const sortedHistory = useMemo(() => {
 		return getsortedHistory(filteredHistory, sortType);
 	}, [filteredHistory, sortType]);
+	console.log('sortedHistory', sortedHistory);
 	return [sortedHistory, fetchHistoryIsLoading];
 };

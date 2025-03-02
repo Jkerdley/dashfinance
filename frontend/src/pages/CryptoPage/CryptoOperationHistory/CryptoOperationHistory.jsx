@@ -1,9 +1,8 @@
 import React from 'react';
 import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
-import { useSelector } from 'react-redux';
-import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
 import { calculateValueInCurrency } from '../../../utils';
+import { useCurrency } from '../../../hooks';
 
 export const CryptoOperationHistory = ({
 	coin,
@@ -13,11 +12,10 @@ export const CryptoOperationHistory = ({
 	operationType,
 	operationAmount,
 	assetAmount,
-	accountName,
+	exchangedAsset,
 	operationDate,
 }) => {
-	const isUSD = useSelector(currencySelector);
-	const rubleCourse = useSelector(rubleCourseSelector);
+	const { isUSD, rubleCourse } = useCurrency();
 
 	const coinInCurrency = calculateValueInCurrency(Number(price), isUSD, rubleCourse);
 
@@ -48,7 +46,7 @@ export const CryptoOperationHistory = ({
 							className={`flex text-sm w-full truncate ${operationType === 'buy' ? 'text-main-red' : 'text-main-green'} gap-2`}
 						>
 							{isMinus}
-							{operationAmount} {isUSD ? <span>{` ${accountName}`}</span> : ''}
+							{operationAmount} {isUSD ? <span>{` ${exchangedAsset}`}</span> : ''}
 						</span>
 					</div>
 

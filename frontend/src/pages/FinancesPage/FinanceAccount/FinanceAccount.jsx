@@ -28,7 +28,14 @@ export const FinanceAccount = ({ accountName, accountBalance, icon, noButton }) 
 				<CardIcon padding={'p-2'} buttonSize={10} icon={iconOfAccount()}></CardIcon>
 				<div className="flex flex-col w-[100%] truncate px-2">
 					<p className="text-base truncate">{accountName}</p>
-					<p className="text-sm">Баланс: {accountBalance}</p>
+					<p className="text-sm text-slate-300">
+						Баланс:{' '}
+						<span
+							className={`${accountBalance.slice(1).trim() > 0 ? 'text-main-green' : 'text-main-red'}`}
+						>
+							{accountBalance}
+						</span>
+					</p>
 				</div>
 			</div>
 			{noButton ? '' : <OptionsButton to={''} flex={'flex-[1]'} />}

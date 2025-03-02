@@ -6,8 +6,10 @@ import { calculateValueInCurrency } from '../../../../utils';
 import { OperationsPanel } from '../../../../components/OperationsPanelButtons/OperationsPanel';
 import { SectionContainerHeader } from '../../../../components/SectionContainerHeader/SectionContainerHeader';
 import { EditAddDeleteButton } from '../../../../components/buttons';
+import { useCurrency } from '../../../../hooks';
 
-export const MyCriptoPortfolioList = ({ isUSD, rubleCourse }) => {
+export const MyCriptoPortfolioList = () => {
+	const { isUSD, rubleCourse } = useCurrency();
 	const coinValuesInCurrency = fetchedCoinsPrices.result.map((coin) => ({
 		...coin,
 		assetsBuyPriceAVG: calculateValueInCurrency(Number(coin.assetsBuyPriceAVG), isUSD, rubleCourse),

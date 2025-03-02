@@ -2,7 +2,7 @@ import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { CustomTooltip } from '../../../components/CustomTooltip/CustomTooltip';
 
-export const FinanceChart = ({ mappedData }) => {
+export const FinanceChart = ({ mappedData, isCrypto }) => {
 	return (
 		<div className="flex pt-2 h-full">
 			<ResponsiveContainer>
@@ -40,30 +40,35 @@ export const FinanceChart = ({ mappedData }) => {
 					{/* <YAxis /> */}
 					<Tooltip content={<CustomTooltip />} />
 					{/* <Legend verticalAlign="top" align="center" /> */}
-					{/* <Area
-                type="monotone"
-                dataKey="Баланс"
-                stackId="3"
-                strokeWidth={2}
-                stroke="rgba(15, 109, 163, 0.9)"
-                fill="rgba(9, 62, 112, 0.9)"
-            /> */}
-					<Area
-						type="monotone"
-						dataKey="Доходы"
-						stackId="1"
-						stroke="url(#colorStrokeAdditions)"
-						strokeWidth={2}
-						fill="url(#colorAdditions)"
-					/>
-					<Area
-						type="monotone"
-						dataKey="Расходы"
-						stackId="2"
-						stroke="url(#colorStrokeExpenses)"
-						strokeWidth={2}
-						fill="url(#colorExpenses)"
-					/>
+					{isCrypto ? (
+						<Area
+							type="monotone"
+							dataKey="Баланс"
+							stackId="3"
+							strokeWidth={2}
+							stroke="rgba(15, 109, 163, 0.9)"
+							fill="rgba(9, 62, 112, 0.9)"
+						/>
+					) : (
+						<>
+							<Area
+								type="monotone"
+								dataKey="Доходы"
+								stackId="1"
+								stroke="url(#colorStrokeAdditions)"
+								strokeWidth={2}
+								fill="url(#colorAdditions)"
+							/>
+							<Area
+								type="monotone"
+								dataKey="Расходы"
+								stackId="2"
+								stroke="url(#colorStrokeExpenses)"
+								strokeWidth={2}
+								fill="url(#colorExpenses)"
+							/>
+						</>
+					)}
 				</AreaChart>
 			</ResponsiveContainer>
 		</div>
