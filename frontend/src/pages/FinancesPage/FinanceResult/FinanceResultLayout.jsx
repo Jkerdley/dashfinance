@@ -4,9 +4,11 @@ import { FinanceResult } from './FinanceResult';
 
 import { RadialChartSelector } from '../../../components/sortSelector/RadialChartSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
+import { useCurrency } from '../../../hooks';
 
-export const FinanceResultLayout = ({ isUSD, rubleCourse }) => {
+export const FinanceResultLayout = () => {
 	const [selectedRadialSortType, setSelectedRadialSortType] = useState('month');
+	const { isUSD, rubleCourse } = useCurrency();
 
 	const handleRadialSortChange = () => {
 		setSelectedRadialSortType(selectedRadialSortType === 'month' ? 'thisYear' : 'month');

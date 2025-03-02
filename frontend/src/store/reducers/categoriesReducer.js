@@ -1,27 +1,27 @@
 import { ACTIONS } from '../actionTypes';
 
-const initialHistoryDataState = {
+const initialCategoriesState = {
 	isLoading: false,
 	data: [],
 	error: null,
 };
 
-export const historyReducer = (state = initialHistoryDataState, action) => {
+export const categoriesReducer = (state = initialCategoriesState, action) => {
 	switch (action.type) {
-		case ACTIONS.FETCH_HISTORY_REQUEST:
+		case ACTIONS.FETCH_CATEGORIES_REQUEST:
 			return {
 				...state,
 				isLoading: true,
 				error: null,
 			};
-		case ACTIONS.FETCH_HISTORY_SUCCESS:
+		case ACTIONS.FETCH_CATEGORIES_SUCCESS:
 			return {
 				...state,
 				isLoading: false,
-				data: action.payload.history,
+				data: action.payload.categories,
 				error: null,
 			};
-		case ACTIONS.FETCH_HISTORY_ERROR:
+		case ACTIONS.FETCH_CATEGORIES_ERROR:
 			return {
 				...state,
 				isLoading: false,

@@ -1,16 +1,13 @@
 import React from 'react';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { FinanceAccount } from './FinanceAccount.jsx';
-import { accounts } from '../../../db.js';
-import { calculateValueInCurrency } from '../../../utils/calculateValueInCurrency.js';
 import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteButton.jsx';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
+import { useFetchAccountsInCurrency } from '../../../hooks/useFetchAccountsInCurrency.js';
+import { Loader } from '../../../components/Loaders/Loader.jsx';
 
-export const AccountsContainer = ({ isUSD, rubleCourse }) => {
-	const accountsInCurrency = accounts.map((account) => ({
-		...account,
-		balance: calculateValueInCurrency(account.balance, isUSD, rubleCourse),
-	}));
+export const AccountsContainer = () => {
+	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
 
 	return (
 		<section
@@ -26,22 +23,26 @@ export const AccountsContainer = ({ isUSD, rubleCourse }) => {
 					alt={'Финансовые счета'}
 				/>
 			</div>
-			<div
-				id="accouts__wrapper"
-				className="flex flex-col pr-1 mt-1 max-h-[45vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
-			>
-				{accountsInCurrency.map((account) => {
-					return (
-						<div key={account.id} className="mt-4">
-							<FinanceAccount
-								accountName={account.name}
-								accountBalance={account.balance}
-								icon={account.icon}
-							/>
-						</div>
-					);
-				})}
-			</div>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<div
+					id="accouts__wrapper"
+					className="flex flex-col pr-1 mt-1 max-h-[45vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
+				>
+					{accountsInCurrency.map((account) => {
+						return (
+							<div key={account.id} className="mt-4">
+								<FinanceAccount
+									accountName={account.name}
+									accountBalance={account.balance}
+									icon={account.icon}
+								/>
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</section>
 	);
 };
