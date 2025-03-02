@@ -2,6 +2,7 @@ const History = require("../models/History");
 const CryptoHistory = require("../models/CryptoHistory");
 const Accounts = require("../models/Acounts");
 const Categories = require("../models/Categories");
+const CryptoAssets = require("../models/CryptoAssets");
 
 async function getHistory() {
     const history = await History.find();
@@ -13,8 +14,11 @@ async function getCryptoHistory() {
 }
 async function getAccounts() {
     const accounts = await Accounts.find();
-
     return accounts;
+}
+async function getCryptoAssets() {
+    const cryptoAssets = await CryptoAssets.find();
+    return cryptoAssets;
 }
 async function getCategories() {
     const categories = await Categories.find();
@@ -45,4 +49,5 @@ module.exports = {
     getCategoryItem,
     getAccountItem,
     deleteAccountItem,
+    getCryptoAssets,
 };

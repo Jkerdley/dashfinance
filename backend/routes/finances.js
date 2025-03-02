@@ -1,11 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const { getHistory, getCryptoHistory, getAccounts, getCategories } = require("../controllers/finances");
+const {
+    getHistory,
+    getCryptoHistory,
+    getAccounts,
+    getCategories,
+    getCryptoAssets,
+} = require("../controllers/finances");
 const historyMap = require("../helpers/historyMap");
 const cryptohistoryMap = require("../helpers/cryptohistoryMap");
 const categoriesMap = require("../helpers/categoriesMap");
 const accountsMap = require("../helpers/accountsMap");
+const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");
 
 const router = express.Router({ mergeParams: true });
 
@@ -21,6 +28,13 @@ router.get("/cryptohistory", async (req, res) => {
         cryptohistory: cryptohistory.map(cryptohistoryMap),
     });
 });
+router.get("/cryptoassets", async (req, res) => {
+    const cryptoAssets = await getCryptoAssets();
+    res.send({
+        cryptoAssets: cryptoAssets.map(cryptoAssetsMap),
+    });
+});
+
 router.get("/accounts", async (req, res) => {
     const accounts = await getAccounts();
     res.send({
