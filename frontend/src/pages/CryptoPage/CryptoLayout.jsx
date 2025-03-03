@@ -13,19 +13,19 @@ export const CryptoLayout = () => {
 				id="layout__crypto"
 				className="flex flex-col flex-5 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
 			>
-				<div id="crypto__top-container" className="flex flex-6 flex-row gap-4">
-					<div className="flex flex-8 w-full">
+				<div id="crypto__top-container" className="flex flex-5/12 flex-row gap-4">
+					<div className="flex flex-8/12 w-full bg-amber-500">
 						<CryptoResultLayout />
 					</div>
 					<CryptoBalanceChart />
 				</div>
-				<div id="crypto__bottom-container" className="flex flex-8 flex-col gap-4">
-					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
+				<div id="crypto__bottom-container" className="flex flex-7/12 flex-col gap-4">
+					<div id="row__accounts-and-history" className="flex flex-10/12 gap-4">
 						<MyCriptoPortfolioList />
 						<CryptoOpreationsHistoryContainer />
-						<section className="flex flex-col flex-2 gap-4">
-							<TopGainerAndLooserChart title={'Топ роста'} />
-							<TopGainerAndLooserChart title={'Топ лузер'} />
+						<section className="flex flex-col flex-2/12 gap-4">
+							<TopGainerAndLooserChart title={'Топ роста (за день)'} />
+							<TopGainerAndLooserChart title={'Топ лузер (за день)'} />
 						</section>
 					</div>
 				</div>
