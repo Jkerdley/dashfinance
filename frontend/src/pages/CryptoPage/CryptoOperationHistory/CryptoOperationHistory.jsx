@@ -31,17 +31,17 @@ export const CryptoOperationHistory = ({
 				<CardIcon buttonSize={9} padding={'p-1'} size={5} icon={icon}></CardIcon>
 
 				<div className="flex items-center justify-center w-full gap-1">
-					<div className="flex flex-5 truncate">
-						<p className={`text-sm w-full text-white truncate`}>
+					<div className="flex flex-2/10 truncate flex-shrink-0 flex-grow">
+						<span className={`text-sm w-full text-white truncate`}>
 							{operationType === 'buy' ? 'BUY ' : 'SELL '}
 							{coin}
-						</p>
+						</span>
 					</div>
 
-					<div className="flex flex-3 truncate">
-						<p className={`text-sm w-full truncate`}>{coinInCurrency}</p>
+					<div className="flex flex-2/10 truncate">
+						<span className={`text-sm w-full truncate`}>{coinInCurrency}</span>
 					</div>
-					<div className="flex-4 truncate hidden lg:flex">
+					<div className="flex-2/10 truncate hidden lg:flex flex-shrink-0 flex-grow">
 						<span
 							className={`flex text-sm w-full truncate ${operationType === 'buy' ? 'text-main-red' : 'text-main-green'} gap-2`}
 						>
@@ -50,20 +50,22 @@ export const CryptoOperationHistory = ({
 						</span>
 					</div>
 
-					<div className="flex flex-4 truncate">
-						<p
+					<div className="flex flex-2/10 truncate flex-shrink-0 flex-grow">
+						<span
 							className={`text-sm w-full ${operationType === 'buy' ? 'text-main-green' : 'text-main-red'} gap-2 truncate`}
 						>
 							{isPlus}
 							{assetAmount} <span>{` ${symbol}`}</span>
-						</p>
+						</span>
 					</div>
-					<div className="flex flex-3 text-center">
-						<span className="text-sm w-full text-slate-400">{operationDate}</span>
+					<div className="flex flex-shrink-0 flex-grow flex-1/10 text-start overflow-hidden">
+						<span className="text-sm text-slate-400 truncate">
+							{operationDate.split('-').reverse().join('.')}
+						</span>
 					</div>
 				</div>
 			</div>
-			<OptionsButton to={''} flex={'flex-[0.5]'} />
+			<OptionsButton to={''} flex={'flex-flex-1/10'} />
 		</section>
 	);
 };

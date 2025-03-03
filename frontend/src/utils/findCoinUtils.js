@@ -1,6 +1,6 @@
 export const findAccountName = (fetchedCoinsPrices, assetId) => {
 	const account = fetchedCoinsPrices.result.find((accountItem) => assetId === accountItem.id);
-	return account ? account.symbol : null;
+	return account ? account.symbol : 'Наличные';
 };
 
 export const findCoinIcon = (fetchedCoinsPrices, coinId) => {
