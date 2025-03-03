@@ -10,7 +10,7 @@ export const SortSelector = ({ handleSortChange, sortType }) => {
 			onChange={handleSortChange}
 		>
 			<option className="bg-sky-950/40" value="newest">
-				По дате
+				Сначала новые
 			</option>
 			<option className="bg-sky-950/40" value="oldest">
 				Сначала старые
