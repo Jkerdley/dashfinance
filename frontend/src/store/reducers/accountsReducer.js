@@ -15,8 +15,6 @@ export const accountsReducer = (state = initialAccountsState, action) => {
 				error: null,
 			};
 		case ACTIONS.FETCH_ACCOUNTS_SUCCESS:
-			console.log('action.payload.accounts', action.payload.accounts);
-
 			return {
 				...state,
 				isLoading: false,

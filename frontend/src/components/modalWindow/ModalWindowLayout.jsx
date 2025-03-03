@@ -110,6 +110,14 @@ export const ModalWindowLayout = () => {
 		}
 	}, [escButtonPressed, isOpen, onCancel]);
 
+	const handleAccountChange = (e) => {
+		setSelectedAccountValue(e.target.value);
+	};
+
+	const handleCategoryChange = (e) => {
+		setSelectedCategoryValue(e.target.value);
+	};
+
 	if (!isOpen || isLoading || categoriesIsLoading) {
 		return null;
 	}
@@ -119,6 +127,7 @@ export const ModalWindowLayout = () => {
 		alert('Сначала необходимо добавить счета и категории расходов');
 		return null;
 	}
+
 	const operationAccount = accountsInCurrency.filter((item) => item.name === selectedAccountValue);
 	const operationCategorie = categoriesInCurrency.filter((item) => item.name === selectedCategoryValue);
 
@@ -139,44 +148,36 @@ export const ModalWindowLayout = () => {
 						<CurrencyToggle />
 					</div>
 					<div className="flex gap-6 justify-around items-center">
-						{selectedAccountValue && (
-							<select
-								className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
-								value={selectedAccountValue}
-								onChange={(e) => setSelectedAccountValue(e.target.value)}
-							>
-								{accountsInCurrency.map((account) => {
-									return (
-										<option
-											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
-											key={account.id}
-											value={account.name}
-										>
-											{account.name}
-										</option>
-									);
-								})}
-							</select>
-						)}
-						{selectedCategoryValue && (
-							<select
-								className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
-								value={selectedCategoryValue}
-								onChange={(e) => setSelectedCategoryValue(e.target.value)}
-							>
-								{categoriesInCurrency.map((categorie) => {
-									return (
-										<option
-											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
-											key={categorie.id}
-											value={categorie.name}
-										>
-											{categorie.name}
-										</option>
-									);
-								})}
-							</select>
-						)}
+						<select
+							className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
+							value={selectedAccountValue}
+							onChange={handleAccountChange}
+						>
+							{accountsInCurrency.map((account) => (
+								<option
+									className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
+									key={account.id}
+									value={account.name}
+								>
+									{account.name}
+								</option>
+							))}
+						</select>
+						<select
+							className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
+							value={selectedCategoryValue}
+							onChange={handleCategoryChange}
+						>
+							{categoriesInCurrency.map((categorie) => (
+								<option
+									className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
+									key={categorie.id}
+									value={categorie.name}
+								>
+									{categorie.name}
+								</option>
+							))}
+						</select>
 					</div>
 					<section className="flex flex-wrap 2xl:flex-nowrap gap-4 items-center justify-between text-start">
 						<FinanceAccount
