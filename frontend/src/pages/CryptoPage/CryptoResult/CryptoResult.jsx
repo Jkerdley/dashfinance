@@ -1,26 +1,19 @@
 import React from 'react';
-import { calculateValueInCurrency, cleanValue } from '../../../utils';
-import { useCurrency } from '../../../hooks';
-import { useSelector } from 'react-redux';
-import { selectCryptoAssets } from '../../../store/selectors';
+import { cleanValue } from '../../../utils';
+import { useCurrency, useFetchCryptoAssetsInCurrency } from '../../../hooks';
+import { Loader } from '../../../components/Loaders/Loader';
 
 export const CryptoResult = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const cryptoAssets = useSelector(selectCryptoAssets);
-	const cryptoAssetsSumm = cryptoAssets.reduce((acc, account) => acc + account.balance, 0);
+	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
+	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
 
-	// const historyDB = history
-	// 	.filter((item) => {
-	// 		return item.type === 'add';
-	// 	})
-	// 	.reduce((acc, item) => acc + Number(item.amount), 0);
+	const cryptoAssetsSumm2 = cryptoAssetsInCurrency.reduce(
+		(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
+		0,
+	);
 
-	// const categoriesDB = categories.reduce((acc, item) => acc + item.balance, 0);
-
-	// const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
-	// const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
-	const totalBalanceForDate = calculateValueInCurrency(cryptoAssetsSumm, isUSD, rubleCourse);
-
+	const totalBalanceForDate = isUSD ? '$ ' + cryptoAssetsSumm2 : '\u20bd ' + cryptoAssetsSumm2;
 	return (
 		<section id="finance-result__main-container" className="flex justify-center w-full h-full">
 			<div className="flex flex-col flex-3 2xl:flex-4">
@@ -29,26 +22,30 @@ export const CryptoResult = () => {
 						<span className="xl:text-3xl sm:text-xl text-xl font-medium transition-all">
 							Баланс:
 						</span>
-						<div className="flex items-center gap-2">
-							<span
-								className={`text-xl sm:text-xl md:text-3xl 2xl:text-5xl mt-1 font-medium transition-all duration-150 ease-in-out ${
-									parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
-										? 'text-main-green'
-										: 'text-main-red'
-								}`}
-							>
-								{isUSD ? '$ ' : '\u20bd'}
-							</span>
-							<span
-								className={`text-4xl md:text-4xl xl:text-7xl 2xl:text-8xl font-bold  transition-all duration-150 ease-in-out ${
-									parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
-										? 'text-main-green'
-										: 'text-main-red'
-								}`}
-							>
-								{cleanValue(totalBalanceForDate)}
-							</span>
-						</div>
+						{isLoading ? (
+							<Loader />
+						) : (
+							<div className="flex items-center gap-2">
+								<span
+									className={`text-xl sm:text-xl md:text-3xl 2xl:text-5xl mt-1 font-medium transition-all duration-150 ease-in-out ${
+										parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
+											? 'text-main-green'
+											: 'text-main-red'
+									}`}
+								>
+									{isUSD ? '$ ' : '\u20bd'}
+								</span>
+								<span
+									className={`text-4xl md:text-4xl xl:text-7xl 2xl:text-8xl font-bold  transition-all duration-150 ease-in-out ${
+										parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
+											? 'text-main-green'
+											: 'text-main-red'
+									}`}
+								>
+									{cleanValue(totalBalanceForDate)}
+								</span>
+							</div>
+						)}
 					</div>
 				</div>
 				{'//TODO SPEND AND ADD'}

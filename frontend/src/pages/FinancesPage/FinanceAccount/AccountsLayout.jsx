@@ -25,6 +25,8 @@ export const AccountsContainer = () => {
 			</div>
 			{isLoading ? (
 				<Loader />
+			) : accountsInCurrency.length === 0 ? (
+				<span className="flex items-center justify-center mt-20 ">Добавьте счета</span>
 			) : (
 				<div
 					id="accouts__wrapper"

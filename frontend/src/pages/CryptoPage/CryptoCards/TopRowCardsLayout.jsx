@@ -6,7 +6,6 @@ import { useFetchCryptoAssetsInCurrency } from '../../../hooks/useFetchCryptoAss
 export const TopRowCardsLayout = () => {
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
 	const coinDataInCards = fetchedCoinsPrices;
-	console.log('fetchedCoinData', fetchedCoinsPrices.result);
 
 	return (
 		<section id="layout__crypto-top__line" className="flex flex-1/12 2xl:flex-nowrap flex-wrap gap-4">

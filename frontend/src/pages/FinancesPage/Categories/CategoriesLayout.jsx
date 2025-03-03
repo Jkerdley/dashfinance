@@ -14,26 +14,30 @@ export const CategoriesContainer = () => {
 				<SectionContainerHeader title={'Категории'} />
 				<EditAddDeleteButton icon={AddIcon} title={'Изменить'} to={''} alt={'Категории расходов'} />
 			</div>
-			<div
-				id="spend-categories__container"
-				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[54vh] 2xl:max-h-[29vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
-			>
-				{categoriesIsLoading ? (
-					<Loader />
-				) : (
-					categoriesInCurrency.map((categorie) => {
-						return (
-							<Categorie
-								key={categorie.id}
-								budget={categorie.budget}
-								balance={categorie.balance}
-								categorie={categorie.name}
-								icon={categorie.icon}
-							/>
-						);
-					})
-				)}
-			</div>
+			{categoriesInCurrency.length === 0 ? (
+				<span className="flex items-center justify-center mt-20 ">Добавьте категории расходов</span>
+			) : (
+				<div
+					id="spend-categories__container"
+					className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[54vh] 2xl:max-h-[29vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
+				>
+					{categoriesIsLoading ? (
+						<Loader />
+					) : (
+						categoriesInCurrency.map((categorie) => {
+							return (
+								<Categorie
+									key={categorie.id}
+									budget={categorie.budget}
+									balance={categorie.balance}
+									categorie={categorie.name}
+									icon={categorie.icon}
+								/>
+							);
+						})
+					)}
+				</div>
+			)}
 		</section>
 	);
 };

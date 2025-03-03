@@ -49,6 +49,8 @@ export const OpreationsFinanceHistoryContainer = () => {
 			</div>
 			{fetchHistoryIsLoading ? (
 				<Loader />
+			) : sortedHistory.length === 0 ? (
+				<span className="flex items-center justify-center mt-20 ">Операции отсутствуют</span>
 			) : (
 				<div
 					id="operationsHistoryBoxWrapper"
