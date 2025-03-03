@@ -14,7 +14,7 @@ import { useCurrency, useFetchAccountsInCurrency, useFetchCategoriesInCurrency }
 
 export const ModalWindowLayout = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
+	const { accountsInCurrency, AccountsIsLoading } = useFetchAccountsInCurrency();
 	const { categoriesInCurrency, categoriesIsLoading } = useFetchCategoriesInCurrency();
 	const [operationDate, setOperationDate] = useState('');
 	const [operationSumm, setOperationSumm] = useState('');
@@ -83,16 +83,16 @@ export const ModalWindowLayout = () => {
 	}, [accountsInCurrency, categoriesInCurrency]);
 
 	useEffect(() => {
-		if (accountsInCurrency.length > 0 && !isLoading) {
+		if (accountsInCurrency.length > 0 && !AccountsIsLoading) {
 			setSelectedAccountValue(accountsInCurrency[0].name);
 		}
-	}, [accountsInCurrency, isLoading]);
+	}, [AccountsIsLoading]);
 
 	useEffect(() => {
 		if (categoriesInCurrency.length > 0 && !categoriesIsLoading) {
 			setSelectedCategoryValue(categoriesInCurrency[0].name);
 		}
-	}, [categoriesInCurrency, categoriesIsLoading]);
+	}, [categoriesIsLoading]);
 
 	useEffect(() => {
 		const today = new Date();
@@ -118,7 +118,7 @@ export const ModalWindowLayout = () => {
 		setSelectedCategoryValue(e.target.value);
 	};
 
-	if (!isOpen || isLoading || categoriesIsLoading) {
+	if (!isOpen || AccountsIsLoading || categoriesIsLoading) {
 		return null;
 	}
 

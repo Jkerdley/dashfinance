@@ -33,20 +33,10 @@ export const OperationsPanel = ({ onCryptoClick, isCrypto }) => {
 	return isCrypto ? (
 		<div id="operations__buttons" className="flex flex-col mt-4 items-start gap-4">
 			<div className="flex gap-4 w-full justify-between items-center">
-				<WideOperationsButton
-					onClick={handleOperationsClick}
-					color={'bg-main-green'}
-					alt="income"
-					disabled={!canOpenModal}
-				>
+				<WideOperationsButton onClick={handleOperationsClick} color={'bg-main-green'} alt="income">
 					<span className="text-lg font-semibold">Покупка +</span>
 				</WideOperationsButton>
-				<WideOperationsButton
-					onClick={handleOperationsClick}
-					color={'bg-main-red'}
-					alt="expenses"
-					disabled={!canOpenModal}
-				>
+				<WideOperationsButton onClick={handleOperationsClick} color={'bg-main-red'} alt="expenses">
 					<span className="text-lg font-semibold">Продажа - </span>
 				</WideOperationsButton>
 			</div>
@@ -60,7 +50,6 @@ export const OperationsPanel = ({ onCryptoClick, isCrypto }) => {
 						onClick={handleOperationsClick}
 						color={'bg-main-green'}
 						alt="income"
-						disabled={!canOpenModal}
 					>
 						<span className="text-lg font-semibold">Доходы +</span>
 					</WideOperationsButton>
@@ -68,7 +57,6 @@ export const OperationsPanel = ({ onCryptoClick, isCrypto }) => {
 						onClick={handleOperationsClick}
 						color={'bg-main-red'}
 						alt="expenses"
-						disabled={!canOpenModal}
 					>
 						<span className="text-lg font-semibold">Расходы - </span>
 					</WideOperationsButton>

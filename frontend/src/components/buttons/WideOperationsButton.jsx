@@ -3,7 +3,7 @@ import React from 'react';
 export const WideOperationsButton = ({ disabled, onClick, icon, alt, children, color }) => {
 	return disabled ? (
 		<button
-			disabled="true"
+			disabled={true}
 			className={`flex justify-center items-center pb-[3px] rounded-xl w-[46%] h-10 text-gray-500 bg-gray-500 cursor-default p-2`}
 		>
 			{children}
