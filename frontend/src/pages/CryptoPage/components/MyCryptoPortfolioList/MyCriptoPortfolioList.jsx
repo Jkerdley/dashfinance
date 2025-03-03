@@ -11,16 +11,14 @@ import { useFetchCryptoAssetsInCurrency } from '../../../../hooks/useFetchCrypto
 
 export const MyCriptoPortfolioList = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const coinValuesInCurrency = fetchedCoinsPrices.result.map((coin) => ({
-		...coin,
-		assetsBuyPriceAVG: calculateValueInCurrency(Number(coin.assetsBuyPriceAVG), isUSD, rubleCourse),
-		coinPrice: calculateValueInCurrency(Number(coin.price), isUSD, rubleCourse),
-		profit: calculateValueInCurrency(Number(coin.price * coin.assetsAmount), isUSD, rubleCourse),
-	}));
+	// const coinValuesInCurrency = fetchedCoinsPrices.result.map((coin) => ({
+	// 	...coin,
+	// 	assetsBuyPriceAVG: calculateValueInCurrency(Number(coin.assetsBuyPriceAVG), isUSD, rubleCourse),
+	// 	coinPrice: calculateValueInCurrency(Number(coin.price), isUSD, rubleCourse),
+	// 	profit: calculateValueInCurrency(Number(coin.price * coin.assetsAmount), isUSD, rubleCourse),
+	// }));
 
 	const { cryptoAssetsInCurrency, isLoading, cryptoHistory } = useFetchCryptoAssetsInCurrency();
-	console.log('cryptoAssetsInCurrency in portfolio', cryptoAssetsInCurrency);
-	console.log('coinValuesInCurrency  in portfolio', coinValuesInCurrency);
 
 	return (
 		<section id="column__categories" className="flex flex-col flex-3 p-4 rounded-3xl bg-sky-950/40">
@@ -35,7 +33,7 @@ export const MyCriptoPortfolioList = () => {
 				{cryptoAssetsInCurrency.map((coin) => {
 					return (
 						<CryptoAssets
-							key={coin._id}
+							key={coin.id}
 							averageBuyPrice={coin.averagePrice}
 							assetsAmount={parseFloat(coin.assetAmount)}
 							coinPrice={coin.coinPrice}

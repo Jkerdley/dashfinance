@@ -1,0 +1,666 @@
+[
+	{
+		"name": "Bitcoin",
+		"coinId": "bitcoin",
+		"symbol": "BTC",
+		"averagePrice": 5824612.53,
+		"assetAmount": 1.8765,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86a"
+				},
+				"tag": "crypto",
+				"asset": "Bitcoin",
+				"assetId": "bitcoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 0.3456,
+				"checkSumm": 1765432,
+				"checkPrice": 5108282.41,
+				"date": "2024-12-18"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86b"
+				},
+				"tag": "crypto",
+				"asset": "Bitcoin",
+				"assetId": "bitcoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 0.5678,
+				"checkSumm": 3567891,
+				"checkPrice": 6283798.87,
+				"date": "2025-01-07"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86c"
+				},
+				"tag": "crypto",
+				"asset": "Bitcoin",
+				"assetId": "bitcoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 0.4321,
+				"checkSumm": 2456789,
+				"checkPrice": 5685764.86,
+				"date": "2025-01-25"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86d"
+				},
+				"tag": "crypto",
+				"asset": "Bitcoin",
+				"assetId": "bitcoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 0.531,
+				"checkSumm": 3245678,
+				"checkPrice": 6112482.11,
+				"date": "2025-02-12"
+			}
+		]
+	},
+	{
+		"name": "Ethereum",
+		"coinId": "ethereum",
+		"symbol": "ETH",
+		"averagePrice": 287643.21,
+		"assetAmount": 12.3456,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86e"
+				},
+				"tag": "crypto",
+				"asset": "Ethereum",
+				"assetId": "ethereum",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 2.5678,
+				"checkSumm": 678954,
+				"checkPrice": 264486.51,
+				"date": "2024-12-05"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a86f"
+				},
+				"tag": "crypto",
+				"asset": "Ethereum",
+				"assetId": "ethereum",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 3.4567,
+				"checkSumm": 1023456,
+				"checkPrice": 296075.16,
+				"date": "2024-12-28"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a870"
+				},
+				"tag": "crypto",
+				"asset": "Ethereum",
+				"assetId": "ethereum",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 2.1234,
+				"checkSumm": 567890,
+				"checkPrice": 267420.65,
+				"date": "2025-01-15"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a871"
+				},
+				"tag": "crypto",
+				"asset": "Ethereum",
+				"assetId": "ethereum",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 4.1977,
+				"checkSumm": 1276543,
+				"checkPrice": 304125.11,
+				"date": "2025-02-03"
+			}
+		]
+	},
+	{
+		"name": "XRP",
+		"coinId": "ripple",
+		"symbol": "XRP",
+		"averagePrice": 48.76,
+		"assetAmount": 5432.1098,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a872"
+				},
+				"tag": "crypto",
+				"asset": "XRP",
+				"assetId": "ripple",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 1234.5678,
+				"checkSumm": 56789,
+				"checkPrice": 46,
+				"date": "2024-12-10"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a873"
+				},
+				"tag": "crypto",
+				"asset": "XRP",
+				"assetId": "ripple",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 987.6543,
+				"checkSumm": 51234,
+				"checkPrice": 51.88,
+				"date": "2024-12-22"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a874"
+				},
+				"tag": "crypto",
+				"asset": "XRP",
+				"assetId": "ripple",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 1543.2109,
+				"checkSumm": 67890,
+				"checkPrice": 44,
+				"date": "2025-01-08"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a875"
+				},
+				"tag": "crypto",
+				"asset": "XRP",
+				"assetId": "ripple",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 876.5432,
+				"checkSumm": 45678,
+				"checkPrice": 52.11,
+				"date": "2025-01-27"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a876"
+				},
+				"tag": "crypto",
+				"asset": "XRP",
+				"assetId": "ripple",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 790.1336,
+				"checkSumm": 39506,
+				"checkPrice": 50,
+				"date": "2025-02-15"
+			}
+		]
+	},
+	{
+		"name": "Cardano",
+		"coinId": "cardano",
+		"symbol": "ADA",
+		"averagePrice": 38.76,
+		"assetAmount": 3456.789,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a877"
+				},
+				"tag": "crypto",
+				"asset": "Cardano",
+				"assetId": "cardano",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 876.5432,
+				"checkSumm": 30679,
+				"checkPrice": 35,
+				"date": "2024-12-08"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a878"
+				},
+				"tag": "crypto",
+				"asset": "Cardano",
+				"assetId": "cardano",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 765.4321,
+				"checkSumm": 30617,
+				"checkPrice": 40,
+				"date": "2024-12-20"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a879"
+				},
+				"tag": "crypto",
+				"asset": "Cardano",
+				"assetId": "cardano",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 987.6543,
+				"checkSumm": 34568,
+				"checkPrice": 35,
+				"date": "2025-01-05"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87a"
+				},
+				"tag": "crypto",
+				"asset": "Cardano",
+				"assetId": "cardano",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 827.1594,
+				"checkSumm": 37222,
+				"checkPrice": 45,
+				"date": "2025-01-23"
+			}
+		]
+	},
+	{
+		"name": "Solana",
+		"coinId": "solana",
+		"symbol": "SOL",
+		"averagePrice": 14876.54,
+		"assetAmount": 23.4567,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87b"
+				},
+				"tag": "crypto",
+				"asset": "Solana",
+				"assetId": "solana",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 5.4321,
+				"checkSumm": 76049,
+				"checkPrice": 14000,
+				"date": "2024-12-12"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87c"
+				},
+				"tag": "crypto",
+				"asset": "Solana",
+				"assetId": "solana",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 6.789,
+				"checkSumm": 101835,
+				"checkPrice": 15000,
+				"date": "2024-12-27"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87d"
+				},
+				"tag": "crypto",
+				"asset": "Solana",
+				"assetId": "solana",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 4.321,
+				"checkSumm": 60494,
+				"checkPrice": 14000,
+				"date": "2025-01-14"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87e"
+				},
+				"tag": "crypto",
+				"asset": "Solana",
+				"assetId": "solana",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 6.9146,
+				"checkSumm": 110634,
+				"checkPrice": 16000,
+				"date": "2025-02-05"
+			}
+		]
+	},
+	{
+		"name": "Polkadot",
+		"coinId": "polkadot",
+		"symbol": "DOT",
+		"averagePrice": 654.32,
+		"assetAmount": 123.4567,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a87f"
+				},
+				"tag": "crypto",
+				"asset": "Polkadot",
+				"assetId": "polkadot",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 32.1098,
+				"checkSumm": 19266,
+				"checkPrice": 600,
+				"date": "2024-12-07"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a880"
+				},
+				"tag": "crypto",
+				"asset": "Polkadot",
+				"assetId": "polkadot",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 28.7654,
+				"checkSumm": 20136,
+				"checkPrice": 700,
+				"date": "2024-12-19"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a881"
+				},
+				"tag": "crypto",
+				"asset": "Polkadot",
+				"assetId": "polkadot",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 34.5678,
+				"checkSumm": 20741,
+				"checkPrice": 600,
+				"date": "2025-01-04"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a882"
+				},
+				"tag": "crypto",
+				"asset": "Polkadot",
+				"assetId": "polkadot",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 28.0137,
+				"checkSumm": 20170,
+				"checkPrice": 720,
+				"date": "2025-01-22"
+			}
+		]
+	},
+	{
+		"name": "Dogecoin",
+		"coinId": "dogecoin",
+		"symbol": "DOGE",
+		"averagePrice": 8.76,
+		"assetAmount": 12345.6789,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a883"
+				},
+				"tag": "crypto",
+				"asset": "Dogecoin",
+				"assetId": "dogecoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 3456.789,
+				"checkSumm": 27654,
+				"checkPrice": 8,
+				"date": "2024-12-06"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a884"
+				},
+				"tag": "crypto",
+				"asset": "Dogecoin",
+				"assetId": "dogecoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 2345.6789,
+				"checkSumm": 21111,
+				"checkPrice": 9,
+				"date": "2024-12-18"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a885"
+				},
+				"tag": "crypto",
+				"asset": "Dogecoin",
+				"assetId": "dogecoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 3456.789,
+				"checkSumm": 27654,
+				"checkPrice": 8,
+				"date": "2025-01-03"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a886"
+				},
+				"tag": "crypto",
+				"asset": "Dogecoin",
+				"assetId": "dogecoin",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 3086.422,
+				"checkSumm": 30864,
+				"checkPrice": 10,
+				"date": "2025-01-21"
+			}
+		]
+	},
+	{
+		"name": "Chainlink",
+		"coinId": "chainlink",
+		"symbol": "LINK",
+		"averagePrice": 1432.1,
+		"assetAmount": 87.6543,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a887"
+				},
+				"tag": "crypto",
+				"asset": "Chainlink",
+				"assetId": "chainlink",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 21.0987,
+				"checkSumm": 27428,
+				"checkPrice": 1300,
+				"date": "2024-12-14"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a888"
+				},
+				"tag": "crypto",
+				"asset": "Chainlink",
+				"assetId": "chainlink",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 18.7654,
+				"checkSumm": 28148,
+				"checkPrice": 1500,
+				"date": "2024-12-29"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a889"
+				},
+				"tag": "crypto",
+				"asset": "Chainlink",
+				"assetId": "chainlink",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 25.4321,
+				"checkSumm": 35505,
+				"checkPrice": 1396.08,
+				"date": "2025-01-17"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88a"
+				},
+				"tag": "crypto",
+				"asset": "Chainlink",
+				"assetId": "chainlink",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 22.3581,
+				"checkSumm": 34655,
+				"checkPrice": 1550,
+				"date": "2025-02-08"
+			}
+		]
+	},
+	{
+		"name": "Polygon",
+		"coinId": "polygon-ecosystem-token",
+		"symbol": "POL",
+		"averagePrice": 76.54,
+		"assetAmount": 1234.5678,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88b"
+				},
+				"tag": "crypto",
+				"asset": "Polygon",
+				"assetId": "polygon",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 321.0987,
+				"checkSumm": 22477,
+				"checkPrice": 70,
+				"date": "2024-12-09"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88c"
+				},
+				"tag": "crypto",
+				"asset": "Polygon",
+				"assetId": "polygon",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 432.1098,
+				"checkSumm": 34569,
+				"checkPrice": 80,
+				"date": "2024-12-24"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88d"
+				},
+				"tag": "crypto",
+				"asset": "Polygon",
+				"assetId": "polygon",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 234.5678,
+				"checkSumm": 16420,
+				"checkPrice": 70,
+				"date": "2025-01-12"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88e"
+				},
+				"tag": "crypto",
+				"asset": "Polygon",
+				"assetId": "polygon",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 246.7915,
+				"checkSumm": 20977,
+				"checkPrice": 85,
+				"date": "2025-02-02"
+			}
+		]
+	},
+	{
+		"name": "Avalanche",
+		"coinId": "avalanche-2",
+		"symbol": "AVAX",
+		"averagePrice": 3210.98,
+		"assetAmount": 43.2109,
+		"history": [
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a88f"
+				},
+				"tag": "crypto",
+				"asset": "Avalanche",
+				"assetId": "avalanche",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 10.9876,
+				"checkSumm": 32963,
+				"checkPrice": 3000,
+				"date": "2024-12-11"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a890"
+				},
+				"tag": "crypto",
+				"asset": "Avalanche",
+				"assetId": "avalanche",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 12.3456,
+				"checkSumm": 41975,
+				"checkPrice": 3400,
+				"date": "2024-12-26"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a891"
+				},
+				"tag": "crypto",
+				"asset": "Avalanche",
+				"assetId": "avalanche",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 8.7654,
+				"checkSumm": 26296,
+				"checkPrice": 3000,
+				"date": "2025-01-13"
+			},
+			{
+				"_id": {
+					"$oid": "67c49866064a54f8b144a892"
+				},
+				"tag": "crypto",
+				"asset": "Avalanche",
+				"assetId": "avalanche",
+				"type": "buy",
+				"exchangedAsset": "tether",
+				"assetAmount": 11.1123,
+				"checkSumm": 37782,
+				"checkPrice": 3400,
+				"date": "2025-02-04"
+			}
+		]
+	}
+]

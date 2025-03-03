@@ -8,7 +8,6 @@ export const fetchCryptoHistory = () => async (dispatch) => {
 		});
 
 		const serverData = await request('/cryptohistory');
-		console.log('serverData', serverData);
 		dispatch({
 			type: ACTIONS.FETCH_CRYPTOHISTORY_SUCCESS,
 			payload: serverData,
