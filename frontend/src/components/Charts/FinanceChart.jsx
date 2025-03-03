@@ -1,6 +1,6 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { CustomTooltip } from '../../../components/CustomTooltip/CustomTooltip';
+import { CustomTooltip } from '../CustomTooltip/CustomTooltip';
 
 export const FinanceChart = ({ mappedData, isCrypto }) => {
 	return (

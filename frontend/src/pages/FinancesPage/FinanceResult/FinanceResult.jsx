@@ -5,14 +5,22 @@ import { ExpensesResult } from './ExpensesResult';
 import { IncomeResult } from './IncomeResult';
 import { BigResultBalance } from './BigResultBalance';
 import { useSelector } from 'react-redux';
-import { selectAccounts, selectCategories, selectHistory } from '../../../store/selectors';
+import {
+	selectAccounts,
+	selectCategories,
+	selectHistory,
+	selectHistoryIsLoading,
+} from '../../../store/selectors';
 import { useCurrency } from '../../../hooks';
+import { Loader } from '../../../components/Loaders/Loader';
 
 export const FinanceResult = ({ selectedSortType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const financeHistory = useSelector(selectHistory);
+	const historyIsLoading = useSelector(selectHistoryIsLoading);
 	const financeAccounts = useSelector(selectAccounts);
 	const financeCategories = useSelector(selectCategories);
+
 	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
 	const historyDB = financeHistory
 		.filter((item) => {
@@ -30,11 +38,35 @@ export const FinanceResult = ({ selectedSortType }) => {
 		<div id="finance-result__main-container" className="flex h-full transition-all">
 			<div className="flex flex-col flex-3 2xl:flex-4 h-full">
 				<section className="flex flex-2 justify-center">
-					<BigResultBalance isUSD={isUSD} totalBalanceForDate={totalBalanceForDate} />
+					{historyIsLoading ? (
+						<Loader />
+					) : (
+						<BigResultBalance
+							isUSD={isUSD}
+							totalBalanceForDate={totalBalanceForDate}
+							historyIsLoading={historyIsLoading}
+						/>
+					)}
 				</section>
 				<section className="flex flex-2 h-full justify-center md:justify-evently 2xl:justify-around gap-12">
-					<IncomeResult isUSD={isUSD} incomeForDate={incomeForDate} />
-					<ExpensesResult isUSD={isUSD} expensesForDate={expensesForDate} />
+					{historyIsLoading ? (
+						<Loader />
+					) : (
+						<IncomeResult
+							isUSD={isUSD}
+							incomeForDate={incomeForDate}
+							historyIsLoading={historyIsLoading}
+						/>
+					)}
+					{historyIsLoading ? (
+						<Loader />
+					) : (
+						<ExpensesResult
+							isUSD={isUSD}
+							expensesForDate={expensesForDate}
+							historyIsLoading={historyIsLoading}
+						/>
+					)}
 				</section>
 			</div>
 			<section className="flex flex-3 h-full items-center justify-center">

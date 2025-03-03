@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectHistory } from '../../../store/selectors';
 import { ChartSelector } from '../../../components/sortSelector/chartSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
-import FinanceChart from './FinanceChart';
+import FinanceChart from '../../../components/Charts/FinanceChart';
 import { useCurrency } from '../../../hooks';
 
 export const FinanceAddAndSpendChartContainer = () => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import AddIcon from '../../../../assets/icons/add-icon.svg';
-import { CryptoAssets } from '../../CryptoAssets/CryptoAssets';
-import { OperationsPanel } from '../../../../components/OperationsPanelButtons/OperationsPanel';
-import { SectionContainerHeader } from '../../../../components/SectionContainerHeader/SectionContainerHeader';
-import { EditAddDeleteButton } from '../../../../components/buttons';
-import { useFetchCryptoAssetsInCurrency } from '../../../../hooks/useFetchCryptoAssetsInCurrency';
-import { Loader } from '../../../../components/Loaders/Loader';
+import AddIcon from '../../../assets/icons/add-icon.svg';
+import { CryptoAssets } from './CryptoAssets';
+import { OperationsPanel } from '../../../components/OperationsPanelButtons/OperationsPanel';
+import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
+import { EditAddDeleteButton } from '../../../components/buttons';
+import { useFetchCryptoAssetsInCurrency } from '../../../hooks/useFetchCryptoAssetsInCurrency';
+import { Loader } from '../../../components/Loaders/Loader';
 
 export const MyCriptoPortfolioList = () => {
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
