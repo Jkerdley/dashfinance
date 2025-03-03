@@ -9,7 +9,6 @@ import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/fi
 import { useFetchHistoryData } from '../../../hooks/useFetchServerHistory.js';
 import { selectCryptoAssetsHistory, selectCryptoAssetsIsLoading } from '../../../store/selectors';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-
 import { fetchCryptoAssets } from '../../../store/actions/async/fetchCryptoAssets.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
@@ -27,7 +26,7 @@ export const CryptoOpreationsHistoryContainer = () => {
 	return (
 		<section
 			id="accouts__operations-history-container"
-			className="flex flex-col flex-6 p-4 rounded-3xl bg-sky-950/40 gap-4"
+			className="flex flex-col flex-6/12 p-4 rounded-3xl bg-sky-950/40 gap-4"
 		>
 			<div className="flex justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
@@ -39,38 +38,32 @@ export const CryptoOpreationsHistoryContainer = () => {
 					alt={'Изменить историю крипто операций'}
 				/>
 			</div>
-
-			<div
-				id="operationsHistoryBoxWrapper"
-				className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
-			>
-				{fetchHistoryIsLoading ? (
-					<section className="flex justify-center items-center h-12 w-full">
-						<Loader />
-					</section>
-				) : (
-					sortedHistory.map((operation) => {
-						return (
-							<div key={operation._id}>
-								<CryptoOperationHistory
-									coin={operation.asset}
-									symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
-									icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}
-									price={operation.checkPrice}
-									operationAmount={operation.amount}
-									assetAmount={operation.assetAmount}
-									operationType={operation.type}
-									exchangedAsset={findAccountName(
-										fetchedCoinsPrices,
-										operation.exchangedAsset,
-									)}
-									operationDate={operation.date}
-								/>
-							</div>
-						);
-					})
-				)}
-			</div>
+			{fetchHistoryIsLoading ? (
+				<div className="flex flex-col items-center justify-center min-w-[40vw] max-h-[44vh] gap-3 pr-1 pt-1">
+					<Loader />
+				</div>
+			) : (
+				<div
+					id="operationsHistoryBoxWrapper"
+					className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+				>
+					{sortedHistory.map((operation) => (
+						<div key={operation._id}>
+							<CryptoOperationHistory
+								coin={operation.asset}
+								symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
+								icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}
+								price={operation.checkPrice}
+								operationAmount={operation.amount}
+								assetAmount={operation.assetAmount}
+								operationType={operation.type}
+								exchangedAsset={findAccountName(fetchedCoinsPrices, operation.exchangedAsset)}
+								operationDate={operation.date}
+							/>
+						</div>
+					))}
+				</div>
+			)}
 		</section>
 	);
 };
