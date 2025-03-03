@@ -6,14 +6,15 @@ export const CryptoAssets = ({
 	coinTitle,
 	coinPrice,
 	profit,
+	profitPercentage,
 	assetsAmount,
 	averageBuyPrice,
 	icon,
 	symbol,
 	growValue,
 }) => {
-	// const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
-	// const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
+	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
+	const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
 
 	const isCoinPriceGrow = () => {
 		if (!assetsAmount) {
@@ -24,21 +25,15 @@ export const CryptoAssets = ({
 			return 'text-main-green';
 		}
 	};
-	// const isProfitAsset = () => {
-	// 	if (!assetsAmount) {
-	// 		return 'text-white';
-	// 	} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
-	// 		return 'text-main-red';
-	// 	} else {
-	// 		return 'text-main-green';
-	// 	}
-	// };
-
-	// const calculatedProfitPercentage = () => {
-	// 	return Number(
-	// 		parseFloat((trimmedCoinPrice - trimmedAverageBuyPrice) / trimmedAverageBuyPrice) * 100,
-	// 	).toFixed(2);
-	// };
+	const isProfitAsset = () => {
+		if (!assetsAmount) {
+			return 'text-white';
+		} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
+			return 'text-main-red';
+		} else {
+			return 'text-main-green';
+		}
+	};
 
 	return (
 		<div
@@ -52,15 +47,15 @@ export const CryptoAssets = ({
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
 				<div id="categorie-text-container" className="flex flex-col mx-2 w-full truncate">
 					<div className={`flex text-base items-between justify-between truncate overflow-hidden`}>
-						{/* <div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
+						<div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
 							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
-								className={`flex h-2 w-2 truncate ${calculatedProfitPercentage() < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`flex h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
-							<span className="text-sm truncate">Profit {calculatedProfitPercentage()} %</span>
+							<span className="text-sm truncate">Profit {profitPercentage.toFixed(2)} %</span>
 						</div>
-						<div className="flex gap-2 truncate">{profit}</div> */}
+						<div className="flex gap-2 truncate">{profit}</div>
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">
@@ -68,7 +63,7 @@ export const CryptoAssets = ({
 							<span className={`text-sm ${isCoinPriceGrow()}`}>{coinPrice}</span>
 							<span className={`text-sm ${isCoinPriceGrow()}`}>{growValue} %</span>
 						</div>
-						<span className={`text-sm truncate`}>
+						<span className={`text-sm truncate text-gray-300`}>
 							{assetsAmount ? `${assetsAmount} ${symbol}` : ''}
 						</span>
 					</div>

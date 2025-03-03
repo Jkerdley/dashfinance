@@ -24,9 +24,6 @@ export const CryptoOpreationsHistoryContainer = () => {
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 
-	console.log('sortedHistory', sortedHistory);
-	console.log('fetchedCoinsPrices', fetchedCoinsPrices);
-
 	return (
 		<section
 			id="accouts__operations-history-container"

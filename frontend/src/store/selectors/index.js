@@ -4,7 +4,6 @@ export * from './select-modal-is-open.js';
 export * from './select-modal-oncancel.js';
 export * from './select-modal-onconfirm.js';
 export * from './select-history.js';
-export * from './select-crypto-history.js';
 export * from './select-accounts.js';
 export * from './select-categories.js';
 export * from './select-cryptoassets.js';
