@@ -33,7 +33,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
-
+	// console.log('Component mounted:', 'FinanceResult', 'Data:', financeHistory);
 	return (
 		<div id="finance-result__main-container" className="flex h-full transition-all">
 			<div className="flex flex-col flex-3 2xl:flex-4 h-full">
