@@ -18,8 +18,7 @@ export const accountsReducer = (state = initialAccountsState, action) => {
 			return {
 				...state,
 				isLoading: false,
-				// data: action.payload.accounts,
-				data: [],
+				data: action.payload.accounts,
 				error: null,
 			};
 		case ACTIONS.FETCH_ACCOUNTS_ERROR:
