@@ -1,51 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, CloseModalButton, CurrencyToggle } from '../buttons';
 import { CardIcon } from '../CardIcon';
 import { selectModalisOpen } from '../../store/selectors/select-modal-is-open';
 import { selectModalOnCancel } from '../../store/selectors/select-modal-oncancel';
 import { selectModalOnConfirm } from '../../store/selectors/select-modal-onconfirm';
-import { accounts, categories } from '../../db';
 import { Categorie } from '../../pages/FinancesPage/Categories';
-import { calculateValueInCurrency, getIconOfCategorie } from '../../utils';
+import { getIconOfCategorie } from '../../utils';
 import { FinanceAccount } from '../../pages/FinancesPage/FinanceAccount/FinanceAccount';
-
 import { useEffect } from 'react';
 import { usePressKey } from '../../hooks/usePressKey';
-import { useCurrency } from '../../hooks';
+import { useCurrency, useFetchAccountsInCurrency, useFetchCategoriesInCurrency } from '../../hooks';
 
 export const ModalWindowLayout = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const modalRef = useRef(null);
+	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
+	const { categoriesInCurrency, categoriesIsLoading } = useFetchCategoriesInCurrency();
 	const [operationDate, setOperationDate] = useState('');
 	const [operationSumm, setOperationSumm] = useState('');
-	const [selectedAccountValue, setSelectedAccountValue] = useState(accounts[0].name);
-	const [selectedCategoryValue, setSelectedCategoryValue] = useState(categories[0].name);
+	const [selectedAccountValue, setSelectedAccountValue] = useState('');
+	const [selectedCategoryValue, setSelectedCategoryValue] = useState('');
+	const modalRef = useRef(null);
 	const escButtonPressed = usePressKey('Escape');
-	const enterButtonPressed = usePressKey('Enter');
 
 	const onConfirm = useSelector(selectModalOnConfirm);
 	const onCancel = useSelector(selectModalOnCancel);
 	const isOpen = useSelector(selectModalisOpen);
-
-	useEffect(() => {
-		const today = new Date();
-		const dateInFormat = today.toISOString().split('T')[0];
-
-		setOperationDate(dateInFormat);
-	}, []);
-
-	useEffect(() => {
-		isOpen && modalRef.current && modalRef.current.focus();
-	}, [isOpen]);
-
-	useEffect(() => {
-		enterButtonPressed && isOpen && handleFormSubmit(new Event('submit'));
-	}, [enterButtonPressed, isOpen]);
-
-	if (!isOpen) {
-		return null;
-	}
 
 	const handleDateChange = (e) => {
 		setOperationDate(e.target.value);
@@ -55,17 +35,21 @@ export const ModalWindowLayout = () => {
 		setOperationSumm(Number(e.target.value));
 	};
 
-	const handleFormSubmit = (e) => {
-		e.preventDefault();
-		if (!operationSumm) {
-			alert('Введите сумму операции');
-		} else if (operationSumm < 0) {
-			alert('Сумма должна быть больше нуля');
-		} else {
-			let summInUSD = operationSumm;
-			if (isUSD) {
-				summInUSD *= rubleCourse;
+	const handleFormSubmit = useCallback(
+		(event) => {
+			event.preventDefault();
+			if (!operationSumm) {
+				alert('Введите сумму операции');
+				return;
 			}
+
+			if (operationSumm < 0) {
+				alert('Сумма должна быть больше нуля');
+				return;
+			}
+
+			const summInUSD = isUSD ? operationSumm * rubleCourse : operationSumm;
+
 			console.log('Submit FORM DATA', {
 				tag: 'finance',
 				category: selectedCategoryValue,
@@ -78,18 +62,65 @@ export const ModalWindowLayout = () => {
 				date: operationDate,
 				comment: '',
 			});
+			resetForm();
+			onCancel();
+		},
+		[
+			operationSumm,
+			isUSD,
+			rubleCourse,
+			selectedCategoryValue,
+			selectedAccountValue,
+			operationDate,
+			onCancel,
+		],
+	);
 
-			setOperationSumm('');
-			setSelectedAccountValue(accounts[0].name);
-			setSelectedCategoryValue(categories[0].name);
+	const resetForm = useCallback(() => {
+		setOperationSumm('');
+		setSelectedAccountValue(accountsInCurrency[0]?.name || '');
+		setSelectedCategoryValue(categoriesInCurrency[0]?.name || '');
+	}, [accountsInCurrency, categoriesInCurrency]);
+
+	useEffect(() => {
+		if (accountsInCurrency.length > 0 && !isLoading) {
+			setSelectedAccountValue(accountsInCurrency[0].name);
+		}
+	}, [accountsInCurrency, isLoading]);
+
+	useEffect(() => {
+		if (categoriesInCurrency.length > 0 && !categoriesIsLoading) {
+			setSelectedCategoryValue(categoriesInCurrency[0].name);
+		}
+	}, [categoriesInCurrency, categoriesIsLoading]);
+
+	useEffect(() => {
+		const today = new Date();
+		const dateInFormat = today.toISOString().split('T')[0];
+		setOperationDate(dateInFormat);
+	}, []);
+
+	useEffect(() => {
+		isOpen && modalRef.current && modalRef.current.focus();
+	}, [isOpen]);
+
+	useEffect(() => {
+		if (escButtonPressed && isOpen) {
 			onCancel();
 		}
-	};
+	}, [escButtonPressed, isOpen, onCancel]);
 
-	const operationAccount = accounts.filter((item) => item.name === selectedAccountValue);
-	const operationCategorie = categories.filter((item) => item.name === selectedCategoryValue);
+	if (!isOpen || isLoading || categoriesIsLoading) {
+		return null;
+	}
 
-	escButtonPressed && isOpen && onCancel();
+	if (accountsInCurrency.length === 0 || categoriesInCurrency.length === 0) {
+		onCancel();
+		alert('Сначала необходимо добавить счета и категории расходов');
+		return null;
+	}
+	const operationAccount = accountsInCurrency.filter((item) => item.name === selectedAccountValue);
+	const operationCategorie = categoriesInCurrency.filter((item) => item.name === selectedCategoryValue);
 
 	return (
 		<section className="fixed inset-0 z-20">
@@ -114,7 +145,7 @@ export const ModalWindowLayout = () => {
 								value={selectedAccountValue}
 								onChange={(e) => setSelectedAccountValue(e.target.value)}
 							>
-								{accounts.map((account) => {
+								{accountsInCurrency.map((account) => {
 									return (
 										<option
 											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
@@ -133,7 +164,7 @@ export const ModalWindowLayout = () => {
 								value={selectedCategoryValue}
 								onChange={(e) => setSelectedCategoryValue(e.target.value)}
 							>
-								{categories.map((categorie) => {
+								{categoriesInCurrency.map((categorie) => {
 									return (
 										<option
 											className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
@@ -150,27 +181,15 @@ export const ModalWindowLayout = () => {
 					<section className="flex flex-wrap 2xl:flex-nowrap gap-4 items-center justify-between text-start">
 						<FinanceAccount
 							accountName={selectedAccountValue}
-							accountBalance={calculateValueInCurrency(
-								operationAccount[0].balance,
-								isUSD,
-								rubleCourse,
-							)}
+							accountBalance={operationAccount[0].balance}
 							icon={operationAccount[0].icon}
 							noButton={true}
 						/>
 						<p>{'\u27A0'}</p>
 						<Categorie
 							noButton={true}
-							budget={calculateValueInCurrency(
-								operationCategorie[0].budget,
-								isUSD,
-								rubleCourse,
-							)}
-							balance={calculateValueInCurrency(
-								operationCategorie[0].balance,
-								isUSD,
-								rubleCourse,
-							)}
+							budget={operationCategorie[0].budget}
+							balance={operationCategorie[0].balance}
 							categorie={selectedCategoryValue}
 							icon={operationCategorie[0].icon}
 						/>
@@ -212,7 +231,7 @@ export const ModalWindowLayout = () => {
 						</form>
 						<div className="flex flex-4 truncate">
 							<p className="text-sm w-full truncate text-white/90">
-								{accounts.find((acc) => acc.name === selectedAccountValue).name}
+								{accountsInCurrency.find((acc) => acc.name === selectedAccountValue).name}
 							</p>
 						</div>
 					</section>

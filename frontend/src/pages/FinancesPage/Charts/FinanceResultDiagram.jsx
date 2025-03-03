@@ -1,17 +1,15 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { useSelector } from 'react-redux';
-import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
+import { selectHistory } from '../../../store/selectors';
 import { aggregateExpensesByCategory, filteredByThisMonth, getsortedHistory } from '../../../utils';
-import { history } from '../../../db';
 import { CustomRadialTooltip } from '../../../components/CustomTooltip';
+import { useCurrency } from '../../../hooks';
 
 export const FinanceResultDiagram = ({ selectedSortType }) => {
-	const isUSD = useSelector(currencySelector);
-	const roubleCourse = useSelector(rubleCourseSelector);
-	const filteredHistoryForChart = history.filter(
-		(operation) => operation.tag === 'finance' && operation.type === 'spend',
-	);
+	const { isUSD, rubleCourse } = useCurrency();
+	const financeHistory = useSelector(selectHistory);
+	const filteredHistoryForChart = financeHistory.filter((operation) => operation.type === 'spend');
 
 	const sortedHistory = getsortedHistory(
 		filteredByThisMonth(filteredHistoryForChart, selectedSortType),
@@ -24,7 +22,7 @@ export const FinanceResultDiagram = ({ selectedSortType }) => {
 		return {
 			...item,
 			value: isUSD
-				? parseFloat((item.value / roubleCourse).toFixed(2))
+				? parseFloat((item.value / rubleCourse).toFixed(2))
 				: parseFloat(item.value.toFixed(2)),
 		};
 	});

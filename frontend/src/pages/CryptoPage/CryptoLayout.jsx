@@ -14,7 +14,7 @@ export const CryptoLayout = () => {
 				className="flex flex-col flex-5 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
 			>
 				<div id="crypto__top-container" className="flex flex-5/12 flex-row gap-4">
-					<div className="flex flex-8/12 w-full bg-amber-500">
+					<div className="flex flex-8/12 w-full">
 						<CryptoResultLayout />
 					</div>
 					<CryptoBalanceChart />

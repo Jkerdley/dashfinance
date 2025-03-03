@@ -5,11 +5,16 @@ import { TopMenuRow } from './components/TopMenu';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage';
 import { ModalWindowLayout } from './components/modalWindow/ModalWindowLayout';
+import { useSelector } from 'react-redux';
+import { selectAccounts, selectCategories } from './store/selectors';
 
 function App() {
+	const accountsData = useSelector(selectAccounts);
+	const categoriesData = useSelector(selectCategories);
+	const canShowModal = accountsData.length > 0 && categoriesData.length > 0;
 	return (
 		<div id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
-			<ModalWindowLayout />
+			{canShowModal && <ModalWindowLayout />}
 			<SidebarMenu />
 			<div
 				id="mainLayout"
