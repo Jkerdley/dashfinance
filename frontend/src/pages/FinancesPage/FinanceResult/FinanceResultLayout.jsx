@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { RefreshCourseButton } from '../../../components/buttons';
 import { FinanceResult } from './FinanceResult';
-
 import { RadialChartSelector } from '../../../components/sortSelector/RadialChartSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
-import { useCurrency } from '../../../hooks';
 
 export const FinanceResultLayout = () => {
-	const { isUSD, rubleCourse } = useCurrency();
 	const [selectedRadialSortType, setSelectedRadialSortType] = useState('month');
 
 	const handleRadialSortChange = () => {
@@ -27,11 +24,7 @@ export const FinanceResultLayout = () => {
 				/>
 				<RefreshCourseButton />
 			</div>
-			<FinanceResult
-				selectedSortType={selectedRadialSortType}
-				isUSD={isUSD}
-				rubleCourse={rubleCourse}
-			/>
+			<FinanceResult selectedSortType={selectedRadialSortType} />
 		</div>
 	);
 };

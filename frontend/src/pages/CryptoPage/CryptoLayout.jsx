@@ -1,7 +1,7 @@
 import React from 'react';
 import { CryptoOpreationsHistoryContainer } from './CryptoOperationHistory';
 import { CryptoResultLayout } from './CryptoResult';
-import { MyCriptoPortfolioList } from './components/MyCryptoPortfolioList/MyCriptoPortfolioList';
+import { MyCriptoPortfolioList } from './CryptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { CryptoBalanceChart, TopGainerAndLooserChart } from './Charts';
 
@@ -17,7 +17,7 @@ export const CryptoLayout = () => {
 					<div className="flex flex-8/12 w-full">
 						<CryptoResultLayout />
 					</div>
-					<CryptoBalanceChart />
+					{/* <CryptoBalanceChart /> */}
 				</div>
 				<div id="crypto__bottom-container" className="flex flex-7/12 flex-col gap-4">
 					<div id="row__accounts-and-history" className="flex flex-10/12 gap-4">

@@ -13,7 +13,6 @@ export const CryptoResultLayout = () => {
 				<SectionContainerHeader title={'Крипто портфолио'} />
 				<RefreshCourseButton />
 			</div>
-
 			<CryptoResult />
 		</section>
 	);

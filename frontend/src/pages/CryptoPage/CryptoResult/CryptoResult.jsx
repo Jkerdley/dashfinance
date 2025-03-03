@@ -2,11 +2,11 @@ import React from 'react';
 import { cleanValue } from '../../../utils';
 import { useCurrency, useFetchCryptoAssetsInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
+import { CryptoAssetsAllocationChart } from '../Charts';
 
 export const CryptoResult = () => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
-	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
 
 	const cryptoAssetsSumm2 = cryptoAssetsInCurrency.reduce(
 		(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
@@ -19,32 +19,34 @@ export const CryptoResult = () => {
 			<div className="flex flex-col flex-3 2xl:flex-4">
 				<div className="flex flex-4 justify-center">
 					<div className="flex flex-5 flex-col items-center justify-center">
-						<span className="xl:text-3xl sm:text-xl text-xl font-medium transition-all">
-							Баланс:
-						</span>
 						{isLoading ? (
 							<Loader />
 						) : (
-							<div className="flex items-center gap-2">
-								<span
-									className={`text-xl sm:text-xl md:text-3xl 2xl:text-5xl mt-1 font-medium transition-all duration-150 ease-in-out ${
-										parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
-											? 'text-main-green'
-											: 'text-main-red'
-									}`}
-								>
-									{isUSD ? '$ ' : '\u20bd'}
+							<>
+								<span className="xl:text-3xl sm:text-xl text-xl font-medium transition-all">
+									Баланс:
 								</span>
-								<span
-									className={`text-4xl md:text-4xl xl:text-7xl 2xl:text-8xl font-bold  transition-all duration-150 ease-in-out ${
-										parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
-											? 'text-main-green'
-											: 'text-main-red'
-									}`}
-								>
-									{cleanValue(totalBalanceForDate)}
-								</span>
-							</div>
+								<div className="flex items-center gap-2">
+									<span
+										className={`text-xl sm:text-xl md:text-3xl 2xl:text-5xl mt-1 font-medium transition-all duration-150 ease-in-out ${
+											parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
+												? 'text-main-green'
+												: 'text-main-red'
+										}`}
+									>
+										{isUSD ? '$ ' : '\u20bd'}
+									</span>
+									<span
+										className={`text-4xl md:text-4xl xl:text-7xl 2xl:text-8xl font-bold transition-all duration-150 ease-in-out ${
+											parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
+												? 'text-main-green'
+												: 'text-main-red'
+										}`}
+									>
+										{cleanValue(totalBalanceForDate)}
+									</span>
+								</div>
+							</>
 						)}
 					</div>
 				</div>
@@ -75,7 +77,7 @@ export const CryptoResult = () => {
 				</section> */}
 			</div>
 			<div className="flex items-center justify-center flex-2">
-				<span>ТУТ БУДЕТ ДИАГРАММА</span>
+				<CryptoAssetsAllocationChart />
 			</div>
 		</section>
 	);
