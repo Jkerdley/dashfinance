@@ -5,24 +5,27 @@ import { fetchedCoinsPrices } from '../../../db.js';
 import { SortSelector } from '../../../components/sortSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { EditAddDeleteButton } from '../../../components/buttons';
-
 import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
 import { useFetchHistoryData } from '../../../hooks/useFetchServerHistory.js';
-import { fetchCryptoHistory } from '../../../store/actions/fetchCryptoHistory.js';
-import { selectCryptoHistory, selectCryptoHistoryIsLoading } from '../../../store/selectors';
+import { selectCryptoAssetsHistory, selectCryptoAssetsIsLoading } from '../../../store/selectors';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
+
+import { fetchCryptoAssets } from '../../../store/actions/async/fetchCryptoAssets.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
 
 	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
-		fetchCryptoHistory,
+		fetchCryptoAssets,
 		sortType,
-		selectCryptoHistory,
-		selectCryptoHistoryIsLoading,
+		selectCryptoAssetsHistory,
+		selectCryptoAssetsIsLoading,
 	);
 
 	const handleSortChange = (event) => setSortType(event.target.value);
+
+	console.log('sortedHistory', sortedHistory);
+	console.log('fetchedCoinsPrices', fetchedCoinsPrices);
 
 	return (
 		<section
@@ -45,11 +48,13 @@ export const CryptoOpreationsHistoryContainer = () => {
 				className="flex flex-col max-h-[42vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 			>
 				{fetchHistoryIsLoading ? (
-					<Loader />
+					<section className="flex justify-center items-center h-12 w-full">
+						<Loader />
+					</section>
 				) : (
 					sortedHistory.map((operation) => {
 						return (
-							<div key={operation.id}>
+							<div key={operation._id}>
 								<CryptoOperationHistory
 									coin={operation.asset}
 									symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}

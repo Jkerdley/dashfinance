@@ -12,8 +12,8 @@ export const CryptoAssets = ({
 	symbol,
 	growValue,
 }) => {
-	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
-	const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
+	// const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
+	// const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
 
 	const isCoinPriceGrow = () => {
 		if (!assetsAmount) {
@@ -24,21 +24,21 @@ export const CryptoAssets = ({
 			return 'text-main-green';
 		}
 	};
-	const isProfitAsset = () => {
-		if (!assetsAmount) {
-			return 'text-white';
-		} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
-			return 'text-main-red';
-		} else {
-			return 'text-main-green';
-		}
-	};
+	// const isProfitAsset = () => {
+	// 	if (!assetsAmount) {
+	// 		return 'text-white';
+	// 	} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
+	// 		return 'text-main-red';
+	// 	} else {
+	// 		return 'text-main-green';
+	// 	}
+	// };
 
-	const calculatedProfitPercentage = () => {
-		return Number(
-			parseFloat((trimmedCoinPrice - trimmedAverageBuyPrice) / trimmedAverageBuyPrice) * 100,
-		).toFixed(2);
-	};
+	// const calculatedProfitPercentage = () => {
+	// 	return Number(
+	// 		parseFloat((trimmedCoinPrice - trimmedAverageBuyPrice) / trimmedAverageBuyPrice) * 100,
+	// 	).toFixed(2);
+	// };
 
 	return (
 		<div
@@ -52,7 +52,7 @@ export const CryptoAssets = ({
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
 				<div id="categorie-text-container" className="flex flex-col mx-2 w-full truncate">
 					<div className={`flex text-base items-between justify-between truncate overflow-hidden`}>
-						<div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
+						{/* <div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
 							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
@@ -60,7 +60,7 @@ export const CryptoAssets = ({
 							/>
 							<span className="text-sm truncate">Profit {calculatedProfitPercentage()} %</span>
 						</div>
-						<div className="flex gap-2 truncate">{profit}</div>
+						<div className="flex gap-2 truncate">{profit}</div> */}
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">

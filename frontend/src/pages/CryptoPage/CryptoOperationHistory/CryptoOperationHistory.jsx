@@ -51,7 +51,9 @@ export const CryptoOperationHistory = ({
 					</div>
 
 					<div className="flex flex-4 truncate">
-						<p className={`text-sm w-full text-slate-400 gap-2 truncate`}>
+						<p
+							className={`text-sm w-full ${operationType === 'buy' ? 'text-main-green' : 'text-main-red'} gap-2 truncate`}
+						>
 							{isPlus}
 							{assetAmount} <span>{` ${symbol}`}</span>
 						</p>
