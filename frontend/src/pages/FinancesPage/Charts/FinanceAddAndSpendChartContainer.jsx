@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
-import { history } from '../../../db';
 import { aggregateChartDataByMonth, filteredByThisMonth, getsortedHistory } from '../../../utils';
 import { useSelector } from 'react-redux';
-import { currencySelector, rubleCourseSelector } from '../../../store/selectors';
+import { selectHistory } from '../../../store/selectors';
 import { ChartSelector } from '../../../components/sortSelector/chartSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import FinanceChart from './FinanceChart';
+import { useCurrency } from '../../../hooks';
 
 export const FinanceAddAndSpendChartContainer = () => {
 	const [selectedSortType, setSelectedSortType] = useState('month');
-	const isUSD = useSelector(currencySelector);
-	const roubleCourse = useSelector(rubleCourseSelector);
+	const { isUSD, rubleCourse } = useCurrency();
+	const financeHistory = useSelector(selectHistory);
 
-	const filteredHistoryForChart = history.filter((operation) => operation.tag === 'finance');
-
-	const sortedHistory = getsortedHistory(
-		filteredByThisMonth(filteredHistoryForChart, selectedSortType),
-		'oldest',
-	);
-
+	const sortedHistory = getsortedHistory(filteredByThisMonth(financeHistory, selectedSortType), 'oldest');
 	const aggregatedData = aggregateChartDataByMonth(sortedHistory, selectedSortType);
-
 	const mappedData = aggregatedData.map((item) => {
 		return {
 			...item,
-			Доходы: isUSD ? (item.Доходы / roubleCourse).toFixed(2) : item.Доходы.toFixed(2),
-			Расходы: isUSD ? (item.Расходы / roubleCourse).toFixed(2) : item.Расходы.toFixed(2),
-			Баланс: isUSD ? (item.Баланс / roubleCourse).toFixed(2) : item.Баланс.toFixed(2),
+			Доходы: isUSD ? (item.Доходы / rubleCourse).toFixed(2) : item.Доходы.toFixed(2),
+			Расходы: isUSD ? (item.Расходы / rubleCourse).toFixed(2) : item.Расходы.toFixed(2),
+			Баланс: isUSD ? (item.Баланс / rubleCourse).toFixed(2) : item.Баланс.toFixed(2),
 		};
 	});
 

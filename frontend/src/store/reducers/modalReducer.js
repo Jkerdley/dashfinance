@@ -15,7 +15,7 @@ export const modalReducer = (state = initialModalState, action) => {
 			return {
 				...state,
 				modal: {
-					...state.modal,
+					...initialModalState.modal,
 					...action.payload,
 					isOpen: true,
 				},

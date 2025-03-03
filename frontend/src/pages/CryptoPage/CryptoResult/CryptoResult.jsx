@@ -1,23 +1,25 @@
 import React from 'react';
-import { accounts, categories, history } from '../../../db';
 import { calculateValueInCurrency, cleanValue } from '../../../utils';
 import { useCurrency } from '../../../hooks';
+import { useSelector } from 'react-redux';
+import { selectCryptoAssets } from '../../../store/selectors';
 
 export const CryptoResult = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const accountsDB = accounts.reduce((acc, account) => acc + account.balance, 0);
+	const cryptoAssets = useSelector(selectCryptoAssets);
+	const cryptoAssetsSumm = cryptoAssets.reduce((acc, account) => acc + account.balance, 0);
 
-	const historyDB = history
-		.filter((item) => {
-			return item.type === 'add';
-		})
-		.reduce((acc, item) => acc + Number(item.amount), 0);
+	// const historyDB = history
+	// 	.filter((item) => {
+	// 		return item.type === 'add';
+	// 	})
+	// 	.reduce((acc, item) => acc + Number(item.amount), 0);
 
-	const categoriesDB = categories.reduce((acc, item) => acc + item.balance, 0);
+	// const categoriesDB = categories.reduce((acc, item) => acc + item.balance, 0);
 
-	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
-	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
-	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
+	// const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
+	// const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
+	const totalBalanceForDate = calculateValueInCurrency(cryptoAssetsSumm, isUSD, rubleCourse);
 
 	return (
 		<section id="finance-result__main-container" className="flex justify-center w-full h-full">

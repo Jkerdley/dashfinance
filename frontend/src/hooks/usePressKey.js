@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export const usePressKey = (pressedKey) => {
 	const [isKeyPressed, setIsKeyPressed] = useState(false);
 
-	const onKeyDown = ({ key }) => {
-		key === pressedKey && setIsKeyPressed(true);
-	};
-	const onKeyUp = ({ key }) => {
-		key === pressedKey && setIsKeyPressed(false);
-	};
+	const onKeyDown = useCallback(
+		({ key }) => {
+			if (key === pressedKey) {
+				setIsKeyPressed(true);
+			}
+		},
+		[pressedKey],
+	);
+
+	const onKeyUp = useCallback(
+		({ key }) => {
+			if (key === pressedKey) {
+				setIsKeyPressed(false);
+			}
+		},
+		[pressedKey],
+	);
 
 	useEffect(() => {
 		window.addEventListener('keydown', onKeyDown);
@@ -17,7 +28,9 @@ export const usePressKey = (pressedKey) => {
 		return () => {
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
+			setIsKeyPressed(false);
 		};
-	}, []);
+	}, [onKeyDown, onKeyUp]);
+
 	return isKeyPressed;
 };
