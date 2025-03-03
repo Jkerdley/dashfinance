@@ -19,10 +19,10 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 
 	const pieProps = isCrypto
 		? {
-				cy: 150,
-				innerRadius: 90,
-				outerRadius: 150,
-				startAngle: 360,
+				cy: 240,
+				innerRadius: 120,
+				outerRadius: 200,
+				startAngle: 180,
 				endAngle: 0,
 			}
 		: {
@@ -34,7 +34,7 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 			};
 
 	return (
-		<PieChart width={300} height={isCrypto ? 320 : 200}>
+		<PieChart width={isCrypto ? 400 : 300} height={isCrypto ? 280 : 200}>
 			<Pie
 				data={mappedData}
 				cy={190}
@@ -49,7 +49,7 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 				))}
 			</Pie>
-			<Tooltip content={CustomRadialTooltip} isCrypto={true} />
+			<Tooltip content={CustomRadialTooltip} isCrypto={isCrypto} />
 		</PieChart>
 	);
 };
