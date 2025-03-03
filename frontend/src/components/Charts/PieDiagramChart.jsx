@@ -24,6 +24,8 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				outerRadius: 200,
 				startAngle: 180,
 				endAngle: 0,
+				animationBegin: 0,
+				animationDuration: 1000,
 			}
 		: {
 				cy: 190,
@@ -31,6 +33,8 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				outerRadius: 150,
 				startAngle: 180,
 				endAngle: 0,
+				animationBegin: 0,
+				animationDuration: 500,
 			};
 
 	return (
@@ -44,6 +48,8 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				stroke="none"
 				paddingAngle={4}
 				dataKey="value"
+				isAnimationActive={true}
+				animationEasing="ease-in-out"
 			>
 				{mappedData.map((entry, index) => (
 					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

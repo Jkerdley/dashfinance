@@ -29,12 +29,12 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 					id="categorie-text-container"
 					className={`flex flex-col ml-2  ${noButton ? 'w-[400px]' : 'w-full'} overflow-hidden`}
 				>
-					<p className="text-base truncate">{categorie}</p>
-					<div id="categorie-budjet-container" className="flex gap-2">
-						<p className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</p>
-						<p className="text-sm truncate text-gray-300">
+					<span className="text-base truncate">{categorie}</span>
+					<div id="categorie-budjet-container" className="flex gap-2 truncate">
+						<span className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</span>
+						<span className="text-sm truncate text-gray-300">
 							{Number(budget.slice(1).trim()) > 0 ? `Бюджет: ${budget}` : ''}
-						</p>
+						</span>
 					</div>
 				</div>
 			</div>

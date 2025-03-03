@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { CustomTooltip } from '../CustomTooltip/CustomTooltip';
 
 export const FinanceChart = ({ mappedData, isCrypto }) => {
@@ -35,11 +35,8 @@ export const FinanceChart = ({ mappedData, isCrypto }) => {
 							<stop offset="98%" stopColor="#ff81b6" stopOpacity={0.1} />
 						</linearGradient>
 					</defs>
-					{/* <CartesianGrid strokeDasharray="1 3" /> */}
 					<XAxis dataKey="date" fontSize={12} />
-					{/* <YAxis /> */}
 					<Tooltip content={<CustomTooltip />} />
-					{/* <Legend verticalAlign="top" align="center" /> */}
 					{isCrypto ? (
 						<Area
 							type="monotone"
@@ -48,6 +45,10 @@ export const FinanceChart = ({ mappedData, isCrypto }) => {
 							strokeWidth={2}
 							stroke="rgba(15, 109, 163, 0.9)"
 							fill="rgba(9, 62, 112, 0.9)"
+							isAnimationActive={true}
+							animationBegin={0}
+							animationDuration={500}
+							animationEasing="ease-in-out"
 						/>
 					) : (
 						<>
@@ -58,6 +59,10 @@ export const FinanceChart = ({ mappedData, isCrypto }) => {
 								stroke="url(#colorStrokeAdditions)"
 								strokeWidth={2}
 								fill="url(#colorAdditions)"
+								isAnimationActive={true}
+								animationBegin={0}
+								animationDuration={500}
+								animationEasing="ease-in-out"
 							/>
 							<Area
 								type="monotone"
@@ -66,6 +71,10 @@ export const FinanceChart = ({ mappedData, isCrypto }) => {
 								stroke="url(#colorStrokeExpenses)"
 								strokeWidth={2}
 								fill="url(#colorExpenses)"
+								isAnimationActive={true}
+								animationBegin={0}
+								animationDuration={500}
+								animationEasing="ease-in-out"
 							/>
 						</>
 					)}
