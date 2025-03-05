@@ -1,4 +1,3 @@
 export * from './getCourseAction';
-export * from './closeModal.js';
-export * from './openModal.js';
+export * from './modalActions.js';
 export * from './fetshHistory.js';

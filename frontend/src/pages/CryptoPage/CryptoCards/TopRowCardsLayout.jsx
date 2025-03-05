@@ -8,7 +8,10 @@ export const TopRowCardsLayout = () => {
 	const coinDataInCards = fetchedCoinsPrices;
 
 	return (
-		<section id="layout__crypto-top__line" className="flex max-h-[12vh] 2xl:flex-nowrap flex-wrap gap-4">
+		<section
+			id="layout__crypto-top__line"
+			className="flex flex-4/12 max-h-50 xl:flex-nowrap flex-wrap gap-4"
+		>
 			<TopRowCard coinTitle={'Bitcoin'} data={coinDataInCards.result[0]} flex={'flex-2/12'} />
 			<TopRowCard coinTitle={'Etherium'} data={coinDataInCards.result[1]} flex={'flex-2/12'} />
 			<TopRowCard coinTitle={'BNB'} data={coinDataInCards.result[2]} flex={'flex-2/12'} />

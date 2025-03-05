@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { CustomRadialTooltip } from '../../components/CustomTooltip';
 
 export const PieDiagramChart = ({ mappedData, isCrypto }) => {
-	const startTime = performance.now();
+	// const startTime = performance.now();
 	const COLORS = [
 		'#ee529b',
 		'#ff7285',
@@ -38,7 +38,7 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				animationDuration: 500,
 			};
 
-	console.log(`isCrypto = ${isCrypto}PieDiagramChart render time:`, performance.now() - startTime);
+	// console.log(`isCrypto = ${isCrypto}PieDiagramChart render time:`, performance.now() - startTime);
 	return (
 		<PieChart width={isCrypto ? 400 : 300} height={isCrypto ? 280 : 200}>
 			<Pie

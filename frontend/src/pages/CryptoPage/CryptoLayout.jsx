@@ -9,18 +9,16 @@ export const CryptoLayout = () => {
 	return (
 		<section className="flex flex-col gap-4">
 			<TopRowCardsLayout />
-			<div
-				id="layout__crypto"
-				className="flex flex-col flex-5 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
-			>
+			<div id="layout__crypto" className="flex flex-col flex-6/12 rounded-4xl gap-4">
 				<div id="crypto__top-container" className="flex flex-5/12 flex-row gap-4">
-					<div className="flex flex-8/12 w-full">
-						<CryptoResultLayout />
-					</div>
+					<CryptoResultLayout />
 					{/* <CryptoBalanceChart /> */}
 				</div>
-				<div id="crypto__bottom-container" className="flex flex-7/12 flex-col gap-4">
-					<div id="row__accounts-and-history" className="flex flex-10/12 gap-4">
+				<div id="crypto__bottom-container" className="flex flex-7/12  flex-col gap-4">
+					<div
+						id="row__accounts-and-history"
+						className="flex xl:flex-nowrap flex-wrap flex-10/12 gap-4"
+					>
 						<MyCriptoPortfolioList />
 						<CryptoOpreationsHistoryContainer />
 						<section className="flex flex-col flex-2/12 gap-4">

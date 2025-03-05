@@ -4,15 +4,13 @@ import { useFinanceExpensesFromHistory } from '../../../hooks';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
 
 export const FinanceResultDiagram = ({ selectedSortType }) => {
-	const startTime = performance.now();
+	// const startTime = performance.now();
 	const { mappedData, historyIsLoading } = useFinanceExpensesFromHistory({
 		selectedSortType,
 		showInCategories: false,
 	});
-	console.log('mappedData in pieChart', mappedData);
 
-	// console.log('Component mounted:', 'FinanceResultDiagram', 'Data:', mappedData);
-	console.log('FinanceResultDiagram render time:', performance.now() - startTime);
+	// console.log('FinanceResultDiagram render time:', performance.now() - startTime);
 	return (
 		<div id="column__income-chart" className="flex relative items-center justify-center">
 			<span className="absolute top-44 text-md font-medium text-center text-white/70">

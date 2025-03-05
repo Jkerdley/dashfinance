@@ -1,30 +1,52 @@
 import React from 'react';
-import { SidebarMenu } from './components/Sidebar';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { SidebarMenu } from './components/Sidebar';
 import { TopMenuRow } from './components/TopMenu';
+import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
-import { FinancesLayout } from './pages/FinancesPage';
-import { ModalWindowLayout } from './components/modalWindow/ModalWindowLayout';
-import { useSelector } from 'react-redux';
+import { FinancesLayout } from './pages/FinancesPage/';
 import { selectAccounts, selectCategories } from './store/selectors';
+import { selectOperationModal, selectBurgerModal } from './store/selectors';
+import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 
-function App() {
+export const App = () => {
+	const dispatch = useDispatch();
+	const operationModal = useSelector(selectOperationModal);
+	const burgerModal = useSelector(selectBurgerModal);
 	const accountsData = useSelector(selectAccounts);
 	const categoriesData = useSelector(selectCategories);
-	const canShowModal = accountsData.length > 0 && categoriesData.length > 0;
+
+	const canShowOperationModal = accountsData.length > 0 && categoriesData.length > 0;
+
+	const handleCloseBurgerModal = () => {
+		dispatch(closeBurgerModal());
+	};
+
+	const handleCloseOperationModal = () => {
+		dispatch(closeOperationModal());
+	};
+
+	const handleBurgerClick = () => {
+		dispatch(openBurgerModal());
+	};
+
 	return (
 		<div id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
-			{canShowModal && <ModalWindowLayout />}
+			<BurgerMenuModal isOpen={burgerModal.isOpen} onClose={handleCloseBurgerModal} />
+
+			{canShowOperationModal && (
+				<AddOperationModal
+					isOpen={operationModal.isOpen}
+					operationType={operationModal.type}
+					onClose={handleCloseOperationModal}
+				/>
+			)}
+
 			<SidebarMenu />
-			<div
-				id="mainLayout"
-				className="flex flex-col flex-15 p-4 backdrop-blur-[40px] bg-cover bg-[rgba(188,217,255,0.05)] rounded-[36px] gap-4 transition-all duration-250 ease-in-out"
-			>
-				<TopMenuRow />
-				<div
-					id="pagesLayout"
-					className="flex flex-wrap rounded-[36px] h-full gap-4 transition-all duration-250 ease-in-out"
-				>
+			<div id="mainLayout" className="flex flex-col flex-15 p-4...">
+				<TopMenuRow onBurgerClick={handleBurgerClick} isBurgerMenuOpen={burgerModal.isOpen} />
+				<div id="pagesLayout" className="flex flex-wrap rounded-[36px] h-full gap-4">
 					<Routes>
 						<Route path="/" element={'MAIN PAGE'} />
 						<Route path="/finances" element={<FinancesLayout />} />
@@ -35,6 +57,4 @@ function App() {
 			</div>
 		</div>
 	);
-}
-
-export default App;
+};

@@ -1,27 +1,47 @@
 import { ACTIONS } from '../actionTypes';
 
-const initialModalState = {
-	modal: {
+const initialState = {
+	operationModal: {
 		isOpen: false,
-		question: '',
-		onConfirm: () => {},
-		onCancel: () => {},
+		type: null, // TODO 'income' или 'expense'
+	},
+	burgerModal: {
+		isOpen: false,
 	},
 };
 
-export const modalReducer = (state = initialModalState, action) => {
+export const modalReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ACTIONS.OPEN_MODAL:
+		case ACTIONS.OPEN_OPERATION_MODAL:
 			return {
 				...state,
-				modal: {
-					...initialModalState.modal,
-					...action.payload,
+				operationModal: {
+					isOpen: true,
+					type: action.payload,
+				},
+			};
+		case ACTIONS.CLOSE_OPERATION_MODAL:
+			return {
+				...state,
+				operationModal: {
+					isOpen: false,
+					type: null,
+				},
+			};
+		case ACTIONS.OPEN_BURGER_MODAL:
+			return {
+				...state,
+				burgerModal: {
 					isOpen: true,
 				},
 			};
-		case ACTIONS.CLOSE_MODAL:
-			return initialModalState;
+		case ACTIONS.CLOSE_BURGER_MODAL:
+			return {
+				...state,
+				burgerModal: {
+					isOpen: false,
+				},
+			};
 		default:
 			return state;
 	}
