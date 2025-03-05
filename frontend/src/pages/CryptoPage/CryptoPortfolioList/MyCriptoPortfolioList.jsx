@@ -44,7 +44,7 @@ export const MyCriptoPortfolioList = () => {
 				</div>
 			)}
 
-			<OperationsPanel onCryptoClick={null} isCrypto={true} />
+			<OperationsPanel isCrypto={true} />
 		</section>
 	);
 };

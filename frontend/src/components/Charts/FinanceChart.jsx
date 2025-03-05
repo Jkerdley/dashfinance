@@ -3,8 +3,8 @@ import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { CustomTooltip } from '../CustomTooltip/CustomTooltip';
 
 export const FinanceChart = ({ mappedData, isCrypto }) => {
-	const startTime = performance.now();
-	console.log('FinanceChart render time:', performance.now() - startTime);
+	// const startTime = performance.now();
+	// console.log('FinanceChart render time:', performance.now() - startTime);
 	return (
 		<div className="flex pt-2 h-full">
 			<ResponsiveContainer>

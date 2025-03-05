@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currencySelector } from '../../store/selectors/currency-selector';
 import { ACTIONS } from '../../store/actionTypes';
@@ -13,9 +13,7 @@ export const CurrencyToggle = () => {
 
 	return (
 		<div className="flex items-center space-x-3">
-			{/* Текст USD подсвечивается если выбран USD */}
 			<span className={`transition-colors ${isUSD ? 'text-sky-300' : 'text-gray-300/80'}`}>USD</span>
-			{/* Переключатель */}
 			<div
 				onClick={toggleCurrency}
 				className={`relative w-14 h-8 bg-linear-to-r ${isUSD ? 'from-sky-300/85 to-sky-50/45' : 'from-sky-50/45 to-sky-400/95'} rounded-full cursor-pointer transition-colors duration-200`}
@@ -26,7 +24,6 @@ export const CurrencyToggle = () => {
 					}`}
 				></div>
 			</div>
-			{/* Текст RUB подсвечивается если выбран RUB */}
 			<span className={`transition-colors ${!isUSD ? 'text-sky-300' : 'text-gray-300/80'}`}>RUB</span>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
 import { useEffect } from 'react';
-import { selectAccountsIsLoading, selectCategories } from '../store/selectors';
+import { selectCategories, selectCategoriesIsLoading } from '../store/selectors';
 import { calculateValueInCurrency } from '../utils';
 import { fetchCategories } from '../store/actions/async/fetchCategories';
 import { useFinanceExpensesFromHistory } from './useFinanceExpensesFromHistory';
@@ -13,11 +13,12 @@ export const useFetchCategoriesInCurrency = (selectedSortType) => {
 	});
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
-	const categoriesIsLoading = useSelector(selectAccountsIsLoading);
+	const categoriesIsLoading = useSelector(selectCategoriesIsLoading);
 
 	useEffect(() => {
 		dispatch(fetchCategories());
-	}, []);
+	}, [dispatch]);
+
 	const categories = useSelector(selectCategories);
 
 	const categoriesInCurrency = categories.map((categorie) => {
@@ -33,5 +34,6 @@ export const useFetchCategoriesInCurrency = (selectedSortType) => {
 			budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
 		};
 	});
+
 	return { categoriesInCurrency, categoriesIsLoading };
 };
