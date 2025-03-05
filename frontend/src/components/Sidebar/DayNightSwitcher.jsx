@@ -7,7 +7,7 @@ import { Button } from '../buttons/Button';
 
 export const DayNightSwitcher = ({ isInModal }) => {
 	return (
-		<div id="theme-switcher__container" className={`flex flex-2 flex-col items-center justify-end gap-6`}>
+		<div id="theme-switcher__container" className={`flex flex-2 flex-col items-center justify-end`}>
 			<div
 				id="theme-switcher__buttons"
 				className={`flex justify-center items-center p-1.5 bg-gray-500/25 rounded-2xl gap-2`}
@@ -21,8 +21,4 @@ export const DayNightSwitcher = ({ isInModal }) => {
 
 DayNightSwitcher.propTypes = {
 	isInModal: PropTypes.bool,
-};
-
-DayNightSwitcher.defaultProps = {
-	isInModal: false,
 };
