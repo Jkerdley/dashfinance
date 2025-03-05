@@ -44,7 +44,7 @@ export const App = () => {
 			)}
 
 			<SidebarMenu />
-			<div id="mainLayout" className="flex flex-col flex-15 p-4 gap-4">
+			<div id="mainLayout" className="flex flex-col flex-15 p-4 gap-4 rounded-4xl bg-sky-300/5 ">
 				<TopMenuRow onBurgerClick={handleBurgerClick} isBurgerMenuOpen={burgerModal.isOpen} />
 				<div id="pagesLayout" className="flex flex-wrap rounded-[36px] h-full gap-4">
 					<Routes>

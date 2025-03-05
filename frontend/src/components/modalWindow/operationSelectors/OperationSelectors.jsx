@@ -9,7 +9,7 @@ export const OperationSelectors = ({
 	return (
 		<div className="flex gap-6 justify-around items-center">
 			<select
-				className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
+				className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
 				value={formState.selectedAccountValue}
 				onChange={handleInputChange('selectedAccountValue')}
 			>
@@ -24,7 +24,7 @@ export const OperationSelectors = ({
 				))}
 			</select>
 			<select
-				className="text-sm rounded-xl w-[40%] p-2 bg-sky-900/50"
+				className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
 				value={formState.selectedCategoryValue}
 				onChange={handleInputChange('selectedCategoryValue')}
 			>
