@@ -1,7 +1,7 @@
 import React from 'react';
 import { WideOperationsButton } from '../buttons';
 
-export const CryptoPanelButtons = ({ onCryptoClick, handleOperationClick }) => {
+export const CryptoPanelButtons = ({ handleOperationClick }) => {
 	return (
 		<section id="operations__buttons" className="flex flex-col mt-4 items-start gap-4">
 			<div className="flex gap-4 w-full justify-between items-center">
