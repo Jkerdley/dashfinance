@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { Categorie } from './Categorie';
 import { EditAddDeleteButton } from '../../../components/buttons';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import { useFetchCategoriesInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
+import { CategoriesSelector } from '../../../components/sortSelector/categoriesSelector';
 
 export const CategoriesContainer = () => {
-	const { categoriesInCurrency, categoriesIsLoading } = useFetchCategoriesInCurrency();
+	const [selectedSortType, setSelectedSortType] = useState('month');
+	const { categoriesInCurrency, categoriesIsLoading } = useFetchCategoriesInCurrency(selectedSortType);
+
+	const handleSortChange = () => {
+		setSelectedSortType(selectedSortType === 'month' ? 'thisYear' : 'month');
+	};
 	return (
 		<section id="column__categories" className="flex flex-col flex-4 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 				<SectionContainerHeader title={'Категории'} />
+				<CategoriesSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
 				<EditAddDeleteButton icon={AddIcon} title={'Изменить'} to={''} alt={'Категории расходов'} />
 			</div>
 			{categoriesInCurrency.length === 0 ? (
