@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BurgerButton } from '../../buttons/BurgerButton';
 import { usePressKey } from '../../../hooks';
 import PropTypes from 'prop-types';
 import { CloseModalButton } from '../../buttons';
@@ -14,39 +13,30 @@ export const BaseModal = ({
 }) => {
 	const modalRef = useRef(null);
 	const escButtonPressed = usePressKey('Escape');
-	const [isAnimating, setIsAnimating] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
+
+	const handleClose = () => {
+		setIsVisible(false);
+		setTimeout(() => {
+			onClose();
+		}, 200);
+	};
 
 	useEffect(() => {
 		if (isOpen) {
-			setIsAnimating(true);
 			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					setIsVisible(true);
-				});
+				setIsVisible(true);
 			});
-		} else {
-			setIsVisible(false);
 		}
 	}, [isOpen]);
 
 	useEffect(() => {
 		if (escButtonPressed && isOpen) {
-			onClose();
+			handleClose();
 		}
-	}, [escButtonPressed, isOpen, onClose]);
+	}, [escButtonPressed, isOpen]);
 
-	useEffect(() => {
-		isOpen && modalRef.current && modalRef.current.focus();
-	}, [isOpen]);
-
-	if (!isOpen && !isAnimating) return null;
-
-	const handleAnimationEnd = () => {
-		if (!isOpen) {
-			setIsAnimating(false);
-		}
-	};
+	if (!isOpen) return null;
 
 	const positionClasses = {
 		left: 'left-0 top-0 h-full',
@@ -66,30 +56,23 @@ export const BaseModal = ({
 		<section className="fixed inset-0 z-20">
 			<div
 				className={`
-                    absolute w-full h-full bg-gray-950/80 transition-opacity duration-300 ease-in-out
+                    absolute w-full h-full bg-gray-950/80 transition-opacity duration-200 ease-in-out
                     ${isVisible ? 'opacity-100' : 'opacity-0'}
                 `}
-				onClick={onClose}
+				onClick={handleClose}
 			/>
 			<div
 				ref={modalRef}
 				tabIndex="-1"
-				onTransitionEnd={handleAnimationEnd}
 				className={`
-                    relative ${width} ${height} px-8 pt-6 z-30 
-                    bg-sky-950/50 backdrop-blur-md rounded-4xl text-center
+                    relative ${width} ${height} px-8 pt-6 z-30
+                 bg-sky-950/20 backdrop-blur-2xl rounded-4xl text-center
                     ${positionClasses[position]}
                     ${animationClasses[position]}
-                    transition-all duration-300 ease-in-out
+                    transition-all duration-200 ease-in-out
                 `}
 			>
-				{position === 'left' ? (
-					<div className="absolute right-6 top-6 z-50">
-						<BurgerButton isOpen={true} onClick={onClose} />
-					</div>
-				) : (
-					<CloseModalButton onClick={onClose} />
-				)}
+				<CloseModalButton onClick={handleClose} />
 				{children}
 			</div>
 		</section>

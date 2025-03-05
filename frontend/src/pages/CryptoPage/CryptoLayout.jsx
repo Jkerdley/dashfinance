@@ -7,7 +7,7 @@ import { CryptoBalanceChart, TopGainerAndLooserChart } from './Charts';
 
 export const CryptoLayout = () => {
 	return (
-		<section className="flex flex-col gap-4">
+		<section className="flex flex-col flex-20/24 gap-4">
 			<TopRowCardsLayout />
 			<div id="layout__crypto" className="flex flex-col flex-6/12 rounded-4xl gap-4">
 				<div id="crypto__top-container" className="flex flex-5/12 flex-row gap-4">
