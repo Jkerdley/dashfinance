@@ -56,7 +56,7 @@ export const BaseModal = ({
 		<section className="fixed inset-0 z-20">
 			<div
 				className={`
-                    absolute w-full h-full bg-gray-950/80 transition-opacity duration-400 ease-in-out
+                    absolute w-full h-full bg-gray-950/80 transition-opacity duration-200 ease-in-out
                     ${isVisible ? 'opacity-100' : 'opacity-0'}
                 `}
 				onClick={handleClose}
@@ -66,10 +66,10 @@ export const BaseModal = ({
 				tabIndex="-1"
 				className={`
                     relative ${width} ${height} px-8 pt-6 z-30
-                    bg-sky-950/40 backdrop-blur-md rounded-4xl text-center
+                 bg-sky-950/20 backdrop-blur-2xl rounded-4xl text-center
                     ${positionClasses[position]}
                     ${animationClasses[position]}
-                    transition-all duration-400 ease-in-out
+                    transition-all duration-200 ease-in-out
                 `}
 			>
 				<CloseModalButton onClick={handleClose} />
