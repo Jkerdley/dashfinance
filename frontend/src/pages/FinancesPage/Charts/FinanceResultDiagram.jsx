@@ -1,31 +1,16 @@
 import React from 'react';
 import { Loader } from '../../../components/Loaders/Loader';
-import { useSelector } from 'react-redux';
-import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors';
-import { aggregateExpensesByCategory, filteredByThisMonth, getsortedHistory } from '../../../utils';
-import { useCurrency } from '../../../hooks';
+import { useFinanceExpensesFromHistory } from '../../../hooks';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
 
 export const FinanceResultDiagram = ({ selectedSortType }) => {
 	const startTime = performance.now();
-	const { isUSD, rubleCourse } = useCurrency();
-	const financeHistory = useSelector(selectHistory);
-	const historyIsLoading = useSelector(selectHistoryIsLoading);
-	const filteredHistoryForChart = financeHistory.filter((operation) => operation.type === 'spend');
-
-	const sortedHistory = getsortedHistory(
-		filteredByThisMonth(filteredHistoryForChart, selectedSortType),
-		'oldest',
-	);
-	const expensesByCategory = aggregateExpensesByCategory(sortedHistory);
-	const mappedData = expensesByCategory.map((item) => {
-		return {
-			...item,
-			value: isUSD
-				? parseFloat((item.value / rubleCourse).toFixed(2))
-				: parseFloat(item.value.toFixed(2)),
-		};
+	const { mappedData, historyIsLoading } = useFinanceExpensesFromHistory({
+		selectedSortType,
+		showInCategories: false,
 	});
+	console.log('mappedData in pieChart', mappedData);
+
 	// console.log('Component mounted:', 'FinanceResultDiagram', 'Data:', mappedData);
 	console.log('FinanceResultDiagram render time:', performance.now() - startTime);
 	return (

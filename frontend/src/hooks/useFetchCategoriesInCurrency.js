@@ -4,8 +4,13 @@ import { useEffect } from 'react';
 import { selectAccountsIsLoading, selectCategories } from '../store/selectors';
 import { calculateValueInCurrency } from '../utils';
 import { fetchCategories } from '../store/actions/async/fetchCategories';
+import { useFinanceExpensesFromHistory } from './useFinanceExpensesFromHistory';
 
-export const useFetchCategoriesInCurrency = () => {
+export const useFetchCategoriesInCurrency = (selectedSortType) => {
+	const { mappedData, historyIsLoading } = useFinanceExpensesFromHistory({
+		selectedSortType,
+		showInCategories: true,
+	});
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const categoriesIsLoading = useSelector(selectAccountsIsLoading);
@@ -15,10 +20,18 @@ export const useFetchCategoriesInCurrency = () => {
 	}, []);
 	const categories = useSelector(selectCategories);
 
-	const categoriesInCurrency = categories.map((categorie) => ({
-		...categorie,
-		balance: calculateValueInCurrency(categorie.balance, isUSD, rubleCourse),
-		budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
-	}));
+	const categoriesInCurrency = categories.map((categorie) => {
+		const findedCategoryInExpensesHistory = mappedData.filter(
+			(item) => item.name.toLowerCase() === categorie.name.toLowerCase(),
+		);
+		const newBalanceInCategorie =
+			findedCategoryInExpensesHistory.length > 0 ? findedCategoryInExpensesHistory[0].balance : 0;
+
+		return {
+			...categorie,
+			balance: calculateValueInCurrency(newBalanceInCategorie, isUSD, rubleCourse),
+			budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
+		};
+	});
 	return { categoriesInCurrency, categoriesIsLoading };
 };
