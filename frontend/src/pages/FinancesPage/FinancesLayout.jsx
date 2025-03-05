@@ -8,7 +8,10 @@ import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
 
 export const FinancesLayout = () => {
 	return (
-		<div id="layout__finances" className="flex flex-16 2xl:flex-nowrap flex-wrap rounded-4xl gap-4">
+		<section
+			id="layout__finances"
+			className="flex flex-22/24 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
+		>
 			<div className="flex flex-10 flex-col gap-4">
 				<FinanceResultLayout />
 				<div id="row__accounts-and-history" className="flex flex-10 gap-4">
@@ -26,6 +29,6 @@ export const FinancesLayout = () => {
 				<CategoriesLayout />
 				<FinanceAddAndSpendChartContainer />
 			</div>
-		</div>
+		</section>
 	);
 };

@@ -5,3 +5,4 @@ export * from './useFetchCategoriesInCurrency.js';
 export * from './useFetchCryptoAssetsInCurrency.js';
 export * from './useFinanceExpensesFromHistory.js';
 export * from './useCurrency.js';
+export * from './useModalClose.js';

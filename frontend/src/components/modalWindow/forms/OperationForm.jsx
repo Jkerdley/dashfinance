@@ -8,7 +8,7 @@ import {
 	OperationSelectors,
 	SaveAndCancelButtons,
 	SelectedCategories,
-} from '../operationComponents';
+} from '../operationSelectors';
 import { useSelector } from 'react-redux';
 import { selectAccounts, selectCategories } from '../../../store/selectors';
 

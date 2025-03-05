@@ -7,7 +7,7 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const PORT = 3005;
+const PORT = 3007;
 const app = express();
 
 // app.use(express.static("../frontend/build"));
