@@ -3,10 +3,11 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
 const { getUser } = require("../controllers/user");
+const authentificated = require("../middleware/authentificated");
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", async (req, res) => {
+router.get("/", authentificated, async (req, res) => {
     const { login, password } = req.query;
     const user = await getUser({ login });
 
