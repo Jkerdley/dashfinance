@@ -22,12 +22,7 @@ router.get("/history", async (req, res) => {
         history: history.map(historyMap),
     });
 });
-router.get("/cryptohistory", async (req, res) => {
-    const cryptohistory = await getCryptoHistory();
-    res.send({
-        cryptohistory: cryptohistory.map(cryptohistoryMap),
-    });
-});
+
 router.get("/cryptoassets", async (req, res) => {
     const cryptoAssets = await getCryptoAssets();
     res.send({
