@@ -1,29 +1,31 @@
 import { ACTIONS } from '../actionTypes';
 
-const initialCryptoAssetsState = {
+const initialCryptoState = {
 	isLoading: false,
-	data: [],
+	coins: [],
+	cryptoAssets: [],
 	cryptoHistory: [],
 	error: null,
 };
 
-export const cryptoAssetsReducer = (state = initialCryptoAssetsState, action) => {
+export const cryptoReducer = (state = initialCryptoState, action) => {
 	switch (action.type) {
-		case ACTIONS.FETCH_CRYPTOASSETS_REQUEST:
+		case ACTIONS.FETCH_CRYPTODATA_REQUEST:
 			return {
 				...state,
 				isLoading: true,
 				error: null,
 			};
-		case ACTIONS.FETCH_CRYPTOASSETS_SUCCESS:
+		case ACTIONS.FETCH_CRYPTODATA_SUCCESS:
 			return {
 				...state,
 				isLoading: false,
-				data: action.payload.cryptoAssets,
-				cryptoHistory: action.payload.cryptoAssets.flatMap((asset) => asset.history),
+				coins: action.payload.coins,
+				cryptoAssets: action.payload.cryptoAssets,
+				cryptoHistory: action.payload.cryptoHistory,
 				error: null,
 			};
-		case ACTIONS.FETCH_CRYPTOASSETS_ERROR:
+		case ACTIONS.FETCH_CRYPTODATA_ERROR:
 			return {
 				...state,
 				isLoading: false,

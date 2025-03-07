@@ -26,7 +26,7 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				startAngle: 180,
 				endAngle: 0,
 				animationBegin: 0,
-				animationDuration: 1000,
+				animationDuration: 500,
 			}
 		: {
 				cy: 190,
