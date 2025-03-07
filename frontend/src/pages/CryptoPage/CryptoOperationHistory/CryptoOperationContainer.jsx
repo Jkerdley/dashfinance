@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import { CryptoOperationHistory } from './CryptoOperationHistory.jsx';
-import { fetchedCoinsPrices } from '../../../db.js';
 import { SortSelector } from '../../../components/sortSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
@@ -9,13 +8,18 @@ import { useSelector } from 'react-redux';
 import { useCurrency } from '../../../hooks/useCurrency.js';
 import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
 import { getsortedHistory } from '../../../utils/getSortedHistory.js';
-import { selectCryptoAssetsHistory, selectCryptoIsLoading } from '../../../store/selectors/select-crypto.js';
+import {
+	selectCryptoAssetsHistory,
+	selectCryptoCoins,
+	selectCryptoIsLoading,
+} from '../../../store/selectors/select-crypto.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
 	const { isUSD, rubleCourse } = useCurrency();
 	const fetchedHistory = useSelector(selectCryptoAssetsHistory);
 	const fetchHistoryIsLoading = useSelector(selectCryptoIsLoading);
+	const fetchedCoinsPrices = useSelector(selectCryptoCoins);
 
 	const filteredHistory = useMemo(() => {
 		return getHIstoryInCurrency(fetchedHistory, isUSD, rubleCourse);
@@ -24,13 +28,6 @@ export const CryptoOpreationsHistoryContainer = () => {
 	const sortedHistory = useMemo(() => {
 		return getsortedHistory(filteredHistory, sortType);
 	}, [filteredHistory, sortType]);
-
-	// const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
-	// 	fetchCryptoAssets,
-	// 	sortType,
-	// 	selectCryptoAssetsHistory,
-	// 	selectCryptoAssetsIsLoading,
-	// );
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 
