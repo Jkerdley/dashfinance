@@ -10,17 +10,23 @@ import { SearchInput } from '../SearchInput/SearchInput';
 import { request } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { ACTIONS } from '../../store/actionTypes';
+import { useNavigate } from 'react-router-dom';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const logout = async () => {
-		await request('/auth/logout', 'POST');
-		dispatch({ type: ACTIONS.CLEAR_USER_DATA });
-		localStorage.removeItem('token');
-		localStorage.removeItem('user');
-		window.location.href = '/login';
+		try {
+			await request('/auth/logout', 'POST');
+			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
+			localStorage.removeItem('token');
+			localStorage.removeItem('user');
+			navigate('/login');
+		} catch (err) {
+			console.error('Ошибка выхода:', err);
+		}
 	};
 
 	useEffect(() => {
