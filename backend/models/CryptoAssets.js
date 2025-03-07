@@ -22,7 +22,6 @@ const CryptoAssetsSchema = mongoose.Schema(
                 message: "Количество активов должно быть числом",
             },
         },
-        name: { type: String, required: true },
         history: { type: Array, required: true },
     },
     { timestamps: true }

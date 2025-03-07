@@ -1,15 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const {
-    getHistory,
-    getCryptoHistory,
-    getAccounts,
-    getCategories,
-    getCryptoAssets,
-} = require("../controllers/finances");
+const { getHistory, getAccounts, getCategories, getCryptoAssets } = require("../controllers/finances");
 const historyMap = require("../helpers/historyMap");
-const cryptohistoryMap = require("../helpers/cryptohistoryMap");
 const categoriesMap = require("../helpers/categoriesMap");
 const accountsMap = require("../helpers/accountsMap");
 const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");

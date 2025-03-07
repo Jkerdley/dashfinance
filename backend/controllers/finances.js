@@ -1,5 +1,4 @@
 const History = require("../models/History");
-const CryptoHistory = require("../models/CryptoHistory");
 const Accounts = require("../models/Acounts");
 const Categories = require("../models/Categories");
 const CryptoAssets = require("../models/CryptoAssets");
@@ -9,7 +8,6 @@ async function getHistory() {
     const history = await History.find();
     return history;
 }
-
 async function getAccounts() {
     const accounts = await Accounts.find();
     return accounts;
