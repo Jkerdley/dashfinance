@@ -93,10 +93,10 @@ export const App = () => {
 		dispatch(openBurgerModal());
 	};
 
-	const isAuthenticated = !!localStorage.getItem('token'); // Проверка аутентификации
+	const isAuthenticated = !!localStorage.getItem('token');
 
 	return (
-		<div id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
+		<section id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			{isAuthenticated && (
 				<>
 					<BurgerMenuModal isOpen={burgerModal.isOpen} onClose={handleCloseBurgerModal} />
@@ -135,6 +135,6 @@ export const App = () => {
 					<Route path="/*" element={<Navigate to="/login" />} />
 				</Routes>
 			)}
-		</div>
+		</section>
 	);
 };

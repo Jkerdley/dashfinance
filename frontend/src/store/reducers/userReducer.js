@@ -1,7 +1,7 @@
 import { ACTIONS } from '../actionTypes';
 
 const initialUserState = {
-	user: [],
+	data: JSON.parse(localStorage.getItem('user')) || [],
 };
 
 export const userReducer = (state = initialUserState, action) => {
@@ -9,9 +9,10 @@ export const userReducer = (state = initialUserState, action) => {
 		case ACTIONS.GET_USER_DATA:
 			return {
 				...state,
-				user: action.payload,
+				data: action.payload,
 			};
-
+		case ACTIONS.CLEAR_USER_DATA:
+			return initialUserState;
 		default:
 			return state;
 	}
