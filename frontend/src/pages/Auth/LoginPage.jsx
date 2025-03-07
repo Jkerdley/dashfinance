@@ -12,7 +12,7 @@ export const LoginPage = () => {
 		try {
 			const data = await request('/auth/login', 'POST', { login, password });
 			console.log('data in Login', data);
-
+			dispatch();
 			localStorage.setItem('token', data.token);
 			window.location.href = '/finances';
 		} catch (err) {
