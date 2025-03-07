@@ -4,10 +4,8 @@ import { useCurrency, useFetchCryptoAssetsInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 import { CryptoAssetsAllocationChart } from '../Charts';
 
-export const CryptoResult = () => {
+export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
-
 	const cryptoAssetsSumm2 = cryptoAssetsInCurrency.reduce(
 		(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
 		0,

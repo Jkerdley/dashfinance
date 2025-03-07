@@ -2,7 +2,7 @@ import { ACTIONS } from '../actionTypes';
 
 const initialCurrencyState = {
 	isUSD: false,
-	usdCourse: 98.3,
+	usdCourse: 90,
 	currencies: [],
 };
 
