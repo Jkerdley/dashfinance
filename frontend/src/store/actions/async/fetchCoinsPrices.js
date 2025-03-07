@@ -6,7 +6,6 @@ export const fetchCoinsPrices = () => async (dispatch) => {
 
 	try {
 		const response = await getCryptoCoinsAsync();
-		console.log('COINS ЗАПРОС КРИПТЫ', response.result);
 		dispatch({
 			type: ACTIONS.FETCH_COINDATA_SUCCESS,
 			payload: response.result,

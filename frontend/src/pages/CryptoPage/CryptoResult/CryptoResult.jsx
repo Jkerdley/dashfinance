@@ -75,7 +75,10 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 				</section> */}
 			</div>
 			<div className="flex items-center justify-center flex-2">
-				<CryptoAssetsAllocationChart />
+				<CryptoAssetsAllocationChart
+					cryptoAssetsInCurrency={cryptoAssetsInCurrency}
+					isLoading={isLoading}
+				/>
 			</div>
 		</section>
 	);

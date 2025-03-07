@@ -1,10 +1,8 @@
 import React from 'react';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
-import { useFetchCryptoAssetsInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 
-export const CryptoAssetsAllocationChart = () => {
-	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
+export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading }) => {
 	const mappenData = cryptoAssetsInCurrency.map((asset) => ({
 		name: asset.name,
 		value: parseFloat(asset.profit.slice(1).trim()),

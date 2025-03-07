@@ -15,19 +15,12 @@ export const useFetchCryptoAssetsInCurrency = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (cryptoCoins.length === 0) {
-			dispatch(fetchCoinsPrices());
-		}
-	}, [cryptoCoins.length]);
+		cryptoCoins.length === 0 && dispatch(fetchCoinsPrices());
+	}, []);
 
 	useEffect(() => {
-		if (cryptoCoins.length > 0) {
-			dispatch(fetchCryptoAssets());
-		}
-	}, [cryptoCoins.length, dispatch]);
-
-	console.log('cryptoAssets', cryptoAssets);
-	console.log('cryptoCoins', cryptoCoins);
+		cryptoAssets.length === 0 && dispatch(fetchCryptoAssets());
+	}, []);
 
 	const cryptoAssetsInCurrency = cryptoAssets.map((asset) => {
 		const fetchedCoinData = cryptoCoins.find((coin) => coin.id === asset.coinId);
