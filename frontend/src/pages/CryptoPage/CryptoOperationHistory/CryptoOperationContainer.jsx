@@ -1,23 +1,21 @@
 import React, { useMemo, useState } from 'react';
-import EditIcon from '../../../assets/icons/edit-icon.svg';
 import { CryptoOperationHistory } from './CryptoOperationHistory.jsx';
 import { fetchedCoinsPrices } from '../../../db.js';
 import { SortSelector } from '../../../components/sortSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
-import { EditAddDeleteButton } from '../../../components/buttons';
 import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
-import { selectCryptoAssetsHistory, selectCryptoAssetsIsLoading } from '../../../store/selectors';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
 import { useSelector } from 'react-redux';
 import { useCurrency } from '../../../hooks/useCurrency.js';
 import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
 import { getsortedHistory } from '../../../utils/getSortedHistory.js';
+import { selectCryptoAssetsHistory, selectCryptoIsLoading } from '../../../store/selectors/select-crypto.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
 	const { isUSD, rubleCourse } = useCurrency();
 	const fetchedHistory = useSelector(selectCryptoAssetsHistory);
-	const fetchHistoryIsLoading = useSelector(selectCryptoAssetsIsLoading);
+	const fetchHistoryIsLoading = useSelector(selectCryptoIsLoading);
 
 	const filteredHistory = useMemo(() => {
 		return getHIstoryInCurrency(fetchedHistory, isUSD, rubleCourse);

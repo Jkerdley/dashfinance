@@ -1,26 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
-import { selectCryptoAssets, selectCryptoAssetsIsLoading } from '../store/selectors';
+import { selectCryptoAssets, selectCryptoIsLoading, selectCryptoCoins } from '../store/selectors';
 import { calculateValueInCurrency } from '../utils';
-import { selectCryptoCoins } from '../store/selectors/select-crypto-coins';
 import { useEffect } from 'react';
-import { fetchCoinsPrices } from '../store/actions/async/fetchCoinsPrices';
-import { fetchCryptoAssets } from '../store/actions/async';
+import { fetchCryptoData } from '../store/actions/async';
 
 export const useFetchCryptoAssetsInCurrency = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const isLoading = useSelector(selectCryptoAssetsIsLoading);
+	const isLoading = useSelector(selectCryptoIsLoading);
 	const cryptoAssets = useSelector(selectCryptoAssets);
 	const cryptoCoins = useSelector(selectCryptoCoins);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		cryptoCoins.length === 0 && dispatch(fetchCoinsPrices());
-	}, []);
-
-	useEffect(() => {
-		cryptoAssets.length === 0 && dispatch(fetchCryptoAssets());
-	}, []);
+		cryptoAssets.length === 0 && cryptoCoins.length === 0 && dispatch(fetchCryptoData());
+	}, [dispatch]);
 
 	const cryptoAssetsInCurrency = cryptoAssets.map((asset) => {
 		const fetchedCoinData = cryptoCoins.find((coin) => coin.id === asset.coinId);
