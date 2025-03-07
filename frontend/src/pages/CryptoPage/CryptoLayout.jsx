@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CryptoOpreationsHistoryContainer } from './CryptoOperationHistory';
 import { CryptoResultLayout } from './CryptoResult';
 import { MyCriptoPortfolioList } from './CryptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { CryptoBalanceChart, TopGainerAndLooserChart } from './Charts';
+import { useDispatch } from 'react-redux';
+import { fetchCoinsPrices } from '../../store/actions/async/fetchCoinsPrices';
+import { fetchCryptoAssets } from '../../store/actions/async/fetchCryptoAssets';
 
 export const CryptoLayout = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchCoinsPrices());
+	}, []);
+
+	useEffect(() => {
+		dispatch(fetchCryptoAssets());
+	}, []);
 	return (
 		<section className="flex flex-col flex-20/24 gap-4">
 			<TopRowCardsLayout />

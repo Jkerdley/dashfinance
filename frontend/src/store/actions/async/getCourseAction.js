@@ -1,13 +1,13 @@
-import { getCurrencyAsync } from '../../api/getCurrencyAsync';
-import { ACTIONS } from '../actionTypes';
+import { getCurrencyAsync } from '../../../api/getCurrencyAsync';
+import { ACTIONS } from '../../actionTypes';
 
 export const getCourseAction = () => async (dispatch) => {
 	try {
-		const response = await getCurrencyAsync(true);
-		const USDcourse = Number(response.data.USDRUB);
+		const response = await getCurrencyAsync();
+		const currencys = response;
 		dispatch({
 			type: ACTIONS.CYRRENCY_CHECK,
-			payload: USDcourse,
+			payload: currencys,
 		});
 	} catch (error) {
 		console.error('Ошибка получения курса:', error);

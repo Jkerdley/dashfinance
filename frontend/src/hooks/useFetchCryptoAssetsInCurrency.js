@@ -1,23 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
-import { useEffect } from 'react';
+
 import { selectCryptoAssets, selectCryptoAssetsIsLoading } from '../store/selectors';
 import { calculateValueInCurrency } from '../utils';
-import { fetchCryptoAssets } from '../store/actions/async/fetchCryptoAssets';
+
 import { fetchedCoinsPrices } from '../db';
+import { selectCryptoCoins, selectCryptoCoinsIsLoading } from '../store/selectors/select-crypto-coins';
 
 export const useFetchCryptoAssetsInCurrency = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
 	const isLoading = useSelector(selectCryptoAssetsIsLoading);
-
-	useEffect(() => {
-		dispatch(fetchCryptoAssets());
-	}, []);
 	const cryptoAssets = useSelector(selectCryptoAssets);
+	const cryptoCoins = useSelector(selectCryptoCoins);
+
+	console.log('cryptoCoins', cryptoCoins);
+	console.log('fetchedCoinsPrices.result DB', fetchedCoinsPrices.result);
 
 	const cryptoAssetsInCurrency = cryptoAssets.map((asset) => {
-		const fetchedCoinData = fetchedCoinsPrices.result.find((coin) => coin.id === asset.coinId);
+		const fetchedCoinData = cryptoCoins.find((coin) => coin.id === asset.coinId);
 
 		return {
 			...asset,
@@ -37,5 +37,6 @@ export const useFetchCryptoAssetsInCurrency = () => {
 				) * 100,
 		};
 	});
+
 	return { cryptoAssetsInCurrency, isLoading };
 };

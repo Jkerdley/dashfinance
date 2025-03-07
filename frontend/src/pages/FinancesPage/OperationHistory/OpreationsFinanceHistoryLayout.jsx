@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import EditIcon from '../../../assets/icons/edit-icon.svg';
 import { FinanceOperationHistory } from './FinanceOperationHistory.jsx';
 import { SortSelector } from '../../../components/sortSelector/sortSelector.jsx';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
@@ -8,7 +7,6 @@ import { Loader } from '../../../components/Loaders/Loader.jsx';
 import { fetchHistory } from '../../../store/actions/fetshHistory.js';
 import { useFetchHistoryData } from '../../../hooks';
 import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors/select-history.js';
-import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteButton.jsx';
 
 export const OpreationsFinanceHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
@@ -45,7 +43,6 @@ export const OpreationsFinanceHistoryContainer = () => {
 			<div className="flex justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
-				<EditAddDeleteButton to={''} alt="change history" title={'Изменить'} icon={EditIcon} />
 			</div>
 			{fetchHistoryIsLoading ? (
 				<Loader />

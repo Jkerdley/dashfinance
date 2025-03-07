@@ -11,7 +11,7 @@ export const CryptoResultLayout = () => {
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 				<SectionContainerHeader title={'Крипто портфолио'} />
-				<RefreshCourseButton />
+				<RefreshCourseButton title={'Обновить курс Криптовалют'} isCrypto={true} />
 			</div>
 			<CryptoResult />
 		</section>

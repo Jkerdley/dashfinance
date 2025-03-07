@@ -18,11 +18,11 @@ export const FinanceResultLayout = () => {
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 				<SectionContainerHeader title={'Финансовый результат'} />
+				<RefreshCourseButton title={'Обновить курс USD'} />
 				<RadialChartSelector
 					handleRadialSortChange={handleRadialSortChange}
 					selectedSortType={selectedRadialSortType}
 				/>
-				<RefreshCourseButton />
 			</div>
 			<FinanceResult selectedSortType={selectedRadialSortType} />
 		</div>

@@ -16,12 +16,7 @@ export const AccountsContainer = () => {
 		>
 			<div id="accouts__header-and-button" className="flex gap-2 justify-between">
 				<SectionContainerHeader title={'Счета'} />
-				<EditAddDeleteButton
-					icon={AddIcon}
-					to={''}
-					title={'Добавить/Удалить'}
-					alt={'Финансовые счета'}
-				/>
+				<EditAddDeleteButton icon={AddIcon} to={''} title={'Добавить'} alt={'Финансовые счета'} />
 			</div>
 			{isLoading ? (
 				<Loader />

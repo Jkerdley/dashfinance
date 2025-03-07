@@ -39,18 +39,18 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			<div className="login-and-avatar">
 				<CurrencyToggle />
 				<div className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
-					<Button alt="Settings" icon={Settings} />
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
+					<Button alt="Settings" icon={Settings} />
 				</div>
 				<img className="avatar" src={Avatar} alt="avatar" />
 				<div className="name-and-role">
 					<span className="login">Hi, Eugene Erdle</span>
-					<button
-						className="font-medium bg-amber-500 w-22 rounded-2xl cursor-pointer"
+					<a
+						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
 						onClick={logout}
 					>
 						Выйти
-					</button>
+					</a>
 				</div>
 			</div>
 		</section>
