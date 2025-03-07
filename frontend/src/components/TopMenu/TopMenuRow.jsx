@@ -7,9 +7,17 @@ import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
 import { SearchInput } from '../SearchInput/SearchInput';
+import { request } from '../../utils';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const logout = async () => {
+		await request('/auth/logout', 'POST');
+		localStorage.removeItem('token');
+		window.location.href = '/login';
+		console.log('Вы вышли из аккаунта');
+	};
 
 	useEffect(() => {
 		setIsMenuOpen(isBurgerMenuOpen);
@@ -31,15 +39,18 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			<div className="login-and-avatar">
 				<CurrencyToggle />
 				<div className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
-					<Button alt="Settings" icon={Settings} />
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
+					<Button alt="Settings" icon={Settings} />
 				</div>
 				<img className="avatar" src={Avatar} alt="avatar" />
 				<div className="name-and-role">
-					<p className="login">Hi, Eugene Erdle</p>
-					<p className="font-medium">
-						<a href="">Выйти</a>
-					</p>
+					<span className="login">Hi, Eugene Erdle</span>
+					<a
+						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
+						onClick={logout}
+					>
+						Выйти
+					</a>
 				</div>
 			</div>
 		</section>

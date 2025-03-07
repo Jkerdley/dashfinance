@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import EditIcon from '../../../assets/icons/edit-icon.svg';
 import { CryptoOperationHistory } from './CryptoOperationHistory.jsx';
 import { fetchedCoinsPrices } from '../../../db.js';
@@ -6,20 +6,33 @@ import { SortSelector } from '../../../components/sortSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { EditAddDeleteButton } from '../../../components/buttons';
 import { findAccountName, findCoinIcon, findCoinSymbol } from '../../../utils/findCoinUtils.js';
-import { useFetchHistoryData } from '../../../hooks/useFetchServerHistory.js';
 import { selectCryptoAssetsHistory, selectCryptoAssetsIsLoading } from '../../../store/selectors';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-import { fetchCryptoAssets } from '../../../store/actions/async/fetchCryptoAssets.js';
+import { useSelector } from 'react-redux';
+import { useCurrency } from '../../../hooks/useCurrency.js';
+import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
+import { getsortedHistory } from '../../../utils/getSortedHistory.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
 	const [sortType, setSortType] = useState('newest');
+	const { isUSD, rubleCourse } = useCurrency();
+	const fetchedHistory = useSelector(selectCryptoAssetsHistory);
+	const fetchHistoryIsLoading = useSelector(selectCryptoAssetsIsLoading);
 
-	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
-		fetchCryptoAssets,
-		sortType,
-		selectCryptoAssetsHistory,
-		selectCryptoAssetsIsLoading,
-	);
+	const filteredHistory = useMemo(() => {
+		return getHIstoryInCurrency(fetchedHistory, isUSD, rubleCourse);
+	}, [isUSD, rubleCourse, fetchedHistory]);
+
+	const sortedHistory = useMemo(() => {
+		return getsortedHistory(filteredHistory, sortType);
+	}, [filteredHistory, sortType]);
+
+	// const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
+	// 	fetchCryptoAssets,
+	// 	sortType,
+	// 	selectCryptoAssetsHistory,
+	// 	selectCryptoAssetsIsLoading,
+	// );
 
 	const handleSortChange = (event) => setSortType(event.target.value);
 

@@ -14,12 +14,11 @@ export const useFetchCategoriesInCurrency = (selectedSortType) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const categoriesIsLoading = useSelector(selectCategoriesIsLoading);
+	const categories = useSelector(selectCategories);
 
 	useEffect(() => {
-		dispatch(fetchCategories());
+		categories.length === 0 && dispatch(fetchCategories());
 	}, [dispatch]);
-
-	const categories = useSelector(selectCategories);
 
 	const categoriesInCurrency = categories.map((categorie) => {
 		const findedCategoryInExpensesHistory = mappedData.filter(

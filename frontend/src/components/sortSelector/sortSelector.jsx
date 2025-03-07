@@ -3,7 +3,7 @@ import React from 'react';
 export const SortSelector = ({ handleSortChange, sortType }) => {
 	return (
 		<select
-			className="flex gap-2 bg-sky-900/40 rounded-xl px-2 py-1 outline-none border-none cursor-pointer hover:bg-sky-900/40 transition-all duration-150 ease-in-out"
+			className="flex gap-2 bg-sky-900/60 rounded-xl px-2 py-1 outline-none border-none cursor-pointer hover:bg-sky-900/40 transition-all duration-150 ease-in-out"
 			name="history sort"
 			id="history"
 			value={sortType}

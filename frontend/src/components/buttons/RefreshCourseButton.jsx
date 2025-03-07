@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { getCourseAction } from '../../store/actions/getCourseAction';
+import { getCourseAction } from '../../store/actions/async/getCourseAction';
 import { useDispatch } from 'react-redux';
 import RefreshCourseIcon from '../../assets/icons/refresh-course-icon.svg';
 import OutlineButton from './OutlineButton';
+import { fetchCoinsPrices } from '../../store/actions/async/fetchCoinsPrices';
 
-export const RefreshCourseButton = () => {
+export const RefreshCourseButton = ({ title, isCrypto }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const dispatch = useDispatch();
 	const handleClickGetCourse = async () => {
 		setIsLoading(true);
 		try {
 			await dispatch(getCourseAction());
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			isCrypto && (await dispatch(fetchCoinsPrices()));
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -27,7 +28,7 @@ export const RefreshCourseButton = () => {
 			icon={RefreshCourseIcon}
 			onClick={handleClickGetCourse}
 		>
-			Обновить курс
+			{title}
 		</OutlineButton>
 	);
 };

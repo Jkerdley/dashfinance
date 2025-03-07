@@ -3,7 +3,7 @@ import { CryptoResult } from './CryptoResult';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import { RefreshCourseButton } from '../../../components/buttons';
 
-export const CryptoResultLayout = () => {
+export const CryptoResultLayout = ({ cryptoAssetsInCurrency, isLoading }) => {
 	return (
 		<section
 			id="col__finance-result-container"
@@ -11,9 +11,9 @@ export const CryptoResultLayout = () => {
 		>
 			<div id="finance-result__and__course-button" className="flex justify-between gap-2">
 				<SectionContainerHeader title={'Крипто портфолио'} />
-				<RefreshCourseButton />
+				<RefreshCourseButton title={'Обновить курс Криптовалют'} isCrypto={true} />
 			</div>
-			<CryptoResult />
+			<CryptoResult cryptoAssetsInCurrency={cryptoAssetsInCurrency} isLoading={isLoading} />
 		</section>
 	);
 };

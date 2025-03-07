@@ -4,12 +4,9 @@ import { CryptoAssets } from './CryptoAssets';
 import { OperationsPanel } from '../../../components/OperationsPanelButtons/OperationsPanel';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import { EditAddDeleteButton } from '../../../components/buttons';
-import { useFetchCryptoAssetsInCurrency } from '../../../hooks/useFetchCryptoAssetsInCurrency';
 import { Loader } from '../../../components/Loaders/Loader';
 
-export const MyCriptoPortfolioList = () => {
-	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
-
+export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => {
 	return (
 		<section id="column__categories" className="flex flex-col flex-3/12 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">

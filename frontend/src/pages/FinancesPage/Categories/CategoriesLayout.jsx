@@ -19,7 +19,7 @@ export const CategoriesContainer = () => {
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 				<SectionContainerHeader title={'Категории'} />
 				<CategoriesSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
-				<EditAddDeleteButton icon={AddIcon} title={'Изменить'} to={''} alt={'Категории расходов'} />
+				<EditAddDeleteButton icon={AddIcon} title={'Добавить'} to={''} alt={'Категории расходов'} />
 			</div>
 			{categoriesInCurrency.length === 0 ? (
 				<span className="flex items-center justify-center mt-20 ">Добавьте категории расходов</span>

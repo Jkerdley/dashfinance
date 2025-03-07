@@ -43,8 +43,8 @@ router.get("/categories", async (req, res) => {
     });
 });
 
-router.delete("/:id", async (req, res) => {
-    const requestedId = req.body.id;
+router.delete("/categories/:id", async (req, res) => {
+    const requestedId = req.params.id;
     // const { accounts, categories, history } = await getFinanceData();
     // res.send({ data: accounts, categories, history });
 });

@@ -8,11 +8,10 @@ export const useFetchHistoryData = (asyncAction, sortType, dataSelector, isLoadi
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const fetchedHistory = useSelector(dataSelector);
-
 	const fetchHistoryIsLoading = useSelector(isLoadingSelector);
 
 	useEffect(() => {
-		dispatch(asyncAction());
+		fetchedHistory.length === 0 && dispatch(asyncAction());
 	}, []);
 
 	const filteredHistory = useMemo(() => {

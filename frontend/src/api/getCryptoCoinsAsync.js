@@ -1,4 +1,4 @@
-export const getCurrencyAsync = async () => {
+export const getCryptoCoinsAsync = async () => {
 	const options = {
 		method: 'GET',
 		headers: {
@@ -6,10 +6,8 @@ export const getCurrencyAsync = async () => {
 			'X-API-KEY': import.meta.env.VITE_COINS_API,
 		},
 	};
-	return await fetch('https://openapiv1.coinstats.app/fiats', options)
+	const response = await fetch('https://openapiv1.coinstats.app/coins?limit=500&currency=RUB', options)
 		.then((res) => res.json())
-		.then((response) => {
-			return response;
-		})
 		.catch((err) => console.error(err));
+	return response;
 };

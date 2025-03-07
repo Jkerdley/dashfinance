@@ -9,11 +9,11 @@ export const useFetchAccountsInCurrency = () => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectAccountsIsLoading);
+	const accounts = useSelector(selectAccounts);
 
 	useEffect(() => {
-		dispatch(fetchAccounts());
+		accounts.length === 0 && dispatch(fetchAccounts());
 	}, []);
-	const accounts = useSelector(selectAccounts);
 
 	const accountsInCurrency = accounts.map((account) => ({
 		...account,
