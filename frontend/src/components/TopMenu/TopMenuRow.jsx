@@ -7,9 +7,17 @@ import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
 import { SearchInput } from '../SearchInput/SearchInput';
+import { request } from '../../utils';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const logout = async () => {
+		await request('/auth/logout', 'POST');
+		localStorage.removeItem('token');
+		window.location.href = '/login';
+		console.log('Вы вышли из аккаунта');
+	};
 
 	useEffect(() => {
 		setIsMenuOpen(isBurgerMenuOpen);
@@ -36,10 +44,13 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 				</div>
 				<img className="avatar" src={Avatar} alt="avatar" />
 				<div className="name-and-role">
-					<p className="login">Hi, Eugene Erdle</p>
-					<p className="font-medium">
-						<a href="">Выйти</a>
-					</p>
+					<span className="login">Hi, Eugene Erdle</span>
+					<button
+						className="font-medium bg-amber-500 w-22 rounded-2xl cursor-pointer"
+						onClick={logout}
+					>
+						Выйти
+					</button>
 				</div>
 			</div>
 		</section>

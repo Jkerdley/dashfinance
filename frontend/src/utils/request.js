@@ -10,10 +10,14 @@ export async function request(url, method = 'GET', data) {
 		});
 
 		if (!response.ok) {
-			throw new Error(`HTTP ошибка! Статус: ${response.status}`);
+			throw new Error(
+				`Ошибка! Статус: ${response.status} Проверьте правильность ввода пароля и логина`,
+			);
 		}
 
 		const serverData = await response.json();
+		console.log('serverData', serverData);
+
 		return serverData;
 	} catch (error) {
 		console.error('Ошибка при выполнении запроса:', error);
