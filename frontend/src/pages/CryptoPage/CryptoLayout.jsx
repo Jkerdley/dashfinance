@@ -5,11 +5,14 @@ import { MyCriptoPortfolioList } from './CryptoPortfolioList';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { CryptoBalanceChart, TopGainerAndLooserChart } from './Charts';
 import { useFetchCryptoAssetsInCurrency } from '../../hooks/useFetchCryptoAssetsInCurrency';
+import { Loader } from '../../components/Loaders/Loader';
 
 export const CryptoLayout = () => {
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<section className="flex flex-col flex-20/24 gap-4">
 			<TopRowCardsLayout cryptoAssetsInCurrency={cryptoAssetsInCurrency} isLoading={isLoading} />
 			<div id="layout__crypto" className="flex flex-col flex-6/12 rounded-4xl gap-4">
@@ -19,6 +22,7 @@ export const CryptoLayout = () => {
 						isLoading={isLoading}
 					/>
 				</div>
+
 				<div id="crypto__bottom-container" className="flex flex-7/12 flex-col gap-4">
 					<div
 						id="row__accounts-and-history"

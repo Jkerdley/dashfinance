@@ -3,7 +3,7 @@ import { getCourseAction } from '../../store/actions/async/getCourseAction';
 import { useDispatch } from 'react-redux';
 import RefreshCourseIcon from '../../assets/icons/refresh-course-icon.svg';
 import OutlineButton from './OutlineButton';
-import { fetchCoinsPrices } from '../../store/actions/async/fetchCoinsPrices';
+import { fetchCryptoData } from '../../store/actions/async';
 
 export const RefreshCourseButton = ({ title, isCrypto }) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export const RefreshCourseButton = ({ title, isCrypto }) => {
 		setIsLoading(true);
 		try {
 			await dispatch(getCourseAction());
-			isCrypto && (await dispatch(fetchCoinsPrices()));
+			isCrypto && (await dispatch(fetchCryptoData()));
 		} catch (error) {
 			console.error(error);
 		} finally {

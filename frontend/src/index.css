@@ -2,6 +2,14 @@
 	font-family: 'Exo 2', 'system-ui', 'Helvetica', serif;
 	color: rgba(250, 250, 250, 1);
 }
+/* select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none; */
+/* background: url('path/to/your/custom-arrow.svg') no-repeat right 10px center;  */
+/* background-size: 12px;
+    padding-right: 30px;
+} */
 
 body {
 	background:
