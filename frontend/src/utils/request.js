@@ -8,6 +8,7 @@ export async function request(url, method = 'GET', data) {
 			credentials: 'include',
 			body: data ? JSON.stringify(data) : undefined,
 		});
+		console.log('response in login request', response);
 
 		if (!response.ok) {
 			throw new Error(

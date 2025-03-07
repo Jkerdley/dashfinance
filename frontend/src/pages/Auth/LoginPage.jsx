@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { request } from '../../utils';
-
+import { useDispatch } from 'react-redux';
 export const LoginPage = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const dispatch = useDispatch();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const data = await request('/auth/login', 'POST', { login, password });
+			console.log('data in Login', data);
 
 			localStorage.setItem('token', data.token);
 			window.location.href = '/finances';
