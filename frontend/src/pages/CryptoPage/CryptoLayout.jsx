@@ -22,7 +22,6 @@ export const CryptoLayout = () => {
 						isLoading={isLoading}
 					/>
 				</div>
-
 				<div id="crypto__bottom-container" className="flex flex-7/12 flex-col gap-4">
 					<div
 						id="row__accounts-and-history"
