@@ -44,12 +44,6 @@ export const CryptoOpreationsHistoryContainer = () => {
 			<div className="flex justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
-				<EditAddDeleteButton
-					icon={EditIcon}
-					title={'Изменить'}
-					to={''}
-					alt={'Изменить историю крипто операций'}
-				/>
 			</div>
 			{fetchHistoryIsLoading ? (
 				<div className="flex flex-col items-center justify-center min-w-[40vw] max-h-[44vh] gap-3 pr-1 pt-1">
