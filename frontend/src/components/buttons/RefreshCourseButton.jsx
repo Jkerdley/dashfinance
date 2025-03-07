@@ -12,7 +12,7 @@ export const RefreshCourseButton = ({ title, isCrypto }) => {
 		setIsLoading(true);
 		try {
 			await dispatch(getCourseAction());
-			// isCrypto && (await dispatch(fetchCoinsPrices()));
+			isCrypto && (await dispatch(fetchCoinsPrices()));
 		} catch (error) {
 			console.error(error);
 		} finally {

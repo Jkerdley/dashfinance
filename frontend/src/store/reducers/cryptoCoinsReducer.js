@@ -9,8 +9,6 @@ const initialCryptoCoinsState = {
 export const cryptoCoinsReducer = (state = initialCryptoCoinsState, action) => {
 	switch (action.type) {
 		case ACTIONS.FETCH_COINDATA_REQUEST:
-			console.log('state.coins in reducer', state.coins);
-
 			return {
 				...state,
 				isLoading: true,
