@@ -1,13 +1,9 @@
 import { ACTIONS } from '../actionTypes';
 
 const initialState = {
-	operationModal: {
-		isOpen: false,
-		type: null, // TODO 'income' или 'expense'
-	},
-	burgerModal: {
-		isOpen: false,
-	},
+	operationModal: { isOpen: false, type: null },
+	burgerModal: { isOpen: false },
+	addAccountModal: { isOpen: false },
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -41,6 +37,16 @@ export const modalReducer = (state = initialState, action) => {
 				burgerModal: {
 					isOpen: false,
 				},
+			};
+		case ACTIONS.OPEN_ADD_ACCOUNT_MODAL:
+			return {
+				...state,
+				addAccountModal: { isOpen: true },
+			};
+		case ACTIONS.CLOSE_ADD_ACCOUNT_MODAL:
+			return {
+				...state,
+				addAccountModal: { isOpen: false },
 			};
 		default:
 			return state;

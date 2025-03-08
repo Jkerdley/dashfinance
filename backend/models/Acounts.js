@@ -3,12 +3,12 @@ const validator = require("validator");
 
 const AccountsSchema = mongoose.Schema(
     {
-        name: { type: String, required: true },
+        name: { type: String, required: true, unique: true },
         balance: {
             type: Number,
             required: true,
             validate: {
-                validator: validator.isNumeric,
+                validator: Number.isFinite,
                 message: "Баланс должен быть числом",
             },
         },

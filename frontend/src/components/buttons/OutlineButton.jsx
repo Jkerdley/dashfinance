@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OutlineButton = ({ disabled, onClick, icon, children, to, isLoader, isLoading }) => {
+const OutlineButton = ({ disabled, onClick, icon, children, isLoader, isLoading }) => {
 	return disabled ? (
 		<button
 			disabled={true}

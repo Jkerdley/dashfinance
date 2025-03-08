@@ -22,6 +22,19 @@ async function getCategories(userId) {
     return categories;
 }
 
+async function addAccount(data, userId) {
+    const existedAccount = await Accounts.findOne({
+        name: data.name,
+        userId,
+    });
+
+    if (existedAccount) {
+        throw new Error("Счет с таким именем уже существует");
+    }
+
+    return await Accounts.create({ ...data, userId });
+}
+
 async function addHistoryItem(data, userId) {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -93,4 +106,5 @@ module.exports = {
     deleteAccountItem,
     getCryptoAssets,
     addHistoryItem,
+    addAccount,
 };
