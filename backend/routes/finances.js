@@ -30,6 +30,7 @@ router.post("/history", authentificated, async (req, res) => {
         res.status(500).send({ error: error.message });
     }
 });
+
 router.get("/cryptoassets", authentificated, async (req, res) => {
     const cryptoAssets = await getCryptoAssets(req.user._id);
     res.send({
