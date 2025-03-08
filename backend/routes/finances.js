@@ -1,7 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const { getHistory, getAccounts, getCategories, getCryptoAssets } = require("../controllers/finances");
+const {
+    getHistory,
+    getAccounts,
+    getCategories,
+    getCryptoAssets,
+    addHistoryItem,
+} = require("../controllers/finances");
 const historyMap = require("../helpers/historyMap");
 const categoriesMap = require("../helpers/categoriesMap");
 const accountsMap = require("../helpers/accountsMap");
@@ -16,7 +22,14 @@ router.get("/history", authentificated, async (req, res) => {
         history: history.map(historyMap),
     });
 });
-
+router.post("/history", authentificated, async (req, res) => {
+    try {
+        const newHistoryItem = await addHistoryItem(req.body, req.user._id);
+        res.send(newHistoryItem);
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
 router.get("/cryptoassets", authentificated, async (req, res) => {
     const cryptoAssets = await getCryptoAssets(req.user._id);
     res.send({

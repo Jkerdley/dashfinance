@@ -1,107 +1,142 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { CurrencyToggle } from '../../buttons';
 import { useCurrency } from '../../../hooks';
-import { calculateValueInCurrency, getIconOfCategorie } from '../../../utils';
+import { calculateValueInCurrency, request } from '../../../utils';
 import {
 	FinalResultNewOperationItem,
 	OperationSelectors,
 	SaveAndCancelButtons,
 	SelectedCategories,
 } from '../operationSelectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAccounts, selectCategories } from '../../../store/selectors';
+import { fetchAccounts, fetchCategories } from '../../../store/actions/async';
+import { fetchHistory } from '../../../store/actions';
 
 export const OperationForm = ({ onClose, operationType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-
+	const dispatch = useDispatch();
 	const accounts = useSelector(selectAccounts);
 	const categories = useSelector(selectCategories);
-	const accountsInCurrency = accounts.map((account) => ({
-		...account,
-		balance: calculateValueInCurrency(account.balance, isUSD, rubleCourse),
-	}));
 
-	const categoriesInCurrency = categories.map((categorie) => ({
-		...categorie,
-		balance: calculateValueInCurrency(categorie.balance, isUSD, rubleCourse),
-		budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
-	}));
+	const accountsInCurrency = useMemo(
+		() =>
+			accounts.map((a) => ({
+				...a,
+				balance: calculateValueInCurrency(a.balance, isUSD, rubleCourse),
+			})),
+		[accounts, isUSD, rubleCourse],
+	);
+
+	const categoriesInCurrency = useMemo(
+		() =>
+			categories.map((c) => ({
+				...c,
+				balance: calculateValueInCurrency(c.balance, isUSD, rubleCourse),
+				budget: calculateValueInCurrency(c.budget, isUSD, rubleCourse),
+			})),
+		[categories, isUSD, rubleCourse],
+	);
 
 	const [formState, setFormState] = useState({
 		operationDate: new Date().toISOString().split('T')[0],
 		operationSumm: '',
-		selectedAccountValue: '',
-		selectedCategoryValue: '',
+		selectedAccount: null,
+		selectedCategory: null,
 	});
 
 	useEffect(() => {
-		const shouldUpdateValues =
-			accountsInCurrency.length > 0 &&
-			categoriesInCurrency.length > 0 &&
-			(!formState.selectedAccountValue || !formState.selectedCategoryValue);
+		if (accountsInCurrency.length > 0 && categoriesInCurrency.length > 0) {
+			const shouldUpdate =
+				!formState.selectedAccount ||
+				!formState.selectedCategory ||
+				!accountsInCurrency.some((a) => a.id === formState.selectedAccount?.id) ||
+				!categoriesInCurrency.some((c) => c.id === formState.selectedCategory?.id);
 
-		if (shouldUpdateValues) {
-			setFormState((prev) => ({
-				...prev,
-				selectedAccountValue: accountsInCurrency[0].name,
-				selectedCategoryValue: categoriesInCurrency[0].name,
-			}));
+			if (shouldUpdate) {
+				setFormState((prev) => ({
+					...prev,
+					selectedAccount: accountsInCurrency[0],
+					selectedCategory: categoriesInCurrency[0],
+				}));
+			}
 		}
-	}, [
-		accountsInCurrency,
-		categoriesInCurrency,
-		formState.selectedAccountValue,
-		formState.selectedCategoryValue,
-	]);
+	}, [accountsInCurrency, categoriesInCurrency]);
 
-	const handleInputChange = useCallback(
-		(field) => (e) => {
-			const value =
-				field === 'operationSumm'
-					? e.target.value === ''
-						? ''
-						: Number(e.target.value)
-					: e.target.value;
-
-			setFormState((prev) => ({
-				...prev,
-				[field]: value,
-			}));
+	const handleAccountChange = useCallback(
+		(selectedId) => {
+			const account = accountsInCurrency.find((a) => a.id.toString() === selectedId);
+			setFormState((prev) => ({ ...prev, selectedAccount: account }));
 		},
-		[],
+		[accountsInCurrency],
 	);
 
+	const handleCategoryChange = useCallback(
+		(selectedId) => {
+			const category = categoriesInCurrency.find((c) => c.id.toString() === selectedId);
+			setFormState((prev) => ({ ...prev, selectedCategory: category }));
+		},
+		[categoriesInCurrency],
+	);
+
+	const handleSummChange = useCallback((e) => {
+		const value = e.target.value === '' ? '' : Number(e.target.value);
+		setFormState((prev) => ({ ...prev, operationSumm: value }));
+	}, []);
+
+	const handleDateChange = useCallback((e) => {
+		setFormState((prev) => ({ ...prev, operationDate: e.target.value }));
+	}, []);
+
 	const handleFormSubmit = useCallback(
-		(event) => {
+		async (event) => {
 			event?.preventDefault();
+			try {
+				if (!formState.selectedAccount || !formState.selectedCategory) {
+					alert('Выберите счет и категорию');
+					return;
+				}
 
-			if (!formState.operationSumm) {
-				alert('Введите сумму операции');
-				return;
+				if (!formState.operationSumm) {
+					alert('Введите сумму операции');
+					return;
+				}
+
+				if (formState.operationSumm < 0) {
+					alert('Сумма должна быть больше нуля');
+					return;
+				}
+
+				const amountToSend = Math.abs(
+					isUSD ? formState.operationSumm * rubleCourse : formState.operationSumm,
+				);
+
+				const formDataToSend = {
+					tag: 'finance',
+					account: formState.selectedAccount.name,
+					accountId: formState.selectedAccount.id,
+					category: formState.selectedCategory.name,
+					categoryId: formState.selectedCategory.id,
+					icon: formState.selectedCategory.icon,
+					amount: amountToSend,
+					date: formState.operationDate,
+					type: operationType || 'spend',
+					comment: formState.comment || '',
+				};
+
+				const response = await request('/history', 'POST', formDataToSend);
+
+				console.log('Submit FORM DATA response', response);
+
+				dispatch(fetchAccounts());
+				dispatch(fetchCategories());
+				dispatch(fetchHistory());
+
+				onClose();
+			} catch (error) {
+				alert(`Ошибка: ${error.message}`);
 			}
-
-			if (formState.operationSumm < 0) {
-				alert('Сумма должна быть больше нуля');
-				return;
-			}
-
-			const summInUSD = isUSD ? formState.operationSumm * rubleCourse : formState.operationSumm;
-
-			console.log('Submit FORM DATA', {
-				tag: 'finance',
-				category: formState.selectedCategoryValue,
-				categoryId: '0125',
-				account: formState.selectedAccountValue,
-				accountId: '0001',
-				icon: 'products',
-				type: operationType || 'add',
-				summ: summInUSD,
-				date: formState.operationDate,
-				comment: '',
-			});
-
-			onClose();
 		},
 		[formState, isUSD, rubleCourse, operationType, onClose],
 	);
@@ -113,10 +148,10 @@ export const OperationForm = ({ onClose, operationType }) => {
 	}
 
 	const operationAccount =
-		accountsInCurrency.find((item) => item.name === formState.selectedAccountValue) ||
+		accountsInCurrency.find((item) => item.name === formState.selectedAccountName) ||
 		accountsInCurrency[0];
 	const operationCategorie =
-		categoriesInCurrency.find((item) => item.name === formState.selectedCategoryValue) ||
+		categoriesInCurrency.find((item) => item.name === formState.selectedCategoryName) ||
 		categoriesInCurrency[0];
 
 	return (
@@ -130,18 +165,15 @@ export const OperationForm = ({ onClose, operationType }) => {
 				formState={formState}
 				accountsInCurrency={accountsInCurrency}
 				categoriesInCurrency={categoriesInCurrency}
-				handleInputChange={handleInputChange}
+				onAccountChange={handleAccountChange}
+				onCategoryChange={handleCategoryChange}
 			/>
 
-			<SelectedCategories
-				operationAccount={operationAccount}
-				operationCategorie={operationCategorie}
-				formState={formState}
-			/>
+			<SelectedCategories formState={formState} />
 
 			<FinalResultNewOperationItem
-				handleInputChange={handleInputChange}
-				getIconOfCategorie={getIconOfCategorie}
+				handleSummChange={handleSummChange}
+				handleDateChange={handleDateChange}
 				handleFormSubmit={handleFormSubmit}
 				operationAccount={operationAccount}
 				formState={formState}
@@ -155,5 +187,5 @@ export const OperationForm = ({ onClose, operationType }) => {
 
 OperationForm.propTypes = {
 	onClose: PropTypes.func.isRequired,
-	operationType: PropTypes.oneOf(['income', 'expense']),
+	operationType: PropTypes.oneOf(['add', 'spend']),
 };
