@@ -7,12 +7,14 @@ import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
 import { request } from '../../utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ACTIONS } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
+import { selectUser } from '../../store/selectors';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -20,7 +22,6 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 		try {
 			await request('/auth/logout', 'POST');
 			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
-			localStorage.removeItem('token');
 			localStorage.removeItem('user');
 			navigate('/login');
 		} catch (err) {
@@ -36,6 +37,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 		setIsMenuOpen(!isMenuOpen);
 		onBurgerClick();
 	};
+	console.log('user', user);
 
 	return (
 		<section className="flex items-center justify-between flex-1 px-4 rounded-3xl">
@@ -53,7 +55,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 				</div>
 				<img className="h-16 rounded-2xl" src={Avatar} alt="avatar" />
 				<div className="flex flex-col items-start">
-					<span className="font-medium text-lg">Hi, Eugene Erdle</span>
+					<span className="font-medium text-lg">Привет, {user.name}</span>
 					<a
 						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
 						onClick={logout}
