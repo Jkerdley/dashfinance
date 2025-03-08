@@ -31,7 +31,7 @@ export const FinanceAccount = ({ accountName, accountBalance, icon, noButton }) 
 					<p className="text-sm text-slate-300">
 						Баланс:{' '}
 						<span
-							className={`${accountBalance.slice(1).trim() > 0 ? 'text-main-green' : 'text-main-red'}`}
+							className={`${accountBalance.slice(1).trim() >= 0 ? 'text-main-green' : 'text-main-red'}`}
 						>
 							{accountBalance}
 						</span>
