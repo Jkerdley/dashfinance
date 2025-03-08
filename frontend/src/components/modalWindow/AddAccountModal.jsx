@@ -17,7 +17,7 @@ const ACCOUNT_TYPES = [
 		icon: 'credit',
 	},
 	{
-		label: 'Подарочный',
+		label: 'Бонусный',
 		value: 'gift',
 		icon: 'gift',
 	},
