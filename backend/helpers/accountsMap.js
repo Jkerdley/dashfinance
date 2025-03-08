@@ -1,9 +1,10 @@
-module.exports = function (item) {
+module.exports = function (account) {
     return {
-        id: item._id,
-        name: item.name,
-        balance: item.balance,
-        icon: item.icon,
-        type: item.type,
+        id: account._id,
+        name: account.name,
+        balance: account.balance,
+        icon: account.icon,
+        type: account.type,
+        userId: account.userId,
     };
 };

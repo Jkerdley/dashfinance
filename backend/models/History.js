@@ -20,6 +20,7 @@ const HistorySchema = mongoose.Schema(
         date: { type: String, required: true },
         comment: { type: String },
         account: { type: String },
+        userId: { type: String, required: true },
     },
     { timestamps: true }
 );

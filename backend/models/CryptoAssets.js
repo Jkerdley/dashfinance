@@ -23,6 +23,7 @@ const CryptoAssetsSchema = mongoose.Schema(
             },
         },
         history: { type: Array, required: true },
+        userId: { type: String, required: true },
     },
     { timestamps: true }
 );

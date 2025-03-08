@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
 import { OperationsPanel } from '../../components/OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
 import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../store/selectors';
 
 export const FinancesLayout = () => {
-	const userData = useSelector(selectUser);
-	useEffect(() => {
-		console.log('Данные пользователя получены:', userData);
-	}, [userData]);
 	return (
 		<section
 			id="layout__finances"

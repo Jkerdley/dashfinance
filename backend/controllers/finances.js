@@ -4,20 +4,20 @@ const Categories = require("../models/Categories");
 const CryptoAssets = require("../models/CryptoAssets");
 const User = require("../models/User");
 
-async function getHistory() {
-    const history = await History.find();
+async function getHistory(userId) {
+    const history = await History.find({ userId });
     return history;
 }
-async function getAccounts() {
-    const accounts = await Accounts.find();
+async function getAccounts(userId) {
+    const accounts = await Accounts.find({ userId });
     return accounts;
 }
-async function getCryptoAssets() {
-    const cryptoAssets = await CryptoAssets.find();
+async function getCryptoAssets(userId) {
+    const cryptoAssets = await CryptoAssets.find({ userId });
     return cryptoAssets;
 }
-async function getCategories() {
-    const categories = await Categories.find();
+async function getCategories(userId) {
+    const categories = await Categories.find({ userId });
     return categories;
 }
 

@@ -6,40 +6,41 @@ const historyMap = require("../helpers/historyMap");
 const categoriesMap = require("../helpers/categoriesMap");
 const accountsMap = require("../helpers/accountsMap");
 const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");
+const authentificated = require("../middleware/authentificated");
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/history", async (req, res) => {
-    const history = await getHistory();
+router.get("/history", authentificated, async (req, res) => {
+    const history = await getHistory(req.user._id);
     res.send({
         history: history.map(historyMap),
     });
 });
 
-router.get("/cryptoassets", async (req, res) => {
-    const cryptoAssets = await getCryptoAssets();
+router.get("/cryptoassets", authentificated, async (req, res) => {
+    const cryptoAssets = await getCryptoAssets(req.user._id);
     res.send({
         cryptoAssets: cryptoAssets.map(cryptoAssetsMap),
     });
 });
 
-router.get("/accounts", async (req, res) => {
-    const accounts = await getAccounts();
+router.get("/accounts", authentificated, async (req, res) => {
+    const accounts = await getAccounts(req.user._id);
     res.send({
         accounts: accounts.map(accountsMap),
     });
 });
-router.get("/categories", async (req, res) => {
-    const categories = await getCategories();
+router.get("/categories", authentificated, async (req, res) => {
+    const categories = await getCategories(req.user._id);
     res.send({
         categories: categories.map(categoriesMap),
     });
 });
 
-router.delete("/categories/:id", async (req, res) => {
-    const requestedId = req.params.id;
-    // const { accounts, categories, history } = await getFinanceData();
-    // res.send({ data: accounts, categories, history });
-});
+// router.delete("/categories/:id", async (req, res) => {
+//     const requestedId = req.params.id;
+//     // const { accounts, categories, history } = await getFinanceData();
+//     // res.send({ data: accounts, categories, history });
+// });
 
 module.exports = router;

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { request } from '../../utils';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchUserData } from '../../store/actions/fetchUserData';
 
 export const RegisterPage = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [error, setError] = useState('');
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const data = await request('/auth/register', 'POST', { login, password, name, role: '1' });
-
-			localStorage.setItem('token', data.token);
-			window.location.href = '/finances';
+			dispatch(fetchUserData(data.user));
+			localStorage.setItem('user', JSON.stringify(data.user));
+			navigate('/finances');
 		} catch (err) {
 			setError(err.message);
 		}

@@ -11,5 +11,6 @@ module.exports = function (history) {
         date: history.date,
         comment: history.comment,
         account: history.account,
+        userId: history.userId,
     };
 };

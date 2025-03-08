@@ -1,9 +1,10 @@
-module.exports = function (item) {
+module.exports = function (category) {
     return {
-        id: item._id,
-        name: item.name,
-        budget: item.budget,
-        balance: item.balance,
-        icon: item.icon,
+        id: category._id,
+        name: category.name,
+        budget: category.budget,
+        balance: category.balance,
+        icon: category.icon,
+        userId: category.userId,
     };
 };

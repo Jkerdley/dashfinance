@@ -6,7 +6,6 @@ import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
-import { SearchInput } from '../SearchInput/SearchInput';
 import { request } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { ACTIONS } from '../../store/actionTypes';
@@ -43,18 +42,18 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			<div className="flex gap-4 items-center">
 				<BurgerButton isOpen={isMenuOpen} onClick={handleBurgerClick} />
 				<a href="/">
-					<img className="2xl:h-11 lg:h-10 md:h-8 h-7" src={DashLogo} alt="DASH" />
+					<img className="h-7 md:h-8 lg:h-10 2xl:h-11" src={DashLogo} alt="DASH" />
 				</a>
 			</div>
-			<div className="login-and-avatar">
+			<div className="flex items-center gap-4">
 				<CurrencyToggle />
 				<div className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
 					<Button alt="Settings" icon={Settings} />
 				</div>
-				<img className="avatar" src={Avatar} alt="avatar" />
-				<div className="name-and-role">
-					<span className="login">Hi, Eugene Erdle</span>
+				<img className="h-16 rounded-2xl" src={Avatar} alt="avatar" />
+				<div className="flex flex-col items-start">
+					<span className="font-medium text-lg">Hi, Eugene Erdle</span>
 					<a
 						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
 						onClick={logout}
