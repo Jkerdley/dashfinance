@@ -6,7 +6,6 @@ export const FinalResultNewOperationItem = ({
 	handleSummChange,
 	handleDateChange,
 	handleFormSubmit,
-	operationAccount,
 	formState,
 	isUSD,
 }) => {
@@ -25,7 +24,7 @@ export const FinalResultNewOperationItem = ({
 			<form onSubmit={handleFormSubmit} className="flex sm:flex-nowrap flex-wrap flex-5/12 gap-4">
 				<input
 					name="operation-amount"
-					type="number"
+					type="text"
 					className="text-sm h-[30px] w-full flex-5/12 min-w-20 rounded-lg px-2 border-[1px] border-sky-100/60"
 					placeholder="Введите сумму"
 					value={formState.operationSumm}

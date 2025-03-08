@@ -81,8 +81,12 @@ export const OperationForm = ({ onClose, operationType }) => {
 	);
 
 	const handleSummChange = useCallback((e) => {
-		const value = e.target.value === '' ? '' : Number(e.target.value);
-		setFormState((prev) => ({ ...prev, operationSumm: value }));
+		const value = e.target.value;
+		if (value === '' || !isNaN(value)) {
+			setFormState((prev) => ({ ...prev, operationSumm: parseFloat(value) }));
+		} else {
+			alert('Пожалуйста, введите цифры');
+		}
 	}, []);
 
 	const handleDateChange = useCallback((e) => {
