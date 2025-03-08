@@ -16,7 +16,6 @@ export async function request(url, method = 'GET', data) {
 		}
 
 		const serverData = await response.json();
-		console.log('serverData', serverData);
 		return serverData;
 	} catch (error) {
 		console.error('Ошибка при выполнении запроса:', error);

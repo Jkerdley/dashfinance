@@ -9,16 +9,16 @@ export const FinancesPanelButtons = ({ handleOperationClick }) => {
 				<SectionContainerHeader title={'Операции'} />
 				<div className="flex gap-4 w-full justify-between items-center">
 					<WideOperationsButton
-						onClick={() => handleOperationClick('income')}
+						onClick={() => handleOperationClick('add')}
 						color={'bg-main-green'}
-						alt="income"
+						alt="Доходы"
 					>
 						<span className="text-lg font-semibold">Доходы +</span>
 					</WideOperationsButton>
 					<WideOperationsButton
-						onClick={() => handleOperationClick('expense')}
+						onClick={() => handleOperationClick('spend')}
 						color={'bg-main-red'}
-						alt="expenses"
+						alt="Расходы"
 					>
 						<span className="text-lg font-semibold">Расходы - </span>
 					</WideOperationsButton>

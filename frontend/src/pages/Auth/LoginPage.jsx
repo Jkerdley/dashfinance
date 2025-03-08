@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { request } from '../../utils';
+import { useDispatch } from 'react-redux';
+import { fetchUserData } from '../../store/actions/fetchUserData';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const data = await request('/auth/login', 'POST', { login, password });
-
-			localStorage.setItem('token', data.token);
-			window.location.href = '/finances';
+			dispatch(fetchUserData(data.user));
+			navigate('/finances');
 		} catch (err) {
 			setError(err.message);
+			localStorage.removeItem('user');
 		}
 	};
 
@@ -26,6 +31,7 @@ export const LoginPage = () => {
 			>
 				<h2 className="text-2xl mb-4">Вход</h2>
 				{error && <p className="text-red-500">{error}</p>}
+
 				<div className="mb-4">
 					<label className="block text-sky-200">Логин</label>
 					<input
@@ -36,6 +42,7 @@ export const LoginPage = () => {
 						required
 					/>
 				</div>
+
 				<div className="mb-4">
 					<label className="block text-sky-200">Пароль</label>
 					<input
@@ -46,6 +53,7 @@ export const LoginPage = () => {
 						required
 					/>
 				</div>
+
 				<button
 					type="submit"
 					className="bg-btn-color hover:bg-btn-menuhover rounded-xl text-white text-md py-2 px-4 w-full cursor-pointer transition-all duration-200 ease-in-out"

@@ -1,9 +1,10 @@
 import React from 'react';
 import { CardIcon } from '../../CardIcon';
+import { getIconOfCategorie } from '../../../utils';
 
 export const FinalResultNewOperationItem = ({
-	handleInputChange,
-	getIconOfCategorie,
+	handleSummChange,
+	handleDateChange,
 	handleFormSubmit,
 	operationAccount,
 	formState,
@@ -16,9 +17,9 @@ export const FinalResultNewOperationItem = ({
 					buttonSize={9}
 					padding={'p-1'}
 					size={5}
-					icon={getIconOfCategorie(operationAccount?.icon)}
+					icon={getIconOfCategorie(formState.selectedAccount?.icon)}
 				/>
-				<span className="text-sm truncate">{formState.selectedCategoryValue}</span>
+				<span className="text-sm truncate"> {formState.selectedCategory?.name}</span>
 			</div>
 			{isUSD ? '$ ' : '\u20bd '}
 			<form onSubmit={handleFormSubmit} className="flex sm:flex-nowrap flex-wrap flex-5/12 gap-4">
@@ -28,21 +29,23 @@ export const FinalResultNewOperationItem = ({
 					className="text-sm h-[30px] w-full flex-5/12 min-w-20 rounded-lg px-2 border-[1px] border-sky-100/60"
 					placeholder="Введите сумму"
 					value={formState.operationSumm}
-					onChange={handleInputChange('operationSumm')}
+					onChange={handleSummChange}
 				/>
 				<input
 					name="operation-date"
 					type="date"
 					className="text-sm h-[30px] w-full text-slate-400 flex-5/12 rounded-lg px-2 border-[1px] border-sky-100/60"
 					value={formState.operationDate}
-					onChange={handleInputChange('operationDate')}
+					onChange={handleDateChange}
 				/>
 				<button type="submit" className="hidden">
 					сохранить
 				</button>
 			</form>
 			<div className="flex flex-4/12 truncate">
-				<span className="text-sm w-full truncate text-white/90">{operationAccount?.name}</span>
+				<span className="text-sm w-full truncate text-white/90">
+					{formState.selectedAccount?.name}
+				</span>
 			</div>
 		</section>
 	);

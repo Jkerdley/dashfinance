@@ -4,37 +4,39 @@ export const OperationSelectors = ({
 	formState,
 	accountsInCurrency,
 	categoriesInCurrency,
-	handleInputChange,
+	onAccountChange,
+	onCategoryChange,
 }) => {
 	return (
 		<div className="flex gap-6 justify-around items-center">
 			<select
 				className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
-				value={formState.selectedAccountValue}
-				onChange={handleInputChange('selectedAccountValue')}
+				value={formState.selectedAccount?.id || ''}
+				onChange={(e) => onAccountChange(e.target.value)}
 			>
 				{accountsInCurrency.map((account) => (
 					<option
 						className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
 						key={account.id}
-						value={account.name}
+						value={account.id}
 					>
 						{account.name}
 					</option>
 				))}
 			</select>
+
 			<select
 				className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
-				value={formState.selectedCategoryValue}
-				onChange={handleInputChange('selectedCategoryValue')}
+				value={formState.selectedCategory?.id || ''}
+				onChange={(e) => onCategoryChange(e.target.value)}
 			>
-				{categoriesInCurrency.map((categorie) => (
+				{categoriesInCurrency.map((category) => (
 					<option
 						className="bg-[#334864] text-[#daeaff] rounded-lg w-[40%] h-[30px] p-2 transition-all duration-300 ease-in-out hover:bg-[#4b5563] hover:text-white"
-						key={categorie.id}
-						value={categorie.name}
+						key={category.id}
+						value={category.id}
 					>
-						{categorie.name}
+						{category.name}
 					</option>
 				))}
 			</select>

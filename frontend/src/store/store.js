@@ -6,6 +6,7 @@ import { historyReducer } from './reducers/historyReducer';
 import { accountsReducer } from './reducers/accountsReducer';
 import { categoriesReducer } from './reducers/categoriesReducer';
 import { cryptoReducer } from './reducers/cryptoReducer';
+import { userReducer } from './reducers/userReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
 	accounts: accountsReducer,
 	categories: categoriesReducer,
 	crypto: cryptoReducer,
+	user: userReducer,
 });
 
 export const store = legacy_createStore(reducer, composeEnhancers(applyMiddleware(thunk)));

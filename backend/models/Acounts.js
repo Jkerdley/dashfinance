@@ -14,6 +14,7 @@ const AccountsSchema = mongoose.Schema(
         },
         icon: { type: String, required: true },
         type: { type: String, required: true },
+        userId: { type: String, required: true },
     },
     { timestamps: true }
 );

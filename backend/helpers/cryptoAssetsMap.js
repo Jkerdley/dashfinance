@@ -7,5 +7,6 @@ module.exports = function (cryptoAssets) {
         averagePrice: cryptoAssets.averagePrice,
         assetAmount: cryptoAssets.assetAmount,
         history: cryptoAssets.history,
+        userId: cryptoAssets.userId,
     };
 };
