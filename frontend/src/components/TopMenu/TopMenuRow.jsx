@@ -22,8 +22,10 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 		try {
 			await request('/auth/logout', 'POST');
 			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
+			//TODO почистить redux
 			localStorage.removeItem('user');
-			navigate('/login');
+			// navigate('/login');
+			window.location.href = '/login';
 		} catch (err) {
 			console.error('Ошибка выхода:', err);
 		}
