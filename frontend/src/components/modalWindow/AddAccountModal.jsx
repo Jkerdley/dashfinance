@@ -48,7 +48,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (formData.balance > 0) {
+		if (formData.balance >= 0) {
 			try {
 				await request('/accounts', 'POST', {
 					...formData,
