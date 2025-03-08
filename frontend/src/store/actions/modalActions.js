@@ -16,3 +16,11 @@ export const openBurgerModal = () => ({
 export const closeBurgerModal = () => ({
 	type: ACTIONS.CLOSE_BURGER_MODAL,
 });
+
+export const openAddAccountModal = () => ({
+	type: ACTIONS.OPEN_ADD_ACCOUNT_MODAL,
+});
+
+export const closeAddAccountModal = () => ({
+	type: ACTIONS.CLOSE_ADD_ACCOUNT_MODAL,
+});

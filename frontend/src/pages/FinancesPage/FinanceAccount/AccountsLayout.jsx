@@ -5,9 +5,15 @@ import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteBu
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { useFetchAccountsInCurrency } from '../../../hooks/useFetchAccountsInCurrency.js';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
+import { selectAddAccountModal } from '../../../store/selectors/select-modal-selectors.js';
+import { AddAccountModal } from '../../../components/modalWindow/AddAccountModal.jsx';
+import { closeAddAccountModal, openAddAccountModal } from '../../../store/actions/modalActions.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const AccountsContainer = () => {
 	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
+	const dispatch = useDispatch();
+	const addAccountModal = useSelector(selectAddAccountModal);
 
 	return (
 		<section
@@ -16,8 +22,19 @@ export const AccountsContainer = () => {
 		>
 			<div id="accouts__header-and-button" className="flex gap-2 justify-between">
 				<SectionContainerHeader title={'Счета'} />
-				<EditAddDeleteButton icon={AddIcon} to={''} title={'Добавить'} alt={'Финансовые счета'} />
+				<EditAddDeleteButton
+					icon={AddIcon}
+					onClick={() => dispatch(openAddAccountModal())}
+					title={'Добавить'}
+					alt={'Финансовые счета'}
+				/>
 			</div>
+			{addAccountModal.isOpen && (
+				<AddAccountModal
+					isOpen={addAccountModal.isOpen}
+					onClose={() => dispatch(closeAddAccountModal())}
+				/>
+			)}
 			{isLoading ? (
 				<Loader />
 			) : accountsInCurrency.length === 0 ? (

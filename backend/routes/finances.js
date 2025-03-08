@@ -7,6 +7,7 @@ const {
     getCategories,
     getCryptoAssets,
     addHistoryItem,
+    addAccount,
 } = require("../controllers/finances");
 const historyMap = require("../helpers/historyMap");
 const categoriesMap = require("../helpers/categoriesMap");
@@ -44,6 +45,15 @@ router.get("/accounts", authentificated, async (req, res) => {
         accounts: accounts.map(accountsMap),
     });
 });
+router.post("/accounts", authentificated, async (req, res) => {
+    try {
+        const newAccount = await addAccount(req.body, req.user._id);
+        res.status(201).send(newAccount);
+    } catch (error) {
+        res.status(400).send({ error: error.message });
+    }
+});
+
 router.get("/categories", authentificated, async (req, res) => {
     const categories = await getCategories(req.user._id);
     res.send({

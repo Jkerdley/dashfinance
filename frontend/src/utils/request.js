@@ -9,13 +9,12 @@ export async function request(url, method = 'GET', data) {
 			body: data ? JSON.stringify(data) : undefined,
 		});
 
+		const serverData = await response.json();
+
 		if (!response.ok) {
-			throw new Error(
-				`Ошибка! Статус: ${response.status} Проверьте правильность ввода пароля и логина`,
-			);
+			throw new Error(serverData.error || `Ошибка! Статус: ${response.status}`);
 		}
 
-		const serverData = await response.json();
 		return serverData;
 	} catch (error) {
 		console.error('Ошибка при выполнении запроса:', error);
