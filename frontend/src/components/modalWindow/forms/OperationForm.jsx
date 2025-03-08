@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CurrencyToggle } from '../../buttons';
 import { useCurrency } from '../../../hooks';
-import { calculateValueInCurrency, request } from '../../../utils';
+import { request } from '../../../utils';
 import {
 	FinalResultNewOperationItem,
 	OperationSelectors,
@@ -20,25 +20,6 @@ export const OperationForm = ({ onClose, operationType }) => {
 	const accounts = useSelector(selectAccounts);
 	const categories = useSelector(selectCategories);
 
-	const accountsInCurrency = useMemo(
-		() =>
-			accounts.map((a) => ({
-				...a,
-				balance: calculateValueInCurrency(a.balance, isUSD, rubleCourse),
-			})),
-		[accounts, isUSD, rubleCourse],
-	);
-
-	const categoriesInCurrency = useMemo(
-		() =>
-			categories.map((c) => ({
-				...c,
-				balance: calculateValueInCurrency(c.balance, isUSD, rubleCourse),
-				budget: calculateValueInCurrency(c.budget, isUSD, rubleCourse),
-			})),
-		[categories, isUSD, rubleCourse],
-	);
-
 	const [formState, setFormState] = useState({
 		operationDate: new Date().toISOString().split('T')[0],
 		operationSumm: '',
@@ -47,46 +28,51 @@ export const OperationForm = ({ onClose, operationType }) => {
 	});
 
 	useEffect(() => {
-		if (accountsInCurrency.length > 0 && categoriesInCurrency.length > 0) {
+		if (accounts.length > 0 && categories.length > 0) {
 			const shouldUpdate =
 				!formState.selectedAccount ||
 				!formState.selectedCategory ||
-				!accountsInCurrency.some((a) => a.id === formState.selectedAccount?.id) ||
-				!categoriesInCurrency.some((c) => c.id === formState.selectedCategory?.id);
+				!accounts.some((a) => a.id === formState.selectedAccount?.id) ||
+				!categories.some((c) => c.id === formState.selectedCategory?.id);
 
 			if (shouldUpdate) {
 				setFormState((prev) => ({
 					...prev,
-					selectedAccount: accountsInCurrency[0],
-					selectedCategory: categoriesInCurrency[0],
+					selectedAccount: accounts[0],
+					selectedCategory: categories[0],
 				}));
 			}
 		}
-	}, [accountsInCurrency, categoriesInCurrency]);
+	}, [accounts, categories]);
 
 	const handleAccountChange = useCallback(
 		(selectedId) => {
-			const account = accountsInCurrency.find((a) => a.id.toString() === selectedId);
+			const account = accounts.find((account) => account.id.toString() === selectedId);
 			setFormState((prev) => ({ ...prev, selectedAccount: account }));
 		},
-		[accountsInCurrency],
+		[accounts],
 	);
 
 	const handleCategoryChange = useCallback(
 		(selectedId) => {
-			const category = categoriesInCurrency.find((c) => c.id.toString() === selectedId);
+			const category = categories.find((category) => category.id.toString() === selectedId);
 			setFormState((prev) => ({ ...prev, selectedCategory: category }));
 		},
-		[categoriesInCurrency],
+		[categories],
 	);
 
-	const handleSummChange = useCallback((e) => {
-		const value = e.target.value === '' ? '' : Number(e.target.value);
-		setFormState((prev) => ({ ...prev, operationSumm: value }));
+	const handleSummChange = useCallback((event) => {
+		const value = event.target.value;
+
+		if (value === '' || !isNaN(value)) {
+			setFormState((prev) => ({ ...prev, operationSumm: value }));
+		} else {
+			alert('Пожалуйста, введите цифры');
+		}
 	}, []);
 
-	const handleDateChange = useCallback((e) => {
-		setFormState((prev) => ({ ...prev, operationDate: e.target.value }));
+	const handleDateChange = useCallback((event) => {
+		setFormState((prev) => ({ ...prev, operationDate: event.target.value }));
 	}, []);
 
 	const handleFormSubmit = useCallback(
@@ -109,7 +95,7 @@ export const OperationForm = ({ onClose, operationType }) => {
 				}
 
 				const amountToSend = Math.abs(
-					isUSD ? formState.operationSumm * rubleCourse : formState.operationSumm,
+					isUSD ? formState.operationSumm * rubleCourse : parseFloat(formState.operationSumm),
 				);
 
 				const formDataToSend = {
@@ -141,18 +127,11 @@ export const OperationForm = ({ onClose, operationType }) => {
 		[formState, isUSD, rubleCourse, operationType, onClose],
 	);
 
-	if (!accountsInCurrency.length || !categoriesInCurrency.length) {
+	if (!accounts.length || !categories.length) {
 		onClose();
 		alert('Сначала необходимо добавить счета и категории расходов');
 		return null;
 	}
-
-	const operationAccount =
-		accountsInCurrency.find((item) => item.name === formState.selectedAccountName) ||
-		accountsInCurrency[0];
-	const operationCategorie =
-		categoriesInCurrency.find((item) => item.name === formState.selectedCategoryName) ||
-		categoriesInCurrency[0];
 
 	return (
 		<section id="selectors__header__and_buttons" className="flex flex-col justify-between h-full">
@@ -163,8 +142,8 @@ export const OperationForm = ({ onClose, operationType }) => {
 
 			<OperationSelectors
 				formState={formState}
-				accountsInCurrency={accountsInCurrency}
-				categoriesInCurrency={categoriesInCurrency}
+				accounts={accounts}
+				categories={categories}
 				onAccountChange={handleAccountChange}
 				onCategoryChange={handleCategoryChange}
 			/>
@@ -175,7 +154,6 @@ export const OperationForm = ({ onClose, operationType }) => {
 				handleSummChange={handleSummChange}
 				handleDateChange={handleDateChange}
 				handleFormSubmit={handleFormSubmit}
-				operationAccount={operationAccount}
 				formState={formState}
 				isUSD={isUSD}
 			/>
