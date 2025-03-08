@@ -3,14 +3,7 @@ import { usePressKey } from '../../../hooks';
 import PropTypes from 'prop-types';
 import { CloseModalButton } from '../../buttons';
 
-export const BaseModal = ({
-	isOpen,
-	onClose,
-	children,
-	width = 'w-[48vw]',
-	height = 'h-[48vh]',
-	position = 'center',
-}) => {
+export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', position = 'center' }) => {
 	const modalRef = useRef(null);
 	const escButtonPressed = usePressKey('Escape');
 	const [isVisible, setIsVisible] = useState(false);
@@ -65,7 +58,7 @@ export const BaseModal = ({
 				ref={modalRef}
 				tabIndex="-1"
 				className={`
-                    relative ${width} ${height} px-8 pt-6 z-30
+                    relative ${width} h-2/4 px-8 pt-6 z-30
                  bg-sky-950/20 backdrop-blur-2xl rounded-4xl text-center
                     ${positionClasses[position]}
                     ${animationClasses[position]}

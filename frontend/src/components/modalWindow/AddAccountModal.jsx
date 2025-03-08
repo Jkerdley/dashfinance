@@ -65,15 +65,15 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 	};
 
 	return (
-		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" height="h-[50vh]" position="center">
-			<section className="p-6">
-				<h2 className="text-2xl mb-4">Добавить новый счет</h2>
+		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" position="center">
+			<section className="flex flex-col p-6 h-full">
+				<h2 className="text-2xl mb-8">Добавить новый счет</h2>
 
-				{error && <div className="text-red-500 mb-4">{error}</div>}
+				{error && <div className="mb-4">{error}</div>}
 
-				<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-					<section>
-						<label className="block mb-2">Название счета:</label>
+				<form className="flex flex-col gap-8 items-center justify-between" onSubmit={handleSubmit}>
+					<section className="flex flex-col w-3/5">
+						<label className="block mb-2 w-full">Название счета:</label>
 						<input
 							type="text"
 							className="w-full p-2 rounded-lg bg-sky-950/50"
@@ -83,7 +83,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 						/>
 					</section>
 
-					<section>
+					<section className="flex flex-col w-3/5">
 						<label className="block mb-2">Начальный баланс:</label>
 						<input
 							type="number"
@@ -94,8 +94,8 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 						/>
 					</section>
 
-					<section className="mt-4">
-						<label className="block mb-2">Тип счета:</label>
+					<section className="mt-4 mb-4">
+						<label className="block mb-4">Тип счета:</label>
 						<div className="grid grid-cols-2 gap-4">
 							{ACCOUNT_TYPES.map(({ label, value, icon }) => (
 								<label
