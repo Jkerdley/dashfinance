@@ -46,13 +46,29 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		}));
 	};
 
+	const handleInputChange = (e) => {
+		const value = e.target.value;
+
+		if (value === '' || !isNaN(value)) {
+			setFormData((prev) => ({
+				...prev,
+				balance: value,
+			}));
+		} else {
+			alert('Пожалуйста, введите цифры');
+		}
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (formData.balance >= 0) {
+
+		const balanceValue = Number(formData.balance);
+
+		if (!isNaN(balanceValue) && balanceValue >= 0) {
 			try {
 				await request('/accounts', 'POST', {
 					...formData,
-					balance: Number(formData.balance),
+					balance: balanceValue,
 				});
 				dispatch(fetchAccounts());
 				onClose();
@@ -60,7 +76,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 				setError(err.message);
 			}
 		} else {
-			alert('Баланс должен быть больше ноля');
+			alert('Баланс должен быть числом и больше нуля');
 		}
 	};
 
@@ -86,10 +102,10 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 					<section className="flex flex-col w-3/5">
 						<label className="block mb-2">Начальный баланс:</label>
 						<input
-							type="number"
+							type="text"
 							className="w-full p-2 rounded-lg bg-sky-950/50"
 							value={formData.balance}
-							onChange={(e) => setFormData({ ...formData, balance: e.target.value })}
+							onChange={handleInputChange}
 							required
 						/>
 					</section>
