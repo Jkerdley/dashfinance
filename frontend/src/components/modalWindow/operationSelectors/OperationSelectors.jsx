@@ -16,6 +16,7 @@ export const OperationSelectors = ({
 					<input
 						className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
 						type="text"
+						placeholder="Введите источник дохода..."
 						value={formState.incomeType}
 						onChange={(e) => handleIncomeTypeChange(e)}
 					></input>
