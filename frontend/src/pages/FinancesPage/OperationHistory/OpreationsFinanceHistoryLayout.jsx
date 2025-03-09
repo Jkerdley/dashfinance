@@ -39,7 +39,7 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 	return (
 		<div
 			id="accouts__operations-history-container"
-			className="flex flex-col flex-5 p-4 rounded-3xl bg-sky-950/40 gap-4"
+			className="flex flex-col flex-5 p-4 h-full rounded-3xl bg-sky-950/40 gap-4"
 		>
 			<div className="flex justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
@@ -52,7 +52,7 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 			) : (
 				<div
 					id="operationsHistoryBoxWrapper"
-					className={`flex flex-col  ${inMainPage ? 'max-h-[41vh]' : 'max-h-[45vh]'} gap-3 rounded-2xl pr-1 pt-1`}
+					className={`flex flex-col  ${inMainPage ? 'max-h-[40vh]' : 'max-h-[45vh]'} gap-3 rounded-2xl pr-1 pt-1`}
 				>
 					<List
 						className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"
