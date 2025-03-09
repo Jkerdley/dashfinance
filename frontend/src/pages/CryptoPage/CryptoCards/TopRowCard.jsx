@@ -27,16 +27,42 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 				<div className="flex gap-3 items-center">
 					<CardIcon icon={assetData.icon} />
 					<span className="text-2xl font-medium truncate">{assetData.symbol}</span>
-					<span className="text-2xl font-medium truncate"> {priceInCurrency}</span>
+					<div
+						className={`flex gap-5 items-center justify-center text-2xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+					>
+						{' '}
+						{priceInCurrency}
+						<div
+							className={`flex items-center gap-1 text-sm font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+						>
+							{assetData.priceChange1h}
+							<span
+								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'triangle-down' : 'triangle-up'} `}
+							></span>
+						</div>
+					</div>
 				</div>
-				<div className="flex gap-3 items-center justify-center bg-amber-900">
-					<div className="flex gap-2 items-center bg-amber-500">
-						<span>Рост за неделю:</span>
-						<span
-							className={`text-xl font-medium truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
+				<div className="flex pl-1 gap-4 items-center justify-center w-full">
+					<div className="flex gap-2 items-center w-full">
+						<span className="truncate">За неделю:</span>
+						<div
+							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
 							{assetData.priceChange1w}
-						</span>
+							<span
+								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'triangle-down' : 'triangle-up'} `}
+							></span>
+						</div>
+
+						<span className="truncate">За день:</span>
+						<div
+							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
+						>
+							{assetData.priceChange1d}
+							<span
+								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'triangle-down' : 'triangle-up'} `}
+							></span>
+						</div>
 					</div>
 				</div>
 			</div>
