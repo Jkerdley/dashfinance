@@ -9,7 +9,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 		(item) => item.symbol !== 'USDT' && item.symbol !== 'USDC' && item.symbol !== 'DAI',
 	);
 	const indexOfLastItem = arrayWithoutStablecoins.length - 1;
-	console.log(' data', data);
+	console.log(' topGainerForDay[0]?.profitPercentage', typeof topGainerForDay[0]?.profitPercentage);
 
 	return isLoading ? (
 		<Loader />
@@ -20,9 +20,9 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 					<div className="flex gap-2 items-center">
 						<SectionContainerHeader title={title} />
 						<span
-							className={`flex truncate ${topGainerForDay[0].growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex truncate ${topGainerForDay[0]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							{topGainerForDay[0].growValue} %
+							{topGainerForDay[0]?.growValue} %
 						</span>
 					</div>
 					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
@@ -47,7 +47,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 									<span
 										className={`text-lg ml-2 ${parseFloat(topGainerForDay[0]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
-										{(topGainerForDay[0]?.profitPercentage).toFixed(2)} %
+										{parseInt(topGainerForDay[0]?.profitPercentage)} %
 									</span>
 								</>
 							</div>
@@ -59,9 +59,9 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 					<div className="flex gap-2 items-center">
 						<SectionContainerHeader title={title} />
 						<span
-							className={`flex truncate ${topGainerForDay[indexOfLastItem].growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex truncate ${topGainerForDay[indexOfLastItem]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							{topGainerForDay[indexOfLastItem].growValue} %
+							{topGainerForDay[indexOfLastItem]?.growValue} %
 						</span>
 					</div>
 					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
@@ -86,7 +86,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 									<span
 										className={`text-lg ml-2 ${parseFloat(topGainerForDay[indexOfLastItem]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
-										{(topGainerForDay[indexOfLastItem]?.profitPercentage).toFixed(2)} %
+										{parseInt(topGainerForDay[indexOfLastItem]?.profitPercentage)} %
 									</span>
 								</>
 							</div>
