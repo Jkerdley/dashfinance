@@ -5,6 +5,7 @@ export const AccountForm = ({
 	formData,
 	handleSubmit,
 	handleInputChange,
+	handleNameChange,
 	handleTypeChange,
 	error,
 	onClose,
@@ -23,13 +24,15 @@ export const AccountForm = ({
 						name="name"
 						className="w-full p-2 rounded-lg bg-sky-950/50"
 						value={formData.name}
-						onChange={handleInputChange}
+						onChange={handleNameChange}
 						required
 					/>
 				</section>
 
 				<section className="flex flex-col w-3/5">
-					<label className="block mb-2">Начальный баланс:</label>
+					<label className="block mb-2">
+						{isUpdateForm ? 'Баланс счета' : 'Начальный баланс:'}
+					</label>
 					<input
 						type="text"
 						name="balance"

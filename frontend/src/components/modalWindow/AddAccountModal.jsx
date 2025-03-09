@@ -38,8 +38,12 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		const nameValue = formData.name;
 		const balanceValue = Number(formData.balance);
+
+		if (nameValue.length === 0) {
+			alert('Название счета не может быть пустым');
+		}
 
 		if (!isNaN(balanceValue) && balanceValue >= 0) {
 			try {

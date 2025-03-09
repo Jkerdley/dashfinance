@@ -45,6 +45,14 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 		}
 	};
 
+	const handleNameChange = (event) => {
+		const value = event.target.value;
+		setFormData((prev) => ({
+			...prev,
+			name: value,
+		}));
+	};
+
 	const handleDeleteAccount = async () => {
 		if (confirm('Вы уверены что хотите удалить счет?')) {
 			console.log('Счет удален');
@@ -62,6 +70,11 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
+		const nameValue = formData.name;
+
+		if (nameValue.length === 0) {
+			alert('Название счета не может быть пустым');
+		}
 		const balanceValue = Number(formData.balance);
 
 		if (!isNaN(balanceValue) && balanceValue >= 0) {
@@ -87,6 +100,7 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 					formData={formData}
 					handleSubmit={handleSubmit}
 					handleInputChange={handleInputChange}
+					handleNameChange={handleNameChange}
 					handleTypeChange={handleTypeChange}
 					error={error}
 					onClose={onClose}
