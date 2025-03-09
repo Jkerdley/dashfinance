@@ -155,6 +155,7 @@ import { selectAccounts, selectCategories, selectIsAuthenticated } from './store
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/fetchUserData';
+import { MainPageLayout } from './pages/MainPage/MainPageLayout';
 
 const ProtectedRoute = ({ children }) => {
 	const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -249,7 +250,7 @@ export const App = () => {
 									/>
 									<div className="flex flex-wrap rounded-[36px] h-full gap-4">
 										<Routes>
-											<Route path="/" element={'Главная страница'} />
+											<Route path="/" element={<MainPageLayout />} />
 											<Route path="/finances" element={<FinancesLayout />} />
 											<Route path="/crypto" element={<CryptoLayout />} />
 											<Route path="/*" element={<Navigate to="/" replace />} />

@@ -28,17 +28,17 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 					<CardIcon icon={assetData.icon} />
 					<span className="text-2xl font-medium truncate">{assetData.symbol}</span>
 					<div
-						className={`flex gap-5 items-center justify-center text-2xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+						className={`flex gap-5 items-center justify-center text-xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
 					>
-						{' '}
 						{priceInCurrency}
 						<div
-							className={`flex items-center gap-1 text-sm font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							{assetData.priceChange1h}
+							{' '}
 							<span
 								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							></span>
+							{assetData.priceChange1h} %
 						</div>
 					</div>
 				</div>

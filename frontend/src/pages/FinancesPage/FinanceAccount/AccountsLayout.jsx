@@ -59,7 +59,7 @@ export const AccountsContainer = () => {
 			) : (
 				<div
 					id="accouts__wrapper"
-					className="flex flex-col pr-1 mt-1 max-h-[45vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
+					className="flex flex-col pr-1 mt-1 max-h-[35vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
 				>
 					{accountsInCurrency.map((account) => {
 						return (
