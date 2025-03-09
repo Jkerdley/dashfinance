@@ -36,6 +36,14 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		}
 	};
 
+	const handleNameChange = (event) => {
+		const value = event.target.value;
+		setFormData((prev) => ({
+			...prev,
+			name: value,
+		}));
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const nameValue = formData.name;
@@ -68,6 +76,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 					formData={formData}
 					handleSubmit={handleSubmit}
 					handleInputChange={handleInputChange}
+					handleNameChange={handleNameChange}
 					handleTypeChange={handleTypeChange}
 					error={error}
 					onClose={onClose}
