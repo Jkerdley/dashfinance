@@ -8,6 +8,7 @@ export const FinalResultNewOperationItem = ({
 	handleFormSubmit,
 	formState,
 	isUSD,
+	isAddOperation,
 }) => {
 	return (
 		<section className="flex justify-between items-center h-18 w-full text-sm border-b-1 border-white/30 gap-2">
@@ -18,7 +19,11 @@ export const FinalResultNewOperationItem = ({
 					size={5}
 					icon={getIconOfCategorie(formState.selectedAccount?.icon)}
 				/>
-				<span className="text-sm truncate"> {formState.selectedCategory?.name}</span>
+				{isAddOperation ? (
+					<span className="text-sm truncate"> {formState.incomeType}</span>
+				) : (
+					<span className="text-sm truncate"> {formState.selectedCategory?.name}</span>
+				)}
 			</div>
 			{isUSD ? '$ ' : '\u20bd '}
 			<form onSubmit={handleFormSubmit} className="flex sm:flex-nowrap flex-wrap flex-5/12 gap-4">

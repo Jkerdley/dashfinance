@@ -202,6 +202,8 @@ export const App = () => {
 	const handleCloseOperationModal = () => dispatch(closeOperationModal());
 	const handleBurgerClick = () => dispatch(openBurgerModal());
 
+	console.log('operationmodaltype', operationModal.type);
+
 	return (
 		<section id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			<Routes>

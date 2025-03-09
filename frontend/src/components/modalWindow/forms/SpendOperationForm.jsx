@@ -14,7 +14,7 @@ import { selectAccounts, selectCategories } from '../../../store/selectors';
 import { fetchAccounts, fetchCategories } from '../../../store/actions/async';
 import { fetchHistory } from '../../../store/actions';
 
-export const OperationForm = ({ onClose, operationType }) => {
+export const SpendOperationForm = ({ onClose, operationType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const accounts = useSelector(selectAccounts);
@@ -163,7 +163,7 @@ export const OperationForm = ({ onClose, operationType }) => {
 	);
 };
 
-OperationForm.propTypes = {
+SpendOperationForm.propTypes = {
 	onClose: PropTypes.func.isRequired,
 	operationType: PropTypes.oneOf(['add', 'spend']),
 };
