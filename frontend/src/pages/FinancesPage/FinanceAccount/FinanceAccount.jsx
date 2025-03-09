@@ -6,7 +6,7 @@ import CreditCardIcon from '../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../assets/icons/income-present-card.svg';
 
-export const FinanceAccount = ({ accountName, accountBalance, icon, noButton }) => {
+export const FinanceAccount = ({ id, accountName, accountBalance, icon, noButton }) => {
 	const iconOfAccount = () => {
 		switch (icon) {
 			case 'debit':

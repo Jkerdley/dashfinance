@@ -48,6 +48,7 @@ export const AccountsContainer = () => {
 						return (
 							<div key={account.id} className="mt-4">
 								<FinanceAccount
+									id={account.id}
 									accountName={account.name}
 									accountBalance={account.balance}
 									icon={account.icon}
