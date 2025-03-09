@@ -24,3 +24,12 @@ export const openAddAccountModal = () => ({
 export const closeAddAccountModal = () => ({
 	type: ACTIONS.CLOSE_ADD_ACCOUNT_MODAL,
 });
+
+export const openUpdateAccountModal = (id) => ({
+	type: ACTIONS.OPEN_UPDATE_ACCOUNT_MODAL,
+	payload: id,
+});
+
+export const closeUpdateAccountModal = () => ({
+	type: ACTIONS.CLOSE_UPDATE_ACCOUNT_MODAL,
+});

@@ -4,6 +4,7 @@ const initialState = {
 	operationModal: { isOpen: false, type: null },
 	burgerModal: { isOpen: false },
 	addAccountModal: { isOpen: false },
+	updateAccountModal: { isOpen: false, accountIdForUpdate: '' },
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -47,6 +48,18 @@ export const modalReducer = (state = initialState, action) => {
 			return {
 				...state,
 				addAccountModal: { isOpen: false },
+			};
+		case ACTIONS.OPEN_UPDATE_ACCOUNT_MODAL:
+			console.log('action.payload', action.payload);
+
+			return {
+				...state,
+				updateAccountModal: { isOpen: true, accountIdForUpdate: action.payload },
+			};
+		case ACTIONS.CLOSE_UPDATE_ACCOUNT_MODAL:
+			return {
+				...state,
+				updateAccountModal: { isOpen: false },
 			};
 		default:
 			return state;

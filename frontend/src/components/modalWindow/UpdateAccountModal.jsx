@@ -3,15 +3,22 @@ import { useDispatch } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { request } from '../../utils';
 import { fetchAccounts } from '../../store/actions/async';
-import { AccountForm } from './forms/AccountForm';
+import { AccountForm } from './forms';
 
-export const AddAccountModal = ({ isOpen, onClose }) => {
+export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurrency }) => {
+	const selectedAccount = accountsInCurrency.find((account) => account.id === accountId);
+	const transformedAccount = {
+		...selectedAccount,
+		balance: parseFloat(selectedAccount.balance.slice(1).trim()),
+	};
+
 	const [formData, setFormData] = useState({
-		name: '',
-		balance: '',
-		icon: 'debit',
-		type: 'debit',
+		name: transformedAccount.name,
+		balance: transformedAccount.balance,
+		icon: transformedAccount.icon,
+		type: transformedAccount.type,
 	});
+
 	const [error, setError] = useState('');
 	const dispatch = useDispatch();
 
@@ -23,8 +30,8 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		}));
 	};
 
-	const handleInputChange = (e) => {
-		const value = e.target.value;
+	const handleInputChange = (event) => {
+		const value = event.target.value;
 
 		if (value === '' || !isNaN(value)) {
 			setFormData((prev) => ({
@@ -36,8 +43,10 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		}
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const HandleDeleteAccount = (event) => {};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
 
 		const balanceValue = Number(formData.balance);
 
@@ -67,6 +76,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 					handleTypeChange={handleTypeChange}
 					error={error}
 					onClose={onClose}
+					isUpdateForm={true}
 				/>
 			</section>
 		</BaseModal>
