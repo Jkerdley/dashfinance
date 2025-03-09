@@ -5,13 +5,8 @@ import { ExpensesResult } from './ExpensesResult';
 import { IncomeResult } from './IncomeResult';
 import { BigResultBalance } from './BigResultBalance';
 import { useSelector } from 'react-redux';
-import {
-	selectAccounts,
-	selectCategories,
-	selectHistory,
-	selectHistoryIsLoading,
-} from '../../../store/selectors';
-import { useCurrency } from '../../../hooks';
+import { selectAccounts, selectHistory, selectHistoryIsLoading } from '../../../store/selectors';
+import { useCurrency, useFinanceExpensesFromHistory } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 
 export const FinanceResult = ({ selectedSortType }) => {
@@ -19,7 +14,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 	const financeHistory = useSelector(selectHistory);
 	const historyIsLoading = useSelector(selectHistoryIsLoading);
 	const financeAccounts = useSelector(selectAccounts);
-	const financeCategories = useSelector(selectCategories);
+	const expenses = useFinanceExpensesFromHistory(selectedSortType);
 
 	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
 	const historyDB = financeHistory
@@ -28,7 +23,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 		})
 		.reduce((acc, item) => acc + Number(item.amount), 0);
 
-	const categoriesDB = financeCategories.reduce((acc, item) => acc + item.balance, 0);
+	const categoriesDB = expenses.mappedData.reduce((acc, item) => acc + item.value, 0);
 
 	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);

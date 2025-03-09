@@ -10,7 +10,7 @@ export const ACCOUNT_TYPES = [
 		icon: 'credit',
 	},
 	{
-		label: 'Бонусный',
+		label: 'Инвестиционный',
 		value: 'gift',
 		icon: 'gift',
 	},
