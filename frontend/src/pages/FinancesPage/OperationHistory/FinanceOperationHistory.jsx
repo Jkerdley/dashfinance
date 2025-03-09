@@ -3,8 +3,13 @@ import React from 'react';
 import BancCardIcon from '../../../assets/icons/income-debit-icon.svg';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
+import { useDispatch } from 'react-redux';
+import { fetchHistory } from '../../../store/actions';
+import { request } from '../../../utils';
+import { fetchAccounts } from '../../../store/actions/async';
 
 const FinanceOperationHistoryComponent = ({
+	id,
 	category,
 	operationType,
 	operationComment,
@@ -14,6 +19,15 @@ const FinanceOperationHistoryComponent = ({
 }) => {
 	const isAddOperation = operationType === 'add' ? 'text-main-green' : 'text-main-red';
 	const isPlus = operationType === 'add' ? '+' : '-';
+	const dispatch = useDispatch();
+
+	const handleDeleteHistoryItem = async () => {
+		if (confirm('Удалить эту операцию?')) {
+			await request(`/history/${id}`, 'DELETE');
+			dispatch(fetchHistory());
+			dispatch(fetchAccounts());
+		}
+	};
 
 	return (
 		<section
@@ -42,7 +56,7 @@ const FinanceOperationHistoryComponent = ({
 					</div>
 				</div>
 			</div>
-			<OptionsButton to={''} flex={'flex-shrink-0'} />
+			<OptionsButton deleteIcon={true} onClick={handleDeleteHistoryItem} flex={'flex-shrink-0'} />
 		</section>
 	);
 };
