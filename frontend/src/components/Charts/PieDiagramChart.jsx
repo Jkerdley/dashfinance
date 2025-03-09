@@ -38,7 +38,6 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 				animationDuration: 500,
 			};
 
-	// console.log(`isCrypto = ${isCrypto}PieDiagramChart render time:`, performance.now() - startTime);
 	return (
 		<PieChart width={isCrypto ? 400 : 300} height={isCrypto ? 280 : 200}>
 			<Pie
