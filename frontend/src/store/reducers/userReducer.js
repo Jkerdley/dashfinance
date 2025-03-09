@@ -7,8 +7,6 @@ const initialUserState = {
 export const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case ACTIONS.GET_USER_DATA:
-			console.log('action.payload', action.payload);
-
 			return {
 				...state,
 				data: action.payload,

@@ -3,7 +3,7 @@ const validator = require("validator");
 
 const AccountsSchema = mongoose.Schema(
     {
-        name: { type: String, required: true, unique: true },
+        name: { type: String, required: true },
         balance: {
             type: Number,
             required: true,

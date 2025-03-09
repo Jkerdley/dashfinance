@@ -11,7 +11,7 @@ export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => 
 		<section id="column__categories" className="flex flex-col flex-3/12 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 				<SectionContainerHeader title={'Активы'} />
-				<EditAddDeleteButton icon={AddIcon} title={'Добавить/Удалить'} to={''} alt={'crypto coins'} />
+				<EditAddDeleteButton icon={AddIcon} title={'Добавить'} to={''} alt={'crypto coins'} />
 			</div>
 			{isLoading ? (
 				<div className="flex flex-4/12 pr-2 justify-between max-h-[38vh] min-w-[22vw] w-full h-full">

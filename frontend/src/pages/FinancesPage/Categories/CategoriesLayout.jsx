@@ -6,45 +6,85 @@ import { SectionContainerHeader } from '../../../components/SectionContainerHead
 import { useFetchCategoriesInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 import { CategoriesSelector } from '../../../components/sortSelector/categoriesSelector';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAddCategoryModal, selectUpdateCategoryModal } from '../../../store/selectors';
+import { AddCategoryModal } from '../../../components/modalWindow/AddCategoryModal';
+import {
+	closeAddCategoryModal,
+	closeUpdateCategoryModal,
+	openAddCategoryModal,
+} from '../../../store/actions';
+import { UpdateCategoryModal } from '../../../components/modalWindow/UpdateCategoryModal';
 
 export const CategoriesContainer = () => {
 	const [selectedSortType, setSelectedSortType] = useState('month');
+	const categoryModal = useSelector(selectAddCategoryModal);
+	const updateCategoryModal = useSelector(selectUpdateCategoryModal);
+
+	const dispatch = useDispatch();
 	const { categoriesInCurrency, categoriesIsLoading } = useFetchCategoriesInCurrency(selectedSortType);
 
 	const handleSortChange = () => {
 		setSelectedSortType(selectedSortType === 'month' ? 'thisYear' : 'month');
 	};
+
+	const IsNoCategories =
+		categoriesInCurrency.length === 0 ? (
+			<span className="flex items-center justify-center mt-20 ">Добавьте категории расходов</span>
+		) : (
+			''
+		);
+
 	return (
 		<section id="column__categories" className="flex flex-col flex-4 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
 				<SectionContainerHeader title={'Категории'} />
 				<CategoriesSelector handleSortChange={handleSortChange} selectedSortType={selectedSortType} />
-				<EditAddDeleteButton icon={AddIcon} title={'Добавить'} to={''} alt={'Категории расходов'} />
+				<EditAddDeleteButton
+					onClick={() => dispatch(openAddCategoryModal())}
+					icon={AddIcon}
+					title={'Добавить'}
+					to={''}
+					alt={'Категории расходов'}
+				/>
 			</div>
-			{categoriesInCurrency.length === 0 ? (
-				<span className="flex items-center justify-center mt-20 ">Добавьте категории расходов</span>
-			) : (
-				<div
-					id="spend-categories__container"
-					className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[54vh] 2xl:max-h-[29vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
-				>
-					{categoriesIsLoading ? (
-						<Loader />
-					) : (
-						categoriesInCurrency.map((categorie) => {
-							return (
-								<Categorie
-									key={categorie.id}
-									budget={categorie.budget}
-									balance={categorie.balance}
-									categorie={categorie.name}
-									icon={categorie.icon}
-								/>
-							);
-						})
-					)}
-				</div>
-			)}
+			{IsNoCategories}
+			<div
+				id="spend-categories__container"
+				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[54vh] 2xl:max-h-[29vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
+			>
+				{categoryModal.isOpen && (
+					<AddCategoryModal
+						isOpen={categoryModal.isOpen}
+						onClose={() => dispatch(closeAddCategoryModal())}
+					/>
+				)}
+				{updateCategoryModal.isOpen && (
+					<UpdateCategoryModal
+						categoriesInCurrency={categoriesInCurrency}
+						categoryId={updateCategoryModal.categoryIdForUpdate}
+						isOpen={updateCategoryModal.isOpen}
+						onClose={() => dispatch(closeUpdateCategoryModal())}
+					/>
+				)}
+				{categoriesIsLoading ? (
+					<Loader />
+				) : (
+					categoriesInCurrency.map((categorie) => {
+						return (
+							<Categorie
+								key={categorie.id}
+								id={categorie.id}
+								budget={categorie.budget}
+								// balance={calculateCategoryBalance(categorie)}
+								balance={categorie.balance}
+								categorie={categorie.name}
+								icon={categorie.icon}
+							/>
+						);
+					})
+				)}
+			</div>
 		</section>
 	);
 };

@@ -21,6 +21,7 @@ export const useFinanceExpensesFromHistory = ({ selectedSortType = 'month', show
 			return {
 				name: item.name,
 				balance: item.value,
+				id: item.categoryId,
 			};
 		});
 		return { mappedData, historyIsLoading };

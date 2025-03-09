@@ -21,9 +21,7 @@ export const useFetchCategoriesInCurrency = (selectedSortType) => {
 	}, [dispatch]);
 
 	const categoriesInCurrency = categories.map((categorie) => {
-		const findedCategoryInExpensesHistory = mappedData.filter(
-			(item) => item.name.toLowerCase() === categorie.name.toLowerCase(),
-		);
+		const findedCategoryInExpensesHistory = mappedData.filter((item) => item.id === categorie.id);
 		const newBalanceInCategorie =
 			findedCategoryInExpensesHistory.length > 0 ? findedCategoryInExpensesHistory[0].balance : 0;
 

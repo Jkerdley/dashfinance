@@ -3,16 +3,23 @@ export const aggregateExpensesByCategory = (operations) => {
 
 	operations.forEach((operation) => {
 		if (operation.type === 'spend') {
-			const category = operation.category;
-			if (!result[category]) {
-				result[category] = 0;
+			const categoryId = operation.categoryId;
+			const categoryName = operation.category;
+
+			if (!result[categoryId]) {
+				result[categoryId] = {
+					name: categoryName,
+					amount: 0,
+				};
 			}
-			result[category] += operation.amount;
+
+			result[categoryId].amount += operation.amount;
 		}
 	});
 
-	return Object.entries(result).map(([category, amount]) => ({
-		name: category,
+	return Object.entries(result).map(([categoryId, { name, amount }]) => ({
+		categoryId: categoryId,
+		name: name,
 		value: amount,
 	}));
 };

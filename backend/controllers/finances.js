@@ -22,16 +22,11 @@ async function getCategories(userId) {
     return categories;
 }
 
+async function addCategory(data, userId) {
+    return await Categories.create({ ...data, userId });
+}
+
 async function addAccount(data, userId) {
-    const existedAccount = await Accounts.findOne({
-        name: data.name,
-        userId,
-    });
-
-    if (existedAccount) {
-        throw new Error("Счет с таким именем уже существует");
-    }
-
     return await Accounts.create({ ...data, userId });
 }
 
@@ -101,4 +96,5 @@ module.exports = {
     getCryptoAssets,
     addHistoryItem,
     addAccount,
+    addCategory,
 };

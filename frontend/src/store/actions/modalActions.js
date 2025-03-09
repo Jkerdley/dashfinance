@@ -33,3 +33,20 @@ export const openUpdateAccountModal = (id) => ({
 export const closeUpdateAccountModal = () => ({
 	type: ACTIONS.CLOSE_UPDATE_ACCOUNT_MODAL,
 });
+
+export const openAddCategoryModal = () => ({
+	type: ACTIONS.OPEN_ADD_CATEGORY_MODAL,
+});
+
+export const closeAddCategoryModal = () => ({
+	type: ACTIONS.CLOSE_ADD_CATEGORY_MODAL,
+});
+
+export const openUpdateCategoryModal = (id) => ({
+	type: ACTIONS.OPEN_UPDATE_CATEGORY_MODAL,
+	payload: id,
+});
+
+export const closeUpdateCategoryModal = () => ({
+	type: ACTIONS.CLOSE_UPDATE_CATEGORY_MODAL,
+});
