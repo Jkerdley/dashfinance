@@ -2,26 +2,18 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { request } from '../../utils';
-import { fetchAccounts } from '../../store/actions/async';
-import { AccountForm } from './forms/AccountForm';
+import { fetchCategories } from '../../store/actions/async';
+import { CategoriesForm } from './forms';
 
-export const AddAccountModal = ({ isOpen, onClose }) => {
+export const AddCategoryModal = ({ isOpen, onClose }) => {
 	const [formData, setFormData] = useState({
 		name: '',
-		balance: '',
+		balance: 0,
+		budget: 0,
 		icon: 'debit',
-		type: 'debit',
 	});
 	const [error, setError] = useState('');
 	const dispatch = useDispatch();
-
-	const handleTypeChange = (type, icon) => {
-		setFormData((prev) => ({
-			...prev,
-			type,
-			icon,
-		}));
-	};
 
 	const handleInputChange = (e) => {
 		const value = e.target.value;
@@ -29,7 +21,7 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		if (value === '' || !isNaN(value)) {
 			setFormData((prev) => ({
 				...prev,
-				balance: value,
+				budget: value,
 			}));
 		} else {
 			alert('Пожалуйста, введите цифры');
@@ -47,37 +39,36 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const nameValue = formData.name;
-		const balanceValue = Number(formData.balance);
+		const budgetValue = Number(formData.budget);
 
 		if (nameValue.length === 0) {
-			alert('Название счета не может быть пустым');
+			alert('Название категории не может быть пустым');
 		}
 
-		if (!isNaN(balanceValue) && balanceValue >= 0) {
+		if (!isNaN(budgetValue) && budgetValue >= 0) {
 			try {
-				await request('/accounts', 'POST', {
+				await request('/categories', 'POST', {
 					...formData,
-					balance: balanceValue,
+					budget: budgetValue,
 				});
-				dispatch(fetchAccounts());
+				dispatch(fetchCategories());
 				onClose();
 			} catch (err) {
 				setError(err.message);
 			}
 		} else {
-			alert('Баланс должен быть числом и больше нуля');
+			alert('Бюджет должен быть числом и больше нуля');
 		}
 	};
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" position="center">
 			<section className="flex flex-col p-6 h-full">
-				<AccountForm
+				<CategoriesForm
 					formData={formData}
 					handleSubmit={handleSubmit}
 					handleInputChange={handleInputChange}
 					handleNameChange={handleNameChange}
-					handleTypeChange={handleTypeChange}
 					error={error}
 					onClose={onClose}
 				/>

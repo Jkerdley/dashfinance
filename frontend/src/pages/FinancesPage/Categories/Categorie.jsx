@@ -1,10 +1,13 @@
 import React from 'react';
 import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
-
 import { getIconOfCategorie } from '../../../utils';
+import { useDispatch } from 'react-redux';
+import { openUpdateCategoryModal } from '../../../store/actions';
 
-export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
+export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) => {
+	const dispatch = useDispatch();
+
 	const isOverBalance = () => {
 		if (!budget) {
 			return 'text-main-green';
@@ -13,6 +16,10 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 		} else {
 			return 'text-main-green';
 		}
+	};
+
+	const handleOptionsClick = () => {
+		dispatch(openUpdateCategoryModal(id));
 	};
 
 	return (
@@ -38,7 +45,7 @@ export const Categorie = ({ categorie, balance, budget, icon, noButton }) => {
 					</div>
 				</div>
 			</div>
-			{noButton ? '' : <OptionsButton to={''} flex={'flex-[0.5]'} />}
+			{noButton ? '' : <OptionsButton onClick={handleOptionsClick} flex={'flex-[0.5]'} />}
 		</section>
 	);
 };

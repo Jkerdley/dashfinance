@@ -10,10 +10,10 @@ export const CategoriesSelector = ({ handleSortChange, selectedSortType }) => {
 			onChange={handleSortChange}
 		>
 			<option className=" bg-sky-950/40" value="month">
-				За этот месяц
+				Расходы за месяц
 			</option>
 			<option className=" bg-sky-950/40" value="thisYear">
-				За этот год
+				Расходы за этот год
 			</option>
 		</select>
 	);

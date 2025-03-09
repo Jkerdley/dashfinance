@@ -4,6 +4,11 @@ const initialState = {
 	operationModal: { isOpen: false, type: null },
 	burgerModal: { isOpen: false },
 	addAccountModal: { isOpen: false },
+	updateAccountModal: { isOpen: false, accountIdForUpdate: '' },
+	addCategoryModal: { isOpen: false },
+	updateCategoryModal: { isOpen: false, categoryIdForUpdate: '' },
+	addCryptoAssetModal: { isOpen: false },
+	updateCryptoAssetModal: { isOpen: false, cryptoAssetIdForUpdate: '' },
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -47,6 +52,39 @@ export const modalReducer = (state = initialState, action) => {
 			return {
 				...state,
 				addAccountModal: { isOpen: false },
+			};
+		case ACTIONS.OPEN_UPDATE_ACCOUNT_MODAL:
+			return {
+				...state,
+				updateAccountModal: { isOpen: true, accountIdForUpdate: action.payload },
+			};
+		case ACTIONS.CLOSE_UPDATE_ACCOUNT_MODAL:
+			return {
+				...state,
+				updateAccountModal: { isOpen: false },
+			};
+
+		case ACTIONS.OPEN_ADD_CATEGORY_MODAL:
+			return {
+				...state,
+				addCategoryModal: { isOpen: true },
+			};
+		case ACTIONS.CLOSE_ADD_CATEGORY_MODAL:
+			return {
+				...state,
+				addCategoryModal: { isOpen: false },
+			};
+		case ACTIONS.OPEN_UPDATE_CATEGORY_MODAL:
+			console.log('action.payload', action.payload);
+
+			return {
+				...state,
+				updateCategoryModal: { isOpen: true, categoryIdForUpdate: action.payload },
+			};
+		case ACTIONS.CLOSE_UPDATE_CATEGORY_MODAL:
+			return {
+				...state,
+				updateCategoryModal: { isOpen: false },
 			};
 		default:
 			return state;

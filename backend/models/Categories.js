@@ -8,14 +8,14 @@ const CategoriesSchema = mongoose.Schema(
             type: Number,
             required: true,
             validate: {
-                validator: validator.isNumeric,
+                validator: Number.isFinite,
                 message: "Баланс должен быть числом",
             },
         },
         budget: {
             type: Number,
             validate: {
-                validator: validator.isNumeric,
+                validator: Number.isFinite,
                 message: "Бюджет должен быть числом",
             },
         },

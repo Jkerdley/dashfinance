@@ -22,16 +22,11 @@ async function getCategories(userId) {
     return categories;
 }
 
+async function addCategory(data, userId) {
+    return await Categories.create({ ...data, userId });
+}
+
 async function addAccount(data, userId) {
-    const existedAccount = await Accounts.findOne({
-        name: data.name,
-        userId,
-    });
-
-    if (existedAccount) {
-        throw new Error("Счет с таким именем уже существует");
-    }
-
     return await Accounts.create({ ...data, userId });
 }
 
@@ -41,43 +36,68 @@ async function addHistoryItem(data, userId) {
 
     console.log("Данные операции:", data);
     console.log("userId:", userId);
+    if (data.type === "spend") {
+        try {
+            const historyItem = await History.create([{ ...data, userId }], { session });
 
-    try {
-        const historyItem = await History.create([{ ...data, userId }], { session });
+            const account = await Accounts.findByIdAndUpdate(
+                {
+                    _id: data.accountId,
+                    userId,
+                },
+                { $inc: { balance: -data.amount } },
+                { new: true, session }
+            );
+            console.log("Обновленный счет:", account);
 
-        const account = await Accounts.findByIdAndUpdate(
-            {
-                _id: data.accountId,
-                userId,
-            },
-            { $inc: { balance: -data.amount } },
-            { new: true, session }
-        );
-        console.log("Обновленный счет:", account);
+            if (!account) throw new Error("Счет не найден");
+            if (account.balance < 0) throw new Error("Недостаточно средств на балансе");
 
-        if (!account) throw new Error("Счет не найден");
-        if (account.balance < 0) throw new Error("Недостаточно средств на балансе");
+            const category = await Categories.findByIdAndUpdate(
+                {
+                    _id: data.categoryId,
+                    userId,
+                },
+                {
+                    $inc: { balance: data.amount },
+                },
+                { new: true, session }
+            );
 
-        const category = await Categories.findByIdAndUpdate(
-            {
-                _id: data.categoryId,
-                userId,
-            },
-            {
-                $inc: { balance: data.amount },
-            },
-            { new: true, session }
-        );
+            if (!category) throw new Error("Категория расходов не найдена в базе данных");
 
-        if (!category) throw new Error("Категория расходов не найдена в базе данных");
+            await session.commitTransaction();
+            return historyItem[0];
+        } catch (error) {
+            await session.abortTransaction();
+            throw error;
+        } finally {
+            session.endSession();
+        }
+    } else if (data.type === "add") {
+        try {
+            const historyItem = await History.create([{ ...data, userId }], { session });
 
-        await session.commitTransaction();
-        return historyItem[0];
-    } catch (error) {
-        await session.abortTransaction();
-        throw error;
-    } finally {
-        session.endSession();
+            const account = await Accounts.findByIdAndUpdate(
+                {
+                    _id: data.accountId,
+                    userId,
+                },
+                { $inc: { balance: data.amount } },
+                { new: true, session }
+            );
+            console.log("Обновленный счет:", account);
+
+            if (!account) throw new Error("Счет не найден");
+
+            await session.commitTransaction();
+            return historyItem[0];
+        } catch (error) {
+            await session.abortTransaction();
+            throw error;
+        } finally {
+            session.endSession();
+        }
     }
 }
 
@@ -91,11 +111,6 @@ async function getAccountItem(id) {
     return Accounts.findById({ _id: id });
 }
 
-async function deleteAccountItem(id) {
-    Accounts.findByIdAndDelete(id);
-    return console.log(`Счет номер ${id} был удален`);
-}
-
 module.exports = {
     getHistory,
     getAccounts,
@@ -103,8 +118,8 @@ module.exports = {
     getHistoryItem,
     getCategoryItem,
     getAccountItem,
-    deleteAccountItem,
     getCryptoAssets,
     addHistoryItem,
     addAccount,
+    addCategory,
 };

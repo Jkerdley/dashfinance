@@ -24,6 +24,7 @@ export const OpreationsFinanceHistoryContainer = () => {
 		return (
 			<div style={style} key={operation.id}>
 				<FinanceOperationHistory
+					id={operation.id}
 					operationType={operation.type}
 					category={operation.category}
 					operationComment={operation.comment}

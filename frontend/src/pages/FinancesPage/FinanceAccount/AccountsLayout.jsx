@@ -5,15 +5,24 @@ import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteBu
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { useFetchAccountsInCurrency } from '../../../hooks/useFetchAccountsInCurrency.js';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-import { selectAddAccountModal } from '../../../store/selectors/select-modal-selectors.js';
+import {
+	selectAddAccountModal,
+	selectUpdateAccountModal,
+} from '../../../store/selectors/select-modal-selectors.js';
 import { AddAccountModal } from '../../../components/modalWindow/AddAccountModal.jsx';
-import { closeAddAccountModal, openAddAccountModal } from '../../../store/actions/modalActions.js';
+import {
+	closeAddAccountModal,
+	closeUpdateAccountModal,
+	openAddAccountModal,
+} from '../../../store/actions/modalActions.js';
 import { useDispatch, useSelector } from 'react-redux';
+import { UpdateAccountModal } from '../../../components/modalWindow/UpdateAccountModal.jsx';
 
 export const AccountsContainer = () => {
 	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
 	const dispatch = useDispatch();
 	const addAccountModal = useSelector(selectAddAccountModal);
+	const updateAccountModal = useSelector(selectUpdateAccountModal);
 
 	return (
 		<section
@@ -33,6 +42,14 @@ export const AccountsContainer = () => {
 				<AddAccountModal
 					isOpen={addAccountModal.isOpen}
 					onClose={() => dispatch(closeAddAccountModal())}
+				/>
+			)}
+			{updateAccountModal.isOpen && (
+				<UpdateAccountModal
+					accountsInCurrency={accountsInCurrency}
+					accountId={updateAccountModal.accountIdForUpdate}
+					isOpen={updateAccountModal.isOpen}
+					onClose={() => dispatch(closeUpdateAccountModal())}
 				/>
 			)}
 			{isLoading ? (
