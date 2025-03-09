@@ -14,7 +14,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 	const financeHistory = useSelector(selectHistory);
 	const historyIsLoading = useSelector(selectHistoryIsLoading);
 	const financeAccounts = useSelector(selectAccounts);
-	const expenses = useFinanceExpensesFromHistory(selectedSortType);
+	const expenses = useFinanceExpensesFromHistory({ selectedSortType, showInCategories: true });
 
 	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
 	const historyDB = financeHistory
@@ -23,12 +23,11 @@ export const FinanceResult = ({ selectedSortType }) => {
 		})
 		.reduce((acc, item) => acc + Number(item.amount), 0);
 
-	const categoriesDB = expenses.mappedData.reduce((acc, item) => acc + item.value, 0);
-
+	const categoriesDB = expenses.mappedData.reduce((acc, item) => acc + item.balance, 0);
 	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
-	// console.log('Component mounted:', 'FinanceResult', 'Data:', financeHistory);
+
 	return (
 		<div id="finance-result__main-container" className="flex h-full transition-all">
 			<div className="flex flex-col flex-3 2xl:flex-4 h-full">

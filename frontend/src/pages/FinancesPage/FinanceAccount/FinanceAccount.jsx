@@ -36,7 +36,7 @@ export const FinanceAccount = ({ id, accountName, accountBalance, icon, noButton
 				<div className="flex flex-col w-[100%] truncate px-2">
 					<p className="text-base truncate">{accountName}</p>
 					<p className="text-sm text-slate-300">
-						Баланс:
+						<span>Баланс: </span>
 						<span
 							className={`${accountBalance.slice(1).trim() >= 0 ? 'text-main-green' : 'text-main-red'}`}
 						>
