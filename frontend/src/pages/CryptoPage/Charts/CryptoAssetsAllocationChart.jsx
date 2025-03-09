@@ -8,8 +8,6 @@ export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading 
 		value: parseFloat(asset.profit.slice(1).trim()),
 	}));
 	const sortedData = mappenData.sort((a, b) => b.value - a.value);
-	console.log('mappenData', mappenData);
-	console.log('sortedData', sortedData);
 
 	return cryptoAssetsInCurrency.length === 0 ? (
 		<span>Добавьте активы чтобы увидеть график</span>
