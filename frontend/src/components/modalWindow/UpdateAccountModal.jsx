@@ -13,7 +13,6 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 		...selectedAccount,
 		balance: parseFloat(selectedAccount.balance.slice(1).trim()),
 	};
-	console.log('accountId', accountId);
 
 	const [formData, setFormData] = useState({
 		name: transformedAccount.name,

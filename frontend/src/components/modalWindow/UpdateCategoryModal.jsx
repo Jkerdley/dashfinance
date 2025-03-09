@@ -13,7 +13,6 @@ export const UpdateCategoryModal = ({ isOpen, onClose, categoryId, categoriesInC
 		...selectedCategory,
 		budget: parseFloat(selectedCategory.budget.slice(1).trim()),
 	};
-	console.log('categoryId', categoryId);
 
 	const [formData, setFormData] = useState({
 		name: transformedCategory.name,

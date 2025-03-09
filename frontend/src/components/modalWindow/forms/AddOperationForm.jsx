@@ -54,7 +54,6 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 
 	const handleIncomeTypeChange = useCallback((event) => {
 		const value = event.target.value;
-		console.log('event.target.value', event.target.value);
 
 		setFormState((prev) => ({ ...prev, incomeType: value }));
 	}, []);

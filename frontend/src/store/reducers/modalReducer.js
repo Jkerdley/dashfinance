@@ -7,6 +7,7 @@ const initialState = {
 	updateAccountModal: { isOpen: false, accountIdForUpdate: '' },
 	addCategoryModal: { isOpen: false },
 	updateCategoryModal: { isOpen: false, categoryIdForUpdate: '' },
+	userModal: { isOpen: false },
 	addCryptoAssetModal: { isOpen: false },
 	updateCryptoAssetModal: { isOpen: false, cryptoAssetIdForUpdate: '' },
 };
@@ -85,6 +86,18 @@ export const modalReducer = (state = initialState, action) => {
 			return {
 				...state,
 				updateCategoryModal: { isOpen: false },
+			};
+		case ACTIONS.OPEN_USER_MODAL:
+			console.log('action.payload', action.payload);
+
+			return {
+				...state,
+				userModal: { isOpen: true },
+			};
+		case ACTIONS.CLOSE_USER_MODAL:
+			return {
+				...state,
+				userModal: { isOpen: false },
 			};
 		default:
 			return state;

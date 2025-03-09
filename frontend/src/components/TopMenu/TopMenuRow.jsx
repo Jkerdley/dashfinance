@@ -9,22 +9,22 @@ import { BurgerButton, CurrencyToggle } from '../buttons';
 import { request } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACTIONS } from '../../store/actionTypes';
-import { useNavigate } from 'react-router-dom';
-import { selectUser } from '../../store/selectors';
+
+import { selectUser, selectUserModal } from '../../store/selectors';
+import { UpdateUserModal } from '../modalWindow/UpdateUserModal';
+import { closeUserModal, openUserModal } from '../../store/actions';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const userModal = useSelector(selectUserModal);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const logout = async () => {
 		try {
 			await request('/auth/logout', 'POST');
 			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
-			//TODO почистить redux
 			localStorage.removeItem('user');
-			// navigate('/login');
 			window.location.href = '/login';
 		} catch (err) {
 			console.error('Ошибка выхода:', err);
@@ -39,7 +39,6 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 		setIsMenuOpen(!isMenuOpen);
 		onBurgerClick();
 	};
-	console.log('user', user);
 
 	return (
 		<section className="flex items-center justify-between flex-1 px-4 rounded-3xl">
@@ -49,11 +48,14 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 					<img className="h-7 md:h-8 lg:h-10 2xl:h-11" src={DashLogo} alt="DASH" />
 				</a>
 			</div>
+			{userModal.isOpen && (
+				<UpdateUserModal isOpen={userModal.isOpen} onClose={() => dispatch(closeUserModal())} />
+			)}
 			<div className="flex items-center gap-4">
 				<CurrencyToggle />
 				<div className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
-					<Button alt="Settings" icon={Settings} />
+					<Button onClick={() => dispatch(openUserModal())} alt="Settings" icon={Settings} />
 				</div>
 				<img className="h-16 rounded-2xl" src={Avatar} alt="avatar" />
 				<div className="flex flex-col items-start">
