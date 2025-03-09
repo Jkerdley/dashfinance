@@ -1,10 +1,7 @@
 import React from 'react';
 export const Button = ({ icon, alt, disabled, onClick, children, padding, width = 'w-9' }) => {
 	return disabled ? (
-		<button
-			onClick={onClick}
-			className="flex w-9 h-9 ${padding} justify-center items-center bg-gray-400 rounded-xl cursor-default"
-		>
+		<button className="flex w-9 h-9 ${padding} justify-center items-center bg-gray-400 rounded-xl cursor-default">
 			<img className="h-6" src={icon} alt={alt} />
 			{children}
 		</button>
@@ -13,7 +10,7 @@ export const Button = ({ icon, alt, disabled, onClick, children, padding, width 
 			onClick={onClick}
 			className={`group flex ${width} h-9 ${padding} justify-center items-center transition-all
 			ease-in-out duration-100 rounded-xl cursor-pointer
-			bg-btn-color hover:bg-btn-hovercolor`}
+			bg-btn-color hover:bg-btn-hovercolor truncate`}
 		>
 			{children}
 			<img

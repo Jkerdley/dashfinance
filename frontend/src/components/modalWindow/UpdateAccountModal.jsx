@@ -4,6 +4,8 @@ import { BaseModal } from './base/BaseModal';
 import { request } from '../../utils';
 import { fetchAccounts } from '../../store/actions/async';
 import { AccountForm } from './forms';
+import DeleteIcon from '../../assets/icons/delete-icon.svg';
+import OutlineButton from '../buttons/OutlineButton';
 
 export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurrency }) => {
 	const selectedAccount = accountsInCurrency.find((account) => account.id === accountId);
@@ -43,7 +45,19 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 		}
 	};
 
-	const HandleDeleteAccount = (event) => {};
+	const handleDeleteAccount = async () => {
+		if (confirm('Вы уверены что хотите удалить счет?')) {
+			console.log('Счет удален');
+
+			// try {
+			// 	await request('/accounts', 'DELETE', { accountId });
+			// 	dispatch(fetchAccounts());
+			// 	onClose();
+			// } catch (error) {
+			// 	setError(error.message);
+			// }
+		}
+	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -58,8 +72,8 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 				});
 				dispatch(fetchAccounts());
 				onClose();
-			} catch (err) {
-				setError(err.message);
+			} catch (error) {
+				setError(error.message);
 			}
 		} else {
 			alert('Баланс должен быть числом и больше нуля');
@@ -68,7 +82,7 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" position="center">
-			<section className="flex flex-col p-6 h-full">
+			<section className="flex flex-col justify-center p-4 h-full">
 				<AccountForm
 					formData={formData}
 					handleSubmit={handleSubmit}
@@ -78,6 +92,11 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 					onClose={onClose}
 					isUpdateForm={true}
 				/>
+				<div className="flex justify-center mb-4">
+					<OutlineButton icon={DeleteIcon} onClick={handleDeleteAccount}>
+						Удалить счет
+					</OutlineButton>
+				</div>
 			</section>
 		</BaseModal>
 	);
