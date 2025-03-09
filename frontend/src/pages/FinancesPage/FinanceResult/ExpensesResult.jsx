@@ -2,6 +2,8 @@ import React from 'react';
 import { cleanValue } from '../../../utils';
 
 export const ExpensesResult = ({ isUSD, expensesForDate }) => {
+	console.log('expensesForDate', expensesForDate);
+
 	return (
 		<div className="flex flex-col items-center justify-center text-xl font-medium h-full">
 			<span className="text-sm xl:text-xl">Расходы: </span>
