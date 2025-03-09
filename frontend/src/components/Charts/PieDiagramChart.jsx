@@ -30,17 +30,16 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 			}
 		: {
 				cy: 190,
-				innerRadius: 80,
-				outerRadius: 150,
+				innerRadius: 110,
+				outerRadius: 190,
 				startAngle: 180,
 				endAngle: 0,
 				animationBegin: 0,
 				animationDuration: 500,
 			};
 
-	// console.log(`isCrypto = ${isCrypto}PieDiagramChart render time:`, performance.now() - startTime);
 	return (
-		<PieChart width={isCrypto ? 400 : 300} height={isCrypto ? 280 : 200}>
+		<PieChart width={isCrypto ? 400 : 420} height={isCrypto ? 280 : 200}>
 			<Pie
 				data={mappedData}
 				cy={190}

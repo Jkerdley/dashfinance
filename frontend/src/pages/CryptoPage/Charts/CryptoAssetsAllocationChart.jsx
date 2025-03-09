@@ -7,13 +7,14 @@ export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading 
 		name: asset.name,
 		value: parseFloat(asset.profit.slice(1).trim()),
 	}));
+	const sortedData = mappenData.sort((a, b) => b.value - a.value);
 
 	return cryptoAssetsInCurrency.length === 0 ? (
 		<span>Добавьте активы чтобы увидеть график</span>
 	) : (
 		<div className="relative">
 			<span className="absolute top-50 right-40">Аллокация</span>
-			{isLoading ? <Loader /> : <PieDiagramChart mappedData={mappenData} isCrypto={true} />}
+			{isLoading ? <Loader /> : <PieDiagramChart mappedData={sortedData} isCrypto={true} />}
 		</div>
 	);
 };

@@ -12,6 +12,7 @@ import { selectCryptoCoins } from '../../store/selectors';
 export const CryptoLayout = () => {
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
 	const cryptoCoins = useSelector(selectCryptoCoins);
+	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
 
 	return isLoading ? (
 		<Loader />
@@ -36,8 +37,18 @@ export const CryptoLayout = () => {
 						/>
 						<CryptoOpreationsHistoryContainer />
 						<section className="flex flex-col flex-2/12 gap-4">
-							<TopGainerAndLooserChart title={'Топ роста (за день)'} />
-							<TopGainerAndLooserChart title={'Топ лузер (за день)'} />
+							<TopGainerAndLooserChart
+								data={cryptoAssetsInCurrency}
+								title={'Топ роста (1d)'}
+								type={'gainer'}
+								isLoading={isLoading}
+							/>
+							<TopGainerAndLooserChart
+								data={cryptoAssetsInCurrency}
+								title={'Топ лузер (1d)'}
+								type={'looser'}
+								isLoading={isLoading}
+							/>
 						</section>
 					</div>
 				</div>

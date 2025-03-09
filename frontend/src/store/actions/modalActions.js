@@ -50,3 +50,11 @@ export const openUpdateCategoryModal = (id) => ({
 export const closeUpdateCategoryModal = () => ({
 	type: ACTIONS.CLOSE_UPDATE_CATEGORY_MODAL,
 });
+
+export const openUserModal = () => ({
+	type: ACTIONS.OPEN_USER_MODAL,
+});
+
+export const closeUserModal = () => ({
+	type: ACTIONS.CLOSE_USER_MODAL,
+});

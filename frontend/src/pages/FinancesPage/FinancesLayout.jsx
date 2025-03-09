@@ -14,7 +14,7 @@ export const FinancesLayout = () => {
 		>
 			<div className="flex flex-10 flex-col gap-4">
 				<FinanceResultLayout />
-				<div id="row__accounts-and-history" className="flex flex-10 gap-4">
+				<div id="row__accounts-and-history" className="flex flex-10 gap-4 h-full">
 					<div
 						id="operations__and__accounts-container"
 						className="flex flex-col flex-3 min-w-42% gap-4"

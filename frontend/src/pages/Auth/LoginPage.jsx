@@ -16,7 +16,7 @@ export const LoginPage = () => {
 		try {
 			const data = await request('/auth/login', 'POST', { login, password });
 			dispatch(fetchUserData(data.user));
-			navigate('/finances');
+			navigate('/');
 		} catch (err) {
 			setError(err.message);
 			localStorage.removeItem('user');
