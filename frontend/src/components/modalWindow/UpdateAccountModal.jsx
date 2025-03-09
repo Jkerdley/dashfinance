@@ -13,6 +13,7 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 		...selectedAccount,
 		balance: parseFloat(selectedAccount.balance.slice(1).trim()),
 	};
+	console.log('accountId', accountId);
 
 	const [formData, setFormData] = useState({
 		name: transformedAccount.name,
@@ -57,13 +58,13 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 		if (confirm('Вы уверены что хотите удалить счет?')) {
 			console.log('Счет удален');
 
-			// try {
-			// 	await request('/accounts', 'DELETE', { accountId });
-			// 	dispatch(fetchAccounts());
-			// 	onClose();
-			// } catch (error) {
-			// 	setError(error.message);
-			// }
+			try {
+				await request(`/accounts/${accountId}`, 'DELETE');
+				dispatch(fetchAccounts());
+				onClose();
+			} catch (error) {
+				setError(error.message);
+			}
 		}
 	};
 
@@ -79,7 +80,7 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 
 		if (!isNaN(balanceValue) && balanceValue >= 0) {
 			try {
-				await request('/accounts', 'POST', {
+				await request(`/accounts/${accountId}`, 'PUT', {
 					...formData,
 					balance: balanceValue,
 				});

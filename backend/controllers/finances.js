@@ -91,11 +91,6 @@ async function getAccountItem(id) {
     return Accounts.findById({ _id: id });
 }
 
-async function deleteAccountItem(id) {
-    Accounts.findByIdAndDelete(id);
-    return console.log(`Счет номер ${id} был удален`);
-}
-
 module.exports = {
     getHistory,
     getAccounts,
@@ -103,7 +98,6 @@ module.exports = {
     getHistoryItem,
     getCategoryItem,
     getAccountItem,
-    deleteAccountItem,
     getCryptoAssets,
     addHistoryItem,
     addAccount,

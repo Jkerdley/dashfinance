@@ -14,6 +14,7 @@ const categoriesMap = require("../helpers/categoriesMap");
 const accountsMap = require("../helpers/accountsMap");
 const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");
 const authentificated = require("../middleware/authentificated");
+const Accounts = require("../models/Acounts");
 
 const router = express.Router({ mergeParams: true });
 
@@ -49,6 +50,24 @@ router.post("/accounts", authentificated, async (req, res) => {
     try {
         const newAccount = await addAccount(req.body, req.user._id);
         res.status(201).send(newAccount);
+    } catch (error) {
+        res.status(400).send({ error: error.message });
+    }
+});
+
+router.delete("/accounts/:id", authentificated, async (req, res) => {
+    try {
+        await Accounts.findByIdAndDelete(req.params.id);
+        res.send({ message: `Счет номер ${req.params.id} был удален` });
+    } catch (error) {
+        res.status(400).send({ error: error.message });
+    }
+});
+
+router.put("/accounts/:id", authentificated, async (req, res) => {
+    try {
+        await Accounts.findByIdAndUpdate(req.params.id, req.body);
+        res.send({ message: `Счет успешно обновлен` });
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
