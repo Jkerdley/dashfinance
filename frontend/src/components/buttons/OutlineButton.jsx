@@ -14,7 +14,7 @@ const OutlineButton = ({ disabled, onClick, icon, children, isLoader, isLoading 
 			onClick={onClick}
 			className={`group flex justify-center items-center rounded-xl w-auto px-4 h-9 border border-white transition-all duration-150 ease-in-out cursor-pointer text-white gap-2 hover:bg-sky-800/60 hover:border-cyan-900/10 `}
 		>
-			<div className="flex items-center pb-[1px]">{children}</div>
+			<div className="flex md:text-md text-sm items-center pb-[1px]">{children}</div>
 
 			{icon ? (
 				<img

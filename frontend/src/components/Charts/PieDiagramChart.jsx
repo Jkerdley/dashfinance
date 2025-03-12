@@ -20,18 +20,27 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 
 	const pieProps = isCrypto
 		? {
-				cy: 230,
-				innerRadius: 110,
-				outerRadius: 190,
+				// cy: 230,
+				// innerRadius: 110,
+				// outerRadius: 190,
+				// startAngle: 180,
+				// endAngle: 0,
+				// animationBegin: 0,
+				// animationDuration: 500,
+				cx: '50%',
+				cy: '90%',
+				innerRadius: '65%',
+				outerRadius: '139%',
 				startAngle: 180,
 				endAngle: 0,
 				animationBegin: 0,
 				animationDuration: 500,
 			}
 		: {
-				cy: 190,
-				innerRadius: 110,
-				outerRadius: 190,
+				cx: '50%',
+				cy: '90%',
+				innerRadius: '65%',
+				outerRadius: '139%',
 				startAngle: 180,
 				endAngle: 0,
 				animationBegin: 0,
@@ -39,10 +48,12 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 			};
 
 	return (
-		<PieChart width={isCrypto ? 400 : 420} height={isCrypto ? 280 : 200}>
+		<PieChart
+			width={Math.min(window.innerWidth * 0.4, 440)}
+			height={Math.min(window.innerWidth * 0.3, 290)}
+		>
 			<Pie
 				data={mappedData}
-				cy={190}
 				{...pieProps}
 				endAngle={0}
 				cornerRadius={4}
@@ -60,3 +71,31 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 		</PieChart>
 	);
 };
+
+// return (
+// 	<PieChart
+// 		width={Math.min(window.innerWidth * 0.9, 600)} // Максимальная ширина 600px
+// 		height={Math.min(window.innerWidth * 0.6, 400)} // Сохраняем соотношение 3:2
+// 		margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+// 	>
+// 		<Pie
+// 			data={mappedData}
+// 			cx="50%"
+// 			cy="50%"
+// 			innerRadius="40%"
+// 			outerRadius="70%"
+// 			// ... остальные пропсы
+// 		>
+// 			{/* ... */}
+// 		</Pie>
+// 		<Tooltip
+// 			content={<CustomRadialTooltip />}
+// 			wrapperStyle={{
+// 				maxWidth: '200px',
+// 				whiteSpace: 'pre-wrap',
+// 				backgroundColor: 'rgba(15, 56, 94, 0.9)',
+// 			}}
+// 		/>
+// 	</PieChart>
+// );
+// };

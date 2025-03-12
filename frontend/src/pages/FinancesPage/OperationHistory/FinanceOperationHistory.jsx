@@ -48,7 +48,7 @@ const FinanceOperationHistoryComponent = ({
 					<div id="accountName" className="lg:block hidden flex-shrink-0 flex-grow w-1/4">
 						<span className="text-sm text-slate-400 truncate block">{accountName}</span>
 					</div>
-					<div className="flex-shrink-0 flex-grow w-1/4 text-start">
+					<div className="sm:flex hidden flex-shrink-0 flex-grow w-1/4 text-start">
 						<span className="text-sm text-slate-400 truncate block ">
 							{operationDate.split('-').reverse().join('.')}
 						</span>

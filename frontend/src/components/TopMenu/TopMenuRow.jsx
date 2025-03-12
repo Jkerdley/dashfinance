@@ -45,7 +45,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	};
 
 	return (
-		<section className="flex items-center justify-between flex-1 px-4 rounded-3xl">
+		<section className="flex flex-wrap md:flex-nowrap items-center justify-between flex-1 px-4 rounded-3xl gap-4">
 			<div className="flex gap-4 items-center">
 				<BurgerButton isOpen={isMenuOpen} onClick={handleBurgerClick} />
 				<a href="/">
@@ -55,15 +55,15 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			{userModal.isOpen && (
 				<UpdateUserModal isOpen={userModal.isOpen} onClose={() => dispatch(closeUserModal())} />
 			)}
-			<div className="flex items-center gap-4">
+			<div className="flex items-center md:justify-end justify-between w-full gap-2">
 				<CurrencyToggle />
-				<div className="flex items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
+				<div className="flex  items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
 					<Button onClick={() => dispatch(openUserModal())} alt="Settings" icon={Settings} />
 				</div>
-				<img className="h-16 rounded-2xl" src={Avatar} alt="avatar" />
+				<img className="h-16 rounded-2xl sm:flex hidden" src={Avatar} alt="avatar" />
 				<div className="flex flex-col items-start">
-					<span className="font-medium text-lg">Привет, {user.name}</span>
+					<span className="font-medium text-lg md:flex hidden">Привет, {user.name}</span>
 					<a
 						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
 						onClick={logout}

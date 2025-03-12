@@ -9,7 +9,7 @@ export const ExpensesResult = ({ isUSD, expensesForDate }) => {
 				<span className="text-2xl md:text-3xl 2xl:text-4xl transition-all mt-2  font-medium text-main-red">
 					{isUSD ? '$' : '\u20bd'}
 				</span>
-				<span className="text-3xl md:text-3xl 2xl:text-5xl  transition-all duration-150 ease-in-out font-bold truncate text-main-red">
+				<span className="text-2xl md:text-3xl 2xl:text-5xl  transition-all duration-150 ease-in-out font-bold truncate text-main-red">
 					{cleanValue(expensesForDate)}
 				</span>
 			</div>

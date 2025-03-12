@@ -42,7 +42,7 @@ export const CryptoAssets = ({
 		>
 			<div
 				id="categorie-inside-container"
-				className="flex flex-6 items-center justify-between min-w-90 w-auto"
+				className="flex flex-6 items-center justify-between md:min-w-90 w-auto"
 			>
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
 				<div id="categorie-text-container" className="flex flex-col mx-2 w-full truncate">
@@ -51,9 +51,11 @@ export const CryptoAssets = ({
 							<span className="truncate">{coinTitle}</span>
 							<div
 								id="up-and-down__icon_triangle"
-								className={`flex h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`md:flex hidden h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
 							/>
-							<span className="text-sm truncate">Profit {profitPercentage.toFixed(2)} %</span>
+							<span className="md:block hidden text-sm truncate">
+								Profit {profitPercentage.toFixed(2)} %
+							</span>
 						</div>
 						<div className="flex gap-2 truncate">{profit}</div>
 					</div>
