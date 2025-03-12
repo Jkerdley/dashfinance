@@ -4,6 +4,9 @@ WORKDIR /usr/src/app
 
 COPY . .
 
+COPY frontend/package*.json ./frontend/
+COPY backend/package*.json ./backend/
+
 WORKDIR /usr/src/app/frontend
 RUN npm i
 RUN npm run build
@@ -13,4 +16,4 @@ RUN npm i
 
 EXPOSE 3007
 
-CMD [ "node", "app.js" ]
+CMD [ "node", "server.js" ]
