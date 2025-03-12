@@ -1,6 +1,6 @@
 {
 	"name": "dashfinance",
-	"private": true,
+	"private": false,
 	"version": "0.2.1",
 	"type": "module",
 	"scripts": {

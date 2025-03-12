@@ -10,9 +10,15 @@ require("dotenv").config();
 const PORT = 3007;
 const app = express();
 
+// app.use(
+//     cors({
+//         origin: "http://localhost:5173",
+//         credentials: true,
+//     })
+// );
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: "http://147.45.161.16",
         credentials: true,
     })
 );
