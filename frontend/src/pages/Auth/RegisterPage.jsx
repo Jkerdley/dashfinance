@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { request } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../store/actions/fetchUserData';
+import { fetchUserData } from '../../store/actions/async';
 
 export const RegisterPage = () => {
 	const [login, setLogin] = useState('');

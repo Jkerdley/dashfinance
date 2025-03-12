@@ -11,8 +11,7 @@ import {
 } from '../operationSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAccounts, selectCategories } from '../../../store/selectors';
-import { fetchAccounts, fetchCategories } from '../../../store/actions/async';
-import { fetchHistory } from '../../../store/actions';
+import { fetchAccounts, fetchCategories, fetchHistory } from '../../../store/actions/async';
 
 export const SpendOperationForm = ({ onClose, operationType }) => {
 	const { isUSD, rubleCourse } = useCurrency();

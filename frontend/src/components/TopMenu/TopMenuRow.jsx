@@ -8,24 +8,30 @@ import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
 import { request } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { ACTIONS } from '../../store/actionTypes';
-
 import { selectUser, selectUserModal } from '../../store/selectors';
 import { UpdateUserModal } from '../modalWindow/UpdateUserModal';
 import { closeUserModal, openUserModal } from '../../store/actions';
+import { useNavigate } from 'react-router-dom';
+import { ACTIONS } from '../../store/actionTypes';
 
 export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const userModal = useSelector(selectUserModal);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const logout = async () => {
 		try {
 			await request('/auth/logout', 'POST');
 			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
+			dispatch({ type: ACTIONS.CLEAR_ACCOUNTS_DATA });
+			dispatch({ type: ACTIONS.CLEAR_CATEGORIES_DATA });
+			dispatch({ type: ACTIONS.CLEAR_CRYPTODATA_DATA });
+			dispatch({ type: ACTIONS.CLEAR_HISTORY_DATA });
 			localStorage.removeItem('user');
-			window.location.href = '/login';
+			navigate('/login');
+			// window.location.href = '/login';
 		} catch (err) {
 			console.error('Ошибка выхода:', err);
 		}

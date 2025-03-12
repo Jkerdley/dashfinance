@@ -1,5 +1,5 @@
-import { request } from '../../utils/request';
-import { ACTIONS } from '../actionTypes';
+import { request } from '../../../utils/request';
+import { ACTIONS } from '../../actionTypes';
 
 export const fetchHistory = () => async (dispatch) => {
 	try {

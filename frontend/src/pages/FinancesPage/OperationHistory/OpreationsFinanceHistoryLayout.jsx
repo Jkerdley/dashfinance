@@ -4,7 +4,7 @@ import { SortSelector } from '../../../components/sortSelector/sortSelector.jsx'
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { FixedSizeList as List } from 'react-window';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-import { fetchHistory } from '../../../store/actions/fetshHistory.js';
+import { fetchHistory } from '../../../store/actions/async';
 import { useFetchHistoryData } from '../../../hooks';
 import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors/select-history.js';
 

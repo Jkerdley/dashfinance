@@ -27,6 +27,8 @@ export const accountsReducer = (state = initialAccountsState, action) => {
 				isLoading: false,
 				error: action.payload.error,
 			};
+		case ACTIONS.CLEAR_ACCOUNTS_DATA:
+			return initialAccountsState;
 
 		default:
 			return state;

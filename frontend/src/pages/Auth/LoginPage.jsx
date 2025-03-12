@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { request } from '../../utils';
 import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../store/actions/fetchUserData';
 import { useNavigate } from 'react-router-dom';
+import { fetchUserData } from '../../store/actions/async';
 
 export const LoginPage = () => {
 	const [login, setLogin] = useState('');

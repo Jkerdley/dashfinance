@@ -31,6 +31,8 @@ export const cryptoReducer = (state = initialCryptoState, action) => {
 				isLoading: false,
 				error: action.payload.error,
 			};
+		case ACTIONS.CLEAR_CRYPTODATA_DATA:
+			return initialCryptoState;
 
 		default:
 			return state;
