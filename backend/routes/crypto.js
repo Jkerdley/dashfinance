@@ -4,8 +4,8 @@ const chalk = require("chalk");
 
 const router = express.Router({ mergeParams: true });
 const authentificated = require("../middleware/authentificated");
-const { getCryptoAssets } = require("../controllers/finances");
 const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");
+const { getCryptoAssets } = require("../controllers/cryptoassets");
 
 router.get("/cryptoassets", authentificated, async (req, res) => {
     const cryptoAssets = await getCryptoAssets(req.user._id);

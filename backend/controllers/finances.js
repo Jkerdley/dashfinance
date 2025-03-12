@@ -1,7 +1,6 @@
 const History = require("../models/History");
 const Accounts = require("../models/Acounts");
 const Categories = require("../models/Categories");
-const CryptoAssets = require("../models/CryptoAssets");
 const User = require("../models/User");
 const { default: mongoose } = require("mongoose");
 
@@ -13,10 +12,7 @@ async function getAccounts(userId) {
     const accounts = await Accounts.find({ userId });
     return accounts;
 }
-async function getCryptoAssets(userId) {
-    const cryptoAssets = await CryptoAssets.find({ userId });
-    return cryptoAssets;
-}
+
 async function getCategories(userId) {
     const categories = await Categories.find({ userId });
     return categories;
@@ -103,7 +99,6 @@ module.exports = {
     getHistory,
     getAccounts,
     getCategories,
-    getCryptoAssets,
     addHistoryItem,
     addAccount,
     addCategory,
