@@ -41,7 +41,7 @@ export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => 
 				</div>
 			)}
 
-			{/* <OperationsPanel isCrypto={true} /> */}
+			<OperationsPanel isCrypto={true} />
 		</section>
 	);
 };
