@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { BaseModal } from './base/BaseModal';
 import { MenuButtonsContainer } from '../Sidebar/MenuButtonsContainer';
 
@@ -14,9 +13,4 @@ export const BurgerMenuModal = ({ isOpen, onClose }) => {
 			</div>
 		</BaseModal>
 	);
-};
-
-BurgerMenuModal.propTypes = {
-	isOpen: PropTypes.bool.isRequired,
-	onClose: PropTypes.func.isRequired,
 };

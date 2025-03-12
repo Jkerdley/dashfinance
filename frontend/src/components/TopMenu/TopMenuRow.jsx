@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import DashLogo from '../../assets/icons/dash-logo-main-white.svg';
 import Avatar from '../../assets/pictures/avatar.jpg';
 import Settings from '../../assets/icons/settings-icon.svg';
@@ -75,9 +74,4 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			</div>
 		</section>
 	);
-};
-
-TopMenuRow.propTypes = {
-	onBurgerClick: PropTypes.func.isRequired,
-	isBurgerMenuOpen: PropTypes.bool,
 };

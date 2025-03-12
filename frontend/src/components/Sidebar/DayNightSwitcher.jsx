@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import DayTheme from '../../assets/icons/day-icon.svg';
 import NightTheme from '../../assets/icons/night-icon.svg';
@@ -17,8 +16,4 @@ export const DayNightSwitcher = ({ isInModal }) => {
 			</div>
 		</div>
 	);
-};
-
-DayNightSwitcher.propTypes = {
-	isInModal: PropTypes.bool,
 };

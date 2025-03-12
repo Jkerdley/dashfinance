@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { usePressKey } from '../../../hooks';
-import PropTypes from 'prop-types';
 import { CloseModalButton } from '../../buttons';
 
 export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', position = 'center' }) => {
@@ -70,13 +69,4 @@ export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', posit
 			</div>
 		</section>
 	);
-};
-
-BaseModal.propTypes = {
-	isOpen: PropTypes.bool.isRequired,
-	onClose: PropTypes.func.isRequired,
-	children: PropTypes.node.isRequired,
-	width: PropTypes.string,
-	height: PropTypes.string,
-	position: PropTypes.oneOf(['left', 'right', 'center']),
 };

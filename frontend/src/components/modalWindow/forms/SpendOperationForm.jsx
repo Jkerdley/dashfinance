@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { CurrencyToggle } from '../../buttons';
 import { useCurrency } from '../../../hooks';
 import { request } from '../../../utils';
@@ -158,9 +157,4 @@ export const SpendOperationForm = ({ onClose, operationType }) => {
 			<SaveAndCancelButtons handleFormSubmit={handleFormSubmit} onClose={onClose} />
 		</section>
 	);
-};
-
-SpendOperationForm.propTypes = {
-	onClose: PropTypes.func.isRequired,
-	operationType: PropTypes.oneOf(['add', 'spend']),
 };
