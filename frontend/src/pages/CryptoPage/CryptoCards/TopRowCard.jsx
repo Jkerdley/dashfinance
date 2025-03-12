@@ -6,7 +6,6 @@ import { CardIcon } from '../../../components/CardIcon';
 export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const priceInCurrency = calculateValueInCurrency(assetData.price, isUSD, rubleCourse);
-	console.log('parseFloat(assetData.priceChange1d', parseFloat(assetData.priceChange1d));
 
 	const isDisabled = disabled ? '' : 'cursor-pointer';
 	return isAddButton ? (

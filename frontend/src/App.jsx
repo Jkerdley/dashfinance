@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { SidebarMenu } from './components/Sidebar';
 import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
@@ -23,6 +23,8 @@ export const App = () => {
 	const accountsData = useSelector(selectAccounts);
 	const categoriesData = useSelector(selectCategories);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
+	const isDayTheme = useSelector((state) => state.theme.isDayTheme); // Получаем фон из состояния
+	console.log('isDayTheme', isDayTheme);
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -30,6 +32,16 @@ export const App = () => {
 			dispatch(fetchUserData(user));
 		}
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (isDayTheme) {
+			document.body.classList.add('body-day');
+			document.body.classList.remove('body-night');
+		} else {
+			document.body.classList.add('body-night');
+			document.body.classList.remove('body-day');
+		}
+	}, [isDayTheme]);
 
 	const canShowOperationModal = accountsData.length > 0 && categoriesData.length > 0;
 
