@@ -6,39 +6,15 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { LoginPage } from './pages/Auth/LoginPage';
-import { RegisterPage } from './pages/Auth/RegisterPage';
 import { selectAccounts, selectCategories, selectIsAuthenticated } from './store/selectors';
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
-import { fetchUserData } from './store/actions/fetchUserData';
+import { fetchUserData } from './store/actions/async/fetchUserData';
 import { MainPageLayout } from './pages/MainPage/MainPageLayout';
-
-const ProtectedRoute = ({ children }) => {
-	const isAuthenticated = useSelector(selectIsAuthenticated);
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (!isAuthenticated) {
-			navigate('/login');
-		}
-	}, [isAuthenticated, navigate]);
-
-	return isAuthenticated ? children : null;
-};
-
-const PublicRoute = ({ children }) => {
-	const isAuthenticated = useSelector(selectIsAuthenticated);
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (isAuthenticated) {
-			navigate('/');
-		}
-	}, [isAuthenticated, navigate]);
-
-	return !isAuthenticated ? children : null;
-};
+import { LoginPage } from './pages/Auth/LoginPage';
+import { RegisterPage } from './pages/Auth/RegisterPage';
+import { LoginWrapper } from './routes/LoginWrapper';
+import { ProtectedRoute } from './routes/ProtectedRoute';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -46,6 +22,7 @@ export const App = () => {
 	const burgerModal = useSelector(selectBurgerModal);
 	const accountsData = useSelector(selectAccounts);
 	const categoriesData = useSelector(selectCategories);
+	const isAuthenticated = useSelector(selectIsAuthenticated);
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -66,19 +43,20 @@ export const App = () => {
 				<Route
 					path="/login"
 					element={
-						<PublicRoute>
+						<LoginWrapper>
 							<LoginPage />
-						</PublicRoute>
+						</LoginWrapper>
 					}
 				/>
 				<Route
 					path="/register"
 					element={
-						<PublicRoute>
+						<LoginWrapper>
 							<RegisterPage />
-						</PublicRoute>
+						</LoginWrapper>
 					}
 				/>
+
 				<Route
 					path="/*"
 					element={
@@ -108,7 +86,7 @@ export const App = () => {
 											<Route path="/" element={<MainPageLayout />} />
 											<Route path="/finances" element={<FinancesLayout />} />
 											<Route path="/crypto" element={<CryptoLayout />} />
-											<Route path="/*" element={<Navigate to="/" replace />} />
+											<Route path="*" element={<Navigate to="/" replace />} />
 										</Routes>
 									</div>
 								</div>
@@ -116,6 +94,7 @@ export const App = () => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route path="*" element={<Navigate to={isAuthenticated ? '/' : '/login'} replace />} />
 			</Routes>
 		</section>
 	);

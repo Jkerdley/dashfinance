@@ -27,6 +27,8 @@ export const historyReducer = (state = initialHistoryDataState, action) => {
 				isLoading: false,
 				error: action.payload.error,
 			};
+		case ACTIONS.CLEAR_HISTORY_DATA:
+			return initialHistoryDataState;
 
 		default:
 			return state;

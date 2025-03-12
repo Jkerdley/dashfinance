@@ -5,8 +5,7 @@ import { request } from '../../../utils';
 import { FinalResultNewOperationItem, OperationSelectors, SaveAndCancelButtons } from '../operationSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAccounts } from '../../../store/selectors';
-import { fetchAccounts } from '../../../store/actions/async';
-import { fetchHistory } from '../../../store/actions';
+import { fetchAccounts, fetchHistory } from '../../../store/actions/async';
 
 export const AddOperationForm = ({ onClose, operationType }) => {
 	const { isUSD, rubleCourse } = useCurrency();

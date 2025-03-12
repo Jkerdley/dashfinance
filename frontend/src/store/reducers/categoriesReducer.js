@@ -27,6 +27,8 @@ export const categoriesReducer = (state = initialCategoriesState, action) => {
 				isLoading: false,
 				error: action.payload.error,
 			};
+		case ACTIONS.CLEAR_CATEGORIES_DATA:
+			return initialCategoriesState;
 
 		default:
 			return state;

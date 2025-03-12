@@ -9,7 +9,7 @@ export const BestAndWorstPerformer = ({ totalPNL, indexOfLastItem }) => {
 					<span className="text-lg">{totalPNL[indexOfLastItem]?.name}:</span>
 					<span className="text-lg">{totalPNL[indexOfLastItem]?.profit}</span>
 					<span className="text-lg truncate">
-						({parseInt(totalPNL[indexOfLastItem]?.profitPercentage)} %)
+						{totalPNL.length > 0 ? parseInt(totalPNL[indexOfLastItem]?.profitPercentage) : ''} %
 					</span>
 				</div>
 			</div>
@@ -18,7 +18,9 @@ export const BestAndWorstPerformer = ({ totalPNL, indexOfLastItem }) => {
 				<div className="flex gap-2 justify-center flex-wrap text-main-red/90">
 					<span className="text-lg">{totalPNL[0]?.name}:</span>
 					<span className="text-lg">{totalPNL[0]?.profit}</span>
-					<span className="text-lg truncate">({parseInt(totalPNL[0]?.profitPercentage)} %)</span>
+					<span className="text-lg truncate">
+						{totalPNL.length > 0 ? parseInt(totalPNL[0]?.profitPercentage) : ''} %
+					</span>
 				</div>
 			</div>
 		</section>

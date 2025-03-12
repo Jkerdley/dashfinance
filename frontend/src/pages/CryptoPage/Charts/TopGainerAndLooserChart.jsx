@@ -46,7 +46,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 									<span
 										className={`text-lg ml-2 ${parseFloat(topGainerForDay[0]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
-										{parseInt(topGainerForDay[0]?.profitPercentage)} %
+										{parseInt(topGainerForDay[0]?.profitPercentage) || ''} %
 									</span>
 								</>
 							</div>
@@ -89,7 +89,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 									<span
 										className={`text-lg ml-2 ${parseFloat(topGainerForDay[indexOfLastItem]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
-										{parseInt(topGainerForDay[indexOfLastItem]?.profitPercentage)} %
+										{parseInt(topGainerForDay[indexOfLastItem]?.profitPercentage) || ''} %
 									</span>
 								</>
 							</div>

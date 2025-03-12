@@ -4,7 +4,7 @@ import { BaseModal } from './base/BaseModal';
 import { request } from '../../utils';
 import { UserForm } from './forms';
 import { selectUser } from '../../store/selectors';
-import { fetchUserData } from '../../store/actions/fetchUserData';
+import { fetchUserData } from '../../store/actions/async';
 
 export const UpdateUserModal = ({ isOpen, onClose }) => {
 	const user = useSelector(selectUser);

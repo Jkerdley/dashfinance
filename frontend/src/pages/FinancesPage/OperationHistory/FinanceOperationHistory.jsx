@@ -4,9 +4,8 @@ import BancCardIcon from '../../../assets/icons/income-debit-icon.svg';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
 import { useDispatch } from 'react-redux';
-import { fetchHistory } from '../../../store/actions';
 import { request } from '../../../utils';
-import { fetchAccounts } from '../../../store/actions/async';
+import { fetchAccounts, fetchHistory } from '../../../store/actions/async';
 
 const FinanceOperationHistoryComponent = ({
 	id,
