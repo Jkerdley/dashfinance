@@ -12,8 +12,6 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 	const totalPNL = cryptoAssetsInCurrency.sort((a, b) => a.profitPercentage - b.profitPercentage);
 	const indexOfLastItem = totalPNL.length - 1;
 
-	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
-	console.log('totalPNL', totalPNL);
 	const cryptoAssetsBalance = cryptoAssetsInCurrency.reduce(
 		(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
 		0,

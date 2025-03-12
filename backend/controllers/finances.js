@@ -34,8 +34,6 @@ async function addHistoryItem(data, userId) {
     const session = await mongoose.startSession();
     session.startTransaction();
 
-    console.log("Данные операции:", data);
-    console.log("userId:", userId);
     if (data.type === "spend") {
         try {
             const historyItem = await History.create([{ ...data, userId }], { session });
@@ -101,23 +99,10 @@ async function addHistoryItem(data, userId) {
     }
 }
 
-async function getHistoryItem(id) {
-    return History.findById({ _id: id });
-}
-async function getCategoryItem(id) {
-    return Categories.findById({ _id: id });
-}
-async function getAccountItem(id) {
-    return Accounts.findById({ _id: id });
-}
-
 module.exports = {
     getHistory,
     getAccounts,
     getCategories,
-    getHistoryItem,
-    getCategoryItem,
-    getAccountItem,
     getCryptoAssets,
     addHistoryItem,
     addAccount,

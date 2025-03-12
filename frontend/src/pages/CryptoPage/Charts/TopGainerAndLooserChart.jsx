@@ -9,7 +9,6 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 		(item) => item.symbol !== 'USDT' && item.symbol !== 'USDC' && item.symbol !== 'DAI',
 	);
 	const indexOfLastItem = arrayWithoutStablecoins.length - 1;
-	console.log(' topGainerForDay[0]?.profitPercentage', typeof topGainerForDay[0]?.profitPercentage);
 
 	return isLoading ? (
 		<Loader />

@@ -100,8 +100,6 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 
 				const response = await request('/history', 'POST', formDataToSend);
 
-				console.log('Submit FORM DATA response', response);
-
 				dispatch(fetchAccounts());
 				dispatch(fetchHistory());
 

@@ -24,8 +24,12 @@ export const RegisterPage = () => {
 		}
 	};
 
+	const handleNavToLogin = () => {
+		navigate('/login');
+	};
+
 	return (
-		<section className="flex items-center justify-center h-[90vh] w-full">
+		<section className="flex flex-col gap-4 items-center justify-center h-[90vh] w-full">
 			<form
 				onSubmit={handleSubmit}
 				className="flex flex-col bg-sky-200/10 p-6 rounded-4xl shadow-md w-full max-w-sm gap-4 "
@@ -69,6 +73,12 @@ export const RegisterPage = () => {
 					Зарегистрироваться
 				</button>
 			</form>
+			<span
+				className="flex text-md cursor-pointer hover:opacity-65 hover:underline transition-all duration-200 ease-in-out"
+				onClick={handleNavToLogin}
+			>
+				- Войти в аккаунт -
+			</span>
 		</section>
 	);
 };

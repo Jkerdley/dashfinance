@@ -113,8 +113,6 @@ export const SpendOperationForm = ({ onClose, operationType }) => {
 
 				const response = await request('/history', 'POST', formDataToSend);
 
-				console.log('Submit FORM DATA response', response);
-
 				dispatch(fetchAccounts());
 				dispatch(fetchCategories());
 				dispatch(fetchHistory());

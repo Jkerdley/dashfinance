@@ -14,13 +14,9 @@ async function registerNewUser({ login, password, role, name }) {
     if (!login) {
         throw new Error("Логин пуст");
     }
-    console.log("Логин и пароль получены");
 
     const passwordHash = await bcrypt.hash(password, 10);
-    console.log("passwordHash");
-
     const user = await User.create({ login, password: passwordHash, role, name });
-    console.log("user created");
     const token = generate({ id: user.id });
     return { user, token };
 }

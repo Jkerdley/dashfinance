@@ -1,8 +1,6 @@
 import React from 'react';
 import { SaveAndCancelButtons } from '../operationSelectors';
 export const UserForm = ({ formData, handleSubmit, handleNameChange, error, onClose }) => {
-	console.log('formData', formData);
-
 	return (
 		<>
 			<h2 className="text-2xl mb-4">Изменить данные пользователя</h2>

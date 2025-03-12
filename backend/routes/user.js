@@ -11,7 +11,6 @@ router.patch("/user/:id", authentificated, async (req, res) => {
             { name: req.body.userName },
             { new: true }
         );
-        console.log("updatedUser", updatedUser);
 
         if (!updatedUser) {
             return res.status(404).send({ error: "Пользователь не найден" });

@@ -46,8 +46,6 @@ export const UpdateCategoryModal = ({ isOpen, onClose, categoryId, categoriesInC
 
 	const handleDeleteCategory = async () => {
 		if (confirm('Вы уверены что хотите удалить категорию расходов?')) {
-			console.log('Категория удалена');
-
 			try {
 				await request(`/categories/${categoryId}`, 'DELETE');
 				dispatch(fetchCategories());
