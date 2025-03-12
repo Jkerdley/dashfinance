@@ -30,7 +30,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 
 	return (
 		<div id="finance-result__main-container" className="flex h-full gap-4 transition-all">
-			<div className="flex flex-col flex-3 2xl:flex-4 h-full">
+			<div className="flex flex-col flex-3 h-full">
 				<section className="flex flex-2 justify-center">
 					{historyIsLoading ? (
 						<Loader />
@@ -63,7 +63,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 					)}
 				</section>
 			</div>
-			<section className="flex flex-3 p-2 h-full items-center justify-center">
+			<section className="flex flex-2 p-2 h-full items-center justify-center">
 				<FinanceResultDiagram selectedSortType={selectedSortType} />
 			</section>
 		</div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { cleanValue } from '../../../utils';
-import { useCurrency, useFetchCryptoAssetsInCurrency } from '../../../hooks';
+import { useCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 import { CryptoAssetsAllocationChart } from '../Charts';
 import { BestAndWorstPerformer } from './components/BestAndWorstPerformer';
@@ -20,22 +19,17 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 	const totalBalanceForDate = isUSD ? '$ ' + cryptoAssetsBalance : '\u20bd ' + cryptoAssetsBalance;
 	return (
 		<section id="finance-result__main-container" className="flex justify-center w-full h-full">
-			<div className="flex flex-col flex-3 2xl:flex-4">
-				<div className="flex flex-4 justify-center">
-					<div className="flex flex-5 flex-col items-center">
-						{isLoading ? (
-							<Loader />
-						) : (
-							<>
-								<PNLpercentages totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
-								<CryptoTotalBalance totalBalanceForDate={totalBalanceForDate} isUSD={isUSD} />
-								<BestAndWorstPerformer
-									totalPNL={totalPNL}
-									indexOfLastItem={indexOfLastItem}
-								/>
-							</>
-						)}
-					</div>
+			<div className="flex flex-col flex-3">
+				<div className="flex flex-5 flex-col items-center justify-center">
+					{isLoading ? (
+						<Loader />
+					) : (
+						<>
+							<CryptoTotalBalance totalBalanceForDate={totalBalanceForDate} isUSD={isUSD} />
+							<BestAndWorstPerformer totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
+							<PNLpercentages totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
+						</>
+					)}
 				</div>
 			</div>
 			<div className="flex items-center justify-center flex-2">

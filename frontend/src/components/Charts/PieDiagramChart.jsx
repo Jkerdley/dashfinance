@@ -20,9 +20,9 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 
 	const pieProps = isCrypto
 		? {
-				cy: 240,
-				innerRadius: 120,
-				outerRadius: 200,
+				cy: 230,
+				innerRadius: 110,
+				outerRadius: 190,
 				startAngle: 180,
 				endAngle: 0,
 				animationBegin: 0,
