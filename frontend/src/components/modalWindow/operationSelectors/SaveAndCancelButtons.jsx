@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { WideOperationsButton } from '../../buttons';
 
 export const SaveAndCancelButtons = ({ handleFormSubmit, onClose }) => {
@@ -18,9 +17,4 @@ export const SaveAndCancelButtons = ({ handleFormSubmit, onClose }) => {
 			</WideOperationsButton>
 		</section>
 	);
-};
-
-SaveAndCancelButtons.propTypes = {
-	handleFormSubmit: PropTypes.func.isRequired,
-	onClose: PropTypes.func.isRequired,
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const CloseModalButton = ({ onClick }) => {
 	return (
@@ -25,8 +24,4 @@ export const CloseModalButton = ({ onClick }) => {
 			/>
 		</button>
 	);
-};
-
-CloseModalButton.propTypes = {
-	onClick: PropTypes.func.isRequired,
 };

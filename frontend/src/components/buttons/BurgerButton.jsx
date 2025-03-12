@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const BurgerButton = ({ isOpen, onClick }) => {
 	return (
@@ -36,9 +35,4 @@ export const BurgerButton = ({ isOpen, onClick }) => {
 			/>
 		</button>
 	);
-};
-
-BurgerButton.propTypes = {
-	isOpen: PropTypes.bool.isRequired,
-	onClick: PropTypes.func.isRequired,
 };
