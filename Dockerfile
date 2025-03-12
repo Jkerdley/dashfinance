@@ -2,17 +2,19 @@ FROM node:20
 
 WORKDIR /usr/src/app
 
-COPY . .
-
 COPY frontend/package*.json ./frontend/
 COPY backend/package*.json ./backend/
 
 WORKDIR /usr/src/app/frontend
-RUN npm i
+RUN npm install
+
+COPY frontend/ ./frontend/
+COPY backend/ ./backend/
+
 RUN npm run build
 
 WORKDIR /usr/src/app/backend
-RUN npm i
+RUN npm install
 
 EXPOSE 3007
 
