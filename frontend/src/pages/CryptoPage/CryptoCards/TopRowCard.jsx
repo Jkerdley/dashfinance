@@ -6,6 +6,7 @@ import { CardIcon } from '../../../components/CardIcon';
 export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const priceInCurrency = calculateValueInCurrency(assetData.price, isUSD, rubleCourse);
+	console.log('parseFloat(assetData.priceChange1d', parseFloat(assetData.priceChange1d));
 
 	const isDisabled = disabled ? '' : 'cursor-pointer';
 	return isAddButton ? (
@@ -45,7 +46,7 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 					<div className="flex gap-2 items-center w-full">
 						<span className="truncate">За неделю:</span>
 						<div
-							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
 							{assetData.priceChange1w}
 							<span
