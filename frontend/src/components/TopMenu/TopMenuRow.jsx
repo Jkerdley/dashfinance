@@ -31,7 +31,6 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			dispatch({ type: ACTIONS.CLEAR_HISTORY_DATA });
 			localStorage.removeItem('user');
 			navigate('/login');
-			// window.location.href = '/login';
 		} catch (err) {
 			console.error('Ошибка выхода:', err);
 		}
