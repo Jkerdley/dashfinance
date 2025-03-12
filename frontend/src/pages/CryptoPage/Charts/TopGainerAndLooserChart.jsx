@@ -26,7 +26,7 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 					</div>
 					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
 						<div className="flex gap-2 items-center">
-							<CardIcon size={'10'} icon={topGainerForDay[0]?.icon} />{' '}
+							<CardIcon buttonSize={'14'} size={'10'} icon={topGainerForDay[0]?.icon} />{' '}
 							<span className="text-lg">{topGainerForDay[0]?.name}</span>
 						</div>
 						<div className="flex flex-col gap-2 items-center">
@@ -65,7 +65,11 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 					</div>
 					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
 						<div className="flex gap-2 items-center">
-							<CardIcon size={'10'} icon={topGainerForDay[indexOfLastItem]?.icon} />{' '}
+							<CardIcon
+								buttonSize={'14'}
+								size={'10'}
+								icon={topGainerForDay[indexOfLastItem]?.icon}
+							/>{' '}
 							<span className="text-lg">{topGainerForDay[indexOfLastItem]?.name}</span>
 						</div>
 						<div className="flex flex-col gap-2 items-center">
@@ -92,13 +96,6 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 						</div>
 					</div>
 				</section>
-
-				// <section className="flex flex-col w-full gap-2">
-				// 	<SectionContainerHeader title={title} />
-				// 	<div className="flex flex-col items-center justify-center w-full h-full">
-				// 		<CardIcon size={'10'} icon={topGainerForDay[indexOfLastItem]?.icon} />
-				// 	</div>
-				// </section>
 			)}
 		</section>
 	);
