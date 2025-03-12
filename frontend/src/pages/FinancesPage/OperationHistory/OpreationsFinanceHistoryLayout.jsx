@@ -41,7 +41,7 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 			id="accouts__operations-history-container"
 			className="flex flex-col flex-5 p-4 h-full rounded-3xl bg-sky-950/40 gap-4"
 		>
-			<div className="flex justify-between gap-2">
+			<div className="flex flex-wrap sm:flex-nowrap justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
 			</div>

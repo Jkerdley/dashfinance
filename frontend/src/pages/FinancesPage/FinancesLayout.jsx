@@ -14,7 +14,10 @@ export const FinancesLayout = () => {
 		>
 			<div className="flex flex-10 flex-col gap-4">
 				<FinanceResultLayout />
-				<div id="row__accounts-and-history" className="flex flex-10 gap-4 h-full">
+				<div
+					id="row__accounts-and-history"
+					className="flex flex-wrap md:flex-nowrap flex-10 gap-4 h-full"
+				>
 					<div
 						id="operations__and__accounts-container"
 						className="flex flex-col flex-3 min-w-42% gap-4"
@@ -25,7 +28,7 @@ export const FinancesLayout = () => {
 					<OpreationsFinanceHistoryLayout />
 				</div>
 			</div>
-			<div className="flex flex-7 flex-row 2xl:flex-col gap-4">
+			<div className="flex flex-wrap flex-7 flex-row 2xl:flex-col gap-4">
 				<CategoriesLayout />
 				<FinanceAddAndSpendChartContainer />
 			</div>

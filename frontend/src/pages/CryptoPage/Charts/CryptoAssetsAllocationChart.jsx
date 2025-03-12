@@ -13,7 +13,7 @@ export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading 
 		<span>Добавьте активы чтобы увидеть график</span>
 	) : (
 		<div className="relative">
-			<span className="absolute top-50 right-40">Аллокация</span>
+			<span className="absolute top-3/4 left-1/2 transform -translate-x-1/2">Аллокация</span>
 			{isLoading ? <Loader /> : <PieDiagramChart mappedData={sortedData} isCrypto={true} />}
 		</div>
 	);

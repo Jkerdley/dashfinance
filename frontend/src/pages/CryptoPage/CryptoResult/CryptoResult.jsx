@@ -20,7 +20,7 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 	return (
 		<section id="finance-result__main-container" className="flex justify-center w-full h-full">
 			<div className="flex flex-col flex-3">
-				<div className="flex flex-5 flex-col items-center justify-center">
+				<div className="flex flex-5 flex-col md:gap-1 gap-6 items-center justify-center">
 					{isLoading ? (
 						<Loader />
 					) : (
@@ -32,7 +32,7 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 					)}
 				</div>
 			</div>
-			<div className="flex items-center justify-center flex-2">
+			<div className="lg:flex hidden items-center justify-center flex-2">
 				<CryptoAssetsAllocationChart
 					cryptoAssetsInCurrency={cryptoAssetsInCurrency}
 					isLoading={isLoading}

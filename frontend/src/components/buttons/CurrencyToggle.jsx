@@ -12,7 +12,7 @@ export const CurrencyToggle = () => {
 	};
 
 	return (
-		<div className="flex items-center space-x-3">
+		<div className="flex items-center space-x-2">
 			<span className={`transition-colors ${isUSD ? 'text-sky-300' : 'text-gray-300/80'}`}>USD</span>
 			<div
 				onClick={toggleCurrency}

@@ -33,7 +33,7 @@ export const CryptoOperationHistory = ({
 				<div className="flex items-center justify-center w-full gap-1">
 					<div className="flex flex-2/10 truncate flex-shrink-0 flex-grow">
 						<span className={`text-sm w-full text-white truncate`}>
-							{operationType === 'buy' ? 'BUY ' : 'SELL '}
+							<span className="flex">{operationType === 'buy' ? 'BUY ' : 'SELL '}</span>
 							{coin}
 						</span>
 					</div>
@@ -58,7 +58,7 @@ export const CryptoOperationHistory = ({
 							{assetAmount} <span>{` ${symbol}`}</span>
 						</span>
 					</div>
-					<div className="flex flex-shrink-0 flex-grow flex-1/10 text-start overflow-hidden">
+					<div className="sm:flex hidden flex-shrink-0 flex-grow flex-1/10 text-start overflow-hidden">
 						<span className="text-sm text-slate-400 truncate">
 							{operationDate.split('-').reverse().join('.')}
 						</span>

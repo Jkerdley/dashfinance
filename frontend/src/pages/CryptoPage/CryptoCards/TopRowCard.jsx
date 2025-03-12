@@ -23,47 +23,47 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 	) : (
 		<section className={`flex flex-col py-4 px-4 ${flex} bg-sky-950/40 min-h-26 rounded-3xl`}>
 			<div className="flex flex-col gap-2 items-start">
-				<div className="flex gap-3 items-center">
-					<CardIcon icon={assetData.icon} />
-					<span className="text-2xl font-medium truncate">{assetData.symbol}</span>
+				<section className="flex gap-4 items-center justify-between w-full">
 					<div
-						className={`flex gap-5 items-center justify-center text-xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+						className={`flex gap-3 items-center justify-start md:text-xl text-md  font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
 					>
+						<CardIcon icon={assetData.icon} />
+						<span className="md:text-2xl text-lg font-medium truncate">{assetData.symbol}</span>
 						{priceInCurrency}
+					</div>
+					<div
+						className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+					>
+						<span
+							className={`xs:flex hidden h-2 w-2 truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'triangle-down' : 'triangle-up'} `}
+						></span>
+						{assetData.priceChange1h} %
+					</div>
+				</section>
+				<section className="flex pl-1 gap-4 items-center  justify-between w-full">
+					<div className="flex gap-2 items-center justify-between w-full">
 						<div
-							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 md:text-xl text-md  font-medium truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
 							{' '}
+							<span className="truncate md:text-xl text-md ">За неделю:</span>
+							{assetData.priceChange1w} %
 							<span
-								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'triangle-down' : 'triangle-up'} `}
-							></span>
-							{assetData.priceChange1h} %
-						</div>
-					</div>
-				</div>
-				<div className="flex pl-1 gap-4 items-center justify-center w-full">
-					<div className="flex gap-2 items-center w-full">
-						<span className="truncate">За неделю:</span>
-						<div
-							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
-						>
-							{assetData.priceChange1w}
-							<span
-								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`xs:flex hidden h-2 w-2 truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							></span>
 						</div>
 
-						<span className="truncate">За день:</span>
 						<div
-							className={`flex items-center gap-1 text-xl font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 md:text-xl text-md  font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							{assetData.priceChange1d}
+							<span className="truncate md:text-xl text-md ">За день:</span>
+							{assetData.priceChange1d} %
 							<span
-								className={`flex h-2 w-2 truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'triangle-down' : 'triangle-up'} `}
+								className={`xs:flex hidden h-2 w-2 truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'triangle-down' : 'triangle-up'} `}
 							></span>
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</section>
 	);

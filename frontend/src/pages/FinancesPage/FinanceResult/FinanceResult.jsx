@@ -63,7 +63,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 					)}
 				</section>
 			</div>
-			<section className="flex flex-2 p-2 h-full items-center justify-center">
+			<section className="md:flex hidden flex-2 p-2 h-full items-center justify-center">
 				<FinanceResultDiagram selectedSortType={selectedSortType} />
 			</section>
 		</div>
