@@ -23,8 +23,12 @@ export const LoginPage = () => {
 		}
 	};
 
+	const handleNavToRegister = () => {
+		navigate('/register');
+	};
+
 	return (
-		<section className="flex items-center justify-center w-full h-[90vh]">
+		<section className="flex flex-col gap-4 items-center justify-center w-full h-[90vh]">
 			<form
 				onSubmit={handleSubmit}
 				className="flex flex-col bg-sky-200/10 p-6 rounded-4xl shadow-md w-full max-w-sm gap-4"
@@ -61,6 +65,12 @@ export const LoginPage = () => {
 					Войти
 				</button>
 			</form>
+			<span
+				className="flex text-md cursor-pointer hover:opacity-65 hover:underline transition-all duration-200 ease-in-out"
+				onClick={handleNavToRegister}
+			>
+				- Зарегистрироваться -
+			</span>
 		</section>
 	);
 };

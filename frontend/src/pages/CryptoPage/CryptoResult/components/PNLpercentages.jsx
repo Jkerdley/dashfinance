@@ -10,7 +10,7 @@ export const PNLpercentages = ({ totalPNL, indexOfLastItem }) => {
 
 	const averageProfit = calculateAverageProfitPercentage(totalPNL, 'profitPercentage');
 	const todayProfit = calculateAverageProfitPercentage(totalPNL, 'growValue');
-	console.log('Среднее арифметическое profitPercentage:', averageProfit);
+
 	return (
 		<section className="flex flex-2 justify-center md:justify-evently 2xl:justify-around gap-12">
 			<div className="flex gap-2 sm:flex-wrap  items-center justify-center">

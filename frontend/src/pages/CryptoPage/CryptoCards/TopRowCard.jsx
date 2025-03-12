@@ -7,7 +7,6 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 	const { isUSD, rubleCourse } = useCurrency();
 	const priceInCurrency = calculateValueInCurrency(assetData.price, isUSD, rubleCourse);
 
-	console.log('assetData', assetData);
 	const isDisabled = disabled ? '' : 'cursor-pointer';
 	return isAddButton ? (
 		<button onClick={onClick} className={`group flex flex-1/12 w-auto rounded-3xl ${isDisabled}`}>

@@ -76,8 +76,6 @@ export const modalReducer = (state = initialState, action) => {
 				addCategoryModal: { isOpen: false },
 			};
 		case ACTIONS.OPEN_UPDATE_CATEGORY_MODAL:
-			console.log('action.payload', action.payload);
-
 			return {
 				...state,
 				updateCategoryModal: { isOpen: true, categoryIdForUpdate: action.payload },
@@ -88,8 +86,6 @@ export const modalReducer = (state = initialState, action) => {
 				updateCategoryModal: { isOpen: false },
 			};
 		case ACTIONS.OPEN_USER_MODAL:
-			console.log('action.payload', action.payload);
-
 			return {
 				...state,
 				userModal: { isOpen: true },

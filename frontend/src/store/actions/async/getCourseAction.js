@@ -5,7 +5,6 @@ export const getCourseAction = () => async (dispatch) => {
 	try {
 		const response = await getCurrencyAsync();
 		const currencys = response;
-		console.log('currencys ЗАПРОС ВАЛЮТ', currencys);
 
 		dispatch({
 			type: ACTIONS.CYRRENCY_CHECK,

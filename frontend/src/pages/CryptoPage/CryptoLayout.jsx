@@ -12,7 +12,6 @@ import { selectCryptoCoins } from '../../store/selectors';
 export const CryptoLayout = () => {
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
 	const cryptoCoins = useSelector(selectCryptoCoins);
-	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
 
 	return isLoading ? (
 		<Loader />

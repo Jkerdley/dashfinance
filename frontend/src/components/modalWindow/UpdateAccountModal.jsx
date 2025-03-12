@@ -55,8 +55,6 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 
 	const handleDeleteAccount = async () => {
 		if (confirm('Вы уверены что хотите удалить счет?')) {
-			console.log('Счет удален');
-
 			try {
 				await request(`/accounts/${accountId}`, 'DELETE');
 				dispatch(fetchAccounts());

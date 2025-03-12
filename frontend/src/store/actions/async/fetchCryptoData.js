@@ -10,7 +10,6 @@ export const fetchCryptoData = () => async (dispatch) => {
 			getCryptoCoinsAsync(),
 			request('/cryptoassets'),
 		]);
-		console.log('assetsResponse in Action', assetsResponse);
 
 		dispatch({
 			type: ACTIONS.FETCH_CRYPTODATA_SUCCESS,

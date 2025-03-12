@@ -15,7 +15,6 @@ export const currencyReducer = (state = initialCurrencyState, action) => {
 			};
 		case ACTIONS.CYRRENCY_CHECK: {
 			const rubleCurrency = action.payload.find((currency) => currency.name === 'RUB');
-			console.log('rubleCurrency', rubleCurrency);
 
 			const rubleRate = rubleCurrency ? parseFloat(rubleCurrency.rate) : null;
 
