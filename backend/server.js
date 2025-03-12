@@ -12,13 +12,14 @@ const app = express();
 
 app.use(
     cors({
-        origin: "http://147.45.161.16",
+        origin: "http://localhost:5173",
         credentials: true,
     })
 );
 
 app.use(express.static("../frontend/build"));
 app.use(cookieParser());
+
 app.use(express.json());
 
 app.use("/api", routes);
