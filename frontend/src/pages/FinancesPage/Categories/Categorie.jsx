@@ -29,8 +29,7 @@ export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) =>
 		>
 			<div
 				id="categorie-inside-container"
-				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:w-90 sm:60 w-55'}`}
-				// className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'w-90'} bg-amber-400`}
+				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:min-w-90 min-w-50'}`}
 			>
 				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
 				<div
@@ -40,7 +39,7 @@ export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) =>
 					<span className="text-base truncate">{categorie}</span>
 					<div id="categorie-budjet-container" className="flex gap-2 truncate">
 						<span className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</span>
-						<span className="text-sm md:flex hidden truncate text-gray-300">
+						<span className="text-sm  text-gray-300">
 							{Number(budget.slice(1).trim()) > 0 ? `Бюджет: ${budget}` : ''}
 						</span>
 					</div>

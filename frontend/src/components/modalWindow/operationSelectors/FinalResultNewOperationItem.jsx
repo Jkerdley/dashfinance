@@ -12,7 +12,7 @@ export const FinalResultNewOperationItem = ({
 }) => {
 	return (
 		<section className="flex justify-between items-center min-h-28 w-full text-sm border-b-1 border-white/30 gap-2">
-			<div className="flex flex-3/12 items-center truncate gap-2">
+			<div className="flex flex-4/12 items-center truncate gap-2">
 				<CardIcon
 					buttonSize={9}
 					padding={'p-1'}
@@ -26,7 +26,7 @@ export const FinalResultNewOperationItem = ({
 				)}
 			</div>
 			{isUSD ? '$ ' : '\u20bd '}
-			<form onSubmit={handleFormSubmit} className="flex sm:flex-nowrap flex-wrap flex-5/12 gap-2">
+			<form onSubmit={handleFormSubmit} className="flex sm:flex-nowrap flex-wrap flex-6/12 gap-2">
 				<input
 					name="operation-amount"
 					type="text"

@@ -61,9 +61,11 @@ export const CryptoAssets = ({
 					</div>
 
 					<div id="categorie-budjet-container" className="flex justify-between gap-2">
-						<div className="flex gap-3">
+						<div className="flex gap-2">
 							<span className={`text-sm ${isCoinPriceGrow()}`}>{coinPrice}</span>
-							<span className={`text-sm ${isCoinPriceGrow()}`}>{growValue} %</span>
+							<span className={`sm:flex hidden text-sm ${isCoinPriceGrow()}`}>
+								{growValue} %
+							</span>
 						</div>
 						<span className={`text-sm truncate text-gray-300`}>
 							{assetsAmount ? `${assetsAmount} ${symbol}` : ''}

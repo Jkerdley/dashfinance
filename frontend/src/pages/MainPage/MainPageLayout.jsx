@@ -21,7 +21,7 @@ export const MainPageLayout = () => {
 	return (
 		<section className="flex flex-col gap-4 w-full">
 			<TopRowCardsLayout cryptoCoins={cryptoCoins} />
-			<div className="flex flex-wrap gap-4">
+			<div className="flex 3xl:flex-nowrap flex-wrap gap-4">
 				<FinanceResultLayout isMainPage={true} />
 				<CryptoResultLayout
 					cryptoAssetsInCurrency={cryptoAssetsInCurrency}

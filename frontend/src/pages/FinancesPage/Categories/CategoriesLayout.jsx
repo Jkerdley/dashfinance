@@ -54,7 +54,7 @@ export const CategoriesContainer = () => {
 			{IsNoCategories}
 			<div
 				id="spend-categories__container"
-				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[54vh] 2xl:max-h-[29vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
+				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[52vh] 2xl:max-h-[28vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
 			>
 				{categoryModal.isOpen && (
 					<AddCategoryModal
@@ -79,7 +79,6 @@ export const CategoriesContainer = () => {
 								key={categorie.id}
 								id={categorie.id}
 								budget={categorie.budget}
-								// balance={calculateCategoryBalance(categorie)}
 								balance={categorie.balance}
 								categorie={categorie.name}
 								icon={categorie.icon}

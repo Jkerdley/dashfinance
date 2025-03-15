@@ -16,7 +16,7 @@ export const CryptoTotalBalance = ({ totalBalanceForDate, isUSD }) => {
 					{isUSD ? '$ ' : '\u20bd'}
 				</span>
 				<span
-					className={`text-5xl lg:text-7xl 2xl:text-8xl font-bold transition-all duration-350 ease-in-out ${
+					className={`text-5xl lg:text-7xl 2xl:text-8xl font-bold transition-all duration-350 ease-in-out truncate ${
 						parseInt(totalBalanceForDate.slice(1).trim(), 10) > 0
 							? 'text-main-green'
 							: 'text-main-red'
