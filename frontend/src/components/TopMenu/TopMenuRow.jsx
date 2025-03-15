@@ -63,7 +63,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 				</div>
 				<img className="h-16 rounded-2xl sm:flex hidden" src={Avatar} alt="avatar" />
 				<div className="flex flex-col items-start">
-					<span className="font-medium text-lg md:flex hidden">Привет, {user.name}</span>
+					<span className="font-medium text-lg sm:flex hidden">Привет, {user.name}</span>
 					<a
 						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
 						onClick={logout}

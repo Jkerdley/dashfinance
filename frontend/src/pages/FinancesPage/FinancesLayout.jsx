@@ -16,7 +16,7 @@ export const FinancesLayout = () => {
 				<FinanceResultLayout />
 				<div
 					id="row__accounts-and-history"
-					className="flex flex-wrap md:flex-nowrap flex-6/12 gap-4 h-full"
+					className="flex flex-wrap lg:flex-nowrap flex-6/12 gap-4 h-full"
 				>
 					<div
 						id="operations__and__accounts-container"

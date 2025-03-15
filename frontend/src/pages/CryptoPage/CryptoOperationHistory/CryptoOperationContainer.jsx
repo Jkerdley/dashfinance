@@ -36,7 +36,7 @@ export const CryptoOpreationsHistoryContainer = () => {
 			id="accouts__operations-history-container"
 			className="flex flex-col flex-6/12 p-4 rounded-3xl bg-sky-950/40 gap-4"
 		>
-			<div className="flex md:flex-nowrap flex-wrap justify-between gap-2">
+			<div className="flex flex-wrap justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
 				<SortSelector handleSortChange={handleSortChange} sortType={sortType} />
 			</div>

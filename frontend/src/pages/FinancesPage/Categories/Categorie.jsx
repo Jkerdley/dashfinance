@@ -29,7 +29,7 @@ export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) =>
 		>
 			<div
 				id="categorie-inside-container"
-				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:w-90 w-60'}`}
+				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:min-w-90 min-w-50'}`}
 			>
 				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
 				<div

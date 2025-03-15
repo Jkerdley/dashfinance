@@ -25,7 +25,7 @@ export const CryptoOperationHistory = ({
 	return (
 		<section
 			id="operations__history-item_container"
-			className="flex justify-center items-start h-12 w-full text-sm border-b-1 border-white/40 gap-1"
+			className="flex justify-center items-start h-12 min-w-[50vw] w-full text-sm border-b-1 border-white/40 gap-1"
 		>
 			<div className="flex flex-8 justify-center items-center gap-2">
 				<CardIcon buttonSize={9} padding={'p-1'} size={5} icon={icon}></CardIcon>
