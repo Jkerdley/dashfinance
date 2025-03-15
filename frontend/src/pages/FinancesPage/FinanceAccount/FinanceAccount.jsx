@@ -29,7 +29,7 @@ export const FinanceAccount = ({ id, accountName, accountBalance, icon, noButton
 
 	return (
 		<div
-			className={`flex justify-start items-center h-14 ${noButton ? 'flex-2' : ''} ${noButton ? 'w-[90%]' : 'w-[100%]'} p-2 text-sm bg-sky-300/20 rounded-2xl`}
+			className={`flex justify-start items-center h-14 ${noButton ? 'flex-2' : ''} ${noButton ? 'md:min-w-[23vw] min-w-[35vw]' : 'w-[100%]'} p-2 text-sm bg-sky-300/20 rounded-2xl`}
 		>
 			<div className="flex flex-5 sm:w-64 w-50 justify-start items-center">
 				<CardIcon padding={'p-2'} buttonSize={10} icon={iconOfAccount()}></CardIcon>

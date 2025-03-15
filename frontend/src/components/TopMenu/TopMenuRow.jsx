@@ -45,7 +45,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	};
 
 	return (
-		<section className="flex flex-2/12 flex-wrap md:flex-nowrap items-center justify-between px-4 rounded-3xl gap-4">
+		<section className="flex flex-wrap md:flex-nowrap items-center justify-between px-4 rounded-3xl gap-4">
 			<div className="flex gap-4 items-center">
 				<BurgerButton isOpen={isMenuOpen} onClick={handleBurgerClick} />
 				<a href="/">

@@ -14,13 +14,13 @@ export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => 
 				<EditAddDeleteButton icon={AddIcon} title={'Добавить'} alt={'crypto coins'} />
 			</div>
 			{isLoading ? (
-				<div className="flex flex-4/12 pr-2 justify-between max-h-[30vh] min-w-[22vw] w-full h-full">
+				<div className="flex flex-4/12 pr-2 justify-between 3xl:max-h-[36vh] min-w-[22vw] w-full h-full">
 					<Loader />
 				</div>
 			) : (
 				<div
 					id="spend-categories__container"
-					className="flex flex-4/12 flex-wrap gap-4 pr-2 justify-between max-h-[30vh] w-full h-full rounded-2xl overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+					className="flex flex-4/12 flex-wrap gap-4 pr-2 justify-between 2xl:max-h-[36vh] max-h-[30vh] w-full h-full rounded-2xl overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 				>
 					{cryptoAssetsInCurrency.map((coin) => {
 						return (

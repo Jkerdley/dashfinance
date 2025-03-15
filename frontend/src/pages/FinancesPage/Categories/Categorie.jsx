@@ -39,7 +39,7 @@ export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) =>
 					<span className="text-base truncate">{categorie}</span>
 					<div id="categorie-budjet-container" className="flex gap-2 truncate">
 						<span className={`text-sm ${isOverBalance()}`}>Расходы: {balance}</span>
-						<span className="text-sm md:flex hidden truncate text-gray-300">
+						<span className="text-sm  text-gray-300">
 							{Number(budget.slice(1).trim()) > 0 ? `Бюджет: ${budget}` : ''}
 						</span>
 					</div>

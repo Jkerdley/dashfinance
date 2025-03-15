@@ -10,18 +10,18 @@ export const OperationSelectors = ({
 	isAddOperation,
 }) => {
 	return (
-		<div className="flex gap-6 justify-around items-center">
+		<div className="flex gap-6 w-[70%] justify-around items-center">
 			{isAddOperation ? (
 				<>
 					<input
-						className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
+						className="text-md rounded-xl w-[60%] p-2 bg-sky-950/90"
 						type="text"
 						placeholder="Введите источник дохода..."
 						value={formState.incomeType}
 						onChange={(e) => handleIncomeTypeChange(e)}
 					></input>
 					<select
-						className="text-md rounded-xl w-[40%] p-2 bg-sky-950/90"
+						className="text-md rounded-xl w-[60%] p-2 bg-sky-950/90"
 						value={formState.selectedAccount?.id || ''}
 						onChange={(e) => onAccountChange(e.target.value)}
 					>

@@ -24,12 +24,14 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 		<section className={`flex flex-col py-3 px-3 ${flex} bg-sky-950/40 min-h-20 rounded-3xl`}>
 			<div className="flex flex-col gap-2 items-start">
 				<section className="flex gap-4 items-center justify-between w-full">
-					<div
-						className={`flex gap-3 items-center justify-start text-lg  font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
-					>
+					<div className={`flex gap-3 items-center justify-start text-lg font-medium truncate `}>
 						<CardIcon icon={assetData.icon} />
 						<span className="text-lg font-medium truncate">{assetData.symbol}</span>
-						{priceInCurrency}
+						<span
+							className={`text-lg font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
+						>
+							{priceInCurrency}
+						</span>
 					</div>
 					<div
 						className={`flex items-center gap-1 text-lg font-medium truncate ${parseFloat(assetData.priceChange1h) < 0 ? 'text-main-red' : 'text-main-green'}`}
@@ -43,10 +45,9 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 				<section className="flex pl-1 gap-4 items-center  justify-between w-full">
 					<div className="flex gap-2 items-center justify-between w-full">
 						<div
-							className={`flex items-center gap-1 text-md  font-medium truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							{' '}
-							<span className="truncate text-md ">За неделю:</span>
+							<span className="truncate text-white/70 ">Неделя:</span>
 							{assetData.priceChange1w} %
 							<span
 								className={`sm:flex hidden h-2 w-2 truncate ${parseFloat(assetData.priceChange1w) < 0 ? 'triangle-down' : 'triangle-up'} `}
@@ -54,9 +55,9 @@ export const TopRowCard = ({ assetData, flex, isAddButton, disabled, onClick }) 
 						</div>
 
 						<div
-							className={`flex items-center gap-1 text-md  font-medium truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`flex items-center gap-1 truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
-							<span className="truncate text-md ">За день:</span>
+							<span className="truncate text-white/70 ">День:</span>
 							{assetData.priceChange1d} %
 							<span
 								className={`sm:flex hidden h-2 w-2 truncate ${parseFloat(assetData.priceChange1d) < 0 ? 'triangle-down' : 'triangle-up'} `}

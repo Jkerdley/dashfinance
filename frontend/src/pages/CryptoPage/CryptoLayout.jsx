@@ -16,7 +16,7 @@ export const CryptoLayout = () => {
 	return isLoading ? (
 		<Loader />
 	) : (
-		<section className="flex flex-col flex-10/12 gap-4">
+		<section className="flex flex-col w-full  gap-4">
 			<TopRowCardsLayout cryptoCoins={cryptoCoins} />
 			<div id="layout__crypto" className="flex flex-col flex-11/12 rounded-4xl gap-4">
 				<div id="crypto__top-container" className="flex flex-5/12 gap-4">
