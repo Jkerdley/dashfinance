@@ -1,6 +1,6 @@
 export async function request(url, method = 'GET', data) {
 	try {
-		const response = await fetch('/api' + url, {
+		const response = await fetch('http://localhost:3007/api' + url, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
