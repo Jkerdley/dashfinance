@@ -22,7 +22,7 @@ export const RefreshCourseButton = ({ title, isCrypto }) => {
 	return (
 		<OutlineButton
 			disabled={false}
-			alt="refresh course"
+			alt="Обновить курс"
 			isLoader={true}
 			isLoading={isLoading}
 			icon={RefreshCourseIcon}
