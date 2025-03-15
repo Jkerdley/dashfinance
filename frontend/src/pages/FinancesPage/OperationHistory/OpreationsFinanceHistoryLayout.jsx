@@ -52,7 +52,7 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 			) : (
 				<div
 					id="operationsHistoryBoxWrapper"
-					className={`flex flex-col  ${inMainPage ? 'max-h-[40vh]' : 'max-h-[45vh]'} gap-3 rounded-2xl pr-1 pt-1`}
+					className={`flex flex-col  ${inMainPage ? 'max-h-[44vh]' : 'max-h-[44vh]'} gap-3 rounded-2xl pr-1 pt-1`}
 				>
 					<List
 						className="overflow-y-auto overscroll-auto scroll-smooth scrollbar"

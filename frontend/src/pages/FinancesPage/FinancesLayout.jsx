@@ -10,7 +10,7 @@ export const FinancesLayout = () => {
 	return (
 		<section
 			id="layout__finances"
-			className="flex flex-10/12 2xl:flex-nowrap flex-wrap rounded-4xl gap-4 bg-amber-600"
+			className="flex flex-10/12 2xl:flex-nowrap flex-wrap rounded-4xl gap-4"
 		>
 			<div className="flex flex-8/12 flex-col gap-4">
 				<FinanceResultLayout />

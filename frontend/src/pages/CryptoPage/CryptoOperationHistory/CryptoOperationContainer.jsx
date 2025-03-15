@@ -47,7 +47,7 @@ export const CryptoOpreationsHistoryContainer = () => {
 			) : (
 				<div
 					id="operationsHistoryBoxWrapper"
-					className="flex flex-col max-h-[40vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
+					className="flex flex-col max-h-[35vh] gap-3 rounded-2xl pr-1 pt-1 overflow-y-auto overscroll-auto scroll-smooth scrollbar"
 				>
 					{sortedHistory.map((operation) => (
 						<div key={operation._id}>

@@ -13,7 +13,7 @@ export const FinanceResultDiagram = ({ selectedSortType }) => {
 	// console.log('FinanceResultDiagram render time:', performance.now() - startTime);
 	return (
 		<div id="column__income-chart" className="flex relative items-center justify-center">
-			<span className="absolute top-3/4 left-1/2 transform -translate-x-1/2 text-md font-medium text-center text-white/70">
+			<span className="absolute top-3/4 left-1/2 transform -translate-x-1/2 text-md font-medium text-center">
 				{mappedData.length === 0 ? '' : `Расходы`}
 			</span>
 			{historyIsLoading ? (

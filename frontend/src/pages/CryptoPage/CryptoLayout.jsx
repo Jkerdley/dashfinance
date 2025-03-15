@@ -25,7 +25,7 @@ export const CryptoLayout = () => {
 						isLoading={isLoading}
 					/>
 				</div>
-				<div id="crypto__bottom-container" className="flex flex-7/12 flex-wrap bg-amber-800 gap-4">
+				<div id="crypto__bottom-container" className="flex flex-7/12 flex-wrap gap-4">
 					<MyCriptoPortfolioList
 						cryptoAssetsInCurrency={cryptoAssetsInCurrency}
 						isLoading={isLoading}
