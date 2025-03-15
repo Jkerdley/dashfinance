@@ -36,7 +36,7 @@ export const CategoriesContainer = () => {
 		);
 
 	return (
-		<section id="column__categories" className="flex flex-col flex-4 p-4 rounded-3xl bg-sky-950/40">
+		<section id="column__categories" className="flex flex-col flex-5 p-4 rounded-3xl bg-sky-950/40">
 			<div
 				id="categories__title-and-buitton"
 				className="flex sm:flex-nowrap flex-wrap justify-between gap-2 mb-2"
@@ -54,7 +54,7 @@ export const CategoriesContainer = () => {
 			{IsNoCategories}
 			<div
 				id="spend-categories__container"
-				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[52vh] 2xl:max-h-[28vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
+				className="flex flex-4 flex-wrap gap-4 pr-2 justify-start max-h-[52vh] 2xl:max-h-[32vh] w-full rounded-[16px] overflow-y-auto overflow-x-hidden overscroll-auto scroll-smooth scrollbar"
 			>
 				{categoryModal.isOpen && (
 					<AddCategoryModal

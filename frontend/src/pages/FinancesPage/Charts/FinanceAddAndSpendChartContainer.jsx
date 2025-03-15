@@ -34,7 +34,7 @@ export const FinanceAddAndSpendChartContainer = () => {
 	return (
 		<div
 			id="column__income-chart"
-			className="flex flex-col flex-6 p-4 min-h-[50vh] rounded-3xl bg-sky-950/40"
+			className="flex flex-col flex-7 p-4 min-h-[45vh] rounded-3xl bg-sky-950/40"
 		>
 			<div className="flex gap-4 flex-wrap sm:flex-nowrap justify-between">
 				<SectionContainerHeader title={'График доходов и расходов'} />

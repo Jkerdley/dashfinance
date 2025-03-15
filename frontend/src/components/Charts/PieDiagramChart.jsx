@@ -43,7 +43,7 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 	return (
 		<PieChart
 			width={Math.min(window.innerWidth * 0.4, 370)}
-			height={Math.min(window.innerWidth * 0.3, 260)}
+			height={Math.min(window.innerWidth * 0.3, 270)}
 		>
 			<Pie
 				data={mappedData}

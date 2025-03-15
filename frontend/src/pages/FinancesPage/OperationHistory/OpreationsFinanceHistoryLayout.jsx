@@ -39,7 +39,7 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 	return (
 		<div
 			id="accouts__operations-history-container"
-			className="flex flex-col flex-7/12 p-4 h-full rounded-3xl bg-sky-950/40 gap-4"
+			className="flex flex-col flex-7/12 p-4 lg:h-full rounded-3xl bg-sky-950/40 gap-4"
 		>
 			<div className="flex flex-wrap sm:flex-nowrap justify-between gap-2">
 				<SectionContainerHeader title={'История операций'} />
