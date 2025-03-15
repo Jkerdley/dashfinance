@@ -42,7 +42,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 						/>
 					)}
 				</section>
-				<section className="flex flex-2 h-full justify-center md:justify-evently 2xl:justify-around gap-12">
+				<section className="flex flex-2 h-full justify-center md:justify-evently gap-6 md:gap-18">
 					{historyIsLoading ? (
 						<Loader />
 					) : (
@@ -63,7 +63,7 @@ export const FinanceResult = ({ selectedSortType }) => {
 					)}
 				</section>
 			</div>
-			<section className="md:flex hidden flex-2 p-2 h-full items-center justify-center">
+			<section className="lg:flex hidden flex-2 p-2 h-full items-center justify-center">
 				<FinanceResultDiagram selectedSortType={selectedSortType} />
 			</section>
 		</div>

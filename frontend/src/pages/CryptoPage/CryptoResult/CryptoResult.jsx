@@ -18,20 +18,19 @@ export const CryptoResult = ({ cryptoAssetsInCurrency, isLoading }) => {
 
 	const totalBalanceForDate = isUSD ? '$ ' + cryptoAssetsBalance : '\u20bd ' + cryptoAssetsBalance;
 	return (
-		<section id="finance-result__main-container" className="flex justify-center w-full h-full">
-			<div className="flex flex-col flex-3">
-				<div className="flex flex-5 flex-col md:gap-1 gap-6 items-center justify-center">
-					{isLoading ? (
-						<Loader />
-					) : (
-						<>
-							<CryptoTotalBalance totalBalanceForDate={totalBalanceForDate} isUSD={isUSD} />
-							<BestAndWorstPerformer totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
-							<PNLpercentages totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
-						</>
-					)}
-				</div>
+		<section id="finance-result__main-container" className="flex w-full h-full">
+			<div className="flex flex-3 flex-col flex-wrap sm:gap-2 gap-2 items-center justify-around">
+				{isLoading ? (
+					<Loader />
+				) : (
+					<>
+						<CryptoTotalBalance totalBalanceForDate={totalBalanceForDate} isUSD={isUSD} />
+						<PNLpercentages totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
+						<BestAndWorstPerformer totalPNL={totalPNL} indexOfLastItem={indexOfLastItem} />
+					</>
+				)}
 			</div>
+
 			<div className="lg:flex hidden items-center justify-center flex-2">
 				<CryptoAssetsAllocationChart
 					cryptoAssetsInCurrency={cryptoAssetsInCurrency}

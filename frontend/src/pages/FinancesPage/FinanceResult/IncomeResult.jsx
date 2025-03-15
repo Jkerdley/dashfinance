@@ -9,7 +9,7 @@ export const IncomeResult = ({ incomeForDate, isUSD }) => {
 				<span className="text-2xl lg:text-4xl 2xl:text-4xl transition-all mt-2 font-medium text-main-green">
 					{isUSD ? '$' : '\u20bd'}
 				</span>
-				<span className="text-2xl lg:text-5xl 2xl:text-5xl font-bold transition-all duration-150 ease-in-out truncate text-[#b9ff80]">
+				<span className="text-2xl lg:text-5xl 2xl:text-5xl font-bold transition-all duration-350 ease-in-out truncate text-[#b9ff80]">
 					{cleanValue(incomeForDate)}
 				</span>
 			</div>
