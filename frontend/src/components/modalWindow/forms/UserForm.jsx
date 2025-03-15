@@ -2,7 +2,7 @@ import React from 'react';
 import { SaveAndCancelButtons } from '../operationSelectors';
 export const UserForm = ({ formData, handleSubmit, handleNameChange, error, onClose }) => {
 	return (
-		<>
+		<section className="flex flex-col items-center justify-evenly gap-6 min-h-[25vh]">
 			<h2 className="text-2xl mb-4">Изменить данные пользователя</h2>
 			{error && <div className="mb-4">{error}</div>}
 
@@ -22,6 +22,6 @@ export const UserForm = ({ formData, handleSubmit, handleNameChange, error, onCl
 
 				<SaveAndCancelButtons handleFormSubmit={handleSubmit} onClose={onClose} />
 			</form>
-		</>
+		</section>
 	);
 };

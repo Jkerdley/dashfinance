@@ -13,11 +13,11 @@ export const AccountForm = ({
 }) => {
 	return (
 		<>
-			<h2 className="text-2xl mb-4">{isUpdateForm ? 'Изменить счет' : 'Добавить новый счет'}</h2>
+			<h2 className="text-2xl mb-2">{isUpdateForm ? 'Изменить счет' : 'Добавить новый счет'}</h2>
 			{error && <div className="mb-4">{error}</div>}
 
 			<form className="flex flex-col gap-6 items-center justify-between" onSubmit={handleSubmit}>
-				<section className="flex flex-col w-3/5">
+				<section className="flex flex-col md:w-3/5 w-5/5">
 					<label className="block mb-2 w-full">Название счета:</label>
 					<input
 						type="text"
@@ -29,7 +29,7 @@ export const AccountForm = ({
 					/>
 				</section>
 
-				<section className="flex flex-col w-3/5">
+				<section className="flex flex-col md:w-3/5 w-5/5">
 					<label className="block mb-2">
 						{isUpdateForm ? 'Баланс счета' : 'Начальный баланс:'}
 					</label>
@@ -45,11 +45,11 @@ export const AccountForm = ({
 
 				<section className="mt-2 mb-2">
 					<label className="block mb-2">Тип счета:</label>
-					<div className="grid grid-cols-2 gap-4">
+					<div className="grid md:grid-cols-2 grid-cols-1 gap-3">
 						{ACCOUNT_TYPES.map(({ label, value, icon }) => (
 							<label
 								key={value}
-								className={`flex items-center p-3 rounded-lg cursor-pointer 
+								className={`flex items-center truncate p-3 rounded-lg cursor-pointer 
                                 ${formData.type === value ? 'bg-sky-800/50' : 'bg-sky-950/50'}`}
 							>
 								<input

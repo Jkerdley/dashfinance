@@ -3,7 +3,7 @@ import { WideOperationsButton } from '../../buttons';
 
 export const SaveAndCancelButtons = ({ handleFormSubmit, onClose }) => {
 	return (
-		<section id="save-and-cancel__buttons" className="flex px-20 justify-evenly mb-10 flex-wrap gap-4">
+		<section id="save-and-cancel__buttons" className="flex px-20 justify-evenly mb-6 gap-4">
 			<WideOperationsButton
 				type="submit"
 				onClick={handleFormSubmit}

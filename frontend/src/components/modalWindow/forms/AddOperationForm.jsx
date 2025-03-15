@@ -97,7 +97,7 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 					comment: formState.comment || '',
 				};
 
-				const response = await request('/history', 'POST', formDataToSend);
+				await request('/history', 'POST', formDataToSend);
 
 				dispatch(fetchAccounts());
 				dispatch(fetchHistory());
@@ -117,8 +117,11 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 	}
 
 	return (
-		<section id="selectors__header__and_buttons" className="flex flex-col justify-between h-full">
-			<div className="flex flex-col gap-4 items-center justify-center">
+		<section
+			id="selectors__header__and_buttons"
+			className="flex flex-col justify-between items-center gap-8 min-h-[40vh]"
+		>
+			<div className="flex flex-col gap-6 items-center justify-center">
 				<h3>ДОБАВИТЬ ОПЕРАЦИЮ</h3>
 				<CurrencyToggle />
 			</div>

@@ -48,7 +48,7 @@ export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', posit
 		<section className="fixed inset-0 z-20">
 			<div
 				className={`
-                    absolute w-full h-full bg-gray-950/80 transition-opacity duration-200 ease-in-out
+                    absolute w-full h-full bg-gray-950/70 transition-opacity duration-200 ease-in-out
                     ${isVisible ? 'opacity-100' : 'opacity-0'}
                 `}
 				onClick={handleClose}
@@ -57,8 +57,8 @@ export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', posit
 				ref={modalRef}
 				tabIndex="-1"
 				className={`
-                    relative ${width} h-2/4 px-8 pt-6 z-30
-                 bg-sky-950/20 backdrop-blur-2xl rounded-4xl text-center
+                    relative ${width} h-auto min-h-1/5 px-8 pt-6 z-30
+                 bg-sky-950/50 backdrop-blur-xl rounded-4xl text-center
                     ${positionClasses[position]}
                     ${animationClasses[position]}
                     transition-all duration-200 ease-in-out

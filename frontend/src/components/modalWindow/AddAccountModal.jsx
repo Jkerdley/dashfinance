@@ -70,8 +70,8 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 	};
 
 	return (
-		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" position="center">
-			<section className="flex flex-col p-6 h-full">
+		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
+			<section className="flex flex-col p-6 h-full w-full">
 				<AccountForm
 					formData={formData}
 					handleSubmit={handleSubmit}
