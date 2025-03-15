@@ -13,28 +13,28 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 	return isLoading ? (
 		<Loader />
 	) : (
-		<section id="column__income-chart" className="flex flex-1 p-4 rounded-3xl  bg-sky-950/40">
+		<section id="column__income-chart" className="flex flex-2/12 p-4 rounded-3xl bg-sky-950/40">
 			{type === 'looser' ? (
 				<section className="flex flex-col w-full gap-2">
 					<div className="flex gap-2 items-center">
 						<SectionContainerHeader title={title} />
 						<span
-							className={`flex truncate ${topGainerForDay[0]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`md:flex hidden truncate ${topGainerForDay[0]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
 							{topGainerForDay[0]?.growValue} %
 						</span>
 					</div>
-					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
+					<div className="flex flex-col gap-2 items-center justify-center w-full h-full">
 						<div className="flex gap-2 items-center">
-							<CardIcon buttonSize={'14'} size={'10'} icon={topGainerForDay[0]?.icon} />{' '}
-							<span className="text-lg">{topGainerForDay[0]?.name}</span>
+							<CardIcon buttonSize={'12'} size={'8'} icon={topGainerForDay[0]?.icon} />{' '}
+							<span className="text-md">{topGainerForDay[0]?.name}</span>
 						</div>
 						<div className="flex flex-col gap-2 items-center">
 							<div className="flex flex-col items-center">
 								<>
-									<span className="text-sm">Баланс: </span>
+									<span className="text-md">Баланс: </span>
 									<span
-										className={`text-lg ml-2 ${parseFloat(topGainerForDay[0]?.profit.slice(1).trim()) > 0 ? 'text-main-green' : 'text-main-red'}`}
+										className={`text-md ml-1 ${parseFloat(topGainerForDay[0]?.profit.slice(1).trim()) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
 										{topGainerForDay[0]?.profit}
 									</span>
@@ -42,9 +42,9 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 							</div>
 							<div className="flex flex-col items-center">
 								<>
-									<span className="text-sm">Профит в процентах: </span>{' '}
+									<span className="text-md text-center">Профит в процентах: </span>{' '}
 									<span
-										className={`text-lg ml-2 ${parseFloat(topGainerForDay[0]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
+										className={`text-md ml-1 ${parseFloat(topGainerForDay[0]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
 										{parseInt(topGainerForDay[0]?.profitPercentage) || ''} %
 									</span>
@@ -58,26 +58,26 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 					<div className="flex gap-2 items-center">
 						<SectionContainerHeader title={title} />
 						<span
-							className={`flex truncate ${topGainerForDay[indexOfLastItem]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
+							className={`md:flex hidden truncate ${topGainerForDay[indexOfLastItem]?.growValue < 0 ? 'text-main-red' : 'text-main-green'}`}
 						>
 							{topGainerForDay[indexOfLastItem]?.growValue} %
 						</span>
 					</div>
-					<div className="flex flex-col gap-4 items-center justify-center w-full h-full">
+					<div className="flex flex-col gap-2 items-center justify-center w-full h-full">
 						<div className="flex gap-2 items-center">
 							<CardIcon
-								buttonSize={'14'}
-								size={'10'}
+								buttonSize={'12'}
+								size={'8'}
 								icon={topGainerForDay[indexOfLastItem]?.icon}
 							/>{' '}
-							<span className="text-lg">{topGainerForDay[indexOfLastItem]?.name}</span>
+							<span className="text-md">{topGainerForDay[indexOfLastItem]?.name}</span>
 						</div>
 						<div className="flex flex-col gap-2 items-center">
 							<div className="flex flex-col items-center">
 								<>
-									<span className="text-sm">Баланс: </span>
+									<span className="text-md">Баланс: </span>
 									<span
-										className={`text-lg ml-2 ${parseFloat(topGainerForDay[indexOfLastItem]?.profit.slice(1).trim()) > 0 ? 'text-main-green' : 'text-main-red'}`}
+										className={`text-md ml-1 ${parseFloat(topGainerForDay[indexOfLastItem]?.profit.slice(1).trim()) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
 										{topGainerForDay[indexOfLastItem]?.profit}
 									</span>
@@ -85,9 +85,9 @@ export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
 							</div>
 							<div className="flex flex-col items-center">
 								<>
-									<span className="text-sm">Профит в процентах: </span>{' '}
+									<span className="text-md text-center">Профит в процентах: </span>
 									<span
-										className={`text-lg ml-2 ${parseFloat(topGainerForDay[indexOfLastItem]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
+										className={`text-md ml-1 ${parseFloat(topGainerForDay[indexOfLastItem]?.profitPercentage) > 0 ? 'text-main-green' : 'text-main-red'}`}
 									>
 										{parseInt(topGainerForDay[indexOfLastItem]?.profitPercentage) || ''} %
 									</span>

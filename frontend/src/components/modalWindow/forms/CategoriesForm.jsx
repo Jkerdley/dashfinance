@@ -10,15 +10,18 @@ export const CategoriesForm = ({
 	isUpdateForm,
 }) => {
 	return (
-		<>
-			<h2 className="text-2xl mb-4">
+		<section className="flex flex-col items-center justify-evenly gap-6 min-h-[25vh] w-full">
+			<h2 className="text-2xl">
 				{isUpdateForm ? 'Изменить категорию расходов' : 'Добавить категорию расходов'}
 			</h2>
 			{error && <div className="mb-4">{error}</div>}
 
-			<form className="flex flex-col gap-6 items-center justify-between" onSubmit={handleSubmit}>
-				<section className="flex flex-col w-3/5">
-					<label className="block mb-2 w-full">Название категории расходов:</label>
+			<form
+				className="flex flex-col gap-6 items-center justify-between w-full h-full"
+				onSubmit={handleSubmit}
+			>
+				<section className="flex flex-col md:w-2/5 w-4/5">
+					<label className="block mb-2 w-full">Категория расходов:</label>
 					<input
 						type="text"
 						name="name"
@@ -29,7 +32,7 @@ export const CategoriesForm = ({
 					/>
 				</section>
 
-				<section className="flex flex-col w-3/5">
+				<section className="flex flex-col md:w-2/5 w-4/5">
 					<label className="block mb-2">Бюджет на месяц</label>
 					<input
 						type="text"
@@ -43,6 +46,6 @@ export const CategoriesForm = ({
 
 				<SaveAndCancelButtons handleFormSubmit={handleSubmit} onClose={onClose} />
 			</form>
-		</>
+		</section>
 	);
 };

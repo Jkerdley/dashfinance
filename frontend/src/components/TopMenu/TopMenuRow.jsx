@@ -45,7 +45,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	};
 
 	return (
-		<section className="flex flex-wrap md:flex-nowrap items-center justify-between flex-1 px-4 rounded-3xl gap-4">
+		<section className="flex flex-2/12 flex-wrap md:flex-nowrap items-center justify-between px-4 rounded-3xl gap-4">
 			<div className="flex gap-4 items-center">
 				<BurgerButton isOpen={isMenuOpen} onClick={handleBurgerClick} />
 				<a href="/">
@@ -55,9 +55,9 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			{userModal.isOpen && (
 				<UpdateUserModal isOpen={userModal.isOpen} onClose={() => dispatch(closeUserModal())} />
 			)}
-			<div className="flex items-center md:justify-end justify-between w-full gap-2">
+			<div className="flex items-center sm:justify-end justify-between w-full gap-2">
 				<CurrencyToggle />
-				<div className="flex  items-center justify-around border-0 p-[5px] rounded-2xl bg-gray-300/10 w-24 gap-1.5">
+				<div className="flex  items-center justify-around border-0 p-[4px] rounded-2xl bg-gray-300/10 min-w-2 md:gap-2 gap-1">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
 					<Button onClick={() => dispatch(openUserModal())} alt="Settings" icon={Settings} />
 				</div>

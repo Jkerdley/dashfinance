@@ -62,8 +62,8 @@ export const AddCategoryModal = ({ isOpen, onClose }) => {
 	};
 
 	return (
-		<BaseModal isOpen={isOpen} onClose={onClose} width="w-[40vw]" position="center">
-			<section className="flex flex-col p-6 h-full">
+		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
+			<section className="flex flex-col p-6 h-full w-full">
 				<CategoriesForm
 					formData={formData}
 					handleSubmit={handleSubmit}

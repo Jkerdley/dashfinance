@@ -7,7 +7,7 @@ import { calculateValueInCurrency } from '../../../utils';
 export const SelectedCategories = ({ formState }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	return (
-		<section className="flex flex-wrap 2xl:flex-nowrap gap-4 items-center justify-between text-start">
+		<section className="flex flex-wrap 2xl:flex-nowrap gap-4 items-center justify-center text-start">
 			{formState.selectedAccount && (
 				<FinanceAccount
 					accountName={formState.selectedAccount.name}
@@ -20,7 +20,7 @@ export const SelectedCategories = ({ formState }) => {
 					noButton={true}
 				/>
 			)}
-			<p>{'\u27A0'}</p>
+			<p className="flex xl:rotate-360 rotate-90">{'\u27A0'}</p>
 			{formState.selectedCategory && (
 				<Categorie
 					noButton={true}
