@@ -55,7 +55,7 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			{userModal.isOpen && (
 				<UpdateUserModal isOpen={userModal.isOpen} onClose={() => dispatch(closeUserModal())} />
 			)}
-			<div className="flex items-center sm:justify-end justify-between w-full gap-2">
+			<div className="flex items-center sm:justify-end justify-between w-full lg:gap-4 gap-2">
 				<CurrencyToggle />
 				<div className="flex  items-center justify-around border-0 p-[4px] rounded-2xl bg-gray-300/10 min-w-2 md:gap-2 gap-1">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
