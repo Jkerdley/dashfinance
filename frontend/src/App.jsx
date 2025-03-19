@@ -6,7 +6,7 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { selectUserIsLoading } from './store/selectors';
+import { selectIsAuthenticated, selectUserIsLoading } from './store/selectors';
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/async/fetchUserData';
@@ -24,6 +24,7 @@ export const App = () => {
 	const operationModal = useSelector(selectOperationModal);
 	const burgerModal = useSelector(selectBurgerModal);
 	const userIsLoading = useSelector(selectUserIsLoading);
+	const isAuthenticated = useSelector(selectIsAuthenticated);
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
 	console.log('before useEffect');
 
@@ -47,7 +48,7 @@ export const App = () => {
 
 			fetchUser();
 		}
-	}, []);
+	}, [userIsLoading]);
 
 	useEffect(() => {
 		if (isDayTheme) {

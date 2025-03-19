@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { calculateValueInCurrency } from '../../../utils/calculateValueInCurrency';
 import { FinanceResultDiagram } from '../Charts/FinanceResultDiagram';
 import { ExpensesResult } from './ExpensesResult';
@@ -9,7 +9,7 @@ import { selectAccounts, selectHistory, selectHistoryIsLoading } from '../../../
 import { useCurrency, useFinanceExpensesFromHistory } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 
-export const FinanceResult = ({ selectedSortType }) => {
+export const FinanceResult = memo(({ selectedSortType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const financeHistory = useSelector(selectHistory);
 	const historyIsLoading = useSelector(selectHistoryIsLoading);
@@ -68,4 +68,5 @@ export const FinanceResult = ({ selectedSortType }) => {
 			</section>
 		</div>
 	);
-};
+});
+FinanceResult.displayName = 'FinanceResult';
