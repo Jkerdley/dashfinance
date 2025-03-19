@@ -7,17 +7,18 @@ import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
 import { request } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, selectUserModal } from '../../store/selectors';
+import { selectBurgerModal, selectUser, selectUserModal } from '../../store/selectors';
 import { UpdateUserModal } from '../modalWindow/UpdateUserModal';
-import { closeUserModal, openUserModal } from '../../store/actions';
+import { closeUserModal, openBurgerModal, openUserModal } from '../../store/actions';
 import { useNavigate } from 'react-router-dom';
 import { ACTIONS } from '../../store/actionTypes';
 
-export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
+export const TopMenuRow = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const userModal = useSelector(selectUserModal);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
+	const burgerModal = useSelector(selectBurgerModal);
 	const navigate = useNavigate();
 
 	const logout = async () => {
@@ -35,12 +36,12 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 	};
 
 	useEffect(() => {
-		setIsMenuOpen(isBurgerMenuOpen);
-	}, [isBurgerMenuOpen]);
+		setIsMenuOpen(burgerModal.isOpen);
+	}, [burgerModal.isOpen]);
 
 	const handleBurgerClick = () => {
 		setIsMenuOpen(!isMenuOpen);
-		onBurgerClick();
+		dispatch(openBurgerModal());
 	};
 
 	return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { FinanceAccount } from './FinanceAccount.jsx';
 import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteButton.jsx';
@@ -18,7 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateAccountModal } from '../../../components/modalWindow/UpdateAccountModal.jsx';
 
-export const AccountsContainer = () => {
+export const AccountsLayout = () => {
 	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
 	const dispatch = useDispatch();
 	const addAccountModal = useSelector(selectAddAccountModal);
@@ -78,4 +78,3 @@ export const AccountsContainer = () => {
 		</section>
 	);
 };
-export const AccountsLayout = React.memo(AccountsContainer);

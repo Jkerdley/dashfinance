@@ -1,14 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SidebarMenu } from './components/Sidebar';
 import { TopMenuRow } from './components/TopMenu';
-import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
+import { BurgerMenuModal, AddOperationModal, AddCryptoOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
 import { selectUserIsLoading } from './store/selectors';
-import { selectOperationModal, selectBurgerModal } from './store/selectors';
-import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/async/fetchUserData';
 import { MainPageLayout } from './pages/MainPage/MainPageLayout';
 import { LoginPage } from './pages/Auth/LoginPage';
@@ -21,22 +19,14 @@ import { setUserIsLoading } from './store/actions';
 
 export const App = () => {
 	const dispatch = useDispatch();
-	const operationModal = useSelector(selectOperationModal);
-	const burgerModal = useSelector(selectBurgerModal);
 	const userIsLoading = useSelector(selectUserIsLoading);
-
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
-	console.log('before useEffect');
 
 	useEffect(() => {
-		console.log('first in useEffect');
-
 		if (userIsLoading) {
-			console.log('in useEffect');
 			const fetchUser = async () => {
 				try {
 					const data = await request('/auth/user', 'GET');
-					console.log('data.user in fetch APP', data.user);
 					if (data.user) {
 						dispatch(fetchUserData(data.user));
 					}
@@ -60,11 +50,6 @@ export const App = () => {
 			document.body.classList.remove('body-day');
 		}
 	}, [isDayTheme]);
-
-	const handleCloseBurgerModal = () => dispatch(closeBurgerModal());
-	const handleCloseOperationModal = () => dispatch(closeOperationModal());
-	const handleBurgerClick = () => dispatch(openBurgerModal());
-	console.log('userIsLoading', userIsLoading);
 
 	if (userIsLoading) {
 		return (
@@ -99,23 +84,12 @@ export const App = () => {
 					element={
 						<ProtectedRoute>
 							<>
-								<BurgerMenuModal
-									isOpen={burgerModal.isOpen}
-									onClose={handleCloseBurgerModal}
-								/>
-
-								<AddOperationModal
-									isOpen={operationModal.isOpen}
-									operationType={operationModal.type}
-									onClose={handleCloseOperationModal}
-								/>
-
+								<BurgerMenuModal />
+								<AddOperationModal />
+								<AddCryptoOperationModal />
 								<SidebarMenu />
 								<div className="flex flex-col flex-15 p-4 gap-4 rounded-4xl bg-sky-300/5">
-									<TopMenuRow
-										onBurgerClick={handleBurgerClick}
-										isBurgerMenuOpen={burgerModal.isOpen}
-									/>
+									<TopMenuRow />
 									<div className="flex flex-wrap rounded-[36px] h-full gap-4">
 										<Routes>
 											<Route path="/" element={<MainPageLayout />} />
@@ -129,7 +103,7 @@ export const App = () => {
 						</ProtectedRoute>
 					}
 				/>
-				<Route path="*" element={<Navigate to={'/login'} replace />} />
+				{/* <Route path="*" element={<Navigate to={'/login'} replace />} /> */}
 			</Routes>
 		</section>
 	);

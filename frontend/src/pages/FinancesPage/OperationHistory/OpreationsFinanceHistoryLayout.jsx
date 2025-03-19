@@ -8,7 +8,7 @@ import { fetchHistory } from '../../../store/actions/async';
 import { useFetchHistoryData } from '../../../hooks';
 import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors/select-history.js';
 
-export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
+export const OpreationsFinanceHistoryLayout = ({ inMainPage }) => {
 	const [sortType, setSortType] = useState('newest');
 	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
 		fetchHistory,
@@ -68,4 +68,3 @@ export const OpreationsFinanceHistoryContainer = ({ inMainPage }) => {
 		</div>
 	);
 };
-export const OpreationsFinanceHistoryLayout = React.memo(OpreationsFinanceHistoryContainer);

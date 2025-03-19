@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { Categorie } from './Categorie';
 import { EditAddDeleteButton } from '../../../components/buttons';
@@ -16,7 +16,7 @@ import {
 } from '../../../store/actions';
 import { UpdateCategoryModal } from '../../../components/modalWindow/UpdateCategoryModal';
 
-export const CategoriesContainer = () => {
+export const CategoriesLayout = () => {
 	const [selectedSortType, setSelectedSortType] = useState('month');
 	const categoryModal = useSelector(selectAddCategoryModal);
 	const updateCategoryModal = useSelector(selectUpdateCategoryModal);
@@ -90,4 +90,3 @@ export const CategoriesContainer = () => {
 		</section>
 	);
 };
-export const CategoriesLayout = React.memo(CategoriesContainer);

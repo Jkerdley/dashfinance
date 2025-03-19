@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
 
-export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency }) => {
+export const CryptoAssetsAllocationChart = memo(({ cryptoAssetsInCurrency }) => {
 	const mappenData = cryptoAssetsInCurrency.map((asset) => ({
 		name: asset.name,
 		value: parseFloat(asset.profit.slice(1).trim()),
@@ -16,4 +16,5 @@ export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency }) => {
 			<PieDiagramChart mappedData={sortedData} isCrypto={true} />
 		</div>
 	);
-};
+});
+CryptoAssetsAllocationChart.displayName = 'CryptoAssetsAllocationChart';

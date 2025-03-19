@@ -9,6 +9,15 @@ export const closeOperationModal = () => ({
 	type: ACTIONS.CLOSE_OPERATION_MODAL,
 });
 
+export const openCryptoOperationModal = (operationType) => ({
+	type: ACTIONS.OPEN_CRYPTO_OPERATION_MODAL,
+	payload: operationType,
+});
+
+export const closeCryptoOperationModal = () => ({
+	type: ACTIONS.CLOSE_CRYPTO_OPERATION_MODAL,
+});
+
 export const openBurgerModal = () => ({
 	type: ACTIONS.OPEN_BURGER_MODAL,
 });
