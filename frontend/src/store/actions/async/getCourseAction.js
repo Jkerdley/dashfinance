@@ -4,17 +4,17 @@ import { ACTIONS } from '../../actionTypes';
 export const getCourseAction = () => async (dispatch) => {
 	try {
 		const response = await getCurrencyAsync();
-		const currencys = response;
+		const currencies = response;
 
 		dispatch({
 			type: ACTIONS.CYRRENCY_CHECK,
-			payload: currencys,
+			payload: currencies,
 		});
 	} catch (error) {
 		console.error('Ошибка получения курса:', error);
-		const courseFromUser = prompt('Введите курс рубля вручную');
+		const courseFromUser = prompt('Ошибка сервера валют: Введите курс рубля вручную');
 		dispatch({
-			type: ACTIONS.CYRRENCY_CHECK,
+			type: ACTIONS.CYRRENCY_SET_BY_USER,
 			payload: Number(courseFromUser),
 		});
 	}

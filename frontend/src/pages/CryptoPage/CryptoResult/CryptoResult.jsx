@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useCurrency } from '../../../hooks';
-import { Loader } from '../../../components/Loaders/Loader';
 import { CryptoAssetsAllocationChart } from '../Charts';
 import { BestAndWorstPerformer } from './components/BestAndWorstPerformer';
 import { CryptoTotalBalance } from './components/CryptoTotalBalance';
 import { PNLpercentages } from './components/PNLpercentages';
+import { useDispatch } from 'react-redux';
+import { getCourseAction } from '../../../store/actions/async';
 
 export const CryptoResult = ({ cryptoAssetsInCurrency }) => {
 	const { isUSD, rubleCourse } = useCurrency();
+	const dispatch = useDispatch();
 	const totalPNL = cryptoAssetsInCurrency.sort((a, b) => a.profitPercentage - b.profitPercentage);
 	const indexOfLastItem = totalPNL.length - 1;
 
-	const cryptoAssetsBalance = cryptoAssetsInCurrency.reduce(
-		(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
-		0,
-	);
+	useEffect(() => {
+		if (!rubleCourse) {
+			dispatch(getCourseAction());
+		}
+	}, []);
+
+	const cryptoAssetsBalance = useMemo(() => {
+		return cryptoAssetsInCurrency.reduce(
+			(acc, asset) => acc + parseFloat(asset.profit.slice(1).trim()),
+			0,
+		);
+	}, [cryptoAssetsInCurrency]);
 
 	const totalBalanceForDate = isUSD ? '$ ' + cryptoAssetsBalance : '\u20bd ' + cryptoAssetsBalance;
 	return (

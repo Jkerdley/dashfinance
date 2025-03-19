@@ -6,7 +6,7 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { selectIsAuthenticated, selectUserIsLoading } from './store/selectors';
+import { selectUserIsLoading } from './store/selectors';
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/async/fetchUserData';
@@ -24,12 +24,13 @@ export const App = () => {
 	const operationModal = useSelector(selectOperationModal);
 	const burgerModal = useSelector(selectBurgerModal);
 	const userIsLoading = useSelector(selectUserIsLoading);
-	const isAuthenticated = useSelector(selectIsAuthenticated);
+
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
 	console.log('before useEffect');
 
 	useEffect(() => {
 		console.log('first in useEffect');
+
 		if (userIsLoading) {
 			console.log('in useEffect');
 			const fetchUser = async () => {
@@ -60,9 +61,9 @@ export const App = () => {
 		}
 	}, [isDayTheme]);
 
-	const handleCloseBurgerModal = useCallback(() => dispatch(closeBurgerModal()));
-	const handleCloseOperationModal = useCallback(() => dispatch(closeOperationModal()));
-	const handleBurgerClick = useCallback(() => dispatch(openBurgerModal()));
+	const handleCloseBurgerModal = () => dispatch(closeBurgerModal());
+	const handleCloseOperationModal = () => dispatch(closeOperationModal());
+	const handleBurgerClick = () => dispatch(openBurgerModal());
 	console.log('userIsLoading', userIsLoading);
 
 	if (userIsLoading) {

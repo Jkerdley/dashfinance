@@ -20,8 +20,7 @@ export const MainPageLayout = () => {
 		accounts.length === 0 && dispatch(fetchAccounts());
 		categories.length === 0 && dispatch(fetchCategories());
 	}, []);
-	const cryptoCoins = useSelector(selectCryptoCoins);
-	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
+	const { cryptoAssetsInCurrency, cryptoCoins, isLoading } = useFetchCryptoAssetsInCurrency();
 
 	if (isLoading) {
 		return <Loader />;
