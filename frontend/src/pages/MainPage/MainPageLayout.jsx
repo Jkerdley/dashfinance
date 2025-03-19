@@ -18,6 +18,7 @@ export const MainPageLayout = () => {
 	}, []);
 	const cryptoCoins = useSelector(selectCryptoCoins);
 	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
+
 	return (
 		<section className="flex flex-col gap-4 w-full">
 			<TopRowCardsLayout cryptoCoins={cryptoCoins} />

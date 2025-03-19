@@ -6,7 +6,13 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { selectAccounts, selectCategories, selectIsAuthenticated } from './store/selectors';
+import {
+	selectAccounts,
+	selectCategories,
+	selectIsAuthenticated,
+	selectUser,
+	selectUserIsLoading,
+} from './store/selectors';
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/async/fetchUserData';
@@ -15,6 +21,9 @@ import { LoginPage } from './pages/Auth/LoginPage';
 import { RegisterPage } from './pages/Auth/RegisterPage';
 import { LoginWrapper } from './routes/LoginWrapper';
 import { ProtectedRoute } from './routes/ProtectedRoute';
+import { request } from './utils';
+import { Loader } from './components/Loaders/Loader';
+import { setUserIsLoading } from './store/actions';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -23,15 +32,31 @@ export const App = () => {
 	const accountsData = useSelector(selectAccounts);
 	const categoriesData = useSelector(selectCategories);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
-	const isDayTheme = useSelector((state) => state.theme.isDayTheme); // Получаем фон из состояния
-	console.log('isDayTheme', isDayTheme);
+	const user = useSelector(selectUser);
+	const userIsLoading = useSelector(selectUserIsLoading);
+	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
+	console.log('user before mounting', user);
 
 	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('user'));
-		if (user) {
-			dispatch(fetchUserData(user));
-		}
+		const fetchUser = async () => {
+			try {
+				const data = await request('/auth/user', 'GET');
+				console.log('data.user in APP', data.user);
+
+				if (data.user) {
+					dispatch(fetchUserData(data.user));
+				}
+			} catch (err) {
+				console.error('Ошибка при получении данных пользователя:', err);
+			} finally {
+				dispatch(setUserIsLoading(false));
+			}
+		};
+
+		fetchUser();
 	}, [dispatch]);
+
+	console.log('user after mounting', user);
 
 	useEffect(() => {
 		if (isDayTheme) {
@@ -48,7 +73,15 @@ export const App = () => {
 	const handleCloseBurgerModal = () => dispatch(closeBurgerModal());
 	const handleCloseOperationModal = () => dispatch(closeOperationModal());
 	const handleBurgerClick = () => dispatch(openBurgerModal());
+	console.log('userIsLoading', userIsLoading);
 
+	if (userIsLoading) {
+		return (
+			<div className="flex items-center justify-center h-screen">
+				<Loader />
+			</div>
+		);
+	}
 	return (
 		<section id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			<Routes>

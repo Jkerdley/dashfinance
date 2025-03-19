@@ -33,9 +33,7 @@ export const UpdateUserModal = ({ isOpen, onClose }) => {
 
 		try {
 			const response = await request(`/user/${user._id}`, 'PATCH', { userName });
-
 			dispatch(fetchUserData(response.user));
-			localStorage.setItem('user', JSON.stringify(response.user));
 			onClose();
 		} catch (error) {
 			setError(error.message);

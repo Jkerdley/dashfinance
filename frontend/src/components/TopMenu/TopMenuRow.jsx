@@ -28,7 +28,6 @@ export const TopMenuRow = ({ onBurgerClick, isBurgerMenuOpen }) => {
 			dispatch({ type: ACTIONS.CLEAR_CATEGORIES_DATA });
 			dispatch({ type: ACTIONS.CLEAR_CRYPTODATA_DATA });
 			dispatch({ type: ACTIONS.CLEAR_HISTORY_DATA });
-			localStorage.removeItem('user');
 			navigate('/login');
 		} catch (err) {
 			console.error('Ошибка выхода:', err);

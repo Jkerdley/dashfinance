@@ -17,7 +17,6 @@ export const RegisterPage = () => {
 		try {
 			const data = await request('/auth/register', 'POST', { login, password, name, role: '1' });
 			dispatch(fetchUserData(data.user));
-			localStorage.setItem('user', JSON.stringify(data.user));
 			navigate('/finances');
 		} catch (err) {
 			setError(err.message);
