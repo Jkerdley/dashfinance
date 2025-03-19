@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openOperationModal } from '../../store/actions/modalActions';
+import { openCryptoOperationModal, openOperationModal } from '../../store/actions/modalActions';
 import { selectAccounts, selectCategories } from '../../store/selectors';
 import { CryptoPanelButtons, FinancesPanelButtons } from './';
 
@@ -17,7 +17,12 @@ export const OperationsPanel = ({ isCrypto }) => {
 				alert('Сначала необходимо добавить счета и категории расходов');
 				return;
 			}
-			dispatch(openOperationModal(type));
+
+			if (isCrypto) {
+				dispatch(openCryptoOperationModal(type));
+			} else {
+				dispatch(openOperationModal(type));
+			}
 		},
 		[canOpenModal, dispatch],
 	);

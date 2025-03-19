@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { useCurrency } from '../../../hooks';
 import { CryptoAssetsAllocationChart } from '../Charts';
 import { BestAndWorstPerformer } from './components/BestAndWorstPerformer';
@@ -7,7 +7,7 @@ import { PNLpercentages } from './components/PNLpercentages';
 import { useDispatch } from 'react-redux';
 import { getCourseAction } from '../../../store/actions/async';
 
-export const CryptoResult = ({ cryptoAssetsInCurrency }) => {
+export const CryptoResult = memo(({ cryptoAssetsInCurrency }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
 	const totalPNL = cryptoAssetsInCurrency.sort((a, b) => a.profitPercentage - b.profitPercentage);
@@ -40,4 +40,5 @@ export const CryptoResult = ({ cryptoAssetsInCurrency }) => {
 			</div>
 		</section>
 	);
-};
+});
+CryptoResult.displayName = 'CryptoResult';

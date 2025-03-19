@@ -1,4 +1,5 @@
 export * from './AddOperationModal';
+export * from './AddCryptoOperationModal';
 export * from './AddAccountModal';
 export * from './UpdateAccountModal';
 export * from './BurgerMenuModal';

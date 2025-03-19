@@ -2,6 +2,7 @@ import { ACTIONS } from '../actionTypes';
 
 const initialState = {
 	operationModal: { isOpen: false, type: null },
+	cryptoOperationModal: { isOpen: false, type: null },
 	burgerModal: { isOpen: false },
 	addAccountModal: { isOpen: false },
 	updateAccountModal: { isOpen: false, accountIdForUpdate: '' },
@@ -26,6 +27,22 @@ export const modalReducer = (state = initialState, action) => {
 			return {
 				...state,
 				operationModal: {
+					isOpen: false,
+					type: null,
+				},
+			};
+		case ACTIONS.OPEN_CRYPTO_OPERATION_MODAL:
+			return {
+				...state,
+				cryptoOperationModal: {
+					isOpen: true,
+					type: action.payload,
+				},
+			};
+		case ACTIONS.CLOSE_CRYPTO_OPERATION_MODAL:
+			return {
+				...state,
+				cryptoOperationModal: {
 					isOpen: false,
 					type: null,
 				},
