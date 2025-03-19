@@ -4,9 +4,8 @@
 }
 
 body {
-	background:
-		url('./assets/pictures/back3.jpg'),
-		radial-gradient(circle at center, hsl(196, 90%, 70%) 0%, #0f385e 70%, #0a1b30 100%);
+	background: url('./assets/pictures/back3.jpg');
+	background: radial-gradient(circle at center, hsl(196, 90%, 70%) 0%, #0f385e 70%, #0a1b30 100%);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;

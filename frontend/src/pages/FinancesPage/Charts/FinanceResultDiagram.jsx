@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Loader } from '../../../components/Loaders/Loader';
 import { useFinanceExpensesFromHistory } from '../../../hooks';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
 
-export const FinanceResultDiagram = ({ selectedSortType }) => {
+export const FinanceResultDiagram = memo(({ selectedSortType }) => {
 	// const startTime = performance.now();
 	const { mappedData, historyIsLoading } = useFinanceExpensesFromHistory({
 		selectedSortType,
@@ -25,4 +25,5 @@ export const FinanceResultDiagram = ({ selectedSortType }) => {
 			)}
 		</div>
 	);
-};
+});
+FinanceResultDiagram.displayName = 'FinanceResultDiagram';

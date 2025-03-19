@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { CustomRadialTooltip } from '../../components/CustomTooltip';
 
-export const PieDiagramChart = ({ mappedData, isCrypto }) => {
+export const PieDiagramChart = memo(({ mappedData, isCrypto }) => {
 	// const startTime = performance.now();
 	const COLORS = [
 		'#ee529b',
@@ -63,4 +63,6 @@ export const PieDiagramChart = ({ mappedData, isCrypto }) => {
 			<Tooltip content={CustomRadialTooltip} isCrypto={isCrypto} />
 		</PieChart>
 	);
-};
+});
+
+PieDiagramChart.displayName = 'PieDiagramChart';

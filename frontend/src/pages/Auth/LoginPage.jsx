@@ -19,7 +19,6 @@ export const LoginPage = () => {
 			navigate('/');
 		} catch (err) {
 			setError(err.message);
-			localStorage.removeItem('user');
 		}
 	};
 

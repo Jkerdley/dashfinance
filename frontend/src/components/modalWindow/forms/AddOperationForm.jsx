@@ -15,8 +15,8 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 	const [formState, setFormState] = useState({
 		operationDate: new Date().toISOString().split('T')[0],
 		operationSumm: '',
-		selectedAccount: null,
-		incomeType: null,
+		selectedAccount: '',
+		incomeType: '',
 	});
 
 	useEffect(() => {
@@ -113,7 +113,7 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 	if (!accounts.length) {
 		onClose();
 		alert('Сначала необходимо добавить счета и категории расходов');
-		return null;
+		return;
 	}
 
 	return (
