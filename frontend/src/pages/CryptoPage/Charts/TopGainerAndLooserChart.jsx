@@ -1,18 +1,15 @@
 import React from 'react';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import { CardIcon } from '../../../components/CardIcon';
-import { Loader } from '../../../components/Loaders/Loader';
 
-export const TopGainerAndLooserChart = ({ data, title, type, isLoading }) => {
+export const TopGainerAndLooserChart = ({ data, title, type }) => {
 	const topGainerForDay = data.sort((a, b) => a.growValue - b.growValue);
 	const arrayWithoutStablecoins = topGainerForDay.filter(
 		(item) => item.symbol !== 'USDT' && item.symbol !== 'USDC' && item.symbol !== 'DAI',
 	);
 	const indexOfLastItem = arrayWithoutStablecoins.length - 1;
 
-	return isLoading ? (
-		<Loader />
-	) : (
+	return (
 		<section id="column__income-chart" className="flex flex-2/12 p-4 rounded-3xl bg-sky-950/40">
 			{type === 'looser' ? (
 				<section className="flex flex-col w-full gap-2">

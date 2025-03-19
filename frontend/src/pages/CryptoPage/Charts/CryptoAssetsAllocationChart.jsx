@@ -1,8 +1,7 @@
 import React from 'react';
 import { PieDiagramChart } from '../../../components/Charts/PieDiagramChart';
-import { Loader } from '../../../components/Loaders/Loader';
 
-export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading }) => {
+export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency }) => {
 	const mappenData = cryptoAssetsInCurrency.map((asset) => ({
 		name: asset.name,
 		value: parseFloat(asset.profit.slice(1).trim()),
@@ -14,7 +13,7 @@ export const CryptoAssetsAllocationChart = ({ cryptoAssetsInCurrency, isLoading 
 	) : (
 		<div className="relative">
 			<span className="absolute top-3/4 left-1/2 transform -translate-x-1/2">Аллокация</span>
-			{isLoading ? <Loader /> : <PieDiagramChart mappedData={sortedData} isCrypto={true} />}
+			<PieDiagramChart mappedData={sortedData} isCrypto={true} />
 		</div>
 	);
 };

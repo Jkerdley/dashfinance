@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SidebarMenu } from './components/Sidebar';
@@ -6,13 +6,7 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import {
-	selectAccounts,
-	selectCategories,
-	selectIsAuthenticated,
-	selectUser,
-	selectUserIsLoading,
-} from './store/selectors';
+import { selectUserIsLoading } from './store/selectors';
 import { selectOperationModal, selectBurgerModal } from './store/selectors';
 import { closeBurgerModal, closeOperationModal, openBurgerModal } from './store/actions/modalActions';
 import { fetchUserData } from './store/actions/async/fetchUserData';
@@ -29,34 +23,31 @@ export const App = () => {
 	const dispatch = useDispatch();
 	const operationModal = useSelector(selectOperationModal);
 	const burgerModal = useSelector(selectBurgerModal);
-	const accountsData = useSelector(selectAccounts);
-	const categoriesData = useSelector(selectCategories);
-	const isAuthenticated = useSelector(selectIsAuthenticated);
-	const user = useSelector(selectUser);
 	const userIsLoading = useSelector(selectUserIsLoading);
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
-	console.log('user before mounting', user);
+	console.log('before useEffect');
 
 	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				const data = await request('/auth/user', 'GET');
-				console.log('data.user in APP', data.user);
-
-				if (data.user) {
-					dispatch(fetchUserData(data.user));
+		console.log('first in useEffect');
+		if (userIsLoading) {
+			console.log('in useEffect');
+			const fetchUser = async () => {
+				try {
+					const data = await request('/auth/user', 'GET');
+					console.log('data.user in fetch APP', data.user);
+					if (data.user) {
+						dispatch(fetchUserData(data.user));
+					}
+				} catch (err) {
+					console.error('Ошибка при получении данных пользователя:', err);
+				} finally {
+					dispatch(setUserIsLoading(false));
 				}
-			} catch (err) {
-				console.error('Ошибка при получении данных пользователя:', err);
-			} finally {
-				dispatch(setUserIsLoading(false));
-			}
-		};
+			};
 
-		fetchUser();
-	}, [dispatch]);
-
-	console.log('user after mounting', user);
+			fetchUser();
+		}
+	}, []);
 
 	useEffect(() => {
 		if (isDayTheme) {
@@ -68,11 +59,9 @@ export const App = () => {
 		}
 	}, [isDayTheme]);
 
-	const canShowOperationModal = accountsData.length > 0 && categoriesData.length > 0;
-
-	const handleCloseBurgerModal = () => dispatch(closeBurgerModal());
-	const handleCloseOperationModal = () => dispatch(closeOperationModal());
-	const handleBurgerClick = () => dispatch(openBurgerModal());
+	const handleCloseBurgerModal = useCallback(() => dispatch(closeBurgerModal()));
+	const handleCloseOperationModal = useCallback(() => dispatch(closeOperationModal()));
+	const handleBurgerClick = useCallback(() => dispatch(openBurgerModal()));
 	console.log('userIsLoading', userIsLoading);
 
 	if (userIsLoading) {
@@ -82,6 +71,7 @@ export const App = () => {
 			</div>
 		);
 	}
+
 	return (
 		<section id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			<Routes>
@@ -112,13 +102,11 @@ export const App = () => {
 									onClose={handleCloseBurgerModal}
 								/>
 
-								{canShowOperationModal && (
-									<AddOperationModal
-										isOpen={operationModal.isOpen}
-										operationType={operationModal.type}
-										onClose={handleCloseOperationModal}
-									/>
-								)}
+								<AddOperationModal
+									isOpen={operationModal.isOpen}
+									operationType={operationModal.type}
+									onClose={handleCloseOperationModal}
+								/>
 
 								<SidebarMenu />
 								<div className="flex flex-col flex-15 p-4 gap-4 rounded-4xl bg-sky-300/5">
@@ -139,7 +127,7 @@ export const App = () => {
 						</ProtectedRoute>
 					}
 				/>
-				<Route path="*" element={<Navigate to={isAuthenticated ? '/' : '/login'} replace />} />
+				<Route path="*" element={<Navigate to={'/login'} replace />} />
 			</Routes>
 		</section>
 	);
