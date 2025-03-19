@@ -2,8 +2,6 @@ const { verify } = require("../helpers/generateToken");
 const User = require("../models/User");
 
 module.exports = async function (req, res, next) {
-    console.log("req.cookies.token", req.cookies.token);
-
     try {
         const tokenData = verify(req.cookies.token);
         const user = await User.findOne({ _id: tokenData.id });
