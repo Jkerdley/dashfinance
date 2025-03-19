@@ -8,9 +8,9 @@ import { selectCryptoOperationModal } from '../../store/selectors';
 
 export const AddCryptoOperationModal = () => {
 	const dispatch = useDispatch();
-
 	const cryptoOperationModal = useSelector(selectCryptoOperationModal);
 	const handleCloseCryptoOperationModal = () => dispatch(closeCryptoOperationModal());
+
 	return (
 		<BaseModal
 			isOpen={cryptoOperationModal.isOpen}
