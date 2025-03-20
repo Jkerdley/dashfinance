@@ -11,6 +11,7 @@ export const useFetchCryptoAssetsInCurrency = () => {
 	const cryptoAssets = useSelector(selectCryptoAssets);
 	const cryptoCoins = useSelector(selectCryptoCoins);
 	const dispatch = useDispatch();
+	console.log('cryptoCoins in hook', cryptoCoins);
 
 	useEffect(() => {
 		cryptoAssets.length === 0 && cryptoCoins.length === 0 && dispatch(fetchCryptoData());
@@ -18,7 +19,9 @@ export const useFetchCryptoAssetsInCurrency = () => {
 
 	const cryptoAssetsInCurrency = useMemo(() => {
 		return cryptoAssets.map((asset) => {
-			const fetchedCoinData = cryptoCoins.find((coin) => coin.id === asset.coinId);
+			const fetchedCoinData = cryptoCoins.find(
+				(coin) => coin.id === asset.coinId || coin.name === asset.name,
+			);
 
 			return {
 				...asset,

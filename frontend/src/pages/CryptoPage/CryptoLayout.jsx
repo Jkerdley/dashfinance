@@ -6,12 +6,9 @@ import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { GainerAndLooserLayout } from './Charts';
 import { useFetchCryptoAssetsInCurrency } from '../../hooks/useFetchCryptoAssetsInCurrency';
 import { Loader } from '../../components/Loaders/Loader';
-import { useSelector } from 'react-redux';
-import { selectCryptoCoins } from '../../store/selectors';
 
 export const CryptoLayout = () => {
-	const { cryptoAssetsInCurrency, isLoading } = useFetchCryptoAssetsInCurrency();
-	const cryptoCoins = useSelector(selectCryptoCoins);
+	const { cryptoAssetsInCurrency, cryptoCoins, isLoading } = useFetchCryptoAssetsInCurrency();
 
 	return isLoading ? (
 		<Loader />

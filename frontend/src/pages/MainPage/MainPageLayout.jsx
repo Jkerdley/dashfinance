@@ -4,7 +4,7 @@ import { FinanceResultLayout } from '../FinancesPage/FinanceResult';
 import { OpreationsFinanceHistoryLayout } from '../FinancesPage/OperationHistory';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAccounts, selectCategories, selectCryptoCoins } from '../../store/selectors';
+import { selectAccounts, selectCategories } from '../../store/selectors';
 import { CryptoResultLayout } from '../CryptoPage/CryptoResult';
 import { useFetchCryptoAssetsInCurrency } from '../../hooks';
 import { GainerAndLooserLayout } from '../CryptoPage/Charts';
