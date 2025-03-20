@@ -16,7 +16,7 @@ export const fetchCryptoData = () => async (dispatch) => {
 		dispatch({
 			type: ACTIONS.FETCH_CRYPTODATA_SUCCESS,
 			payload: {
-				coins: coinsResponse.result,
+				coins: coinsResponse.result || coinsResponse,
 				cryptoAssets: assetsResponse.cryptoAssets,
 				cryptoHistory: assetsResponse.cryptoAssets.flatMap((asset) => asset.history),
 			},

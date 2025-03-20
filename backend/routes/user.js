@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router({ mergeParams: true });
 const authentificated = require("../middleware/authentificated");
+
 router.patch("/user/:id", authentificated, async (req, res) => {
     try {
         const { name } = req.body;
