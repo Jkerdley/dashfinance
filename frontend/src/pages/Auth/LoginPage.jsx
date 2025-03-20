@@ -15,6 +15,8 @@ export const LoginPage = () => {
 		e.preventDefault();
 		try {
 			const data = await request('/auth/login', 'POST', { login, password });
+			console.log('data', data);
+
 			dispatch(fetchUserData(data.user));
 			navigate('/');
 		} catch (err) {

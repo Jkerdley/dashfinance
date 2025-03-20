@@ -4,7 +4,8 @@ import { ACTIONS } from '../../actionTypes';
 export const getCourseAction = () => async (dispatch) => {
 	try {
 		const response = await getCurrencyAsync();
-		const currencies = response;
+
+		const currencies = response.cbrf.data[0][3];
 
 		dispatch({
 			type: ACTIONS.CYRRENCY_CHECK,

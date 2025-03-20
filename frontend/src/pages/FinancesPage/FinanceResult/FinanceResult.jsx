@@ -1,29 +1,21 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { calculateValueInCurrency } from '../../../utils/calculateValueInCurrency';
 import { FinanceResultDiagram } from '../Charts/FinanceResultDiagram';
 import { ExpensesResult } from './ExpensesResult';
 import { IncomeResult } from './IncomeResult';
 import { BigResultBalance } from './BigResultBalance';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectAccounts, selectHistory, selectHistoryIsLoading } from '../../../store/selectors';
 import { useCurrency, useFinanceExpensesFromHistory } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
-import { getCourseAction } from '../../../store/actions/async';
 
 export const FinanceResult = memo(({ selectedSortType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
 
 	const financeHistory = useSelector(selectHistory);
 	const historyIsLoading = useSelector(selectHistoryIsLoading);
 	const financeAccounts = useSelector(selectAccounts);
 	const expenses = useFinanceExpensesFromHistory({ selectedSortType, showInCategories: true });
-
-	useEffect(() => {
-		if (!rubleCourse) {
-			dispatch(getCourseAction());
-		}
-	}, []);
 
 	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
 	const historyDB = financeHistory

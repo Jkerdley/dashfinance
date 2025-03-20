@@ -6,8 +6,12 @@ export const getCryptoCoinsAsync = async () => {
 			'X-API-KEY': import.meta.env.VITE_COINS_API,
 		},
 	};
-	const response = await fetch('https://openapiv1.coinstats.app/coins?limit=500&currency=RUB', options)
-		.then((res) => res.json())
-		.catch((err) => console.error(err));
-	return response;
+	try {
+		const response = await fetch('https://openapiv1.coinstats.app/coins?limit=500&currency=RUB', options);
+		const data = await response.json();
+		console.log('data in crypto async', data);
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
 };

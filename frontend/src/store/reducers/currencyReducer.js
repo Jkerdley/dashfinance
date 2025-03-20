@@ -3,7 +3,6 @@ import { ACTIONS } from '../actionTypes';
 const initialCurrencyState = {
 	isUSD: false,
 	usdCourse: null,
-	currencies: [],
 };
 
 export const currencyReducer = (state = initialCurrencyState, action) => {
@@ -14,14 +13,9 @@ export const currencyReducer = (state = initialCurrencyState, action) => {
 				isUSD: !state.isUSD,
 			};
 		case ACTIONS.CYRRENCY_CHECK: {
-			const rubleCurrency = action.payload.find((currency) => currency.name === 'RUB');
-
-			const rubleRate = rubleCurrency ? parseFloat(rubleCurrency.rate) : 0;
-
 			return {
 				...state,
-				usdCourse: rubleRate,
-				currencies: action.payload,
+				usdCourse: action.payload,
 			};
 		}
 		case ACTIONS.CYRRENCY_SET_BY_USER: {
