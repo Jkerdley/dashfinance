@@ -11,18 +11,18 @@ require("dotenv").config();
 const PORT = 3007;
 const app = express();
 
-app.use(
-    cors({
-        origin: "http://localhost:5173",
-        credentials: true,
-    })
-);
 // app.use(
 //     cors({
-//         origin: "http://147.45.161.16",
+//         origin: "http://localhost:5173",
 //         credentials: true,
 //     })
 // );
+app.use(
+    cors({
+        origin: "http://147.45.161.16",
+        credentials: true,
+    })
+);
 
 // app.use(express.static("../frontend/build"));
 app.use(express.static(path.join(__dirname, "../frontend/build")));
