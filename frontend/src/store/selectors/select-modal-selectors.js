@@ -5,4 +5,6 @@ export const selectAddAccountModal = (state) => state.modal.addAccountModal;
 export const selectUpdateAccountModal = (state) => state.modal.updateAccountModal;
 export const selectAddCategoryModal = (state) => state.modal.addCategoryModal;
 export const selectUpdateCategoryModal = (state) => state.modal.updateCategoryModal;
+export const selectAddCryptoAssetModal = (state) => state.modal.addCryptoAssetModal;
+export const selectUpdateCryptoAssetModal = (state) => state.modal.updateCryptoAssetModal;
 export const selectUserModal = (state) => state.modal.userModal;

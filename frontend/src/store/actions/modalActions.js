@@ -60,6 +60,23 @@ export const closeUpdateCategoryModal = () => ({
 	type: ACTIONS.CLOSE_UPDATE_CATEGORY_MODAL,
 });
 
+export const openAddCryptoAssetModal = () => ({
+	type: ACTIONS.OPEN_ADD_CRYPTO_ASSET_MODAL,
+});
+
+export const closeAddCryptoAssetModal = () => ({
+	type: ACTIONS.CLOSE_ADD_CRYPTO_ASSET_MODAL,
+});
+
+export const openUpdateCryptoAssetModal = (id) => ({
+	type: ACTIONS.OPEN_UPDATE_CRYPTO_ASSET_MODAL,
+	payload: id,
+});
+
+export const closeUpdateCryptoAssetModal = () => ({
+	type: ACTIONS.CLOSE_UPDATE_CRYPTO_ASSET_MODAL,
+});
+
 export const openUserModal = () => ({
 	type: ACTIONS.OPEN_USER_MODAL,
 });

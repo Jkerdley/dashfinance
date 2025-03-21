@@ -102,6 +102,28 @@ export const modalReducer = (state = initialState, action) => {
 				...state,
 				updateCategoryModal: { isOpen: false },
 			};
+
+		case ACTIONS.OPEN_ADD_CRYPTO_ASSET_MODAL:
+			return {
+				...state,
+				addCryptoAssetModal: { isOpen: true },
+			};
+		case ACTIONS.CLOSE_ADD_CRYPTO_ASSET_MODAL:
+			return {
+				...state,
+				addCryptoAssetModal: { isOpen: false },
+			};
+		case ACTIONS.OPEN_UPDATE_CRYPTO_ASSET_MODAL:
+			return {
+				...state,
+				updateCryptoAssetModal: { isOpen: true, cryptoAssetIdForUpdate: action.payload },
+			};
+		case ACTIONS.CLOSE_UPDATE_CRYPTO_ASSET_MODAL:
+			return {
+				...state,
+				updateCryptoAssetModal: { isOpen: false },
+			};
+
 		case ACTIONS.OPEN_USER_MODAL:
 			return {
 				...state,

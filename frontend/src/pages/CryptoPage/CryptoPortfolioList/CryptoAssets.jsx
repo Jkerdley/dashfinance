@@ -1,8 +1,11 @@
 import React from 'react';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
+import { openUpdateCryptoAssetModal } from '../../../store/actions';
+import { useDispatch } from 'react-redux';
 
 export const CryptoAssets = ({
+	id,
 	coinTitle,
 	coinPrice,
 	profit,
@@ -13,6 +16,7 @@ export const CryptoAssets = ({
 	symbol,
 	growValue,
 }) => {
+	const dispatch = useDispatch();
 	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
 	const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
 
@@ -33,6 +37,10 @@ export const CryptoAssets = ({
 		} else {
 			return 'text-main-green';
 		}
+	};
+
+	const handleOptionsClick = () => {
+		dispatch(openUpdateCryptoAssetModal(id));
 	};
 
 	return (
@@ -73,7 +81,7 @@ export const CryptoAssets = ({
 					</div>
 				</div>
 			</div>
-			<OptionsButton to={''} flex={'flex-[0.25]'} />
+			<OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />
 		</div>
 	);
 };

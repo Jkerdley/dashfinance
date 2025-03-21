@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
 import { OperationsPanel } from '../../components/OperationsPanelButtons/OperationsPanel';
 import { AccountsLayout } from './FinanceAccount/AccountsLayout';
 import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
-import { useCurrency } from '../../hooks';
-import { getCourseAction } from '../../store/actions/async';
-import { useDispatch } from 'react-redux';
 
 export const FinancesLayout = () => {
-	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
-	useEffect(() => {
-		console.log('rubleCourse in financelayout', rubleCourse);
-
-		if (!rubleCourse) {
-			dispatch(getCourseAction());
-		}
-	}, []);
 	return (
 		<section id="layout__finances" className="flex 2xl:flex-nowrap w-full flex-wrap rounded-4xl gap-4">
 			<div className="flex flex-8/12 flex-col gap-4">

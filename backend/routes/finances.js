@@ -37,10 +37,15 @@ router.post("/history", authentificated, async (req, res) => {
 router.delete("/history/:id", authentificated, async (req, res) => {
     try {
         const deletedItem = await History.findByIdAndDelete(req.params.id);
+        const deleteOperationByType =
+            deletedItem.type === "add"
+                ? { $inc: { balance: -deletedItem.amount } }
+                : { $inc: { balance: deletedItem.amount } };
         if (deletedItem) {
-            const accountToAddBalance = await Accounts.findByIdAndUpdate(deletedItem.accountId, {
-                $inc: { balance: deletedItem.amount },
-            });
+            const accountToAddBalance = await Accounts.findByIdAndUpdate(
+                deletedItem.accountId,
+                deleteOperationByType
+            );
         }
         res.send({ message: `Операция ${req.params.id} была удалена` });
     } catch (error) {
