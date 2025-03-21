@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { OpreationsFinanceHistoryLayout } from './OperationHistory';
 import { CategoriesLayout } from './Categories';
 import { FinanceResultLayout } from './FinanceResult';
