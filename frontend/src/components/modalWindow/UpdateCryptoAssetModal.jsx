@@ -12,10 +12,11 @@ export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsI
 	// 	...selectedAsset,
 	// 	budget: parseFloat(selectedAsset.budget.slice(1).trim()),
 	// };
+	console.log('selectedAsset', selectedAsset);
 
 	const [formData, setFormData] = useState({
 		name: selectedAsset.name,
-		budget: selectedAsset.budget,
+		assetAmount: selectedAsset.assetAmount,
 		icon: selectedAsset.icon,
 	});
 
@@ -28,7 +29,7 @@ export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsI
 		if (value === '' || !isNaN(value)) {
 			setFormData((prev) => ({
 				...prev,
-				budget: value,
+				assetAmount: value,
 			}));
 		} else {
 			alert('Пожалуйста, введите цифры');
@@ -63,13 +64,13 @@ export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsI
 		if (nameValue.length === 0) {
 			alert('Название категории не может быть пустым');
 		}
-		const budgetValue = Number(formData.budget);
+		const assetAmountValue = Number(formData.assetAmount);
 
-		if (!isNaN(budgetValue) && budgetValue >= 0) {
+		if (!isNaN(assetAmountValue) && assetAmountValue >= 0) {
 			try {
-				await request(`/categories/${assetId}`, 'PUT', {
+				await request(`/crypto/${assetId}`, 'PUT', {
 					...formData,
-					budget: budgetValue,
+					assetAmount: assetAmountValue,
 				});
 				// dispatch(fetchCategories());
 				onClose();
@@ -96,7 +97,7 @@ export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsI
 
 				<div className="flex justify-center mb-4">
 					<OutlineButton icon={DeleteIcon} onClick={handleDeleteCategory}>
-						Удалить категорию
+						Удалить актив
 					</OutlineButton>
 				</div>
 			</section>
