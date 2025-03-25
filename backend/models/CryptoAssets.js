@@ -10,7 +10,7 @@ const CryptoAssetsSchema = mongoose.Schema(
             type: Number,
             required: true,
             validate: {
-                validator: validator.isNumeric,
+                validator: Number.isFinite,
                 message: "Цена должна быть числом",
             },
         },
@@ -18,7 +18,7 @@ const CryptoAssetsSchema = mongoose.Schema(
             type: Number,
             required: true,
             validate: {
-                validator: validator.isNumeric,
+                validator: Number.isFinite,
                 message: "Количество активов должно быть числом",
             },
         },

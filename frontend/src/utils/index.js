@@ -9,3 +9,4 @@ export * from './getIconOfCategorie.js';
 export * from './aggregateChartDataByMounth.js';
 export * from './aggregateExpensesByCategory.js';
 export * from './getArrayFilteredByThisMonth.js';
+export * from './debounce.js';

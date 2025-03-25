@@ -1,49 +1,70 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
-import { fetchAccounts } from '../../store/actions/async';
+import { debounce, request } from '../../utils';
+import { fetchCryptoData } from '../../store/actions/async';
 import { CryptoAssetForm } from './forms';
 
-export const AddCryptoAssetModal = ({ isOpen, onClose }) => {
+export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
+	console.log('cryptoCoins in modal FORM', cryptoCoins);
+	const dispatch = useDispatch();
+	const [searchTerm, setSearchTerm] = useState('');
+	const [searchResults, setSearchResults] = useState([]);
+	const [showDropdown, setShowDropdown] = useState(false);
+	const [error, setError] = useState('');
 	const [formData, setFormData] = useState({
 		name: '',
-		balance: '',
+		coinId: '',
+		symbol: '',
+		averagePrice: 0,
+		assetAmount: 0,
+		history: [],
 		icon: '',
 	});
-	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+
+	const debouncedSearch = useCallback(
+		debounce((inputTerm) => {
+			const searchResults = cryptoCoins
+				.filter((coin) => coin.name.toLowerCase().includes(inputTerm.toLowerCase()))
+				.slice(0, 20);
+			setSearchResults(searchResults);
+			setShowDropdown(searchResults.length > 0);
+		}, 500),
+		[cryptoCoins],
+	);
 
 	const handleFindCrypto = (event) => {
 		const value = event.target.value;
-		setFormData((prev) => ({
-			...prev,
-			name: value,
-		}));
+		setSearchTerm(value);
+		debouncedSearch(value);
+	};
+
+	const handleSelectCoin = (coin) => {
+		setFormData({
+			...formData,
+			name: coin.name,
+			coinId: coin.id,
+			symbol: coin.symbol,
+			icon: coin.icon,
+		});
+		setShowDropdown(false);
+		setSearchTerm(coin.name);
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const nameValue = formData.name;
-		const balanceValue = Number(formData.balance);
 
 		if (nameValue.length === 0) {
 			alert('Название крипто-актива не может быть пустым');
-		}
-
-		if (!isNaN(balanceValue) && balanceValue >= 0) {
+		} else {
 			try {
-				await request('/accounts', 'POST', {
-					...formData,
-					balance: balanceValue,
-				});
-				dispatch(fetchAccounts());
+				await request('/cryptoassets', 'POST', formData);
+				dispatch(fetchCryptoData());
 				onClose();
 			} catch (err) {
 				setError(err.message);
 			}
-		} else {
-			alert('Баланс должен быть числом и больше нуля');
 		}
 	};
 
@@ -52,10 +73,14 @@ export const AddCryptoAssetModal = ({ isOpen, onClose }) => {
 			<section className="flex flex-col p-6 h-full w-full">
 				<CryptoAssetForm
 					formData={formData}
+					searchTerm={searchTerm}
 					handleSubmit={handleSubmit}
-					handleFindCrypto={handleFindCrypto}
 					error={error}
 					onClose={onClose}
+					handleFindCrypto={handleFindCrypto}
+					handleSelectCoin={handleSelectCoin}
+					searchResults={searchResults}
+					showDropdown={showDropdown}
 				/>
 			</section>
 		</BaseModal>
