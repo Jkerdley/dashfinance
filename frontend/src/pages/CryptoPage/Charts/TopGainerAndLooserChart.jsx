@@ -22,7 +22,7 @@ export const TopGainerAndLooserChart = ({ data, title, type }) => {
 						</span>
 					</div>
 					<div className="flex flex-col gap-2 items-center justify-center w-full h-full">
-						<div className="flex gap-2 items-center">
+						<div className="flex sm:flex-row flex-col gap-2 items-center">
 							<CardIcon buttonSize={'12'} size={'8'} icon={topGainerForDay[0]?.icon} />{' '}
 							<span className="text-md">{topGainerForDay[0]?.name}</span>
 						</div>
@@ -61,12 +61,13 @@ export const TopGainerAndLooserChart = ({ data, title, type }) => {
 						</span>
 					</div>
 					<div className="flex flex-col gap-2 items-center justify-center w-full h-full">
-						<div className="flex gap-2 items-center">
+						<div className="flex sm:flex-row flex-col gap-2 items-center">
 							<CardIcon
 								buttonSize={'12'}
 								size={'8'}
 								icon={topGainerForDay[indexOfLastItem]?.icon}
-							/>{' '}
+							/>
+
 							<span className="text-md">{topGainerForDay[indexOfLastItem]?.name}</span>
 						</div>
 						<div className="flex flex-col gap-2 items-center">

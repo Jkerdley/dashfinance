@@ -14,7 +14,7 @@ export const CryptoAssetForm = ({
 }) => {
 	return (
 		<>
-			<h2 className="text-2xl mb-6">Добавить крипто-актив</h2>
+			<h2 className="text-2xl mb-6">Добавить криптовалюту</h2>
 			{error && <div className="mb-6 text-main-red">Ошибка: {error}</div>}
 
 			<form className="flex flex-col gap-8 items-center justify-between" onSubmit={handleSubmit}>
@@ -35,7 +35,7 @@ export const CryptoAssetForm = ({
 								<div
 									key={coin.id}
 									onClick={() => handleSelectCoin(coin)}
-									className="p-2 hover:bg-sky-800/60 cursor-pointer flex items-center gap-2"
+									className="p-2 hover:bg-sky-800/60 cursor-pointer flex items-center text-left gap-2"
 								>
 									<CardIcon icon={coin.icon} />
 									{coin.name}
