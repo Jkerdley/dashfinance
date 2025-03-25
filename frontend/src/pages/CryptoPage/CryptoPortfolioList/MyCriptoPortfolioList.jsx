@@ -14,11 +14,11 @@ import {
 import { selectAddCryptoAssetModal, selectUpdateCryptoAssetModal } from '../../../store/selectors';
 import { AddCryptoAssetModal, UpdateCryptoAssetModal } from '../../../components/modalWindow';
 
-export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => {
+export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, cryptoCoins, isLoading }) => {
 	const addCryptoAsset = useSelector(selectAddCryptoAssetModal);
 	const updateCryptoAsset = useSelector(selectUpdateCryptoAssetModal);
 	const dispatch = useDispatch();
-
+	console.log('cryptoAssetsInCurrency', cryptoAssetsInCurrency);
 	return (
 		<section id="column__categories" className="flex flex-col flex-3/12 p-4 rounded-3xl bg-sky-950/40">
 			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
@@ -41,6 +41,7 @@ export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, isLoading }) => 
 				>
 					{addCryptoAsset.isOpen && (
 						<AddCryptoAssetModal
+							cryptoCoins={cryptoCoins}
 							isOpen={addCryptoAsset.isOpen}
 							onClose={() => dispatch(closeAddCryptoAssetModal())}
 						/>

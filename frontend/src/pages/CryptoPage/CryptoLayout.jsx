@@ -9,7 +9,6 @@ import { Loader } from '../../components/Loaders/Loader';
 
 export const CryptoLayout = () => {
 	const { cryptoAssetsInCurrency, cryptoCoins, isLoading } = useFetchCryptoAssetsInCurrency();
-
 	return isLoading ? (
 		<Loader />
 	) : (
@@ -24,6 +23,7 @@ export const CryptoLayout = () => {
 				</div>
 				<div id="crypto__bottom-container" className="flex flex-7/12 2xl:flex-nowrap flex-wrap gap-4">
 					<MyCriptoPortfolioList
+						cryptoCoins={cryptoCoins}
 						cryptoAssetsInCurrency={cryptoAssetsInCurrency}
 						isLoading={isLoading}
 					/>
