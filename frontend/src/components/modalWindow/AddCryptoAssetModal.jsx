@@ -36,6 +36,7 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 	const handleFindCrypto = (event) => {
 		const value = event.target.value;
 		setSearchTerm(value);
+		setError('');
 		debouncedSearch(value);
 	};
 
@@ -56,7 +57,7 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 		const nameValue = formData.name;
 
 		if (nameValue.length === 0) {
-			alert('Название крипто-актива не может быть пустым');
+			alert('Нужно найти выбрать криптовалюту');
 		} else {
 			try {
 				await request('/cryptoassets', 'POST', formData);
