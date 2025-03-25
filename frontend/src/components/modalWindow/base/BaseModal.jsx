@@ -16,9 +16,7 @@ export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', posit
 
 	useEffect(() => {
 		if (isOpen) {
-			requestAnimationFrame(() => {
-				setIsVisible(true);
-			});
+			setIsVisible(true);
 		}
 	}, [isOpen]);
 
@@ -41,7 +39,7 @@ export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', posit
 		right: isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
 		center: isVisible
 			? 'translate-x-[-50%] translate-y-[-50%] opacity-100 scale-100'
-			: 'translate-x-[-50%] translate-y-[-60%] opacity-0 scale-95',
+			: 'translate-x-[-50%] translate-y-[-60%] opacity-0 scale-55',
 	};
 
 	return (
