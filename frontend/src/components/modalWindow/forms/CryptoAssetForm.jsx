@@ -30,7 +30,7 @@ export const CryptoAssetForm = ({
 						required
 					/>
 					{showDropdown && (
-						<div className="absolute top-full left-0 right-0 z-50 bg-sky-950/90 max-h-40 overflow-y-auto mt-1 rounded-lg">
+						<div className="absolute top-full left-0 right-0 z-50 bg-sky-950/90 max-h-40 overflow-y-auto mt-1 rounded-lg scrollbar">
 							{searchResults.map((coin) => (
 								<div
 									key={coin.id}
