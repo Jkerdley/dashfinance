@@ -18,6 +18,7 @@ router.get("/cryptoassets", authentificated, async (req, res) => {
 router.post("/cryptoassets", authentificated, async (req, res) => {
     console.log("req.body", req.body);
     const findedSimilarAsset = await CryptoAssets.findOne({
+        userId: req.user._id,
         $or: [{ name: req.body.name }, { coinId: req.body.coinId }],
     });
     if (findedSimilarAsset) {
