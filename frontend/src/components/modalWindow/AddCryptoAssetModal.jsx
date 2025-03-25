@@ -25,7 +25,11 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 	const debouncedSearch = useCallback(
 		debounce((inputTerm) => {
 			const searchResults = cryptoCoins
-				.filter((coin) => coin.name.toLowerCase().includes(inputTerm.toLowerCase()))
+				.filter(
+					(coin) =>
+						coin.name.toLowerCase().includes(inputTerm.toLowerCase()) ||
+						coin.symbol.toLowerCase().includes(inputTerm.toLowerCase()),
+				)
 				.slice(0, 20);
 			setSearchResults(searchResults);
 			setShowDropdown(searchResults.length > 0);
