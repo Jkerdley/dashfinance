@@ -7,7 +7,10 @@ export const getCryptoCoinsAsync = async () => {
 		},
 	};
 	try {
-		const response = await fetch('https://openapiv1.coinstats.app/coins?limit=500&currency=RUB', options);
+		const response = await fetch(
+			'https://openapiv1.coinstats.app/coins?limit=1000&currency=RUB',
+			options,
+		);
 		const data = await response.json();
 		console.log('data in crypto async', data);
 		return data;

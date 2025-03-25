@@ -28,8 +28,9 @@ export const CryptoOperationHistory = ({
 			className="flex justify-center items-start h-12 lg:min-w-[30vw] min-w-[50vw] w-full text-sm border-b-1 border-white/40 gap-1"
 		>
 			<div className="flex flex-8 justify-center items-center gap-2">
-				<CardIcon buttonSize={9} padding={'p-1'} size={5} icon={icon}></CardIcon>
-
+				<div className="sm:flex hidden">
+					<CardIcon buttonSize={9} padding={'p-1'} size={5} icon={icon}></CardIcon>
+				</div>
 				<div className="flex items-center justify-center w-full gap-1">
 					<div className="flex flex-2/10 truncate flex-shrink-0 flex-grow">
 						<span className={`text-sm w-full text-white truncate`}>
