@@ -10,7 +10,8 @@ import { getCourseAction } from '../../../store/actions/async';
 export const CryptoResult = memo(({ cryptoAssetsInCurrency }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
-	const totalPNL = cryptoAssetsInCurrency.sort((a, b) => a.profitPercentage - b.profitPercentage);
+	const filterByZeroBalance = cryptoAssetsInCurrency.filter((coin) => coin.assetAmount > 0);
+	const totalPNL = filterByZeroBalance.sort((a, b) => a.profitPercentage - b.profitPercentage);
 	const indexOfLastItem = totalPNL.length - 1;
 
 	useEffect(() => {
