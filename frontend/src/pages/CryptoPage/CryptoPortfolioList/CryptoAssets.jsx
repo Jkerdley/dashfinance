@@ -57,13 +57,18 @@ export const CryptoAssets = ({
 					<div className={`flex text-base items-between justify-between truncate overflow-hidden`}>
 						<div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
 							<span className="truncate">{coinTitle}</span>
-							<div
-								id="up-and-down__icon_triangle"
-								className={`md:flex hidden h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
-							/>
-							<span className="md:block hidden text-sm truncate">
-								Profit {profitPercentage.toFixed(2)} %
-							</span>
+							{assetsAmount > 0 && (
+								<>
+									<div
+										id="up-and-down__icon_triangle"
+										className={`md:flex hidden h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
+									/>
+
+									<span className="md:block hidden text-sm truncate">
+										Profit {profitPercentage.toFixed(2)} %
+									</span>
+								</>
+							)}
 						</div>
 						<div className="flex gap-2 truncate">{profit}</div>
 					</div>
@@ -72,11 +77,11 @@ export const CryptoAssets = ({
 						<div className="flex gap-2">
 							<span className={`text-sm ${isCoinPriceGrow()}`}>{coinPrice}</span>
 							<span className={`sm:flex hidden text-sm ${isCoinPriceGrow()}`}>
-								{growValue} %
+								{growValue} % (1d)
 							</span>
 						</div>
 						<span className={`text-sm truncate text-gray-300`}>
-							{assetsAmount ? `${assetsAmount} ${symbol}` : ''}
+							{assetsAmount} {symbol}
 						</span>
 					</div>
 				</div>
