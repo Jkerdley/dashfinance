@@ -52,6 +52,8 @@ export const CryptoOpreationsHistoryContainer = () => {
 					{sortedHistory.map((operation) => (
 						<div key={operation._id}>
 							<CryptoOperationHistory
+								id={operation._id}
+								coinId={operation.assetId}
 								coin={operation.asset}
 								symbol={findCoinSymbol(fetchedCoinsPrices, operation.assetId)}
 								icon={findCoinIcon(fetchedCoinsPrices, operation.assetId)}

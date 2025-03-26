@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
+const { Types } = require("mongoose");
 
 const router = express.Router({ mergeParams: true });
 const authentificated = require("../middleware/authentificated");
 const cryptoAssetsMap = require("../helpers/cryptoAssetsMap");
-const { getCryptoAssets } = require("../controllers/cryptoassets");
+const { getCryptoAssets, deleteCryptoAssetHistoryItem } = require("../controllers/cryptoassets");
 const CryptoAssets = require("../models/CryptoAssets");
 
 router.get("/cryptoassets", authentificated, async (req, res) => {
@@ -45,6 +46,18 @@ router.post("/cryptoassets", authentificated, async (req, res) => {
                 error: error.message,
             });
         }
+    }
+});
+
+router.delete("/cryptoassets/:id", authentificated, async (req, res) => {
+    const historyItemId = new Types.ObjectId(req.body._id);
+    console.log("historyItemId", historyItemId);
+
+    const updatedAsset = deleteCryptoAssetHistoryItem(req.user._id, req.params.id, historyItemId);
+    if (updatedAsset) {
+        res.status(200).send({ updatedAsset });
+    } else {
+        res.status(500).send({ error: error.message });
     }
 });
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
-import { calculateValueInCurrency } from '../../../utils';
+import { calculateValueInCurrency, request } from '../../../utils';
 import { useCurrency } from '../../../hooks';
+import { fetchCryptoData } from '../../../store/actions/async';
+import { useDispatch } from 'react-redux';
 
 export const CryptoOperationHistory = ({
+	id,
+	coinId,
 	coin,
 	symbol,
 	icon,
@@ -16,11 +20,21 @@ export const CryptoOperationHistory = ({
 	operationDate,
 }) => {
 	const { isUSD, rubleCourse } = useCurrency();
+	const dispatch = useDispatch();
 
 	const coinInCurrency = calculateValueInCurrency(Number(price), isUSD, rubleCourse);
 
 	const isPlus = operationType === 'buy' ? '+ ' : '- ';
 	const isMinus = operationType === 'buy' ? '- ' : '+ ';
+
+	const handleDeleteHistoryItem = async () => {
+		if (confirm('Удалить эту операцию?')) {
+			console.log('formData:  assetId, id', coinId, id);
+			const response = await request(`/cryptoassets/${coinId}`, 'DELETE', { _id: id });
+			console.log('response', response);
+			dispatch(fetchCryptoData());
+		}
+	};
 
 	return (
 		<section
@@ -66,7 +80,7 @@ export const CryptoOperationHistory = ({
 					</div>
 				</div>
 			</div>
-			<OptionsButton to={''} flex={'flex-flex-1/10'} />
+			<OptionsButton deleteIcon={true} onClick={handleDeleteHistoryItem} flex={'flex-shrink-0'} />
 		</section>
 	);
 };
