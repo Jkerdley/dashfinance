@@ -17,6 +17,7 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 		coinId: '',
 		symbol: '',
 		averagePrice: 0,
+		totalSumm: 0,
 		assetAmount: 0,
 		history: [],
 		icon: '',

@@ -39,6 +39,8 @@ export const CryptoAssets = ({
 		}
 	};
 
+	const isBTC = coinTitle === 'Bitcoin' ? assetsAmount.toFixed(6) : assetsAmount.toFixed(4);
+
 	const handleOptionsClick = () => {
 		dispatch(openUpdateCryptoAssetModal(id));
 	};
@@ -81,7 +83,7 @@ export const CryptoAssets = ({
 							</span>
 						</div>
 						<span className={`text-sm truncate text-gray-300`}>
-							{assetsAmount} {symbol}
+							{parseFloat(isBTC)} {symbol}
 						</span>
 					</div>
 				</div>
