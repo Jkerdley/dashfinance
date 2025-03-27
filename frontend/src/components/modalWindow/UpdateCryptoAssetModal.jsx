@@ -6,9 +6,10 @@ import { CryptoAssetUpdate } from './forms';
 import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
 
-export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsInCurrency }) => {
+export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen, onClose }) => {
 	const [error, setError] = useState('');
 	const dispatch = useDispatch();
+
 	const selectedAsset = cryptoAssetsInCurrency.find((asset) => asset.id === assetId);
 
 	console.log('selectedAsset', selectedAsset);
@@ -69,12 +70,12 @@ export const UpdateCryptoAssetModal = ({ isOpen, onClose, assetId, cryptoAssetsI
 	// 		alert('Бюджет должен быть числом и больше нуля');
 	// 	}
 	// };
+	console.log('selectedAsset in modal', selectedAsset);
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
 			<section className="flex flex-col justify-center p-4 h-full w-full">
 				<CryptoAssetUpdate selectedAsset={selectedAsset} error={error} onClose={onClose} />
-
 				<div className="flex justify-center mb-4">
 					<OutlineButton icon={DeleteIcon} onClick={handleDeleteCategory}>
 						Удалить актив

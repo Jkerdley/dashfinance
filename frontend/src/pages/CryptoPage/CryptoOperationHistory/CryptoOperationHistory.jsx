@@ -3,7 +3,7 @@ import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
 import { calculateValueInCurrency, request } from '../../../utils';
 import { useCurrency } from '../../../hooks';
-import { fetchCryptoAssets, fetchCryptoData } from '../../../store/actions/async';
+import { fetchCryptoAssets } from '../../../store/actions/async';
 import { useDispatch } from 'react-redux';
 
 export const CryptoOperationHistory = ({
