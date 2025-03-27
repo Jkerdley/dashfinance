@@ -16,7 +16,7 @@ export const CryptoAssetUpdate = ({ selectedAsset, error, onClose }) => {
 			<CurrencyToggle />
 			{error && <div className="mb-4">{error}</div>}
 
-			<div className="mt-2 mb-2 items-center">
+			<div className="mt-2 min-w-2/3 md:min-w-1/2 mb-2 items-center">
 				<CryptoAssets
 					id={selectedAsset.id}
 					averageBuyPrice={selectedAsset.averagePrice}
@@ -37,7 +37,7 @@ export const CryptoAssetUpdate = ({ selectedAsset, error, onClose }) => {
 					<div
 						key={coin._id}
 						// onClick={() => handleSelectCoin(coin)}
-						className="p-2 hover:bg-sky-800/60 cursor-pointer flex items-center text-left gap-2"
+						className="flex p-2 hover:bg-sky-800/60 cursor-pointer overflow-hidden"
 					>
 						<CryptoOperationHistory
 							id={coin._id}
@@ -51,6 +51,7 @@ export const CryptoAssetUpdate = ({ selectedAsset, error, onClose }) => {
 							operationType={coin.type}
 							exchangedAsset={coin.exchangedAsset}
 							operationDate={coin.date}
+							inModal={true}
 						/>
 					</div>
 				))}
