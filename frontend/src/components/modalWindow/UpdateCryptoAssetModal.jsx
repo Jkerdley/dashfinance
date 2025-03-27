@@ -5,6 +5,7 @@ import { request } from '../../utils';
 import { CryptoAssetUpdate } from './forms';
 import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
+import { fetchCryptoAssets } from '../../store/actions/async';
 
 export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen, onClose }) => {
 	const [error, setError] = useState('');
@@ -13,6 +14,7 @@ export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen
 	const selectedAsset = cryptoAssetsInCurrency.find((asset) => asset.id === assetId);
 
 	console.log('selectedAsset', selectedAsset);
+	console.log('assetId', assetId);
 
 	// const [formData, setFormData] = useState({
 	// 	name: selectedAsset.name,
@@ -33,14 +35,17 @@ export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen
 	// 	}
 	// };
 
-	const handleDeleteCategory = async () => {
+	const handleDeleteAsset = async () => {
 		if (confirm('Вы уверены что хотите удалить криптоактив?')) {
 			try {
-				await request(`/cryptoassets/${assetId}`, 'DELETE');
-				// dispatch(fetchCategories());
+				const response = await request(`/cryptoasset/${assetId}`, 'DELETE');
+				console.log('response after delete', response);
+
+				dispatch(fetchCryptoAssets(response));
 				onClose();
 			} catch (error) {
 				setError(error.message);
+				console.log('Ошибка получения обновленного массива криптоактивов', error);
 			}
 		}
 	};
@@ -77,7 +82,7 @@ export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen
 			<section className="flex flex-col justify-center p-4 h-full w-full">
 				<CryptoAssetUpdate selectedAsset={selectedAsset} error={error} onClose={onClose} />
 				<div className="flex justify-center mb-4">
-					<OutlineButton icon={DeleteIcon} onClick={handleDeleteCategory}>
+					<OutlineButton icon={DeleteIcon} onClick={handleDeleteAsset}>
 						Удалить актив
 					</OutlineButton>
 				</div>

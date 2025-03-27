@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { debounce, request } from '../../utils';
-import { fetchCryptoData } from '../../store/actions/async';
+import { fetchCryptoAssets, fetchCryptoData } from '../../store/actions/async';
 import { CryptoAssetForm } from './forms';
 
 export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
@@ -65,8 +65,8 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 			alert('Нужно найти выбрать криптовалюту');
 		} else {
 			try {
-				await request('/cryptoassets', 'POST', formData);
-				dispatch(fetchCryptoData());
+				const response = await request('/cryptoassets', 'POST', formData);
+				dispatch(fetchCryptoAssets(response));
 				onClose();
 			} catch (err) {
 				setError(err.message);

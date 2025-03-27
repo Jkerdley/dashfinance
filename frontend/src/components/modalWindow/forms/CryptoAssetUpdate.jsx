@@ -5,6 +5,7 @@ import { CryptoOperationHistory } from '../../../pages/CryptoPage/CryptoOperatio
 import { calculateValueInCurrency } from '../../../utils';
 import { CurrencyToggle } from '../../buttons';
 import { useCurrency } from '../../../hooks';
+import { CryptoAssets } from '../../../pages/CryptoPage/CryptoPortfolioList';
 
 export const CryptoAssetUpdate = ({ selectedAsset, error, onClose }) => {
 	const { isUSD, rubleCourse } = useCurrency();
@@ -12,13 +13,25 @@ export const CryptoAssetUpdate = ({ selectedAsset, error, onClose }) => {
 	return (
 		<section className="flex flex-col items-center justify-evenly gap-6 min-h-[25vh] w-full">
 			<h2 className="text-2xl">Обновить криптоактив</h2>
-			{/* <CurrencyToggle /> */}
+			<CurrencyToggle />
 			{error && <div className="mb-4">{error}</div>}
-			{selectedAsset.name && (
-				<div className="flex mt-2 mb-2 items-center gap-2 pr-6 rounded-2xl min-h-[5vh] p-2 bg-sky-800/70">
-					<CardIcon icon={selectedAsset.icon} /> {selectedAsset.name}
-				</div>
-			)}
+
+			<div className="mt-2 mb-2 items-center">
+				<CryptoAssets
+					id={selectedAsset.id}
+					averageBuyPrice={selectedAsset.averagePrice}
+					assetsAmount={selectedAsset.assetAmount}
+					coinPrice={selectedAsset.price}
+					profit={selectedAsset.profit}
+					profitPercentage={selectedAsset.profitPercentage}
+					growValue={selectedAsset.growValue}
+					coinTitle={selectedAsset.name}
+					icon={selectedAsset.icon}
+					symbol={selectedAsset.symbol}
+					inAssetCard={true}
+				/>
+			</div>
+
 			<div className="flex flex-col w-full bg-sky-950/90 max-h-50 overflow-y-auto rounded-lg scrollbar">
 				{selectedAsset.history.map((coin) => (
 					<div

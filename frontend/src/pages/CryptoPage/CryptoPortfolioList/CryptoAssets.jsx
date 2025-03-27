@@ -15,6 +15,7 @@ export const CryptoAssets = ({
 	icon,
 	symbol,
 	growValue,
+	inAssetCard,
 }) => {
 	const dispatch = useDispatch();
 	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
@@ -88,7 +89,7 @@ export const CryptoAssets = ({
 					</div>
 				</div>
 			</div>
-			<OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />
+			{inAssetCard ? '' : <OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />}
 		</div>
 	);
 };
