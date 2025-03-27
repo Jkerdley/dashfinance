@@ -15,6 +15,7 @@ export const useFetchCryptoAssetsInCurrency = () => {
 
 	useEffect(() => {
 		cryptoAssets.length === 0 && cryptoCoins.length === 0 && dispatch(fetchCryptoData());
+		console.log('useEffect in hook');
 	}, []);
 
 	const cryptoAssetsInCurrency = useMemo(() => {

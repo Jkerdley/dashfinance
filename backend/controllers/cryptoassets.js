@@ -8,6 +8,7 @@ async function getCryptoAssets(userId) {
 
 async function deleteCryptoAssetHistoryItem(userId, assetId, historyItemId) {
     const session = await mongoose.startSession();
+
     try {
         session.startTransaction();
 
@@ -16,9 +17,12 @@ async function deleteCryptoAssetHistoryItem(userId, assetId, historyItemId) {
                 userId: userId,
                 coinId: assetId,
             },
+
             {
                 $pull: {
-                    history: { _id: historyItemId },
+                    history: {
+                        _id: historyItemId,
+                    },
                 },
             },
             {
@@ -32,16 +36,14 @@ async function deleteCryptoAssetHistoryItem(userId, assetId, historyItemId) {
         }
 
         const deletedItem = asset.history.find((item) => item._id.equals(historyItemId));
+
         if (!deletedItem) {
             throw new Error("Элемент истории не найден");
         }
 
         const updatedAmount = asset.assetAmount - deletedItem.assetAmount;
-        console.log("updatedAmount", updatedAmount);
         const updatedSumm = asset.totalSumm - deletedItem.checkSumm;
-        console.log("updatedSumm", updatedSumm);
         const newAverage = updatedAmount > 0 ? updatedSumm / updatedAmount : 0;
-        console.log("newAverage", newAverage);
 
         const updatedAsset = await CryptoAssets.findByIdAndUpdate(
             asset._id,
@@ -52,6 +54,7 @@ async function deleteCryptoAssetHistoryItem(userId, assetId, historyItemId) {
                     averagePrice: newAverage,
                 },
             },
+
             {
                 new: true,
                 session,
@@ -59,6 +62,7 @@ async function deleteCryptoAssetHistoryItem(userId, assetId, historyItemId) {
         );
 
         await session.commitTransaction();
+
         return updatedAsset;
     } catch (error) {
         await session.abortTransaction();

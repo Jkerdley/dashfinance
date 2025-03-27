@@ -51,12 +51,14 @@ router.post("/cryptoassets", authentificated, async (req, res) => {
 
 router.delete("/cryptoassets/:id", authentificated, async (req, res) => {
     const historyItemId = new Types.ObjectId(req.body._id);
-    console.log("historyItemId", historyItemId);
-
-    const updatedAsset = deleteCryptoAssetHistoryItem(req.user._id, req.params.id, historyItemId);
-    if (updatedAsset) {
-        res.status(200).send({ updatedAsset });
-    } else {
+    try {
+        const assetIsUpdated = await deleteCryptoAssetHistoryItem(req.user._id, req.params.id, historyItemId);
+        console.log("assetIsUpdated", assetIsUpdated);
+        if (assetIsUpdated) {
+            const cryptoAssets = await getCryptoAssets(req.user._id);
+            res.status(200).send({ cryptoAssets: cryptoAssets.map(cryptoAssetsMap) });
+        }
+    } catch (error) {
         res.status(500).send({ error: error.message });
     }
 });

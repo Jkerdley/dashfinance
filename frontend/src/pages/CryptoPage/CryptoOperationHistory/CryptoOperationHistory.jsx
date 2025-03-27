@@ -3,7 +3,7 @@ import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
 import { calculateValueInCurrency, request } from '../../../utils';
 import { useCurrency } from '../../../hooks';
-import { fetchCryptoData } from '../../../store/actions/async';
+import { fetchCryptoAssets, fetchCryptoData } from '../../../store/actions/async';
 import { useDispatch } from 'react-redux';
 
 export const CryptoOperationHistory = ({
@@ -29,10 +29,12 @@ export const CryptoOperationHistory = ({
 
 	const handleDeleteHistoryItem = async () => {
 		if (confirm('Удалить эту операцию?')) {
-			console.log('formData:  assetId, id', coinId, id);
 			const response = await request(`/cryptoassets/${coinId}`, 'DELETE', { _id: id });
-			console.log('response', response);
-			dispatch(fetchCryptoData());
+			try {
+				dispatch(fetchCryptoAssets(response));
+			} catch (error) {
+				console.log('Ошибка получения обновленного массива криптоактивов', error);
+			}
 		}
 	};
 
