@@ -11,35 +11,26 @@ export const useFetchCryptoAssetsInCurrency = () => {
 	const cryptoAssets = useSelector(selectCryptoAssets);
 	const cryptoCoins = useSelector(selectCryptoCoins);
 	const dispatch = useDispatch();
-	console.log('cryptoCoins in hook', cryptoCoins);
 
 	useEffect(() => {
 		cryptoAssets.length === 0 && cryptoCoins.length === 0 && dispatch(fetchCryptoData());
-		console.log('useEffect in hook');
 	}, []);
 
 	const cryptoAssetsInCurrency = useMemo(() => {
 		return cryptoAssets.map((asset) => {
-			const fetchedCoinData = cryptoCoins.find(
-				(coin) => coin.id === asset.coinId || coin.name === asset.name,
-			);
+			const fetchedCoinData = cryptoCoins.find((coin) => coin.id === asset.coinId);
 
+			const coinPrice = parseFloat(fetchedCoinData?.price || 0);
+			const assetAmount = parseFloat(asset.assetAmount);
+			const assetAveragePrice = parseFloat(asset.averagePrice);
 			return {
 				...asset,
 				averagePrice: calculateValueInCurrency(asset.averagePrice, isUSD, rubleCourse),
 				icon: fetchedCoinData?.icon,
 				growValue: parseFloat(fetchedCoinData?.priceChange1d || 0),
 				price: calculateValueInCurrency(fetchedCoinData?.price || 0, isUSD, rubleCourse),
-				profit: calculateValueInCurrency(
-					parseFloat(parseFloat(fetchedCoinData?.price || 0) * parseFloat(asset.assetAmount)),
-					isUSD,
-					rubleCourse,
-				),
-				profitPercentage:
-					parseFloat(
-						(parseFloat(fetchedCoinData?.price || 0) - parseFloat(asset.averagePrice)) /
-							parseFloat(asset.averagePrice),
-					) * 100,
+				profit: calculateValueInCurrency(coinPrice * assetAmount, isUSD, rubleCourse),
+				profitPercentage: ((coinPrice - assetAveragePrice) / assetAveragePrice) * 100,
 			};
 		});
 	}, [cryptoAssets, cryptoCoins, isUSD, rubleCourse]);

@@ -17,8 +17,6 @@ export const cryptoReducer = (state = initialCryptoState, action) => {
 				error: null,
 			};
 		case ACTIONS.FETCH_CRYPTODATA_SUCCESS:
-			console.log('action.payload.cryptoAssets in reducer', action.payload.cryptoAssets);
-
 			return {
 				...state,
 				isLoading: false,
@@ -43,11 +41,6 @@ export const cryptoReducer = (state = initialCryptoState, action) => {
 				error: null,
 			};
 		case ACTIONS.FETCH_CRYPTOASSETS_SUCCESS:
-			console.log(
-				'action.payload.cryptoAssets FETCH_CRYPTOASSETS_SUCCESS',
-				action.payload.cryptoAssets,
-			);
-
 			return {
 				...state,
 				isLoading: false,
