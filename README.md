@@ -1,16 +1,15 @@
 # 💼 Crypto Finance Tracker (Закрытый исходный код)
 
 [![License](https://img.shields.io/badge/License-Proprietary-red)](https://opensource.org/licenses/proprietary)
-[![Access](https://img.shields.io/badge/Access-By%20agreement%20only-blue)](mailto:contact@yourdomain.com)
+[![Access](https://img.shields.io/badge/Access-By%20agreement%20only-blue)](mailto:jk-erdley@yandex.ru)
 
 [![Project Status](https://img.shields.io/badge/status-active-brightgreen)](http://147.45.161.16/)
 [![MongoDB](https://img.shields.io/badge/database-MongoDB-green)](https://www.mongodb.com/)
 
 **Универсальное решение для управления криптоактивами и фиатными операциями в одном Дашборде**  
-🌐 Демо: [http://147.45.161.16/](http://147.45.161.16/)
-MOCK аккаунт: login: qwerty2 password: qwerty2
 
-![Dashboard Preview](https://via.placeholder.com/800x400.png?text=Crypto+Dashboard+Preview)
+🌐 Демо: [http://147.45.161.16/](http://147.45.161.16/)
+TEST аккаунт: login: qwerty2 password: qwerty2
 
 ## 🌟 Особенности
 
