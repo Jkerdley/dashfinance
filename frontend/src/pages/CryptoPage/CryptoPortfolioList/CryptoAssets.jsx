@@ -15,6 +15,7 @@ export const CryptoAssets = ({
 	icon,
 	symbol,
 	growValue,
+	inAssetCard,
 }) => {
 	const dispatch = useDispatch();
 	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
@@ -38,6 +39,8 @@ export const CryptoAssets = ({
 			return 'text-main-green';
 		}
 	};
+
+	const isBTC = coinTitle === 'Bitcoin' ? assetsAmount.toFixed(6) : assetsAmount.toFixed(4);
 
 	const handleOptionsClick = () => {
 		dispatch(openUpdateCryptoAssetModal(id));
@@ -81,12 +84,12 @@ export const CryptoAssets = ({
 							</span>
 						</div>
 						<span className={`text-sm truncate text-gray-300`}>
-							{assetsAmount} {symbol}
+							{parseFloat(isBTC)} {symbol}
 						</span>
 					</div>
 				</div>
 			</div>
-			<OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />
+			{inAssetCard ? '' : <OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />}
 		</div>
 	);
 };

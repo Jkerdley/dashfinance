@@ -8,5 +8,6 @@ module.exports = function (cryptoAssets) {
         assetAmount: cryptoAssets.assetAmount,
         history: cryptoAssets.history,
         userId: cryptoAssets.userId,
+        totalSumm: cryptoAssets.totalSumm,
     };
 };

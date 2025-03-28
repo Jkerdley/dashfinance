@@ -14,6 +14,14 @@ const CryptoAssetsSchema = mongoose.Schema(
                 message: "Цена должна быть числом",
             },
         },
+        totalSumm: {
+            type: Number,
+            required: true,
+            validate: {
+                validator: Number.isFinite,
+                message: "Итоговая сумма должна быть числом",
+            },
+        },
         assetAmount: {
             type: Number,
             required: true,

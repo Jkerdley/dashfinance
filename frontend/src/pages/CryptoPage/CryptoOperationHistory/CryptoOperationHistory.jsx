@@ -3,7 +3,7 @@ import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
 import { calculateValueInCurrency, request } from '../../../utils';
 import { useCurrency } from '../../../hooks';
-import { fetchCryptoData } from '../../../store/actions/async';
+import { fetchCryptoAssets } from '../../../store/actions/async';
 import { useDispatch } from 'react-redux';
 
 export const CryptoOperationHistory = ({
@@ -18,6 +18,7 @@ export const CryptoOperationHistory = ({
 	assetAmount,
 	exchangedAsset,
 	operationDate,
+	inModal,
 }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
@@ -29,24 +30,28 @@ export const CryptoOperationHistory = ({
 
 	const handleDeleteHistoryItem = async () => {
 		if (confirm('Удалить эту операцию?')) {
-			console.log('formData:  assetId, id', coinId, id);
 			const response = await request(`/cryptoassets/${coinId}`, 'DELETE', { _id: id });
-			console.log('response', response);
-			dispatch(fetchCryptoData());
+			try {
+				dispatch(fetchCryptoAssets(response));
+			} catch (error) {
+				console.log('Ошибка получения обновленного массива криптоактивов', error);
+			}
 		}
 	};
 
 	return (
 		<section
 			id="operations__history-item_container"
-			className="flex justify-center items-start h-12 lg:min-w-[30vw] min-w-[50vw] w-full text-sm border-b-1 border-white/40 gap-1"
+			className={`flex justify-center items-start h-12 ${inModal ? 'md:min-w-[30vw]' : 'lg:min-w-[30vw]'} min-w-[50vw] w-full text-sm border-b-1 border-white/40 gap-1`}
 		>
 			<div className="flex flex-8 justify-center items-center gap-2">
 				<div className="sm:flex hidden">
 					<CardIcon buttonSize={9} padding={'p-1'} size={5} icon={icon}></CardIcon>
 				</div>
 				<div className="flex items-center justify-center w-full gap-1">
-					<div className="flex flex-2/10 truncate flex-shrink-0 flex-grow">
+					<div
+						className={`flex flex-2/10 text-start ${inModal ? 'pl-2' : ''} truncate flex-shrink-0 flex-grow`}
+					>
 						<span className={`text-sm w-full text-white truncate`}>
 							<span className="flex">{operationType === 'buy' ? 'BUY ' : 'SELL '}</span>
 							{coin}
