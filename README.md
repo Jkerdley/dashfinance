@@ -43,21 +43,21 @@ TEST аккаунт: login: qwerty2 password: qwerty2
 ## 🛠 Технологический стек
 
 ### Frontend
-![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white)
-![Redux](https://img.shields.io/badge/-Redux-764ABC?logo=redux&logoColor=white)
-![Thunk](https://img.shields.io/badge/-Redux_Thunk-999999)
-![Tailwind CSS](https://img.shields.io/badge/-Tailwind_v4-06B6D4?logo=tailwind-css)
-![Recharts](https://img.shields.io/badge/-Recharts-FF6384)
+![React]
+![Redux]
+![Thunk]
+![Tailwind CSS]
+![Recharts]
 
 ### Backend
-![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/-Express-000000?logo=express)
-![Mongoose](https://img.shields.io/badge/-Mongoose-880000?logo=mongodb)
-![JWT](https://img.shields.io/badge/-JWT-000000?logo=json-web-tokens)
+![Node.js]
+![Express]
+![Mongoose]
+![JWT]
 
 ### Инфраструктура
-![MongoDB Atlas](https://img.shields.io/badge/-MongoDB_Atlas-47A248)
-![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker)
+![MongoDB]
+![Docker]
 
 ## 🚀 Быстрый старт
 
@@ -65,9 +65,6 @@ TEST аккаунт: login: qwerty2 password: qwerty2
 - Node.js v20+
 - MongoDB 6.0+
 
-
-
-![Dashboard Preview](https://via.placeholder.com/800x400.png?text=Private+Code+Preview)
 
 ## 🔒 Правовые условия
 ### 📜 Лицензионное соглашение
