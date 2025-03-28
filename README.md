@@ -1,4 +1,4 @@
-# 💼 Crypto Finance Tracker (Закрытый исходный код)
+# 💼 Crypto Finance Tracker
 
 [![License](https://img.shields.io/badge/License-Proprietary-red)](https://opensource.org/licenses/proprietary)
 [![Access](https://img.shields.io/badge/Access-By%20agreement%20only-blue)](mailto:jk-erdley@yandex.ru)
