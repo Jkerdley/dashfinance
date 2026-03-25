@@ -2,11 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { debounce, request } from '../../utils';
-import { fetchCryptoAssets, fetchCryptoData } from '../../store/actions/async';
+import { fetchCryptoAssets } from '../../store/actions/async';
 import { CryptoAssetForm } from './forms';
 
 export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
-	console.log('cryptoCoins in modal FORM', cryptoCoins);
 	const dispatch = useDispatch();
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
