@@ -34,7 +34,7 @@ export const CryptoOperationHistory = ({
 			try {
 				dispatch(fetchCryptoAssets(response));
 			} catch (error) {
-				console.log('Ошибка получения обновленного массива криптоактивов', error);
+				console.error('Ошибка получения обновленного массива криптоактивов', error);
 			}
 		}
 	};
