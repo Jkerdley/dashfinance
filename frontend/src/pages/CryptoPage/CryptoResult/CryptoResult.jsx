@@ -5,20 +5,24 @@ import { BestAndWorstPerformer } from './components/BestAndWorstPerformer';
 import { CryptoTotalBalance } from './components/CryptoTotalBalance';
 import { PNLpercentages } from './components/PNLpercentages';
 import { useDispatch } from 'react-redux';
-import { getCourseAction } from '../../../store/actions/async';
+import { useGetCurrencyRatesQuery } from '../../../store/api/externalApi';
+import { setUsdCourse } from '../../../store/slices/currencySlice';
 
 export const CryptoResult = memo(({ cryptoAssetsInCurrency }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
+	const { data: currencyData } = useGetCurrencyRatesQuery();
+
 	const filterByZeroBalance = cryptoAssetsInCurrency.filter((coin) => coin.assetAmount > 0);
 	const totalPNL = filterByZeroBalance.sort((a, b) => a.profitPercentage - b.profitPercentage);
 	const indexOfLastItem = totalPNL.length - 1;
 
 	useEffect(() => {
-		if (!rubleCourse) {
-			dispatch(getCourseAction());
+		if (currencyData && !rubleCourse) {
+			const course = currencyData.cbrf.data[0][3];
+			dispatch(setUsdCourse(course));
 		}
-	}, []);
+	}, [currencyData, rubleCourse, dispatch]);
 
 	const cryptoAssetsBalance = useMemo(() => {
 		return cryptoAssetsInCurrency.reduce(

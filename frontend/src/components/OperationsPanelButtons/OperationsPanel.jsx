@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { openCryptoOperationModal, openOperationModal } from '../../store/actions/modalActions';
-import { selectAccounts, selectCategories } from '../../store/selectors';
+import { useDispatch } from 'react-redux';
+import { openCryptoOperationModal, openOperationModal } from '../../store/slices/modalSlice';
+import { useGetAccountsQuery, useGetCategoriesQuery } from '../../store/api/backendApi';
 import { CryptoPanelButtons, FinancesPanelButtons } from './';
 
 export const OperationsPanel = ({ isCrypto }) => {
 	const dispatch = useDispatch();
-	const accounts = useSelector(selectAccounts);
-	const categories = useSelector(selectCategories);
+	const { data: accounts = [] } = useGetAccountsQuery();
+	const { data: categories = [] } = useGetCategoriesQuery();
 
 	const canOpenModal = accounts.length > 0 && categories.length > 0;
 

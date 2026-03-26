@@ -10,8 +10,8 @@ import {
 	closeAddCryptoAssetModal,
 	closeUpdateCryptoAssetModal,
 	openAddCryptoAssetModal,
-} from '../../../store/actions';
-import { selectAddCryptoAssetModal, selectUpdateCryptoAssetModal } from '../../../store/selectors';
+} from '../../../store/slices/modalSlice';
+import { selectAddCryptoAssetModal, selectUpdateCryptoAssetModal } from '../../../store/slices/modalSlice';
 import { AddCryptoAssetModal, UpdateCryptoAssetModal } from '../../../components/modalWindow';
 
 export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, cryptoCoins, isLoading }) => {

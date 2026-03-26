@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
 import { UserForm } from './forms';
-import { selectUser } from '../../store/selectors';
-import { fetchUserData } from '../../store/actions/async';
+import { selectUser } from '../../store/slices/userSlice';
+import { setUserData } from '../../store/slices/userSlice';
+import { useUpdateUserMutation } from '../../store/api/backendApi';
 
 export const UpdateUserModal = ({ isOpen, onClose }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const [error, setError] = useState('');
 	const [userName, setUserName] = useState(user.name || '');
+	const [updateUserMutation] = useUpdateUserMutation();
 
 	const handleNameChange = (event) => {
 		const value = event.target.value;
@@ -32,11 +33,11 @@ export const UpdateUserModal = ({ isOpen, onClose }) => {
 		}
 
 		try {
-			const response = await request(`/user/${user._id}`, 'PATCH', { userName });
-			dispatch(fetchUserData(response.user));
+			const response = await updateUserMutation({ id: user._id, userName }).unwrap();
+			dispatch(setUserData(response.user));
 			onClose();
 		} catch (error) {
-			setError(error.message);
+			setError(error.data?.error || error.message);
 		}
 	};
 

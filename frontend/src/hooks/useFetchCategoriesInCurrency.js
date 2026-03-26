@@ -1,24 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
-import { useEffect } from 'react';
-import { selectCategories, selectCategoriesIsLoading } from '../store/selectors';
+import { useGetCategoriesQuery } from '../store/api/backendApi';
 import { calculateValueInCurrency } from '../utils';
-import { fetchCategories } from '../store/actions/async/fetchCategories';
 import { useFinanceExpensesFromHistory } from './useFinanceExpensesFromHistory';
 
 export const useFetchCategoriesInCurrency = (selectedSortType) => {
-	const { mappedData, historyIsLoading } = useFinanceExpensesFromHistory({
+	const { mappedData } = useFinanceExpensesFromHistory({
 		selectedSortType,
 		showInCategories: true,
 	});
 	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
-	const categoriesIsLoading = useSelector(selectCategoriesIsLoading);
-	const categories = useSelector(selectCategories);
-
-	useEffect(() => {
-		categories.length === 0 && dispatch(fetchCategories());
-	}, [dispatch]);
+	const { data: categories = [], isLoading: categoriesIsLoading } = useGetCategoriesQuery();
 
 	const categoriesInCurrency = categories.map((categorie) => {
 		const findedCategoryInExpensesHistory = mappedData.filter((item) => item.id === categorie.id);

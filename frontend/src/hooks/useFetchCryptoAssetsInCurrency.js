@@ -1,20 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
-import { selectCryptoAssets, selectCryptoIsLoading, selectCryptoCoins } from '../store/selectors';
+import { useGetCryptoAssetsQuery } from '../store/api/backendApi';
+import { useGetCryptoCoinsQuery } from '../store/api/externalApi';
 import { calculateValueInCurrency } from '../utils';
-import { useEffect, useMemo } from 'react';
-import { fetchCryptoData } from '../store/actions/async';
+import { useMemo } from 'react';
 
 export const useFetchCryptoAssetsInCurrency = () => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const isLoading = useSelector(selectCryptoIsLoading);
-	const cryptoAssets = useSelector(selectCryptoAssets);
-	const cryptoCoins = useSelector(selectCryptoCoins);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		cryptoAssets.length === 0 && cryptoCoins.length === 0 && dispatch(fetchCryptoData());
-	}, []);
+	const { data: cryptoAssets = [], isLoading: isAssetsLoading } = useGetCryptoAssetsQuery();
+	const { data: cryptoCoins = [], isLoading: isCoinsLoading } = useGetCryptoCoinsQuery();
+	
+	const isLoading = isAssetsLoading || isCoinsLoading;
 
 	const cryptoAssetsInCurrency = useMemo(() => {
 		return cryptoAssets.map((asset) => {

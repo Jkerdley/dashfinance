@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { request } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../store/actions/async';
+import { useRegisterMutation } from '../../store/api/backendApi';
+import { setUserData } from '../../store/slices/userSlice';
 
 export const RegisterPage = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [error, setError] = useState('');
+	const [registerMutation] = useRegisterMutation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const data = await request('/auth/register', 'POST', { login, password, name, role: '1' });
-			dispatch(fetchUserData(data.user));
+			const data = await registerMutation({ login, password, name, role: '1' }).unwrap();
+			dispatch(setUserData(data.user));
 			navigate('/finances');
 		} catch (err) {
-			setError(err.message);
+			setError(err.data?.error || err.message);
 		}
 	};
 

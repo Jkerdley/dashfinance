@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
-import { fetchAccounts } from '../../store/actions/async';
+import { useAddAccountMutation } from '../../store/api/backendApi';
+import { closeAddAccountModal } from '../../store/slices/modalSlice';
+import { selectAddAccountModal } from '../../store/slices/modalSlice';
 import { AccountForm } from './forms/AccountForm';
 
-export const AddAccountModal = ({ isOpen, onClose }) => {
+export const AddAccountModal = () => {
+	const { isOpen } = useSelector(selectAddAccountModal);
+	const dispatch = useDispatch();
+	const [addAccount] = useAddAccountMutation();
+
 	const [formData, setFormData] = useState({
 		name: '',
 		balance: '',
@@ -13,7 +18,10 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 		type: 'debit',
 	});
 	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+
+	const onClose = () => {
+		dispatch(closeAddAccountModal());
+	};
 
 	const handleTypeChange = (type, icon) => {
 		setFormData((prev) => ({
@@ -51,18 +59,18 @@ export const AddAccountModal = ({ isOpen, onClose }) => {
 
 		if (nameValue.length === 0) {
 			alert('Название счета не может быть пустым');
+			return;
 		}
 
 		if (!isNaN(balanceValue) && balanceValue >= 0) {
 			try {
-				await request('/accounts', 'POST', {
+				await addAccount({
 					...formData,
 					balance: balanceValue,
-				});
-				dispatch(fetchAccounts());
+				}).unwrap();
 				onClose();
 			} catch (err) {
-				setError(err.message);
+				setError(err.message || 'Ошибка при добавлении счета');
 			}
 		} else {
 			alert('Баланс должен быть числом и больше нуля');

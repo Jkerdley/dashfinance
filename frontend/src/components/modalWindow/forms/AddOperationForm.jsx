@@ -1,16 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { CurrencyToggle } from '../../buttons';
 import { useCurrency } from '../../../hooks';
-import { request } from '../../../utils';
 import { FinalResultNewOperationItem, OperationSelectors, SaveAndCancelButtons } from '../operationSelectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAccounts } from '../../../store/selectors';
-import { fetchAccounts, fetchHistory } from '../../../store/actions/async';
+import { useGetAccountsQuery, useAddHistoryMutation } from '../../../store/api/backendApi';
 
 export const AddOperationForm = ({ onClose, operationType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
-	const accounts = useSelector(selectAccounts);
+	const { data: accounts = [] } = useGetAccountsQuery();
+	const [addHistory] = useAddHistoryMutation();
 
 	const [formState, setFormState] = useState({
 		operationDate: new Date().toISOString().split('T')[0],
@@ -97,17 +94,13 @@ export const AddOperationForm = ({ onClose, operationType }) => {
 					comment: formState.comment || '',
 				};
 
-				await request('/history', 'POST', formDataToSend);
-
-				dispatch(fetchAccounts());
-				dispatch(fetchHistory());
-
+				await addHistory(formDataToSend).unwrap();
 				onClose();
 			} catch (error) {
-				alert(`Ошибка: ${error.message}`);
+				alert(`Ошибка: ${error.data?.error || error.message}`);
 			}
 		},
-		[formState, isUSD, rubleCourse, operationType, onClose],
+		[formState, isUSD, rubleCourse, operationType, onClose, addHistory],
 	);
 
 	if (!accounts.length) {

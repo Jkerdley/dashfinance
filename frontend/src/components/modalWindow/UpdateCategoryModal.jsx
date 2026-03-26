@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useUpdateCategoryMutation, useDeleteCategoryMutation } from '../../store/api/backendApi';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
-import { fetchAccounts, fetchCategories } from '../../store/actions/async';
 import { CategoriesForm } from './forms';
 import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
@@ -21,7 +19,8 @@ export const UpdateCategoryModal = ({ isOpen, onClose, categoryId, categoriesInC
 	});
 
 	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+	const [updateCategory] = useUpdateCategoryMutation();
+	const [deleteCategory] = useDeleteCategoryMutation();
 
 	const handleInputChange = (event) => {
 		const value = event.target.value;
@@ -47,11 +46,10 @@ export const UpdateCategoryModal = ({ isOpen, onClose, categoryId, categoriesInC
 	const handleDeleteCategory = async () => {
 		if (confirm('Вы уверены что хотите удалить категорию расходов?')) {
 			try {
-				await request(`/categories/${categoryId}`, 'DELETE');
-				dispatch(fetchCategories());
+				await deleteCategory(categoryId).unwrap();
 				onClose();
 			} catch (error) {
-				setError(error.message);
+				setError(error.data?.error || error.message);
 			}
 		}
 	};
@@ -63,19 +61,20 @@ export const UpdateCategoryModal = ({ isOpen, onClose, categoryId, categoriesInC
 
 		if (nameValue.length === 0) {
 			alert('Название категории не может быть пустым');
+			return;
 		}
 		const budgetValue = Number(formData.budget);
 
 		if (!isNaN(budgetValue) && budgetValue >= 0) {
 			try {
-				await request(`/categories/${categoryId}`, 'PUT', {
+				await updateCategory({
+					id: categoryId,
 					...formData,
 					budget: budgetValue,
-				});
-				dispatch(fetchCategories());
+				}).unwrap();
 				onClose();
 			} catch (error) {
-				setError(error.message);
+				setError(error.data?.error || error.message);
 			}
 		} else {
 			alert('Бюджет должен быть числом и больше нуля');

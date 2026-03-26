@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useUpdateAccountMutation, useDeleteAccountMutation } from '../../store/api/backendApi';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
-import { fetchAccounts } from '../../store/actions/async';
 import { AccountForm } from './forms';
 import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
@@ -22,7 +20,8 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 	});
 
 	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+	const [updateAccount] = useUpdateAccountMutation();
+	const [deleteAccount] = useDeleteAccountMutation();
 
 	const handleTypeChange = (type, icon) => {
 		setFormData((prev) => ({
@@ -56,11 +55,10 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 	const handleDeleteAccount = async () => {
 		if (confirm('Вы уверены что хотите удалить счет?')) {
 			try {
-				await request(`/accounts/${accountId}`, 'DELETE');
-				dispatch(fetchAccounts());
+				await deleteAccount(accountId).unwrap();
 				onClose();
 			} catch (error) {
-				setError(error.message);
+				setError(error.data?.error || error.message);
 			}
 		}
 	};
@@ -72,19 +70,20 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 
 		if (nameValue.length === 0) {
 			alert('Название счета не может быть пустым');
+			return;
 		}
 		const balanceValue = Number(formData.balance);
 
 		if (!isNaN(balanceValue) && balanceValue >= 0) {
 			try {
-				await request(`/accounts/${accountId}`, 'PUT', {
+				await updateAccount({
+					id: accountId,
 					...formData,
 					balance: balanceValue,
-				});
-				dispatch(fetchAccounts());
+				}).unwrap();
 				onClose();
 			} catch (error) {
-				setError(error.message);
+				setError(error.data?.error || error.message);
 			}
 		} else {
 			alert('Баланс должен быть числом и больше нуля');

@@ -4,25 +4,27 @@ import { FinanceResultDiagram } from '../Charts/FinanceResultDiagram';
 import { ExpensesResult } from './ExpensesResult';
 import { IncomeResult } from './IncomeResult';
 import { BigResultBalance } from './BigResultBalance';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAccounts, selectHistory, selectHistoryIsLoading } from '../../../store/selectors';
+import { useDispatch } from 'react-redux';
+import { useGetAccountsQuery, useGetHistoryQuery } from '../../../store/api/backendApi';
+import { useGetCurrencyRatesQuery } from '../../../store/api/externalApi';
 import { useCurrency, useFinanceExpensesFromHistory } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
-import { getCourseAction } from '../../../store/actions/async';
+import { setUsdCourse } from '../../../store/slices/currencySlice';
 
 export const FinanceResult = memo(({ selectedSortType }) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const dispatch = useDispatch();
-	const financeHistory = useSelector(selectHistory);
-	const historyIsLoading = useSelector(selectHistoryIsLoading);
-	const financeAccounts = useSelector(selectAccounts);
+	const { data: financeHistory = [], isLoading: historyIsLoading } = useGetHistoryQuery();
+	const { data: financeAccounts = [], isLoading: accountsIsLoading } = useGetAccountsQuery();
+	const { data: currencyData } = useGetCurrencyRatesQuery();
 	const expenses = useFinanceExpensesFromHistory({ selectedSortType, showInCategories: true });
 
 	useEffect(() => {
-		if (!rubleCourse) {
-			dispatch(getCourseAction());
+		if (currencyData && !rubleCourse) {
+			const course = currencyData.cbrf.data[0][3];
+			dispatch(setUsdCourse(course));
 		}
-	}, []);
+	}, [currencyData, rubleCourse, dispatch]);
 
 	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
 	const historyDB = financeHistory
@@ -35,6 +37,8 @@ export const FinanceResult = memo(({ selectedSortType }) => {
 	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
 	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
 	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
+
+	const isLoading = historyIsLoading || accountsIsLoading;
 
 	return (
 		<div id="finance-result__main-container" className="flex h-full gap-4 transition-all">

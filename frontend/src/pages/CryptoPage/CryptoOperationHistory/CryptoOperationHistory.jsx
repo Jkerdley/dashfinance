@@ -1,10 +1,9 @@
 import React from 'react';
 import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
-import { calculateValueInCurrency, request } from '../../../utils';
+import { calculateValueInCurrency } from '../../../utils';
 import { useCurrency } from '../../../hooks';
-import { fetchCryptoAssets } from '../../../store/actions/async';
-import { useDispatch } from 'react-redux';
+import { useDeleteCryptoAssetMutation } from '../../../store/api/backendApi';
 
 export const CryptoOperationHistory = ({
 	id,
@@ -21,7 +20,7 @@ export const CryptoOperationHistory = ({
 	inModal,
 }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const dispatch = useDispatch();
+	const [deleteCryptoAsset] = useDeleteCryptoAssetMutation();
 
 	const coinInCurrency = calculateValueInCurrency(Number(price), isUSD, rubleCourse);
 
@@ -30,11 +29,10 @@ export const CryptoOperationHistory = ({
 
 	const handleDeleteHistoryItem = async () => {
 		if (confirm('Удалить эту операцию?')) {
-			const response = await request(`/cryptoassets/${coinId}`, 'DELETE', { _id: id });
 			try {
-				dispatch(fetchCryptoAssets(response));
+				await deleteCryptoAsset({ assetId: coinId, _id: id }).unwrap();
 			} catch (error) {
-				console.error('Ошибка получения обновленного массива криптоактивов', error);
+				console.error('Ошибка при удалении операции:', error);
 			}
 		}
 	};

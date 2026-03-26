@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { getCourseAction } from '../../store/actions/async/getCourseAction';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useGetCurrencyRatesQuery, useGetCryptoCoinsQuery } from '../../store/api/externalApi';
 import RefreshCourseIcon from '../../assets/icons/refresh-course-icon.svg';
 import OutlineButton from './OutlineButton';
-import { fetchCryptoData } from '../../store/actions/async';
 
 export const RefreshCourseButton = ({ title, isCrypto }) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const dispatch = useDispatch();
+	const { refetch: refetchCurrency, isFetching: isCurrencyFetching } = useGetCurrencyRatesQuery();
+	const { refetch: refetchCrypto, isFetching: isCryptoFetching } = useGetCryptoCoinsQuery();
+	
+	const isLoading = isCurrencyFetching || (isCrypto && isCryptoFetching);
+
 	const handleClickGetCourse = async () => {
-		setIsLoading(true);
 		try {
-			await dispatch(getCourseAction());
-			isCrypto && (await dispatch(fetchCryptoData()));
+			await refetchCurrency();
+			if (isCrypto) {
+				await refetchCrypto();
+			}
 		} catch (error) {
 			console.error(error);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 	return (

@@ -3,21 +3,21 @@ import React, { memo } from 'react';
 import BancCardIcon from '../../../assets/icons/income-debit-icon.svg';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
-import { useDispatch } from 'react-redux';
-import { request } from '../../../utils';
-import { fetchAccounts, fetchHistory } from '../../../store/actions/async';
+import { useDeleteHistoryMutation } from '../../../store/api/backendApi';
 
 export const FinanceOperationHistory = memo(
 	({ id, category, operationType, operationComment, operationAmount, accountName, operationDate }) => {
 		const isAddOperation = operationType === 'add' ? 'text-main-green' : 'text-main-red';
 		const isPlus = operationType === 'add' ? '+' : '-';
-		const dispatch = useDispatch();
+		const [deleteHistory] = useDeleteHistoryMutation();
 
 		const handleDeleteHistoryItem = async () => {
 			if (confirm('Удалить эту операцию?')) {
-				await request(`/history/${id}`, 'DELETE');
-				dispatch(fetchHistory());
-				dispatch(fetchAccounts());
+				try {
+					await deleteHistory(id).unwrap();
+				} catch (error) {
+					console.error('Ошибка при удалении операции:', error);
+				}
 			}
 		};
 

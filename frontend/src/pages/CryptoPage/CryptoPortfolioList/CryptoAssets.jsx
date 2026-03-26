@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
-import { openUpdateCryptoAssetModal } from '../../../store/actions';
+import { openUpdateCryptoAssetModal } from '../../../store/slices/modalSlice';
 import { useDispatch } from 'react-redux';
 
 export const CryptoAssets = ({

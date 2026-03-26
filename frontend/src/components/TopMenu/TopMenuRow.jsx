@@ -5,30 +5,28 @@ import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
-import { request } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBurgerModal, selectUser, selectUserModal } from '../../store/selectors';
+import { selectUser } from '../../store/slices/userSlice';
 import { UpdateUserModal } from '../modalWindow/UpdateUserModal';
-import { closeUserModal, openBurgerModal, openUserModal } from '../../store/actions';
+import { closeUserModal, openBurgerModal, openUserModal } from '../../store/slices/modalSlice';
+import { clearUserData } from '../../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { ACTIONS } from '../../store/actionTypes';
+import { useLogoutMutation, backendApi } from '../../store/api/backendApi';
 
 export const TopMenuRow = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const userModal = useSelector(selectUserModal);
+	const userModal = useSelector((state) => state.modal.userModal);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
-	const burgerModal = useSelector(selectBurgerModal);
+	const burgerModal = useSelector((state) => state.modal.burgerModal);
 	const navigate = useNavigate();
+	const [logoutMutation] = useLogoutMutation();
 
 	const logout = async () => {
 		try {
-			await request('/auth/logout', 'POST');
-			dispatch({ type: ACTIONS.CLEAR_USER_DATA });
-			dispatch({ type: ACTIONS.CLEAR_ACCOUNTS_DATA });
-			dispatch({ type: ACTIONS.CLEAR_CATEGORIES_DATA });
-			dispatch({ type: ACTIONS.CLEAR_CRYPTODATA_DATA });
-			dispatch({ type: ACTIONS.CLEAR_HISTORY_DATA });
+			await logoutMutation().unwrap();
+			dispatch(clearUserData());
+			dispatch(backendApi.util.resetApiState());
 			navigate('/login');
 		} catch (err) {
 			console.error('Ошибка выхода:', err);

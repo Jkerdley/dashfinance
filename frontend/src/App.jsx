@@ -6,40 +6,31 @@ import { TopMenuRow } from './components/TopMenu';
 import { BurgerMenuModal, AddOperationModal, AddCryptoOperationModal } from './components/modalWindow';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { selectUserIsLoading } from './store/selectors';
-import { fetchUserData } from './store/actions/async/fetchUserData';
+import { setUserData, setUserIsLoading, selectUserIsLoading } from './store/slices/userSlice';
+import { useGetUserQuery } from './store/api/backendApi';
 import { MainPageLayout } from './pages/MainPage/MainPageLayout';
 import { LoginPage } from './pages/Auth/LoginPage';
 import { RegisterPage } from './pages/Auth/RegisterPage';
 import { LoginWrapper } from './routes/LoginWrapper';
 import { ProtectedRoute } from './routes/ProtectedRoute';
-import { request } from './utils';
 import { Loader } from './components/Loaders/Loader';
-import { setUserIsLoading } from './store/actions';
 
 export const App = () => {
 	const dispatch = useDispatch();
 	const userIsLoading = useSelector(selectUserIsLoading);
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
 
-	useEffect(() => {
-		if (userIsLoading) {
-			const fetchUser = async () => {
-				try {
-					const data = await request('/auth/user', 'GET');
-					if (data.user) {
-						dispatch(fetchUserData(data.user));
-					}
-				} catch (err) {
-					console.error('Ошибка при получении данных пользователя:', err);
-				} finally {
-					dispatch(setUserIsLoading(false));
-				}
-			};
+	const { data: userData, isLoading: isUserFetching, isSuccess } = useGetUserQuery();
 
-			fetchUser();
+	useEffect(() => {
+		if (!isUserFetching) {
+			if (isSuccess && userData?.user) {
+				dispatch(setUserData(userData.user));
+			} else {
+				dispatch(setUserIsLoading(false));
+			}
 		}
-	}, [userIsLoading]);
+	}, [isUserFetching, isSuccess, userData, dispatch]);
 
 	useEffect(() => {
 		if (isDayTheme) {
@@ -103,7 +94,6 @@ export const App = () => {
 						</ProtectedRoute>
 					}
 				/>
-				{/* <Route path="*" element={<Navigate to={'/login'} replace />} /> */}
 			</Routes>
 		</section>
 	);

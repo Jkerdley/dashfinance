@@ -3,8 +3,8 @@ import { BaseModal } from './base/BaseModal';
 import { SpendOperationForm } from './forms/SpendOperationForm';
 import { AddOperationForm } from './forms';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeCryptoOperationModal } from '../../store/actions';
-import { selectCryptoOperationModal } from '../../store/selectors';
+import { closeCryptoOperationModal } from '../../store/slices/modalSlice';
+import { selectCryptoOperationModal } from '../../store/slices/modalSlice';
 
 export const AddCryptoOperationModal = () => {
 	const dispatch = useDispatch();

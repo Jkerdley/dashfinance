@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { selectIsAuthenticated } from '../store/selectors';
+import { selectIsAuthenticated } from '../store/slices/userSlice';
 
 export const ProtectedRoute = ({ children }) => {
 	const isAuthenticated = useSelector(selectIsAuthenticated);

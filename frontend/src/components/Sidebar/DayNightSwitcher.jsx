@@ -3,7 +3,7 @@ import DayTheme from '../../assets/icons/day-icon.svg';
 import NightTheme from '../../assets/icons/night-icon.svg';
 import { Button } from '../buttons/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from '../../store/actions';
+import { toggleTheme } from '../../store/slices/themeSlice';
 
 export const DayNightSwitcher = () => {
 	const dispatch = useDispatch();

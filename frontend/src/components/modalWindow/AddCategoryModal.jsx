@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAddCategoryMutation } from '../../store/api/backendApi';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
-import { fetchCategories } from '../../store/actions/async';
 import { CategoriesForm } from './forms';
 
 export const AddCategoryModal = ({ isOpen, onClose }) => {
@@ -13,7 +11,7 @@ export const AddCategoryModal = ({ isOpen, onClose }) => {
 		icon: 'debit',
 	});
 	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+	const [addCategory] = useAddCategoryMutation();
 
 	const handleInputChange = (e) => {
 		const value = e.target.value;
@@ -43,18 +41,18 @@ export const AddCategoryModal = ({ isOpen, onClose }) => {
 
 		if (nameValue.length === 0) {
 			alert('Название категории не может быть пустым');
+			return;
 		}
 
 		if (!isNaN(budgetValue) && budgetValue >= 0) {
 			try {
-				await request('/categories', 'POST', {
+				await addCategory({
 					...formData,
 					budget: budgetValue,
-				});
-				dispatch(fetchCategories());
+				}).unwrap();
 				onClose();
 			} catch (err) {
-				setError(err.message);
+				setError(err.data?.error || err.message);
 			}
 		} else {
 			alert('Бюджет должен быть числом и больше нуля');

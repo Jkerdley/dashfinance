@@ -1,21 +1,26 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { FinanceOperationHistory } from './FinanceOperationHistory.jsx';
 import { SortSelector } from '../../../components/sortSelector/sortSelector.jsx';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { FixedSizeList as List } from 'react-window';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-import { fetchHistory } from '../../../store/actions/async';
-import { useFetchHistoryData } from '../../../hooks';
-import { selectHistory, selectHistoryIsLoading } from '../../../store/selectors/select-history.js';
+import { useGetHistoryQuery } from '../../../store/api/backendApi';
+import { useCurrency } from '../../../hooks';
+import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency';
+import { getsortedHistory } from '../../../utils/getSortedHistory';
 
 export const OpreationsFinanceHistoryLayout = ({ inMainPage }) => {
 	const [sortType, setSortType] = useState('newest');
-	const [sortedHistory, fetchHistoryIsLoading] = useFetchHistoryData(
-		fetchHistory,
-		sortType,
-		selectHistory,
-		selectHistoryIsLoading,
-	);
+	const { isUSD, rubleCourse } = useCurrency();
+	const { data: financeHistory = [], isLoading: fetchHistoryIsLoading } = useGetHistoryQuery();
+
+	const filteredHistory = useMemo(() => {
+		return getHIstoryInCurrency(financeHistory, isUSD, rubleCourse);
+	}, [isUSD, rubleCourse, financeHistory]);
+
+	const sortedHistory = useMemo(() => {
+		return getsortedHistory(filteredHistory, sortType);
+	}, [filteredHistory, sortType]);
 
 	const handleSortChange = useCallback((event) => setSortType(event.target.value));
 
