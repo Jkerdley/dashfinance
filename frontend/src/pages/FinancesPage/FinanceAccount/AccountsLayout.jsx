@@ -1,28 +1,25 @@
-import React, { memo } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { FinanceAccount } from './FinanceAccount.jsx';
 import { EditAddDeleteButton } from '../../../components/buttons/EditAddDeleteButton.jsx';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader.jsx';
 import { useFetchAccountsInCurrency } from '../../../hooks/useFetchAccountsInCurrency.js';
 import { Loader } from '../../../components/Loaders/Loader.jsx';
-import {
-	selectAddAccountModal,
-	selectUpdateAccountModal,
-} from '../../../store/slices/modalSlice';
-import { AddAccountModal } from '../../../components/modalWindow/AddAccountModal.jsx';
-import {
-	closeAddAccountModal,
-	closeUpdateAccountModal,
-	openAddAccountModal,
-} from '../../../store/slices/modalSlice.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { UpdateAccountModal } from '../../../components/modalWindow/UpdateAccountModal.jsx';
+import { openModal } from '../../../store/slices/modalSlice';
+import { MODAL_TYPES } from '../../../constants/modals';
 
 export const AccountsLayout = () => {
-	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
 	const dispatch = useDispatch();
-	const addAccountModal = useSelector(selectAddAccountModal);
-	const updateAccountModal = useSelector(selectUpdateAccountModal);
+	const { accountsInCurrency, isLoading } = useFetchAccountsInCurrency();
+
+	const handleAddAccount = () => {
+		dispatch(
+			openModal({
+				modalType: MODAL_TYPES.ADD_ACCOUNT,
+			}),
+		);
+	};
 
 	return (
 		<section
@@ -33,46 +30,32 @@ export const AccountsLayout = () => {
 				<SectionContainerHeader title={'Счета'} />
 				<EditAddDeleteButton
 					icon={AddIcon}
-					onClick={() => dispatch(openAddAccountModal())}
+					onClick={handleAddAccount}
 					title={'Добавить'}
 					alt={'Финансовые счета'}
 				/>
 			</div>
-			{addAccountModal.isOpen && (
-				<AddAccountModal
-					isOpen={addAccountModal.isOpen}
-					onClose={() => dispatch(closeAddAccountModal())}
-				/>
-			)}
-			{updateAccountModal.isOpen && (
-				<UpdateAccountModal
-					accountsInCurrency={accountsInCurrency}
-					accountId={updateAccountModal.accountIdForUpdate}
-					isOpen={updateAccountModal.isOpen}
-					onClose={() => dispatch(closeUpdateAccountModal())}
-				/>
-			)}
+
 			{isLoading ? (
 				<Loader />
 			) : accountsInCurrency.length === 0 ? (
-				<span className="flex items-center justify-center mt-20 ">Добавьте счета</span>
+				<span className="flex items-center justify-center mt-20 text-slate-400">Добавьте счета</span>
 			) : (
 				<div
 					id="accouts__wrapper"
 					className="flex flex-col pr-1 mt-1 max-h-[33vh] rounded-[18px] overflow-y-auto overscroll-auto scrollbar"
 				>
-					{accountsInCurrency.map((account) => {
-						return (
-							<div key={account.id} className="mt-4">
-								<FinanceAccount
-									id={account.id}
-									accountName={account.name}
-									accountBalance={account.balance}
-									icon={account.icon}
-								/>
-							</div>
-						);
-					})}
+					{accountsInCurrency.map((account) => (
+						<div key={account.id} className="mt-4">
+							<FinanceAccount
+								id={account.id}
+								accountName={account.name}
+								accountBalance={account.balance}
+								icon={account.icon}
+								accountsInCurrency={accountsInCurrency}
+							/>
+						</div>
+					))}
 				</div>
 			)}
 		</section>

@@ -34,6 +34,7 @@ body {
 button:focus {
 	outline: none;
 }
+
 button:focus-visible {
 	border: 2px solid rgba(173, 216, 240, 0.65);
 }
@@ -45,6 +46,7 @@ input:focus {
 input:focus {
 	border: 1px solid rgba(173, 216, 240, 0.65);
 }
+
 select:focus {
 	outline: none;
 }
@@ -57,6 +59,7 @@ select:focus {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -83,6 +86,7 @@ input:focus {
 	border-color: oklch(0.81 0.117 11.638) transparent transparent transparent;
 	border-style: solid;
 }
+
 .triangle-up {
 	width: 0;
 	height: 0;
@@ -96,11 +100,13 @@ input:focus {
 		opacity: 0;
 		transform: translateX(-10px);
 	}
+
 	100% {
 		opacity: 1;
 		transform: translateX(0);
 	}
 }
+
 .animate-fadeIn {
 	animation: fadeIn 250ms ease-in-out 100ms forwards;
 }
@@ -109,6 +115,7 @@ input:focus {
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(360deg);
 	}
@@ -133,6 +140,7 @@ input:focus {
 	padding: 10px;
 	height: 50px;
 }
+
 .custom-select:hover {
 	background-color: #4b5563;
 	color: white;

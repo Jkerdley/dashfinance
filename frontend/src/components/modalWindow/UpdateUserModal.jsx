@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { UserForm } from './forms';
-import { selectUser } from '../../store/slices/userSlice';
-import { setUserData } from '../../store/slices/userSlice';
-import { useUpdateUserMutation } from '../../store/api/backendApi';
+import { useGetUserQuery, useUpdateUserMutation } from '../../store/api/backendApi';
 
 export const UpdateUserModal = ({ isOpen, onClose }) => {
-	const user = useSelector(selectUser);
-	const dispatch = useDispatch();
+	const { data } = useGetUserQuery();
+	const user = data?.user || {};
+
 	const [error, setError] = useState('');
 	const [userName, setUserName] = useState(user.name || '');
 	const [updateUserMutation] = useUpdateUserMutation();
 
 	const handleNameChange = (event) => {
-		const value = event.target.value;
-		setUserName(value);
+		setUserName(event.target.value);
 	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const nameValue = userName;
-
-		if (nameValue.length === 0) {
+		if (!userName.trim()) {
 			alert('Имя не может быть пустым');
+			return;
 		}
 
 		if (!user._id) {
@@ -33,8 +29,7 @@ export const UpdateUserModal = ({ isOpen, onClose }) => {
 		}
 
 		try {
-			const response = await updateUserMutation({ id: user._id, userName }).unwrap();
-			dispatch(setUserData(response.user));
+			await updateUserMutation({ id: user._id, userName }).unwrap();
 			onClose();
 		} catch (error) {
 			setError(error.data?.error || error.message);
@@ -43,7 +38,7 @@ export const UpdateUserModal = ({ isOpen, onClose }) => {
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
-			<section className="flex flex-col justify-center p-4">
+			<div className="flex flex-col justify-center p-4">
 				<UserForm
 					formData={userName}
 					handleSubmit={handleSubmit}
@@ -51,7 +46,7 @@ export const UpdateUserModal = ({ isOpen, onClose }) => {
 					error={error}
 					onClose={onClose}
 				/>
-			</section>
+			</div>
 		</BaseModal>
 	);
 };

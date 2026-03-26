@@ -1,75 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+
 import DashLogo from '../../assets/icons/dash-logo-main-white.svg';
 import Avatar from '../../assets/pictures/avatar.jpg';
 import Settings from '../../assets/icons/settings-icon.svg';
 import Alerts from '../../assets/icons/bell-icon.svg';
+
 import { Button } from '../buttons/Button';
 import { BurgerButton, CurrencyToggle } from '../buttons';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../store/slices/userSlice';
-import { UpdateUserModal } from '../modalWindow/UpdateUserModal';
-import { closeUserModal, openBurgerModal, openUserModal } from '../../store/slices/modalSlice';
-import { clearUserData } from '../../store/slices/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { useLogoutMutation, backendApi } from '../../store/api/backendApi';
+
+import { openModal, closeModal, selectCurrentModal } from '../../store/slices/modalSlice';
+import { MODAL_TYPES } from '../../constants/modals';
+import { useLogoutMutation, backendApi, useGetUserQuery } from '../../store/api/backendApi';
+import { APP_ROUTES } from '../../constants/routes';
 
 export const TopMenuRow = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const userModal = useSelector((state) => state.modal.userModal);
-	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
-	const burgerModal = useSelector((state) => state.modal.burgerModal);
 	const navigate = useNavigate();
+
+	const { data } = useGetUserQuery();
+	const user = data?.user || {};
+
+	const { modalType } = useSelector(selectCurrentModal);
+	const isBurgerOpen = modalType === MODAL_TYPES.BURGER_MENU;
+
 	const [logoutMutation] = useLogoutMutation();
 
 	const logout = async () => {
 		try {
 			await logoutMutation().unwrap();
-			dispatch(clearUserData());
 			dispatch(backendApi.util.resetApiState());
-			navigate('/login');
+			navigate(APP_ROUTES.LOGIN);
 		} catch (err) {
 			console.error('Ошибка выхода:', err);
 		}
 	};
 
-	useEffect(() => {
-		setIsMenuOpen(burgerModal.isOpen);
-	}, [burgerModal.isOpen]);
-
 	const handleBurgerClick = () => {
-		setIsMenuOpen(!isMenuOpen);
-		dispatch(openBurgerModal());
+		if (isBurgerOpen) {
+			dispatch(closeModal());
+		} else {
+			dispatch(openModal({ modalType: MODAL_TYPES.BURGER_MENU }));
+		}
+	};
+
+	const handleOpenSettings = () => {
+		dispatch(openModal({ modalType: MODAL_TYPES.USER_SETTINGS }));
 	};
 
 	return (
-		<section className="flex flex-wrap md:flex-nowrap items-center justify-between px-4 rounded-3xl gap-4">
+		<header className="flex flex-wrap md:flex-nowrap items-center justify-between px-4 rounded-3xl gap-4">
 			<div className="flex gap-4 items-center">
-				<BurgerButton isOpen={isMenuOpen} onClick={handleBurgerClick} />
-				<a href="/">
+				<BurgerButton isOpen={isBurgerOpen} onClick={handleBurgerClick} />
+
+				<Link to={APP_ROUTES.HOME}>
 					<img className="h-7 md:h-8 lg:h-10 2xl:h-11" src={DashLogo} alt="DASH" />
-				</a>
+				</Link>
 			</div>
-			{userModal.isOpen && (
-				<UpdateUserModal isOpen={userModal.isOpen} onClose={() => dispatch(closeUserModal())} />
-			)}
+
 			<div className="flex items-center sm:justify-end justify-between w-full lg:gap-4 gap-2">
 				<CurrencyToggle />
-				<div className="flex  items-center justify-around border-0 p-[4px] rounded-2xl bg-gray-300/10 min-w-2 md:gap-2 gap-1">
+
+				<div className="flex items-center justify-around border-0 p-[4px] rounded-2xl bg-gray-300/10 min-w-2 md:gap-2 gap-1">
 					<Button alt="Alerts" icon={Alerts} disabled={true} />
-					<Button onClick={() => dispatch(openUserModal())} alt="Settings" icon={Settings} />
+					<Button onClick={handleOpenSettings} alt="Settings" icon={Settings} />
 				</div>
+
 				<img className="h-16 rounded-2xl sm:flex hidden" src={Avatar} alt="avatar" />
+
 				<div className="flex flex-col items-start">
 					<span className="font-medium text-lg sm:flex hidden">Привет, {user.name}</span>
-					<a
-						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out"
+
+					<button
+						className="font-medium text-sky-50/80 cursor-pointer hover:underline hover:text-blue-300 transition-all duration-150 ease-in-out bg-transparent border-none p-0"
 						onClick={logout}
 					>
 						Выйти
-					</a>
+					</button>
 				</div>
 			</div>
-		</section>
+		</header>
 	);
 };

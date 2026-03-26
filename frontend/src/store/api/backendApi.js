@@ -1,20 +1,27 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_CONFIG, API_TAGS } from '../../constants/api';
 
 export const backendApi = createApi({
 	reducerPath: 'backendApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:3007/api',
+		baseUrl: API_CONFIG.BASE_URL,
 		prepareHeaders: (headers) => {
 			headers.set('Content-Type', 'application/json');
 			return headers;
 		},
 		credentials: 'include',
 	}),
-	tagTypes: ['Accounts', 'Categories', 'History', 'User', 'CryptoAssets'],
+	tagTypes: [
+		API_TAGS.ACCOUNTS,
+		API_TAGS.CATEGORIES,
+		API_TAGS.HISTORY,
+		API_TAGS.USER,
+		API_TAGS.CRYPTO_ASSETS,
+	],
 	endpoints: (builder) => ({
 		getUser: builder.query({
 			query: () => '/auth/user',
-			providesTags: ['User'],
+			providesTags: [API_TAGS.USER],
 		}),
 		login: builder.mutation({
 			query: (credentials) => ({
@@ -22,7 +29,7 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: credentials,
 			}),
-			invalidatesTags: ['User'],
+			invalidatesTags: [API_TAGS.USER],
 		}),
 		register: builder.mutation({
 			query: (userData) => ({
@@ -30,19 +37,19 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: userData,
 			}),
-			invalidatesTags: ['User'],
+			invalidatesTags: [API_TAGS.USER],
 		}),
 		logout: builder.mutation({
 			query: () => ({
 				url: '/auth/logout',
 				method: 'POST',
 			}),
-			invalidatesTags: ['User'],
+			invalidatesTags: [API_TAGS.USER],
 		}),
 
 		getAccounts: builder.query({
 			query: () => '/accounts',
-			providesTags: ['Accounts'],
+			providesTags: [API_TAGS.ACCOUNTS],
 			transformResponse: (response) => response.accounts || response,
 		}),
 		addAccount: builder.mutation({
@@ -51,7 +58,7 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: account,
 			}),
-			invalidatesTags: ['Accounts'],
+			invalidatesTags: [API_TAGS.ACCOUNTS],
 		}),
 		updateAccount: builder.mutation({
 			query: ({ id, ...account }) => ({
@@ -59,19 +66,19 @@ export const backendApi = createApi({
 				method: 'PUT',
 				body: account,
 			}),
-			invalidatesTags: ['Accounts'],
+			invalidatesTags: [API_TAGS.ACCOUNTS],
 		}),
 		deleteAccount: builder.mutation({
 			query: (id) => ({
 				url: `/accounts/${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['Accounts'],
+			invalidatesTags: [API_TAGS.ACCOUNTS],
 		}),
 
 		getCategories: builder.query({
 			query: () => '/categories',
-			providesTags: ['Categories'],
+			providesTags: [API_TAGS.CATEGORIES],
 			transformResponse: (response) => response.categories || response,
 		}),
 		addCategory: builder.mutation({
@@ -80,7 +87,7 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: category,
 			}),
-			invalidatesTags: ['Categories'],
+			invalidatesTags: [API_TAGS.CATEGORIES],
 		}),
 		updateCategory: builder.mutation({
 			query: ({ id, ...category }) => ({
@@ -88,19 +95,19 @@ export const backendApi = createApi({
 				method: 'PUT',
 				body: category,
 			}),
-			invalidatesTags: ['Categories'],
+			invalidatesTags: [API_TAGS.CATEGORIES],
 		}),
 		deleteCategory: builder.mutation({
 			query: (id) => ({
 				url: `/categories/${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['Categories'],
+			invalidatesTags: [API_TAGS.CATEGORIES],
 		}),
 
 		getHistory: builder.query({
 			query: () => '/history',
-			providesTags: ['History'],
+			providesTags: [API_TAGS.HISTORY],
 			transformResponse: (response) => response.history || response,
 		}),
 		addHistory: builder.mutation({
@@ -109,19 +116,19 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: historyItem,
 			}),
-			invalidatesTags: ['History', 'Accounts'],
+			invalidatesTags: [API_TAGS.HISTORY, API_TAGS.ACCOUNTS],
 		}),
 		deleteHistory: builder.mutation({
 			query: (id) => ({
 				url: `/history/${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['History', 'Accounts'],
+			invalidatesTags: [API_TAGS.HISTORY, API_TAGS.ACCOUNTS],
 		}),
 
 		getCryptoAssets: builder.query({
 			query: () => '/cryptoassets',
-			providesTags: ['CryptoAssets'],
+			providesTags: [API_TAGS.CRYPTO_ASSETS],
 			transformResponse: (response) => response.cryptoAssets || response,
 		}),
 		addCryptoAsset: builder.mutation({
@@ -130,7 +137,7 @@ export const backendApi = createApi({
 				method: 'POST',
 				body: asset,
 			}),
-			invalidatesTags: ['CryptoAssets'],
+			invalidatesTags: [API_TAGS.CRYPTO_ASSETS],
 		}),
 		updateCryptoAsset: builder.mutation({
 			query: ({ id, ...asset }) => ({
@@ -138,7 +145,7 @@ export const backendApi = createApi({
 				method: 'PATCH',
 				body: asset,
 			}),
-			invalidatesTags: ['CryptoAssets'],
+			invalidatesTags: [API_TAGS.CRYPTO_ASSETS],
 		}),
 		deleteCryptoAsset: builder.mutation({
 			query: ({ assetId, _id }) => ({
@@ -146,7 +153,7 @@ export const backendApi = createApi({
 				method: 'DELETE',
 				body: { _id },
 			}),
-			invalidatesTags: ['CryptoAssets'],
+			invalidatesTags: [API_TAGS.CRYPTO_ASSETS],
 		}),
 
 		updateUser: builder.mutation({
@@ -155,7 +162,7 @@ export const backendApi = createApi({
 				method: 'PATCH',
 				body: { userName },
 			}),
-			invalidatesTags: ['User'],
+			invalidatesTags: [API_TAGS.USER],
 		}),
 	}),
 });

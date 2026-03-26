@@ -1,25 +1,29 @@
 import React from 'react';
 import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
 import { FinanceResultLayout } from '../FinancesPage/FinanceResult';
-import { OpreationsFinanceHistoryLayout } from '../FinancesPage/OperationHistory';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
 import { useGetAccountsQuery, useGetCategoriesQuery } from '../../store/api/backendApi';
 import { CryptoResultLayout } from '../CryptoPage/CryptoResult';
 import { useFetchCryptoAssetsInCurrency } from '../../hooks';
 import { GainerAndLooserLayout } from '../CryptoPage/Charts';
 import { Loader } from '../../components/Loaders/Loader';
+import { OperationsFinanceHistoryLayout } from '../FinancesPage/OperationHistory/OperationsFinanceHistoryLayout';
 
 export const MainPageLayout = () => {
 	const { isLoading: accountsLoading } = useGetAccountsQuery();
 	const { isLoading: categoriesLoading } = useGetCategoriesQuery();
-	const { cryptoAssetsInCurrency, cryptoCoins, isLoading: cryptoLoading } = useFetchCryptoAssetsInCurrency();
+	const {
+		cryptoAssetsInCurrency,
+		cryptoCoins,
+		isLoading: cryptoLoading,
+	} = useFetchCryptoAssetsInCurrency();
 
 	if (accountsLoading || categoriesLoading || cryptoLoading) {
 		return <Loader />;
 	}
 
 	return (
-		<section className="flex flex-col gap-4 w-full">
+		<main className="flex flex-col gap-4 w-full">
 			<TopRowCardsLayout cryptoCoins={cryptoCoins} />
 			<div className="flex 3xl:flex-nowrap flex-wrap gap-4">
 				<FinanceResultLayout isMainPage={true} />
@@ -31,7 +35,7 @@ export const MainPageLayout = () => {
 			>
 				<div className="flex flex-6/12 flex-col gap-4">
 					<div id="row__accounts-and-history" className="flex flex-10 gap-4">
-						<OpreationsFinanceHistoryLayout inMainPage={true} />
+						<OperationsFinanceHistoryLayout inMainPage={true} />
 					</div>
 				</div>
 				<div className="flex flex-wrap flex-5/12 flex-row 2xl:flex-col gap-4">
@@ -39,6 +43,6 @@ export const MainPageLayout = () => {
 				</div>
 				<GainerAndLooserLayout cryptoAssetsInCurrency={cryptoAssetsInCurrency} />
 			</section>
-		</section>
+		</main>
 	);
 };

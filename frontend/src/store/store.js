@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { themeReducer } from './slices/themeSlice';
 import { currencyReducer } from './slices/currencySlice';
-import { userReducer } from './slices/userSlice';
 import { modalReducer } from './slices/modalSlice';
 import { backendApi } from './api/backendApi';
 import { externalApi } from './api/externalApi';
@@ -11,7 +10,6 @@ export const store = configureStore({
 	reducer: {
 		theme: themeReducer,
 		currency: currencyReducer,
-		user: userReducer,
 		modal: modalReducer,
 		[backendApi.reducerPath]: backendApi.reducer,
 		[externalApi.reducerPath]: externalApi.reducer,

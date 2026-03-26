@@ -2,25 +2,14 @@ import React from 'react';
 import { BaseModal } from './base/BaseModal';
 import { SpendOperationForm } from './forms/SpendOperationForm';
 import { AddOperationForm } from './forms';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeOperationModal } from '../../store/slices/modalSlice';
-import { selectOperationModal } from '../../store/slices/modalSlice';
 
-export const AddOperationModal = () => {
-	const dispatch = useDispatch();
-	const operationModal = useSelector(selectOperationModal);
-	const handleCloseOperationModal = () => dispatch(closeOperationModal());
+export const AddOperationModal = ({ isOpen, onClose, operationType }) => {
 	return (
-		<BaseModal
-			isOpen={operationModal.isOpen}
-			onClose={handleCloseOperationModal}
-			width="md:w-[60vw] w-[90vw]"
-			position="center"
-		>
-			{operationModal.type === 'add' ? (
-				<AddOperationForm onClose={handleCloseOperationModal} operationType={operationModal.type} />
+		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
+			{operationType === 'add' ? (
+				<AddOperationForm onClose={onClose} operationType={operationType} />
 			) : (
-				<SpendOperationForm onClose={handleCloseOperationModal} operationType={operationModal.type} />
+				<SpendOperationForm onClose={onClose} operationType={operationType} />
 			)}
 		</BaseModal>
 	);
