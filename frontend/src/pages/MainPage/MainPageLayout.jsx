@@ -1,28 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FinanceAddAndSpendChartContainer } from '../FinancesPage/Charts';
 import { FinanceResultLayout } from '../FinancesPage/FinanceResult';
 import { OpreationsFinanceHistoryLayout } from '../FinancesPage/OperationHistory';
 import { TopRowCardsLayout } from '../CryptoPage/CryptoCards/TopRowCardsLayout';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAccounts, selectCategories } from '../../store/selectors';
+import { useGetAccountsQuery, useGetCategoriesQuery } from '../../store/api/backendApi';
 import { CryptoResultLayout } from '../CryptoPage/CryptoResult';
 import { useFetchCryptoAssetsInCurrency } from '../../hooks';
 import { GainerAndLooserLayout } from '../CryptoPage/Charts';
-import { fetchAccounts, fetchCategories } from '../../store/actions/async';
 import { Loader } from '../../components/Loaders/Loader';
 
 export const MainPageLayout = () => {
-	const dispatch = useDispatch();
-	const accounts = useSelector(selectAccounts);
-	const categories = useSelector(selectCategories);
+	const { isLoading: accountsLoading } = useGetAccountsQuery();
+	const { isLoading: categoriesLoading } = useGetCategoriesQuery();
+	const { cryptoAssetsInCurrency, cryptoCoins, isLoading: cryptoLoading } = useFetchCryptoAssetsInCurrency();
 
-	useEffect(() => {
-		accounts.length === 0 && dispatch(fetchAccounts());
-		categories.length === 0 && dispatch(fetchCategories());
-	}, []);
-	const { cryptoAssetsInCurrency, cryptoCoins, isLoading } = useFetchCryptoAssetsInCurrency();
-
-	if (isLoading) {
+	if (accountsLoading || categoriesLoading || cryptoLoading) {
 		return <Loader />;
 	}
 

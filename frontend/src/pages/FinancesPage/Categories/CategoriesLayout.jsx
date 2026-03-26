@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { Categorie } from './Categorie';
 import { EditAddDeleteButton } from '../../../components/buttons';
@@ -7,14 +7,17 @@ import { useFetchCategoriesInCurrency } from '../../../hooks';
 import { Loader } from '../../../components/Loaders/Loader';
 import { CategoriesSelector } from '../../../components/sortSelector/categoriesSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAddCategoryModal, selectUpdateCategoryModal } from '../../../store/selectors';
-import { AddCategoryModal } from '../../../components/modalWindow/AddCategoryModal';
 import {
 	closeAddCategoryModal,
 	closeUpdateCategoryModal,
 	openAddCategoryModal,
-} from '../../../store/actions';
+} from '../../../store/slices/modalSlice';
+import {
+	selectAddCategoryModal,
+	selectUpdateCategoryModal,
+} from '../../../store/slices/modalSlice';
 import { UpdateCategoryModal } from '../../../components/modalWindow/UpdateCategoryModal';
+import { AddCategoryModal } from '../../../components/modalWindow/AddCategoryModal';
 
 export const CategoriesLayout = () => {
 	const [selectedSortType, setSelectedSortType] = useState('month');

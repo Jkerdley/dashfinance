@@ -8,13 +8,13 @@ import { Loader } from '../../../components/Loaders/Loader.jsx';
 import {
 	selectAddAccountModal,
 	selectUpdateAccountModal,
-} from '../../../store/selectors/select-modal-selectors.js';
+} from '../../../store/slices/modalSlice';
 import { AddAccountModal } from '../../../components/modalWindow/AddAccountModal.jsx';
 import {
 	closeAddAccountModal,
 	closeUpdateAccountModal,
 	openAddAccountModal,
-} from '../../../store/actions/modalActions.js';
+} from '../../../store/slices/modalSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateAccountModal } from '../../../components/modalWindow/UpdateAccountModal.jsx';
 

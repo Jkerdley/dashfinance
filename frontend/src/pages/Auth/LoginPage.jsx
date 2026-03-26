@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
-import { request } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserData } from '../../store/actions/async';
+import { useLoginMutation } from '../../store/api/backendApi';
+import { setUserData } from '../../store/slices/userSlice';
 
 export const LoginPage = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [loginMutation] = useLoginMutation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const data = await request('/auth/login', 'POST', { login, password });
-			console.error('data', data);
-
-			dispatch(fetchUserData(data.user));
+			const data = await loginMutation({ login, password }).unwrap();
+			dispatch(setUserData(data.user));
 			navigate('/');
 		} catch (err) {
-			setError(err.message);
+			setError(err.data?.error || err.message);
 		}
 	};
 

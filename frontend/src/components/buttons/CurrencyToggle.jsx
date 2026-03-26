@@ -1,21 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { currencySelector } from '../../store/selectors/currency-selector';
-import { ACTIONS } from '../../store/actionTypes';
+import { toggleCurrency } from '../../store/slices/currencySlice';
 
 export const CurrencyToggle = () => {
-	const isUSD = useSelector(currencySelector);
+	const isUSD = useSelector((state) => state.currency.isUSD);
 	const dispatch = useDispatch();
 
-	const toggleCurrency = () => {
-		dispatch({ type: ACTIONS.CYRRENCY_SWITCH });
+	const handleToggleCurrency = () => {
+		dispatch(toggleCurrency());
 	};
 
 	return (
 		<div className="flex items-center space-x-2">
 			<span className={`transition-colors ${isUSD ? 'text-sky-300' : 'text-gray-300/80'}`}>USD</span>
 			<div
-				onClick={toggleCurrency}
+				onClick={handleToggleCurrency}
 				className={`relative w-14 h-8 bg-linear-to-r ${isUSD ? 'from-sky-300/85 to-sky-50/45' : 'from-sky-50/45 to-sky-400/95'} rounded-full cursor-pointer transition-colors duration-200`}
 			>
 				<div

@@ -1,25 +1,23 @@
-import { legacy_createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { thunk } from 'redux-thunk';
-import { currencyReducer } from './reducers/currencyReducer';
-import { modalReducer } from './reducers/modalReducer';
-import { historyReducer } from './reducers/historyReducer';
-import { accountsReducer } from './reducers/accountsReducer';
-import { categoriesReducer } from './reducers/categoriesReducer';
-import { cryptoReducer } from './reducers/cryptoReducer';
-import { userReducer } from './reducers/userReducer';
-import { themeReducer } from './reducers/themeReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { themeReducer } from './slices/themeSlice';
+import { currencyReducer } from './slices/currencySlice';
+import { userReducer } from './slices/userSlice';
+import { modalReducer } from './slices/modalSlice';
+import { backendApi } from './api/backendApi';
+import { externalApi } from './api/externalApi';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const reducer = combineReducers({
-	currency: currencyReducer,
-	modal: modalReducer,
-	history: historyReducer,
-	accounts: accountsReducer,
-	categories: categoriesReducer,
-	crypto: cryptoReducer,
-	user: userReducer,
-	theme: themeReducer,
+export const store = configureStore({
+	reducer: {
+		theme: themeReducer,
+		currency: currencyReducer,
+		user: userReducer,
+		modal: modalReducer,
+		[backendApi.reducerPath]: backendApi.reducer,
+		[externalApi.reducerPath]: externalApi.reducer,
+	},
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(backendApi.middleware, externalApi.middleware),
 });
 
-export const store = legacy_createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+setupListeners(store.dispatch);

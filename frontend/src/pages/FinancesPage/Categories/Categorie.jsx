@@ -3,7 +3,7 @@ import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
 import { getIconOfCategorie } from '../../../utils';
 import { useDispatch } from 'react-redux';
-import { openUpdateCategoryModal } from '../../../store/actions';
+import { openUpdateCategoryModal } from '../../../store/slices/modalSlice';
 
 export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) => {
 	const dispatch = useDispatch();

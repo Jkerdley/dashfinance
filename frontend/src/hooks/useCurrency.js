@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import { currencySelector, rubleCourseSelector } from '../store/selectors';
 
 export const useCurrency = () => {
-	const isUSD = useSelector(currencySelector);
-	const rubleCourse = useSelector(rubleCourseSelector);
+	const isUSD = useSelector((state) => state.currency.isUSD);
+	const rubleCourse = useSelector((state) => state.currency.usdCourse);
 	return { isUSD, rubleCourse };
 };

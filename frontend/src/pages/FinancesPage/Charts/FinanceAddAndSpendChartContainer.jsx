@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { aggregateChartDataByMonth, filteredByThisMonth, getsortedHistory } from '../../../utils';
-import { useSelector } from 'react-redux';
-import { selectHistory } from '../../../store/selectors';
+import { useGetHistoryQuery } from '../../../store/api/backendApi';
 import { ChartSelector } from '../../../components/sortSelector/chartSelector';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import FinanceChart from '../../../components/Charts/FinanceChart';
@@ -10,7 +9,7 @@ import { useCurrency } from '../../../hooks';
 export const FinanceAddAndSpendChartContainer = () => {
 	const [selectedSortType, setSelectedSortType] = useState('month');
 	const { isUSD, rubleCourse } = useCurrency();
-	const financeHistory = useSelector(selectHistory);
+	const { data: financeHistory = [] } = useGetHistoryQuery();
 
 	const sortedHistory = getsortedHistory(filteredByThisMonth(financeHistory, selectedSortType), 'oldest');
 	const aggregatedData = aggregateChartDataByMonth(sortedHistory, selectedSortType);

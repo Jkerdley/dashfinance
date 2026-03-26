@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
 import { useCurrency } from './useCurrency';
-import { selectHistory, selectHistoryIsLoading } from '../store/selectors';
+import { useGetHistoryQuery } from '../store/api/backendApi';
 import { aggregateExpensesByCategory, filteredByThisMonth, getsortedHistory } from '../utils';
 
 export const useFinanceExpensesFromHistory = ({ selectedSortType = 'month', showInCategories }) => {
 	const { isUSD, rubleCourse } = useCurrency();
-	const financeHistory = useSelector(selectHistory);
-	const historyIsLoading = useSelector(selectHistoryIsLoading);
+	const { data: financeHistory = [], isLoading: historyIsLoading } = useGetHistoryQuery();
 	const filteredHistoryForChart = financeHistory.filter((operation) => operation.type === 'spend');
 
 	const sortedHistory = getsortedHistory(

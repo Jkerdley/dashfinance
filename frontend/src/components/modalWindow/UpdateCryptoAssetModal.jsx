@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDeleteCryptoAssetMutation } from '../../store/api/backendApi';
 import { BaseModal } from './base/BaseModal';
-import { request } from '../../utils';
 import { CryptoAssetUpdate } from './forms';
 import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
-import { fetchCryptoAssets } from '../../store/actions/async';
 
 export const UpdateCryptoAssetModal = ({ cryptoAssetsInCurrency, assetId, isOpen, onClose }) => {
 	const [error, setError] = useState('');
-	const dispatch = useDispatch();
+	const [deleteCryptoAsset] = useDeleteCryptoAssetMutation();
 
 	const selectedAsset = cryptoAssetsInCurrency.find((asset) => asset.id === assetId);
 
 	const handleDeleteAsset = async () => {
 		if (confirm('Вы уверены что хотите удалить криптоактив?')) {
 			try {
-				const response = await request(`/cryptoasset/${assetId}`, 'DELETE');
-
-				dispatch(fetchCryptoAssets(response));
+				await deleteCryptoAsset({ assetId, _id: selectedAsset._id }).unwrap();
 				onClose();
 			} catch (error) {
-				setError(error.message);
-				console.error('Ошибка получения обновленного массива криптоактивов', error);
+				setError(error.data?.error || error.message);
+				console.error('Ошибка при удалении криптоактива', error);
 			}
 		}
 	};

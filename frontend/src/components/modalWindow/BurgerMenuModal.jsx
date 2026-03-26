@@ -4,8 +4,8 @@ import { MenuButtonsContainer } from '../Sidebar/MenuButtonsContainer';
 
 import { DayNightSwitcher } from '../Sidebar/DayNightSwitcher';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeBurgerModal } from '../../store/actions';
-import { selectBurgerModal } from '../../store/selectors';
+import { closeBurgerModal } from '../../store/slices/modalSlice';
+import { selectBurgerModal } from '../../store/slices/modalSlice';
 
 export const BurgerMenuModal = () => {
 	const dispatch = useDispatch();

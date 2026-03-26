@@ -6,7 +6,7 @@ import CreditCardIcon from '../../../assets/icons/income-credit-card.svg';
 import CashIcon from '../../../assets/icons/income-cash.svg';
 import GiftCardIcon from '../../../assets/icons/income-present-card.svg';
 import { useDispatch } from 'react-redux';
-import { openUpdateAccountModal } from '../../../store/actions';
+import { openUpdateAccountModal } from '../../../store/slices/modalSlice';
 
 export const FinanceAccount = ({ id, accountName, accountBalance, icon, noButton }) => {
 	const dispatch = useDispatch();

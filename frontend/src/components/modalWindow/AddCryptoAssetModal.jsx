@@ -1,16 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAddCryptoAssetMutation } from '../../store/api/backendApi';
 import { BaseModal } from './base/BaseModal';
-import { debounce, request } from '../../utils';
-import { fetchCryptoAssets } from '../../store/actions/async';
+import { debounce } from '../../utils';
 import { CryptoAssetForm } from './forms';
 
 export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
-	const dispatch = useDispatch();
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [error, setError] = useState('');
+	const [addCryptoAsset] = useAddCryptoAssetMutation();
 	const [formData, setFormData] = useState({
 		name: '',
 		coinId: '',
@@ -61,14 +60,13 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 		const nameValue = formData.name;
 
 		if (nameValue.length === 0) {
-			alert('Нужно найти выбрать криптовалюту');
+			alert('Нужно выбрать криптовалюту');
 		} else {
 			try {
-				const response = await request('/cryptoassets', 'POST', formData);
-				dispatch(fetchCryptoAssets(response));
+				await addCryptoAsset(formData).unwrap();
 				onClose();
 			} catch (err) {
-				setError(err.message);
+				setError(err.data?.error || err.message);
 			}
 		}
 	};
