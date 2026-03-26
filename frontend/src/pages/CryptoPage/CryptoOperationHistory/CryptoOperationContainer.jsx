@@ -9,13 +9,14 @@ import { getHIstoryInCurrency } from '../../../utils/getHIstoryInCurrency.js';
 import { getsortedHistory } from '../../../utils/getSortedHistory.js';
 import { useGetCryptoAssetsQuery } from '../../../store/api/backendApi.js';
 import { useGetCryptoCoinsQuery } from '../../../store/api/externalApi.js';
+import { SORT_TYPES } from '../../../constants/operations.js';
 
 export const CryptoOpreationsHistoryContainer = () => {
-	const [sortType, setSortType] = useState('newest');
+	const [sortType, setSortType] = useState(SORT_TYPES.NEWEST);
 	const { isUSD, rubleCourse } = useCurrency();
 	const { data: cryptoAssets = [], isLoading: assetsLoading } = useGetCryptoAssetsQuery();
 	const { data: fetchedCoinsPrices = [], isLoading: coinsLoading } = useGetCryptoCoinsQuery();
-	
+
 	const fetchedHistory = useMemo(() => {
 		return cryptoAssets.flatMap((asset) => asset.history);
 	}, [cryptoAssets]);

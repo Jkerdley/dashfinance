@@ -6,93 +6,56 @@ import DeleteIcon from '../../assets/icons/delete-icon.svg';
 import OutlineButton from '../buttons/OutlineButton';
 
 export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurrency }) => {
-	const selectedAccount = accountsInCurrency.find((account) => account.id === accountId);
-	const transformedAccount = {
-		...selectedAccount,
-		balance: parseFloat(selectedAccount.balance.slice(1).trim()),
-	};
+	const selectedAccount = accountsInCurrency.find((acc) => acc.id === accountId);
 
 	const [formData, setFormData] = useState({
-		name: transformedAccount.name,
-		balance: transformedAccount.balance,
-		icon: transformedAccount.icon,
-		type: transformedAccount.type,
+		name: selectedAccount?.name || '',
+		balance: selectedAccount ? parseFloat(selectedAccount.balance.slice(1).trim()) : '',
+		icon: selectedAccount?.icon || 'debit',
+		type: selectedAccount?.type || 'debit',
 	});
 
 	const [error, setError] = useState('');
 	const [updateAccount] = useUpdateAccountMutation();
 	const [deleteAccount] = useDeleteAccountMutation();
 
-	const handleTypeChange = (type, icon) => {
-		setFormData((prev) => ({
-			...prev,
-			type,
-			icon,
-		}));
-	};
-
-	const handleInputChange = (event) => {
-		const value = event.target.value;
-
-		if (value === '' || !isNaN(value)) {
-			setFormData((prev) => ({
-				...prev,
-				balance: value,
-			}));
-		} else {
-			alert('Пожалуйста, введите цифры');
-		}
-	};
-
-	const handleNameChange = (event) => {
-		const value = event.target.value;
-		setFormData((prev) => ({
-			...prev,
-			name: value,
-		}));
+	const handleTypeChange = (type, icon) => setFormData((prev) => ({ ...prev, type, icon }));
+	const handleNameChange = (e) => setFormData((prev) => ({ ...prev, name: e.target.value }));
+	const handleInputChange = (e) => {
+		const value = e.target.value;
+		if (value === '' || !isNaN(value)) setFormData((prev) => ({ ...prev, balance: value }));
+		else alert('Пожалуйста, введите цифры');
 	};
 
 	const handleDeleteAccount = async () => {
-		if (confirm('Вы уверены что хотите удалить счет?')) {
+		if (window.confirm('Вы уверены что хотите удалить счет?')) {
 			try {
 				await deleteAccount(accountId).unwrap();
 				onClose();
-			} catch (error) {
-				setError(error.data?.error || error.message);
+			} catch (err) {
+				setError(err.data?.error || err.message);
 			}
 		}
 	};
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-
-		const nameValue = formData.name;
-
-		if (nameValue.length === 0) {
-			alert('Название счета не может быть пустым');
-			return;
-		}
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		const balanceValue = Number(formData.balance);
 
-		if (!isNaN(balanceValue) && balanceValue >= 0) {
-			try {
-				await updateAccount({
-					id: accountId,
-					...formData,
-					balance: balanceValue,
-				}).unwrap();
-				onClose();
-			} catch (error) {
-				setError(error.data?.error || error.message);
-			}
-		} else {
-			alert('Баланс должен быть числом и больше нуля');
+		if (!formData.name.trim()) return alert('Название счета не может быть пустым');
+		if (isNaN(balanceValue) || balanceValue < 0) return alert('Баланс должен быть числом и больше нуля');
+
+		try {
+			await updateAccount({ id: accountId, ...formData, balance: balanceValue }).unwrap();
+			onClose();
+		} catch (err) {
+			setError(err.data?.error || err.message);
 		}
 	};
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
-			<section className="flex flex-col justify-center p-4 h-full">
+			<div className="flex flex-col justify-center p-4 h-full">
 				<AccountForm
 					formData={formData}
 					handleSubmit={handleSubmit}
@@ -108,7 +71,7 @@ export const UpdateAccountModal = ({ isOpen, onClose, accountId, accountsInCurre
 						Удалить счет
 					</OutlineButton>
 				</div>
-			</section>
+			</div>
 		</BaseModal>
 	);
 };

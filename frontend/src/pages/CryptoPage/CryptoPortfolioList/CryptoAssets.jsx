@@ -1,8 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { CardIcon } from '../../../components/CardIcon';
 import { OptionsButton } from '../../../components/buttons';
-import { openUpdateCryptoAssetModal } from '../../../store/slices/modalSlice';
-import { useDispatch } from 'react-redux';
+import { openModal } from '../../../store/slices/modalSlice';
+import { MODAL_TYPES } from '../../../constants/modals';
 
 export const CryptoAssets = ({
 	id,
@@ -16,80 +17,72 @@ export const CryptoAssets = ({
 	symbol,
 	growValue,
 	inAssetCard,
+	cryptoAssetsInCurrency,
 }) => {
 	const dispatch = useDispatch();
-	const trimmedCoinPrice = parseFloat(coinPrice.slice(1).trim());
-	const trimmedAverageBuyPrice = parseFloat(averageBuyPrice.slice(1).trim());
 
-	const isCoinPriceGrow = () => {
-		if (!assetsAmount) {
-			return 'text-main-green';
-		} else if (Number(growValue) < 0) {
-			return 'text-main-red';
-		} else {
-			return 'text-main-green';
-		}
-	};
-	const isProfitAsset = () => {
-		if (!assetsAmount) {
-			return 'text-white';
-		} else if (Number(trimmedCoinPrice) < Number(trimmedAverageBuyPrice)) {
-			return 'text-main-red';
-		} else {
-			return 'text-main-green';
-		}
-	};
+	const cleanPrice = (val) => parseFloat(val.replace(/[^\d.-]/g, '')) || 0;
+	const trimmedCoinPrice = cleanPrice(coinPrice);
+	const trimmedAverageBuyPrice = cleanPrice(averageBuyPrice);
 
-	const isBTC = coinTitle === 'Bitcoin' ? assetsAmount.toFixed(6) : assetsAmount.toFixed(4);
+	const isPriceGrowing = assetsAmount === 0 || Number(growValue) >= 0;
+	const priceColorClass = isPriceGrowing ? 'text-main-green' : 'text-main-red';
+
+	const isProfitable = assetsAmount === 0 || trimmedCoinPrice >= trimmedAverageBuyPrice;
+	const profitColorClass = isProfitable ? 'text-main-green' : 'text-main-red';
+
+	const formattedAmount = coinTitle === 'Bitcoin' ? assetsAmount?.toFixed(6) : assetsAmount?.toFixed(4);
 
 	const handleOptionsClick = () => {
-		dispatch(openUpdateCryptoAssetModal(id));
+		dispatch(
+			openModal({
+				modalType: MODAL_TYPES.UPDATE_CRYPTO_ASSET,
+				modalProps: {
+					assetId: id,
+					cryptoAssetsInCurrency,
+				},
+			}),
+		);
 	};
 
 	return (
-		<div
-			id="categorie-wrapper"
-			className="flex flex-2 max-w-full items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 "
-		>
-			<div
-				id="categorie-inside-container"
-				className="flex flex-6 items-center justify-between md:min-w-90 w-auto"
-			>
+		<div className="flex items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 w-full">
+			<div className="flex flex-6 items-center justify-between md:min-w-90 w-auto">
 				<CardIcon size={6} padding="p-2" buttonSize={11} icon={icon} />
-				<div id="categorie-text-container" className="flex flex-col mx-2 w-full truncate">
-					<div className={`flex text-base items-between justify-between truncate overflow-hidden`}>
-						<div className={`flex gap-2 justify-center items-center truncate ${isProfitAsset()}`}>
-							<span className="truncate">{coinTitle}</span>
-							{assetsAmount > 0 && (
-								<>
-									<div
-										id="up-and-down__icon_triangle"
-										className={`md:flex hidden h-2 w-2 truncate ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'} `}
-									/>
 
-									<span className="md:block hidden text-sm truncate">
-										Profit {profitPercentage.toFixed(2)} %
-									</span>
-								</>
+				<div className="flex flex-col mx-2 w-full truncate">
+					<div className="flex text-base items-between justify-between truncate overflow-hidden">
+						<div
+							className={`flex gap-2 justify-center items-center truncate ${profitColorClass}`}
+						>
+							<span className="truncate font-medium">{coinTitle}</span>
+							{assetsAmount > 0 && (
+								<div className="md:flex hidden items-center gap-1">
+									<div
+										className={`h-2 w-2 ${profitPercentage < 0 ? 'triangle-down' : 'triangle-up'}`}
+									/>
+									<span className="text-xs opacity-80">{profitPercentage.toFixed(2)}%</span>
+								</div>
 							)}
 						</div>
-						<div className="flex gap-2 truncate">{profit}</div>
+						<div className="flex gap-2 truncate font-medium">{profit}</div>
 					</div>
 
-					<div id="categorie-budjet-container" className="flex justify-between gap-2">
+					<div className="flex justify-between gap-2">
 						<div className="flex gap-2">
-							<span className={`text-sm ${isCoinPriceGrow()}`}>{coinPrice}</span>
-							<span className={`sm:flex hidden text-sm ${isCoinPriceGrow()}`}>
-								{growValue} % (1d)
+							<span className={`text-sm font-semibold ${priceColorClass}`}>{coinPrice}</span>
+							<span className={`sm:flex hidden text-xs items-center ${priceColorClass}`}>
+								{growValue}% (1d)
 							</span>
 						</div>
-						<span className={`text-sm truncate text-gray-300`}>
-							{parseFloat(isBTC)} {symbol}
+						<span className="text-sm truncate text-gray-400">
+							{formattedAmount} {symbol}
 						</span>
 					</div>
 				</div>
 			</div>
-			{inAssetCard ? '' : <OptionsButton onClick={handleOptionsClick} flex={'flex-[0.25]'} />}
+
+			{!inAssetCard && <OptionsButton onClick={handleOptionsClick} flex="flex-[0.25]" />}
 		</div>
 	);
 };

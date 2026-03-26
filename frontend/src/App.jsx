@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SidebarMenu } from './components/Sidebar';
 import { TopMenuRow } from './components/TopMenu';
-import { BurgerMenuModal, AddOperationModal, AddCryptoOperationModal } from './components/modalWindow';
+import { ModalManager } from './components/modalWindow/ModalManager';
 import { CryptoLayout } from './pages/CryptoPage';
 import { FinancesLayout } from './pages/FinancesPage/';
-import { setUserData, setUserIsLoading, selectUserIsLoading } from './store/slices/userSlice';
 import { useGetUserQuery } from './store/api/backendApi';
 import { MainPageLayout } from './pages/MainPage/MainPageLayout';
 import { LoginPage } from './pages/Auth/LoginPage';
@@ -14,35 +13,18 @@ import { RegisterPage } from './pages/Auth/RegisterPage';
 import { LoginWrapper } from './routes/LoginWrapper';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { Loader } from './components/Loaders/Loader';
+import { APP_ROUTES } from './constants/routes';
+import { THEME_CLASSES } from './constants/theme';
 
 export const App = () => {
-	const dispatch = useDispatch();
-	const userIsLoading = useSelector(selectUserIsLoading);
 	const isDayTheme = useSelector((state) => state.theme.isDayTheme);
-
-	const { data: userData, isLoading: isUserFetching, isSuccess } = useGetUserQuery();
-
-	useEffect(() => {
-		if (!isUserFetching) {
-			if (isSuccess && userData?.user) {
-				dispatch(setUserData(userData.user));
-			} else {
-				dispatch(setUserIsLoading(false));
-			}
-		}
-	}, [isUserFetching, isSuccess, userData, dispatch]);
+	const { isLoading: isUserFetching } = useGetUserQuery();
 
 	useEffect(() => {
-		if (isDayTheme) {
-			document.body.classList.add('body-day');
-			document.body.classList.remove('body-night');
-		} else {
-			document.body.classList.add('body-night');
-			document.body.classList.remove('body-day');
-		}
+		document.body.className = isDayTheme ? THEME_CLASSES.DAY : THEME_CLASSES.NIGHT;
 	}, [isDayTheme]);
 
-	if (userIsLoading) {
+	if (isUserFetching) {
 		return (
 			<div className="flex items-center justify-center h-screen">
 				<Loader />
@@ -51,10 +33,10 @@ export const App = () => {
 	}
 
 	return (
-		<section id="root" className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
+		<div className="flex bg-cover w-full overflow-x-hidden min-h-screen p-4">
 			<Routes>
 				<Route
-					path="/login"
+					path={APP_ROUTES.LOGIN}
 					element={
 						<LoginWrapper>
 							<LoginPage />
@@ -62,7 +44,7 @@ export const App = () => {
 					}
 				/>
 				<Route
-					path="/register"
+					path={APP_ROUTES.REGISTER}
 					element={
 						<LoginWrapper>
 							<RegisterPage />
@@ -74,27 +56,24 @@ export const App = () => {
 					path="/*"
 					element={
 						<ProtectedRoute>
-							<>
-								<BurgerMenuModal />
-								<AddOperationModal />
-								<AddCryptoOperationModal />
-								<SidebarMenu />
-								<div className="flex flex-col flex-15 p-4 gap-4 rounded-4xl bg-sky-300/5">
-									<TopMenuRow />
-									<div className="flex flex-wrap rounded-[36px] h-full gap-4">
-										<Routes>
-											<Route path="/" element={<MainPageLayout />} />
-											<Route path="/finances" element={<FinancesLayout />} />
-											<Route path="/crypto" element={<CryptoLayout />} />
-											<Route path="*" element={<Navigate to="/" replace />} />
-										</Routes>
-									</div>
+							<ModalManager />
+
+							<SidebarMenu />
+							<div className="flex flex-col flex-15 p-4 gap-4 rounded-4xl bg-sky-300/5">
+								<TopMenuRow />
+								<div className="flex flex-wrap rounded-[36px] h-full gap-4">
+									<Routes>
+										<Route path={APP_ROUTES.HOME} element={<MainPageLayout />} />
+										<Route path={APP_ROUTES.FINANCES} element={<FinancesLayout />} />
+										<Route path={APP_ROUTES.CRYPTO} element={<CryptoLayout />} />
+										<Route path="*" element={<Navigate to={APP_ROUTES.HOME} replace />} />
+									</Routes>
 								</div>
-							</>
+							</div>
 						</ProtectedRoute>
 					}
 				/>
 			</Routes>
-		</section>
+		</div>
 	);
 };

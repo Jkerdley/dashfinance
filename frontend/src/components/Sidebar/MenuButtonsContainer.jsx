@@ -1,84 +1,23 @@
 import React from 'react';
-import BankIcon from '../../assets/icons/bank-icon.svg';
-import CashIcon from '../../assets/icons/cash-icon.svg';
-import CryptoIcon from '../../assets/icons/crypto-icon.svg';
-import InvestmentsIcon from '../../assets/icons/investments-icon.svg';
-import AnalyticsIcon from '../../assets/icons/analytics-icon.svg';
 import { MenuButton } from '../buttons/MenuButton';
+import { MENU_CONFIG } from '../../config/menu-config';
 
 export const MenuButtonsContainer = ({ isMenuOpened }) => {
 	return (
-		<nav name="menu-buttons" className="flex flex-6 w-full items-start justify-center py-10">
-			<div className="flex flex-col items-start gap-8 justify-around ">
-				{isMenuOpened ? (
-					<>
-						<MenuButton
-							width={'w-48'}
-							to="/"
-							alt="bank"
-							icon={BankIcon}
-							disabled={false}
-							buttonText={'Все активы'}
-							isWide={true}
-						/>
-						<MenuButton
-							width={'w-48'}
-							to="/finances"
-							alt="cash"
-							icon={CashIcon}
-							disabled={false}
-							buttonText={'Финансы'}
-							isWide={true}
-						/>
-						<MenuButton
-							width={'w-48'}
-							to="/crypto"
-							alt="crypto"
-							icon={CryptoIcon}
-							disabled={false}
-							buttonText={'Криптовалюты'}
-							isWide={true}
-						/>
-						<MenuButton
-							width={'w-48'}
-							to="/investments"
-							alt="investments"
-							icon={InvestmentsIcon}
-							disabled={true}
-							buttonText={'Инвестиции'}
-							isWide={true}
-						/>
-						<MenuButton
-							width={'w-48'}
-							to="/analytics"
-							alt="analytics"
-							icon={AnalyticsIcon}
-							disabled={true}
-							buttonText={'Аналитика'}
-							isWide={true}
-						/>
-					</>
-				) : (
-					<>
-						<MenuButton width={'w-11'} to="/" alt="bank" icon={BankIcon} />
-						<MenuButton width={'w-11'} to="/finances" alt="cash" icon={CashIcon} />
-						<MenuButton width={'w-11'} to="/crypto" alt="crypto" icon={CryptoIcon} />
-						<MenuButton
-							width={'w-11'}
-							to="/investments"
-							alt="investments"
-							icon={InvestmentsIcon}
-							disabled={true}
-						/>
-						<MenuButton
-							width={'w-11'}
-							to="/analytics"
-							alt="analytics"
-							icon={AnalyticsIcon}
-							disabled={true}
-						/>
-					</>
-				)}
+		<nav className="flex items-start justify-center w-full py-10 flex-6">
+			<div className="flex flex-col items-start justify-around gap-8">
+				{MENU_CONFIG.map((item) => (
+					<MenuButton
+						key={item.id}
+						to={item.to}
+						alt={item.id}
+						icon={item.icon}
+						disabled={item.disabled}
+						width={isMenuOpened ? 'w-48' : 'w-11'}
+						isWide={isMenuOpened}
+						buttonText={isMenuOpened ? item.text : undefined}
+					/>
+				))}
 			</div>
 		</nav>
 	);

@@ -1,51 +1,57 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { OptionsButton } from '../../../components/buttons';
 import { CardIcon } from '../../../components/CardIcon';
 import { getIconOfCategorie } from '../../../utils';
-import { useDispatch } from 'react-redux';
-import { openUpdateCategoryModal } from '../../../store/slices/modalSlice';
+import { openModal } from '../../../store/slices/modalSlice';
+import { MODAL_TYPES } from '../../../constants/modals';
 
-export const Categorie = ({ id, categorie, balance, budget, icon, noButton }) => {
+export const Categorie = ({ id, categorie, balance, budget, icon, noButton, categoriesInCurrency }) => {
 	const dispatch = useDispatch();
 
-	const isOverBalance = () => {
-		if (!budget) {
-			return 'text-main-green';
-		} else if (Number(balance.slice(1).trim()) > Number(budget.slice(1).trim())) {
-			return 'text-main-red';
-		} else {
-			return 'text-main-green';
-		}
-	};
+	const currentBalance = parseFloat(balance?.replace(/[^\d.-]/g, '')) || 0;
+	const currentBudget = budget ? parseFloat(budget?.replace(/[^\d.-]/g, '')) : 0;
+
+	const isOverBalance = currentBudget > 0 && currentBalance > currentBudget;
+	const balanceColorClass = isOverBalance ? 'text-main-red' : 'text-main-green';
 
 	const handleOptionsClick = () => {
-		dispatch(openUpdateCategoryModal(id));
+		dispatch(
+			openModal({
+				modalType: MODAL_TYPES.UPDATE_CATEGORY,
+				modalProps: {
+					categoryId: id,
+					categoriesInCurrency,
+				},
+			}),
+		);
 	};
 
 	return (
-		<section
-			id="categorie-wrapper"
-			className={`flex flex-2 'max-w-3xl' items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20`}
+		<div
+			id={`categorie-${id}`}
+			className="flex items-center justify-between p-2 rounded-2xl h-14 bg-sky-300/20 flex-2"
 		>
 			<div
-				id="categorie-inside-container"
-				className={`flex items-center justify-start ${noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:min-w-90 min-w-50'}`}
+				className={`flex items-center justify-start ${
+					noButton ? '2xl:w-[22vw] w-[38vw]' : 'md:min-w-90 min-w-50'
+				}`}
 			>
 				<CardIcon padding="p-2" buttonSize={10} icon={getIconOfCategorie(icon)} />
-				<div
-					id="categorie-text-container"
-					className={`flex flex-col ml-2  ${noButton ? 'w-[400px]' : 'w-full'} overflow-hidden`}
-				>
-					<span className="text-base truncate">{categorie}</span>
-					<div id="categorie-budjet-container" className="flex gap-2 truncate">
-						<span className={`text-sm truncate ${isOverBalance()}`}>Расходы: {balance}</span>
-						<span className="sm:flex hidden  text-sm truncate text-gray-300">
-							{Number(budget.slice(1).trim()) > 0 ? `Бюджет: ${budget}` : ''}
-						</span>
+				<div className={`flex flex-col ml-2 overflow-hidden ${noButton ? 'w-[400px]' : 'w-full'}`}>
+					<span className="text-base truncate font-medium text-white">{categorie}</span>
+					<div className="flex gap-2 truncate">
+						<span className={`text-sm truncate ${balanceColorClass}`}>Расходы: {balance}</span>
+						{currentBudget > 0 && (
+							<span className="sm:flex hidden text-sm truncate text-gray-400">
+								Бюджет: {budget}
+							</span>
+						)}
 					</div>
 				</div>
 			</div>
-			{noButton ? '' : <OptionsButton onClick={handleOptionsClick} flex={'flex-[0.5]'} />}
-		</section>
+
+			{!noButton && <OptionsButton onClick={handleOptionsClick} flex="flex-[0.5]" />}
+		</div>
 	);
 };

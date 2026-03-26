@@ -4,7 +4,7 @@ import { BaseModal } from './base/BaseModal';
 import { debounce } from '../../utils';
 import { CryptoAssetForm } from './forms';
 
-export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
+export const AddCryptoAssetModal = ({ isOpen, onClose, cryptoCoins }) => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [showDropdown, setShowDropdown] = useState(false);
@@ -23,57 +23,48 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 
 	const debouncedSearch = useCallback(
 		debounce((inputTerm) => {
-			const searchResults = cryptoCoins
+			if (!cryptoCoins) return;
+			const results = cryptoCoins
 				.filter(
 					(coin) =>
 						coin.name.toLowerCase().includes(inputTerm.toLowerCase()) ||
 						coin.symbol.toLowerCase().includes(inputTerm.toLowerCase()),
 				)
 				.slice(0, 20);
-			setSearchResults(searchResults);
-			setShowDropdown(searchResults.length > 0);
+			setSearchResults(results);
+			setShowDropdown(results.length > 0);
 		}, 500),
 		[cryptoCoins],
 	);
 
-	const handleFindCrypto = (event) => {
-		const value = event.target.value;
+	const handleFindCrypto = (e) => {
+		const value = e.target.value;
 		setSearchTerm(value);
 		setError('');
 		debouncedSearch(value);
 	};
 
 	const handleSelectCoin = (coin) => {
-		setFormData({
-			...formData,
-			name: coin.name,
-			coinId: coin.id,
-			symbol: coin.symbol,
-			icon: coin.icon,
-		});
+		setFormData({ ...formData, name: coin.name, coinId: coin.id, symbol: coin.symbol, icon: coin.icon });
 		setShowDropdown(false);
 		setSearchTerm(coin.name);
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const nameValue = formData.name;
+		if (!formData.name) return alert('Нужно выбрать криптовалюту');
 
-		if (nameValue.length === 0) {
-			alert('Нужно выбрать криптовалюту');
-		} else {
-			try {
-				await addCryptoAsset(formData).unwrap();
-				onClose();
-			} catch (err) {
-				setError(err.data?.error || err.message);
-			}
+		try {
+			await addCryptoAsset(formData).unwrap();
+			onClose();
+		} catch (err) {
+			setError(err.data?.error || err.message);
 		}
 	};
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
-			<section className="flex flex-col p-6 h-full w-full">
+			<div className="flex flex-col p-6 h-full w-full">
 				<CryptoAssetForm
 					formData={formData}
 					searchTerm={searchTerm}
@@ -85,7 +76,7 @@ export const AddCryptoAssetModal = ({ cryptoCoins, isOpen, onClose }) => {
 					searchResults={searchResults}
 					showDropdown={showDropdown}
 				/>
-			</section>
+			</div>
 		</BaseModal>
 	);
 };

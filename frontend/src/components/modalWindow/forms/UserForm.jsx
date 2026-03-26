@@ -1,5 +1,6 @@
 import React from 'react';
 import { SaveAndCancelButtons } from '../operationSelectors';
+
 export const UserForm = ({ formData, handleSubmit, handleNameChange, error, onClose }) => {
 	return (
 		<section className="flex flex-col items-center justify-evenly gap-6 min-h-[25vh]">

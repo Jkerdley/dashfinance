@@ -1,61 +1,49 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import AddIcon from '../../../assets/icons/add-icon.svg';
 import { CryptoAssets } from './CryptoAssets';
-import { OperationsPanel } from '../../../components/OperationsPanelButtons/OperationsPanel';
 import { SectionContainerHeader } from '../../../components/SectionContainerHeader/SectionContainerHeader';
 import { EditAddDeleteButton } from '../../../components/buttons';
 import { Loader } from '../../../components/Loaders/Loader';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	closeAddCryptoAssetModal,
-	closeUpdateCryptoAssetModal,
-	openAddCryptoAssetModal,
-} from '../../../store/slices/modalSlice';
-import { selectAddCryptoAssetModal, selectUpdateCryptoAssetModal } from '../../../store/slices/modalSlice';
-import { AddCryptoAssetModal, UpdateCryptoAssetModal } from '../../../components/modalWindow';
+import { openModal } from '../../../store/slices/modalSlice';
+import { MODAL_TYPES } from '../../../constants/modals';
 
 export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, cryptoCoins, isLoading }) => {
-	const addCryptoAsset = useSelector(selectAddCryptoAssetModal);
-	const updateCryptoAsset = useSelector(selectUpdateCryptoAssetModal);
 	const dispatch = useDispatch();
+
+	const handleAddAsset = () => {
+		dispatch(
+			openModal({
+				modalType: MODAL_TYPES.ADD_CRYPTO_ASSET,
+				modalProps: { cryptoCoins },
+			}),
+		);
+	};
+
 	return (
-		<section id="column__categories" className="flex flex-col flex-3/12 p-4 rounded-3xl bg-sky-950/40">
-			<div id="categories__title-and-buitton" className="flex justify-between gap-2 mb-2">
+		<section className="flex flex-col flex-3/12 p-4 rounded-3xl bg-sky-950/40">
+			<div className="flex justify-between gap-2 mb-2">
 				<SectionContainerHeader title={'Активы'} />
 				<EditAddDeleteButton
-					onClick={() => dispatch(openAddCryptoAssetModal())}
+					onClick={handleAddAsset}
 					icon={AddIcon}
 					title={'Добавить'}
 					alt={'crypto coins'}
 				/>
 			</div>
+
 			{isLoading ? (
-				<div className="flex flex-4/12 pr-2 justify-between 2xl:max-h-[36vh] min-w-[22vw] w-full h-full">
+				<div className="flex items-center justify-center h-full min-h-[30vh]">
 					<Loader />
 				</div>
 			) : (
-				<div
-					id="spend-categories__container"
-					className="flex flex-4/12 flex-wrap gap-4 pr-2 justify-between 3xl:max-h-[36vh] max-h-[30vh] w-full h-full rounded-2xl overflow-y-auto overscroll-auto scroll-smooth scrollbar"
-				>
-					{addCryptoAsset.isOpen && (
-						<AddCryptoAssetModal
-							cryptoCoins={cryptoCoins}
-							isOpen={addCryptoAsset.isOpen}
-							onClose={() => dispatch(closeAddCryptoAssetModal())}
-						/>
-					)}
-					{updateCryptoAsset.isOpen && (
-						<UpdateCryptoAssetModal
-							cryptoAssetsInCurrency={cryptoAssetsInCurrency}
-							assetId={updateCryptoAsset.cryptoAssetIdForUpdate}
-							isOpen={updateCryptoAsset.isOpen}
-							onClose={() => dispatch(closeUpdateCryptoAssetModal())}
-						/>
-					)}
-
-					{cryptoAssetsInCurrency.map((coin) => {
-						return (
+				<div className="flex flex-col gap-4 pr-2 w-full h-full max-h-[30vh] 3xl:max-h-[36vh] rounded-2xl overflow-y-auto overscroll-auto scroll-smooth scrollbar">
+					{cryptoAssetsInCurrency?.length === 0 ? (
+						<div className="flex items-center justify-center h-full text-slate-400">
+							Портфель пуст
+						</div>
+					) : (
+						cryptoAssetsInCurrency?.map((coin) => (
 							<CryptoAssets
 								key={coin.id}
 								id={coin.id}
@@ -68,13 +56,12 @@ export const MyCriptoPortfolioList = ({ cryptoAssetsInCurrency, cryptoCoins, isL
 								coinTitle={coin.name}
 								icon={coin.icon}
 								symbol={coin.symbol}
+								cryptoAssetsInCurrency={cryptoAssetsInCurrency}
 							/>
-						);
-					})}
+						))
+					)}
 				</div>
 			)}
-
-			{/* <OperationsPanel isCrypto={true} /> */}
 		</section>
 	);
 };

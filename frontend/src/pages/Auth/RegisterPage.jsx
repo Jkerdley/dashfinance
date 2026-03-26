@@ -1,84 +1,90 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
 import { useRegisterMutation } from '../../store/api/backendApi';
-import { setUserData } from '../../store/slices/userSlice';
+import { ROLES_ENUM } from '../../constants/roles';
+import { APP_ROUTES } from '../../constants/routes';
 
 export const RegisterPage = () => {
-	const [login, setLogin] = useState('');
-	const [password, setPassword] = useState('');
-	const [name, setName] = useState('');
 	const [error, setError] = useState('');
-	const [registerMutation] = useRegisterMutation();
-	const dispatch = useDispatch();
+	const [registerMutation, { isLoading }] = useRegisterMutation();
 	const navigate = useNavigate();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const handleRegisterAction = async (formData) => {
+		const login = formData.get('login');
+		const password = formData.get('password');
+		const name = formData.get('name');
+
+		setError('');
+
 		try {
-			const data = await registerMutation({ login, password, name, role: '1' }).unwrap();
-			dispatch(setUserData(data.user));
-			navigate('/finances');
+			await registerMutation({
+				login,
+				password,
+				name,
+				role: ROLES_ENUM.USER,
+			}).unwrap();
+
+			navigate(APP_ROUTES.FINANCES);
 		} catch (err) {
 			setError(err.data?.error || err.message);
 		}
 	};
 
-	const handleNavToLogin = () => {
-		navigate('/login');
-	};
-
 	return (
-		<section className="flex flex-col gap-4 items-center justify-center h-[90vh] w-full">
+		<main className="flex flex-col gap-4 items-center justify-center h-[90vh] w-full">
 			<form
-				onSubmit={handleSubmit}
-				className="flex flex-col bg-sky-200/10 p-6 rounded-4xl shadow-md w-full max-w-sm gap-4 "
+				action={handleRegisterAction}
+				className="flex flex-col bg-sky-200/10 p-6 rounded-4xl shadow-md w-full max-w-sm gap-4"
 			>
 				<h2 className="text-2xl mb-4">Регистрация</h2>
+
 				{error && <p className="text-red-500">{error}</p>}
+
 				<div className="mb-4">
 					<label className="block text-sky-200">Логин</label>
 					<input
 						type="text"
-						value={login}
-						onChange={(e) => setLogin(e.target.value)}
-						className="border rounded w-full py-2 px-3 mt-2 transitions-all duration-500 ease"
+						name="login"
+						className="border rounded w-full py-2 px-3 mt-2 transition-all duration-500 ease focus:border-sky-300"
 						required
 					/>
 				</div>
+
 				<div className="mb-4">
 					<label className="block text-sky-200">Пароль</label>
 					<input
 						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className="border rounded w-full py-2 px-3 mt-2 transitions-all duration-500 ease"
+						name="password"
+						className="border rounded w-full py-2 px-3 mt-2 transition-all duration-500 ease focus:border-sky-300"
 						required
 					/>
 				</div>
+
 				<div className="mb-4">
 					<label className="block text-sky-200">Имя, фамилия (или Никнейм)</label>
 					<input
 						type="text"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						className="border rounded w-full py-2 px-3 mt-2 transitions-all duration-500 ease"
+						name="name"
+						className="border rounded w-full py-2 px-3 mt-2 transition-all duration-500 ease focus:border-sky-300"
 						required
 					/>
 				</div>
+
 				<button
 					type="submit"
-					className="bg-btn-color hover:bg-btn-menuhover rounded-xl text-white text-md py-2 px-4 w-full cursor-pointer transition-all duration-200 ease-in-out"
+					disabled={isLoading}
+					className="bg-btn-color hover:bg-btn-menuhover disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white text-md py-2 px-4 w-full cursor-pointer transition-all duration-200 ease-in-out"
 				>
-					Зарегистрироваться
+					{isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
 				</button>
 			</form>
-			<span
+
+			<Link
+				to={APP_ROUTES.LOGIN}
 				className="flex text-md cursor-pointer hover:opacity-65 hover:underline transition-all duration-200 ease-in-out"
-				onClick={handleNavToLogin}
 			>
 				- Войти в аккаунт -
-			</span>
-		</section>
+			</Link>
+		</main>
 	);
 };

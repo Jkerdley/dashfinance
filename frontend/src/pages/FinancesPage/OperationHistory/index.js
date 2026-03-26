@@ -1,2 +1,2 @@
 export * from './FinanceOperationHistory.jsx';
-export * from './OpreationsFinanceHistoryLayout.jsx';
+export * from './OperationsFinanceHistoryLayout.jsx';

@@ -1,85 +1,39 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { BaseModal } from './base/BaseModal';
 import { useAddAccountMutation } from '../../store/api/backendApi';
-import { closeAddAccountModal } from '../../store/slices/modalSlice';
-import { selectAddAccountModal } from '../../store/slices/modalSlice';
 import { AccountForm } from './forms/AccountForm';
 
-export const AddAccountModal = () => {
-	const { isOpen } = useSelector(selectAddAccountModal);
-	const dispatch = useDispatch();
+export const AddAccountModal = ({ isOpen, onClose }) => {
 	const [addAccount] = useAddAccountMutation();
-
-	const [formData, setFormData] = useState({
-		name: '',
-		balance: '',
-		icon: 'debit',
-		type: 'debit',
-	});
+	const [formData, setFormData] = useState({ name: '', balance: '', icon: 'debit', type: 'debit' });
 	const [error, setError] = useState('');
 
-	const onClose = () => {
-		dispatch(closeAddAccountModal());
-	};
-
-	const handleTypeChange = (type, icon) => {
-		setFormData((prev) => ({
-			...prev,
-			type,
-			icon,
-		}));
-	};
-
+	const handleTypeChange = (type, icon) => setFormData((prev) => ({ ...prev, type, icon }));
+	const handleNameChange = (e) => setFormData((prev) => ({ ...prev, name: e.target.value }));
 	const handleInputChange = (e) => {
 		const value = e.target.value;
-
-		if (value === '' || !isNaN(value)) {
-			setFormData((prev) => ({
-				...prev,
-				balance: value,
-			}));
-		} else {
-			alert('Пожалуйста, введите цифры');
-		}
-	};
-
-	const handleNameChange = (event) => {
-		const value = event.target.value;
-		setFormData((prev) => ({
-			...prev,
-			name: value,
-		}));
+		if (value === '' || !isNaN(value)) setFormData((prev) => ({ ...prev, balance: value }));
+		else alert('Пожалуйста, введите цифры');
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const nameValue = formData.name;
 		const balanceValue = Number(formData.balance);
 
-		if (nameValue.length === 0) {
-			alert('Название счета не может быть пустым');
-			return;
-		}
+		if (!formData.name.trim()) return alert('Название счета не может быть пустым');
+		if (isNaN(balanceValue) || balanceValue < 0) return alert('Баланс должен быть числом и больше нуля');
 
-		if (!isNaN(balanceValue) && balanceValue >= 0) {
-			try {
-				await addAccount({
-					...formData,
-					balance: balanceValue,
-				}).unwrap();
-				onClose();
-			} catch (err) {
-				setError(err.message || 'Ошибка при добавлении счета');
-			}
-		} else {
-			alert('Баланс должен быть числом и больше нуля');
+		try {
+			await addAccount({ ...formData, balance: balanceValue }).unwrap();
+			onClose();
+		} catch (err) {
+			setError(err.message || 'Ошибка при добавлении счета');
 		}
 	};
 
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose} width="md:w-[60vw] w-[90vw]" position="center">
-			<section className="flex flex-col p-6 h-full w-full">
+			<div className="flex flex-col p-6 h-full w-full">
 				<AccountForm
 					formData={formData}
 					handleSubmit={handleSubmit}
@@ -89,7 +43,7 @@ export const AddAccountModal = () => {
 					error={error}
 					onClose={onClose}
 				/>
-			</section>
+			</div>
 		</BaseModal>
 	);
 };

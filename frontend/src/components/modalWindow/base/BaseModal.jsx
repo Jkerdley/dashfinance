@@ -1,70 +1,61 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { usePressKey } from '../../../hooks';
 import { CloseModalButton } from '../../buttons';
 
+const POSITION_CLASSES = {
+	left: 'top-0 left-0 h-full rounded-r-4xl',
+	right: 'top-0 right-0 h-full rounded-l-4xl',
+	center: 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-4xl',
+};
+
 export const BaseModal = ({ isOpen, onClose, children, width = 'w-[48vw]', position = 'center' }) => {
 	const modalRef = useRef(null);
-	const escButtonPressed = usePressKey('Escape');
-	const [isVisible, setIsVisible] = useState(false);
-
-	const handleClose = () => {
-		setIsVisible(false);
-		setTimeout(() => {
-			onClose();
-		}, 200);
-	};
+	const escPressed = usePressKey('Escape');
 
 	useEffect(() => {
 		if (isOpen) {
-			setIsVisible(true);
+			document.body.style.overflow = 'hidden';
 		}
+		return () => {
+			document.body.style.overflow = '';
+		};
 	}, [isOpen]);
 
 	useEffect(() => {
-		if (escButtonPressed && isOpen) {
-			handleClose();
+		if (escPressed && isOpen) {
+			onClose();
 		}
-	}, [escButtonPressed, isOpen]);
+	}, [escPressed, isOpen, onClose]);
 
 	if (!isOpen) return null;
 
-	const positionClasses = {
-		left: 'left-0 top-0 h-full',
-		right: 'right-0 top-0 h-full',
-		center: 'top-1/2 left-1/2',
-	};
-
-	const animationClasses = {
-		left: isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0',
-		right: isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
-		center: isVisible
-			? 'translate-x-[-50%] translate-y-[-50%] opacity-100 scale-100'
-			: 'translate-x-[-50%] translate-y-[-60%] opacity-0 scale-25',
-	};
-
 	return (
-		<section className="fixed inset-0 z-20">
+		<div className="fixed inset-0 z-[100] overflow-hidden">
 			<div
-				className={`
-                    absolute w-full h-full bg-gray-950/70 transition-opacity duration-200 ease-in-out
-                    ${isVisible ? 'opacity-100' : 'opacity-0'}
-                `}
-				onClick={handleClose}
+				className="absolute inset-0 bg-gray-950/70 animate-in fade-in duration-300"
+				onClick={onClose}
+				aria-hidden="true"
 			/>
+
 			<div
 				ref={modalRef}
-				tabIndex="-1"
+				role="dialog"
+				aria-modal="true"
 				className={`
-                    relative ${width} h-auto min-h-1/5 px-8 pt-6 z-30
-                 bg-sky-950/50 backdrop-blur-xl rounded-4xl text-center
-                    ${positionClasses[position]}
-                    ${animationClasses[position]}
-                    transition-all duration-200 ease-in-out
+                    absolute ${width} min-h-[20%] px-8 pt-10 pb-6 z-10
+                    bg-sky-950/85 backdrop-blur-2xl text-center shadow-2xl
+                    border border-white/10 transition-all duration-300 ease-out
+                    ${POSITION_CLASSES[position]}
+                    ${
+						position === 'center'
+							? 'animate-in zoom-in-95 fade-in duration-300'
+							: 'animate-in slide-in-from-left duration-300'
+					}
                 `}
 			>
-				<CloseModalButton onClick={handleClose} />
+				<CloseModalButton onClick={onClose} />
 				{children}
 			</div>
-		</section>
+		</div>
 	);
 };
