@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useCurrency } from './useCurrency';
 import { useGetCategoriesQuery } from '../store/api/backendApi';
 import { calculateValueInCurrency } from '../utils';
@@ -11,17 +12,22 @@ export const useFetchCategoriesInCurrency = (selectedSortType) => {
 	const { isUSD, rubleCourse } = useCurrency();
 	const { data: categories = [], isLoading: categoriesIsLoading } = useGetCategoriesQuery();
 
-	const categoriesInCurrency = categories.map((categorie) => {
-		const findedCategoryInExpensesHistory = mappedData.filter((item) => item.id === categorie.id);
-		const newBalanceInCategorie =
-			findedCategoryInExpensesHistory.length > 0 ? findedCategoryInExpensesHistory[0].balance : 0;
+	const categoriesInCurrency = useMemo(() => {
+		const expensesMap = mappedData.reduce((acc, item) => {
+			acc[item.id] = item.balance;
+			return acc;
+		}, {});
 
-		return {
-			...categorie,
-			balance: calculateValueInCurrency(newBalanceInCategorie, isUSD, rubleCourse),
-			budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
-		};
-	});
+		return categories.map((categorie) => {
+			const newBalanceInCategorie = expensesMap[categorie.id] || 0;
+
+			return {
+				...categorie,
+				balance: calculateValueInCurrency(newBalanceInCategorie, isUSD, rubleCourse),
+				budget: calculateValueInCurrency(categorie.budget, isUSD, rubleCourse),
+			};
+		});
+	}, [categories, mappedData, isUSD, rubleCourse]);
 
 	return { categoriesInCurrency, categoriesIsLoading };
 };

@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { calculateValueInCurrency } from '../../../utils/calculateValueInCurrency';
 import { FinanceResultDiagram } from '../Charts/FinanceResultDiagram';
 import { ExpensesResult } from './ExpensesResult';
@@ -26,17 +26,22 @@ export const FinanceResult = memo(({ selectedSortType }) => {
 		}
 	}, [currencyData, rubleCourse, dispatch]);
 
-	const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
-	const historyDB = financeHistory
-		.filter((item) => {
-			return item.type === 'add';
-		})
-		.reduce((acc, item) => acc + Number(item.amount), 0);
+	const totalBalanceForDate = useMemo(() => {
+		const accountsDB = financeAccounts.reduce((acc, account) => acc + account.balance, 0);
+		return calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
+	}, [financeAccounts, isUSD, rubleCourse]);
 
-	const categoriesDB = expenses.mappedData.reduce((acc, item) => acc + item.balance, 0);
-	const expensesForDate = calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
-	const incomeForDate = calculateValueInCurrency(historyDB, isUSD, rubleCourse);
-	const totalBalanceForDate = calculateValueInCurrency(accountsDB, isUSD, rubleCourse);
+	const incomeForDate = useMemo(() => {
+		const historyDB = financeHistory
+			.filter((item) => item.type === 'add')
+			.reduce((acc, item) => acc + Number(item.amount), 0);
+		return calculateValueInCurrency(historyDB, isUSD, rubleCourse);
+	}, [financeHistory, isUSD, rubleCourse]);
+
+	const expensesForDate = useMemo(() => {
+		const categoriesDB = expenses.mappedData.reduce((acc, item) => acc + item.balance, 0);
+		return calculateValueInCurrency(categoriesDB, isUSD, rubleCourse);
+	}, [expenses.mappedData, isUSD, rubleCourse]);
 
 	const isLoading = historyIsLoading || accountsIsLoading;
 
@@ -44,7 +49,7 @@ export const FinanceResult = memo(({ selectedSortType }) => {
 		<div id="finance-result__main-container" className="flex h-full gap-4 transition-all">
 			<div className="flex flex-col flex-3 h-full">
 				<section className="flex flex-2 justify-center">
-					{historyIsLoading ? (
+					{isLoading ? (
 						<Loader />
 					) : (
 						<BigResultBalance
@@ -55,7 +60,7 @@ export const FinanceResult = memo(({ selectedSortType }) => {
 					)}
 				</section>
 				<section className="flex flex-2 h-full justify-center md:justify-evently gap-6 md:gap-18">
-					{historyIsLoading ? (
+					{isLoading ? (
 						<Loader />
 					) : (
 						<IncomeResult
@@ -64,7 +69,7 @@ export const FinanceResult = memo(({ selectedSortType }) => {
 							historyIsLoading={historyIsLoading}
 						/>
 					)}
-					{historyIsLoading ? (
+					{isLoading ? (
 						<Loader />
 					) : (
 						<ExpensesResult
