@@ -1,0 +1,29 @@
+interface CloseModalButtonProps {
+    onClick: () => void;
+}
+
+export const CloseModalButton = ({ onClick }: CloseModalButtonProps) => {
+    return (
+        <button
+            onClick={onClick}
+            type="button"
+            className="absolute top-4 right-4 group flex flex-col justify-center items-center lg:w-10 lg:h-10 md:w-9 md:h-9 w-8 h-8 rounded-lg outline-1 hover:bg-sky-700/50 transition-all duration-200 hover:outline-blue-500/20 cursor-pointer z-50"
+            aria-label="Закрыть окно"
+        >
+            <span
+                className={`
+                    block w-5 h-0.5 bg-gray-50 rounded-lg transition-all duration-300 ease-in-out
+                    group-hover:bg-blue-400
+                    rotate-45 translate-y-[1px] group-hover:scale-x-130
+                `}
+            />
+            <span
+                className={`
+                    block w-5 h-0.5 bg-gray-50 rounded-lg transition-all duration-300 ease-in-out
+                    group-hover:bg-blue-400
+                    -rotate-45 -translate-y-[1px] group-hover:scale-x-130
+                `}
+            />
+        </button>
+    );
+};

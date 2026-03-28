@@ -1,0 +1,25 @@
+import { cleanValue } from '../../../utils';
+
+interface IncomeResultProps {
+    isUSD: boolean;
+    incomeForDate: string;
+    historyIsLoading?: boolean;
+}
+
+export const IncomeResult = (props: IncomeResultProps) => {
+    const { isUSD, incomeForDate } = props;
+
+    return (
+        <div className="flex flex-col items-center justify-center text-xl font-medium h-full">
+            <span className="text-sm xl:text-xl">Доходы:</span>
+            <div className="flex items-center gap-2">
+                <span className="text-2xl lg:text-4xl 2xl:text-4xl transition-all mt-2 font-medium text-main-green">
+                    {isUSD ? '$' : '\u20bd'}
+                </span>
+                <span className="text-2xl lg:text-5xl 2xl:text-5xl font-bold transition-all duration-350 ease-in-out truncate text-[#b9ff80]">
+                    {cleanValue(incomeForDate)}
+                </span>
+            </div>
+        </div>
+    );
+};

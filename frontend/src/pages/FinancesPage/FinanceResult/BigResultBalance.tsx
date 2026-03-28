@@ -1,0 +1,32 @@
+import { cleanValue } from '../../../utils';
+
+interface BigResultBalanceProps {
+    isUSD: boolean;
+    totalBalanceForDate: string;
+    historyIsLoading?: boolean;
+}
+
+export const BigResultBalance = (props: BigResultBalanceProps) => {
+    const { isUSD, totalBalanceForDate } = props;
+
+    const numericBalance = parseInt((totalBalanceForDate || '0').slice(1).trim(), 10);
+    const balanceColorClass = numericBalance > 0 ? 'text-main-green' : 'text-main-red';
+
+    return (
+        <div className="flex flex-5 flex-col items-center justify-center">
+            <span className="xl:text-xl sm:text-xl text-xl font-medium transition-all">Баланс:</span>
+            <div className="flex items-center gap-2">
+                <span
+                    className={`text-2xl lg:text-5xl 2xl:text-5xl mt-2 font-medium transition-all duration-350 ease-in-out ${balanceColorClass}`}
+                >
+                    {isUSD ? '$ ' : '\u20bd'}
+                </span>
+                <span
+                    className={`text-5xl lg:text-7xl 2xl:text-8xl font-bold transition-all duration-350 ease-in-out truncate ${balanceColorClass}`}
+                >
+                    {cleanValue(totalBalanceForDate)}
+                </span>
+            </div>
+        </div>
+    );
+};
