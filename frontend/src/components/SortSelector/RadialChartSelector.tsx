@@ -1,0 +1,27 @@
+import type { ChangeEvent } from 'react';
+
+interface RadialChartSelectorProps {
+    handleRadialSortChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+    selectedSortType: string;
+}
+
+export const RadialChartSelector = (props: RadialChartSelectorProps) => {
+    const { handleRadialSortChange, selectedSortType } = props;
+
+    return (
+        <select
+            className="flex gap-2 min-h-9 lg:text-md text-sm items-center justify-center bg-sky-900/60 rounded-xl px-2 outline-none border-none cursor-pointer hover:bg-sky-900/40 transition-all duration-150 ease-in-out"
+            name="finance chart sort"
+            id="finance-chart"
+            value={selectedSortType}
+            onChange={handleRadialSortChange}
+        >
+            <option className="bg-sky-950/40" value="month">
+                Расходы за месяц
+            </option>
+            <option className="bg-sky-950/40" value="thisYear">
+                Расходы за год
+            </option>
+        </select>
+    );
+};
